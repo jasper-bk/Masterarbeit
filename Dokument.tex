@@ -1,0 +1,331 @@
+
+\documentclass[%
+pdftex,
+oneside,			% Einseitiger Druck.
+11pt,				% Schriftgroesse
+parskip=half,		% Halbe Zeile Abstand zwischen Absätzen.
+%	topmargin = 10pt,	% Abstand Seitenrand (Std:1in) zu Kopfzeile [laut log: unused]
+headheight = 12pt,	% Höhe der Kopfzeile
+%	headsep = 30pt,	% Abstand zwischen Kopfzeile und Text Body  [laut log: unused]
+headsepline,		% Linie nach Kopfzeile.
+footsepline,		% Linie vor Fusszeile.
+footheight = 16pt,	% Höhe der Fusszeile
+abstracton,		% Abstract Überschriften
+DIV=calc,		% Satzspiegel berechnen
+BCOR=8mm,		% Bindekorrektur links: 8mm
+headinclude=false,	% Kopfzeile nicht in den Satzspiegel einbeziehen
+footinclude=false,	% Fußzeile nicht in den Satzspiegel einbeziehen
+listof=totoc,		% Abbildungs-/ Tabellenverzeichnis im Inhaltsverzeichnis darstellen
+toc=bibliography,	% Literaturverzeichnis im Inhaltsverzeichnis darstellen
+]{scrreprt}	% Koma-Script report-Klasse, fuer laengere Bachelorarbeiten alternativ auch: scrbook
+
+
+\def \titel {Entwicklung eines KI-basierten Assistenzsystems mit transparenter Entscheidungsbegründung zur quantitativen Portfoliooptimierung im Wertpapierhandel}
+\def \arbeit {Masterarbeit}
+\def \autor {Jasper Bremenkamp}
+\def \abschluss {Master of Science}
+\def \studiengang {Data Science}
+\def \datumAbgabe {\today}
+\def \modul {Masterarbeit}
+\def \matrikelnr {92125193}
+\def \tutor {Christian Müller-Kett}
+
+\def \seitenrand {2cm}
+
+% PDF Einstellungen
+\usepackage{hyperref}
+
+\hypersetup{
+    unicode = true,
+    pdftitle={\titel},
+    pdfauthor={\autor},
+    pdfsubject={\arbeit},
+    pdfcreator={pdflatex, LaTeX with KOMA-Script},
+    pdfpagemode=UseOutlines, 		% Beim Oeffnen Inhaltsverzeichnis anzeigen
+    pdfdisplaydoctitle=true, 		% Dokumenttitel statt Dateiname anzeigen.
+    pdflang={de}, 			% Sprache des Dokuments.
+    hidelinks
+}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry} % margins	% Seitenränder und Abstände
+\usepackage[activate]{microtype} %Zeilenumbruch und mehr
+\usepackage[onehalfspacing]{setspace}
+\usepackage{makeidx}
+\usepackage[autostyle=true,german=quotes]{csquotes}
+\MakeOuterQuote{"} % Für deutsche Anführungszeichen
+\usepackage{longtable}
+\usepackage{enumitem}	% mehr Optionen bei Aufzählungen
+\usepackage{graphicx}
+\usepackage{pdfpages}   % zum Einbinden von PDFs
+\usepackage{xcolor} 	% für HTML-Notation
+\usepackage{float}
+\usepackage{array}
+\usepackage{calc}		% zum Rechnen (Bildtabelle in Deckblatt)
+\usepackage[right]{eurosym}
+\usepackage{wrapfig}
+\usepackage{pgffor} % für automatische Kapiteldateieinbindung
+\usepackage[perpage, hang, multiple, stable]{footmisc} % Fussnoten
+\usepackage[printonlyused]{acronym} % falls gewünscht kann die Option footnote eingefügt werden, dann wird die Erklärung nicht inline sondern in einer Fußnote dargestellt
+\usepackage{listings}
+\usepackage{bookmark}
+\usepackage[english, ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{scrhack}
+\usepackage{txfonts} % Use a Times-new-roman open-source clone
+\usepackage{comment}
+
+\includecomment{comment} % Kommentare ein und Ausblenden
+
+    %%%%%%% Neues Design %%%%%%%%%%%
+    \setkomafont{chapter}{\Large}
+    \setkomafont{section}{\large}
+    \setkomafont{subsection}{\large}
+
+    %\renewcommand*\chapterheadstartvskip{\vspace*{-0cm}} %Kapitel nach oben verschieben
+
+    \addtolength{\footskip}{-0.7cm}% foot larger by 0,7 cm  (Raises the page number)
+    \setlength{\parindent}{6pt} % Indent at start of paragraphs  6pt
+
+    \renewcommand\thesection{\arabic{section}}
+    \renewcommand\thefigure{\arabic{figure}}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Notizen. Einsatz mit \todo{Notiz} oder \todo[inline]{Notiz}.
+\usepackage[obeyFinal,backgroundcolor=yellow,linecolor=black]{todonotes}
+% Alle Notizen ausblenden mit der Option "final" in \documentclass[...] oder durch das auskommentieren folgender Zeile
+% \usepackage[disable]{todonotes}
+
+% der neue Zitierstil ist Käse
+\global\def\VAlterZitierstil{true}
+
+\global\def\VTrueValue{true}
+
+\ifx\VAlterZitierstil\VTrueValue
+    \usepackage[
+        backend=bibtex,     % empfohlen. Falls biber Probleme macht: bibtex
+        bibwarn=true,
+        bibencoding=utf8,   % wenn .bib in utf8, sonst ascii
+        sortlocale=de_DE,
+        sorting=none,
+        style=numeric-comp
+    ]{biblatex}
+
+    \addbibresource{bibliographie.bib}
+\else
+    % New IUBH Cite Style / Old Cite style below
+    \usepackage{natbib}
+    \setcitestyle{aysep={}} % remove comma as delimiter
+\fi
+
+
+\begin{document}
+
+\pagenumbering{Roman}
+
+\begin{titlepage}
+    \pdfbookmark{\titel}{}
+    \begin{longtable}{p{7cm} p{12cm}}
+        {\raisebox{\ht\strutbox-\totalheight}{\includegraphics[height=3cm]{assets/iu.png}}}
+    \end{longtable}
+    \enlargethispage{20mm}
+    \begin{center}
+        \vspace*{12mm}	{\LARGE\textbf \titel }\\
+        \vspace*{12mm}	{\large\textbf \arbeit}\\
+        \vspace*{12mm}	Prüfungsleistung für den\\
+        \vspace*{3mm}		{\textbf \abschluss}\\
+        \vspace*{12mm}	des Studiengangs \studiengang\\
+    \vspace*{3mm}		an der Internationalen Hochschule\\
+        \vspace*{12mm}	von\\
+        \vspace*{3mm}		{\large\textbf \autor}\\
+        \vspace*{12mm}	\datumAbgabe
+    \end{center}
+    \vfill
+    \begin{spacing}{1.2}
+    \begin{tabbing}
+        mmmmmmmmmmmmmmmmmmmmmmmmmm             \= \kill
+        \textbf{Kursbezeichnung} \> \modul\\
+        \textbf{Matrikelnummer} \> \matrikelnr\\
+        \textbf{Tutor} \> \tutor\\
+    \end{tabbing}
+    \end{spacing}
+\end{titlepage}
+
+\newpage
+
+% Inhaltsverzeichnis
+\begin{spacing}{1.1}
+    \begingroup
+
+        % auskommentieren für Seitenzahlen unter Inhaltsverzeichnis
+        \renewcommand*{\chapterpagestyle}{empty}
+        \pagestyle{empty}
+
+        \setcounter{tocdepth}{3}
+        %für die Anzeige von Unterkapiteln im Inhaltsverzeichnis
+        %\setcounter{tocdepth}{2}
+
+        \tableofcontents
+        \clearpage
+    \endgroup
+\end{spacing}
+\newpage
+
+%Abbildungsverzeichnis
+\cleardoublepage
+\listoffigures
+\clearpage
+
+\lstlistoflistings %List of listings
+\clearpage
+
+%Tabellenverzeichnis
+\cleardoublepage
+\listoftables
+\clearpage
+
+\pagenumbering{arabic}
+
+% Allgemeine To-Dos bzgl. Dokument:
+% Chapter in einzelne .tex Files auslagern
+% ...
+
+%-------------------------
+\chapter{Einleitung}
+\begin{comment}
+\textbf{To-Dos:}
+\begin{itemize}
+  \item Prägnante Darstellung des Problems und der Forschungslücke
+  \item Klare Formulierung der Forschungsfragen als roter Faden
+  \item Abgrenzung des Untersuchungsbereichs ( Fokus auf Transparenz)
+  \item Kurzer Ausblick auf den praktischen Beitrag der Arbeit
+
+  \item[\textcolor{blue}{\faLightbulbO}] \textbf{Ideen:}
+  \begin{itemize}
+    \item Einbettung eines Fallbeispiels (z. B. Portfolio eines Musteranlegers)
+    \item Interaktives Diagramm zur Visualisierung der Blackbox-Problematik
+    \item Vergleichstabelle: Eigenschaften vs. existierende Robo-Advisor oder andere Systeme
+    \item Historischer Exkurs zu Transparenzanforderungen in der Finanzbranche
+  \end{itemize}
+\end{itemize}
+\end{comment}
+
+%-------------------------
+\chapter{Stand der Forschung}
+\begin{comment}
+\textbf{To-Dos:}
+\begin{itemize}
+  \item Systematische Aufarbeitung existierender Portfolio-Optimierungsansätze
+  \item Kritischer Vergleich von Erklärbarkeitsmethoden (SHAP/LIME vs. Alternativen)
+  \item Identifikation offener Herausforderungen aktueller Systeme
+  \item Theoretische Fundierung der Risikobewertungsmetriken
+
+  \item[\textcolor{blue}{\faLightbulbO}] \textbf{Ideen:}
+  \begin{itemize}
+    \item Meta-Analyse der Performance kommerzieller Tools
+    \item Cross-industrieller Vergleich: Finanz-KI vs. Medizin-KI-Erklärbarkeit
+    \item Experteninterview-Zitate zur Validierung der Forschungslücke
+    \item Network Graph von Zitationsbeziehungen relevanter Papers
+  \end{itemize}
+\end{itemize}
+\end{comment}
+
+%-------------------------
+\chapter{Methodik}
+\begin{comment}
+\textbf{To-Dos:}
+\begin{itemize}
+  \item Detaillierte Beschreibung des DSR-Ansatzes mit Design-Zyklen
+  \item Nachvollziehbare Begründung der Modellauswahl (z. B, DeepSeek R1) und anderen technischen Gegebenheiten (z. B. Flask, Bootstrap etc)
+  \item Dokumentation der Evaluationskriterien vor Implementierung
+  \item Klare Zuordnung von Methoden zu Forschungsfragen
+
+  \item[\textcolor{blue}{\faLightbulbO}] \textbf{Ideen:}
+  \begin{itemize}
+    \item Mockup-Prototypen früher Designiterationen zeigen
+    \item Sensitivity-Analyse für Modellhyperparameter
+    \item Entscheidungsmatrix zur Framework-Auswahl (Ollama vs. Alternatives)
+    \item Live-Demo-Video des Entwicklungsprozesses verlinken
+  \end{itemize}
+\end{itemize}
+\end{comment}
+
+%-------------------------
+\chapter{Systemarchitektur und Implementierung}
+\begin{comment}
+\textbf{To-Dos:}
+\begin{itemize}
+  \item Modulare Darstellung der Systemkomponenten mit Schnittstellen
+  \item Reproduzierbare Code-Beispiele für Kernfunktionen
+  \item Diskussion technischer Limitationen (z. B. Latenzzeiten)
+  \item Dokumentation der genutzten Frameworks/Tools (z. B. Ollama, Flask)
+
+  \item[\textcolor{blue}{\faLightbulbO}] \textbf{Ideen:}
+  \begin{itemize}
+    \item \textbf{Privacy-by-Design:} On-Device-Federated-Learning-Ansatz skizzieren
+    \item \textbf{Plug-in-System:} Modularer Aufbau für Drittanbieter-Erweiterungen
+  \end{itemize}
+
+\end{itemize}
+\end{comment}
+
+%-------------------------
+\chapter{Evaluation}
+\begin{comment}
+\textbf{To-Dos:}
+\begin{itemize}
+  \item Transparente Darstellung der Backtesting-Ergebnisse
+  \item Statistische Signifikanzprüfung der Performance
+  \item Kritische Reflexion methodischer Limitationen
+
+    \begin{itemize}
+    \item \textbf{Stress-Tests:} Simulation von Marktcrashs (z. B. COVID-19, 2008)
+    \item \textbf{Erklärungs-Robustheit:} Messung, wie konsistent die KI-Begründungen bei leicht veränderten Inputs sind
+  \end{itemize}
+\end{itemize}
+\end{comment}
+
+%-------------------------
+\chapter{Diskussion}
+\begin{comment}
+\textbf{To-Dos:}
+\begin{itemize}
+  \item Interpretation der Ergebnisse im Kontext der Forschungsfragen
+  \item Einordnung in den aktuellen Forschungsstand
+  \item Praktische Implikationen für Finanztechnologie
+  \item Offene Herausforderungen und ethische Aspekte
+
+  \item[\textcolor{blue}{\faLightbulbO}] \textbf{Ideen:}
+  \begin{itemize}
+    \item Szenario-Analyse: Krisenresilienz (2008/2020 Simulation)
+  \end{itemize}
+\end{itemize}
+\end{comment}
+
+%-------------------------
+\chapter{Fazit und Ausblick}
+\begin{comment}
+\textbf{To-Dos:}
+\begin{itemize}
+  \item Prägnante Zusammenfassung der Kernbeiträge
+  \item Beantwortung der Forschungsfragen mit Evidenzbezug
+  \item Realistische Skizzierung zukünftiger Forschungsrichtungen
+  \item Abschließende Einschätzung der Übertragbarkeit
+
+  \item[\textcolor{blue}{\faLightbulbO}] \textbf{Ideen:}
+  \begin{itemize}
+    \item \textbf{Cross-Asset Vision:} Übertragung auf Krypto oder andere vergleichbare handelbare Assets
+  \end{itemize}
+
+\end{itemize}
+\end{comment}
+
+
+
+\ifx\VAlterZitierstil\VTrueValue
+    \printbibliography
+\else
+    \bibliographystyle{iubh}
+    \bibliography{bibliographie.bib}
+\fi
+\end{document}
