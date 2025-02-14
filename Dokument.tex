@@ -73,6 +73,7 @@ toc=bibliography,	% Literaturverzeichnis im Inhaltsverzeichnis darstellen
 \usepackage{scrhack}
 \usepackage{txfonts} % Use a Times-new-roman open-source clone
 \usepackage{comment}
+\usepackage{fontawesome}
 
 \includecomment{comment} % Kommentare ein und Ausblenden
 
@@ -190,136 +191,15 @@ toc=bibliography,	% Literaturverzeichnis im Inhaltsverzeichnis darstellen
 % Chapter in einzelne .tex Files auslagern
 % ...
 
-%-------------------------
-\chapter{Einleitung}
-\begin{comment}
-\textbf{To-Dos:}
-\begin{itemize}
-  \item Prägnante Darstellung des Problems und der Forschungslücke
-  \item Klare Formulierung der Forschungsfragen als roter Faden
-  \item Abgrenzung des Untersuchungsbereichs ( Fokus auf Transparenz)
-  \item Kurzer Ausblick auf den praktischen Beitrag der Arbeit
-
-  \item[\textcolor{blue}{\faLightbulbO}] \textbf{Ideen:}
-  \begin{itemize}
-    \item Einbettung eines Fallbeispiels (z. B. Portfolio eines Musteranlegers)
-    \item Interaktives Diagramm zur Visualisierung der Blackbox-Problematik
-    \item Vergleichstabelle: Eigenschaften vs. existierende Robo-Advisor oder andere Systeme
-    \item Historischer Exkurs zu Transparenzanforderungen in der Finanzbranche
-  \end{itemize}
-\end{itemize}
-\end{comment}
-
-%-------------------------
-\chapter{Stand der Forschung}
-\begin{comment}
-\textbf{To-Dos:}
-\begin{itemize}
-  \item Systematische Aufarbeitung existierender Portfolio-Optimierungsansätze
-  \item Kritischer Vergleich von Erklärbarkeitsmethoden (SHAP/LIME vs. Alternativen)
-  \item Identifikation offener Herausforderungen aktueller Systeme
-  \item Theoretische Fundierung der Risikobewertungsmetriken
-
-  \item[\textcolor{blue}{\faLightbulbO}] \textbf{Ideen:}
-  \begin{itemize}
-    \item Meta-Analyse der Performance kommerzieller Tools
-    \item Cross-industrieller Vergleich: Finanz-KI vs. Medizin-KI-Erklärbarkeit
-    \item Experteninterview-Zitate zur Validierung der Forschungslücke
-    \item Network Graph von Zitationsbeziehungen relevanter Papers
-  \end{itemize}
-\end{itemize}
-\end{comment}
-
-%-------------------------
-\chapter{Methodik}
-\begin{comment}
-\textbf{To-Dos:}
-\begin{itemize}
-  \item Detaillierte Beschreibung des DSR-Ansatzes mit Design-Zyklen
-  \item Nachvollziehbare Begründung der Modellauswahl (z. B, DeepSeek R1) und anderen technischen Gegebenheiten (z. B. Flask, Bootstrap etc)
-  \item Dokumentation der Evaluationskriterien vor Implementierung
-  \item Klare Zuordnung von Methoden zu Forschungsfragen
-
-  \item[\textcolor{blue}{\faLightbulbO}] \textbf{Ideen:}
-  \begin{itemize}
-    \item Mockup-Prototypen früher Designiterationen zeigen
-    \item Sensitivity-Analyse für Modellhyperparameter
-    \item Entscheidungsmatrix zur Framework-Auswahl (Ollama vs. Alternatives)
-    \item Live-Demo-Video des Entwicklungsprozesses verlinken
-  \end{itemize}
-\end{itemize}
-\end{comment}
-
-%-------------------------
-\chapter{Systemarchitektur und Implementierung}
-\begin{comment}
-\textbf{To-Dos:}
-\begin{itemize}
-  \item Modulare Darstellung der Systemkomponenten mit Schnittstellen
-  \item Reproduzierbare Code-Beispiele für Kernfunktionen
-  \item Diskussion technischer Limitationen (z. B. Latenzzeiten)
-  \item Dokumentation der genutzten Frameworks/Tools (z. B. Ollama, Flask)
-
-  \item[\textcolor{blue}{\faLightbulbO}] \textbf{Ideen:}
-  \begin{itemize}
-    \item \textbf{Privacy-by-Design:} On-Device-Federated-Learning-Ansatz skizzieren
-    \item \textbf{Plug-in-System:} Modularer Aufbau für Drittanbieter-Erweiterungen
-  \end{itemize}
-
-\end{itemize}
-\end{comment}
-
-%-------------------------
-\chapter{Evaluation}
-\begin{comment}
-\textbf{To-Dos:}
-\begin{itemize}
-  \item Transparente Darstellung der Backtesting-Ergebnisse
-  \item Statistische Signifikanzprüfung der Performance
-  \item Kritische Reflexion methodischer Limitationen
-
-    \begin{itemize}
-    \item \textbf{Stress-Tests:} Simulation von Marktcrashs (z. B. COVID-19, 2008)
-    \item \textbf{Erklärungs-Robustheit:} Messung, wie konsistent die KI-Begründungen bei leicht veränderten Inputs sind
-  \end{itemize}
-\end{itemize}
-\end{comment}
-
-%-------------------------
-\chapter{Diskussion}
-\begin{comment}
-\textbf{To-Dos:}
-\begin{itemize}
-  \item Interpretation der Ergebnisse im Kontext der Forschungsfragen
-  \item Einordnung in den aktuellen Forschungsstand
-  \item Praktische Implikationen für Finanztechnologie
-  \item Offene Herausforderungen und ethische Aspekte
-
-  \item[\textcolor{blue}{\faLightbulbO}] \textbf{Ideen:}
-  \begin{itemize}
-    \item Szenario-Analyse: Krisenresilienz (2008/2020 Simulation)
-  \end{itemize}
-\end{itemize}
-\end{comment}
-
-%-------------------------
-\chapter{Fazit und Ausblick}
-\begin{comment}
-\textbf{To-Dos:}
-\begin{itemize}
-  \item Prägnante Zusammenfassung der Kernbeiträge
-  \item Beantwortung der Forschungsfragen mit Evidenzbezug
-  \item Realistische Skizzierung zukünftiger Forschungsrichtungen
-  \item Abschließende Einschätzung der Übertragbarkeit
-
-  \item[\textcolor{blue}{\faLightbulbO}] \textbf{Ideen:}
-  \begin{itemize}
-    \item \textbf{Cross-Asset Vision:} Übertragung auf Krypto oder andere vergleichbare handelbare Assets
-  \end{itemize}
-
-\end{itemize}
-\end{comment}
-
+\foreach \i in {01,02,03,04,05,06,07,08,09,...,99} {%
+\edef\FileName{content/\i kapitel}%
+  \IfFileExists{\FileName}{%
+    \input{\FileName}
+  }
+  {%
+    %file does not exist
+  }
+}
 
 
 \ifx\VAlterZitierstil\VTrueValue
