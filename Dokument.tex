@@ -101,22 +101,35 @@ toc=bibliography,	% Literaturverzeichnis im Inhaltsverzeichnis darstellen
 \global\def\VAlterZitierstil{true}
 
 \global\def\VTrueValue{true}
-
 \ifx\VAlterZitierstil\VTrueValue
-    \usepackage[
-        backend=bibtex,     % empfohlen. Falls biber Probleme macht: bibtex
-        bibwarn=true,
-        bibencoding=utf8,   % wenn .bib in utf8, sonst ascii
-        sortlocale=de_DE,
-        sorting=none,
-        style=numeric-comp
-    ]{biblatex}
+    % \usepackage[
+    %     backend=biber,     % biber muss seperat installiert werden
+    %     bibwarn=true,
+    %     bibencoding=utf8,   % wenn .bib in utf8, sonst ascii
+    %     sortlocale=de_DE,
+    %     sorting=none,
+    %     style=apa %apa instead of IEEE
+    % ]{biblatex}
+
+    \usepackage[backend=biber, style=apa, pagetracker, ibidtracker=constrict, apamaxprtauth=20 ]{biblatex}
+
+    %Enable IBAN on APA style
+    \usepackage{xpatch}
+    \xpretobibmacro{doi+url}{\printfield{isbn}}{}{}
 
     \addbibresource{bibliographie.bib}
 \else
-    % New IUBH Cite Style / Old Cite style below
-    \usepackage{natbib}
-    \setcitestyle{aysep={}} % remove comma as delimiter
+    %eigentlich totaler Käse, kann nach Bewertung der Arbeit für zukünftige Arbeiten entfernt werden
+
+    % New IUBH Cite Style / Old Cite style over this block
+    % \usepackage{natbib}
+    % \setcitestyle{aysep={}} % remove comma as delimiter
+
+    \usepackage{apacite}
+
+    %search and replace von apacite zur biblatex
+    %Search: \\citeNP<([^}]*)>\[([^}]*)\]\{([^}]+)\}
+    %Replace: \\cite[$1][$2]{$3}
 \fi
 
 
@@ -202,10 +215,12 @@ toc=bibliography,	% Literaturverzeichnis im Inhaltsverzeichnis darstellen
 }
 
 
+
 \ifx\VAlterZitierstil\VTrueValue
     \printbibliography
 \else
-    \bibliographystyle{iubh}
+    %\bibliographystyle{iubh}
+    \bibliographystyle{apacite} %Einträge sind unsortiert
     \bibliography{bibliographie.bib}
 \fi
 \end{document}
