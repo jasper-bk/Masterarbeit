@@ -16,107 +16,61 @@
     \item Network Graph von Zitationsbeziehungen relevanter Papers
   \end{itemize}
 \end{itemize}
+
+\textbf{Potentielle Literatur:}
+
+\begin{itemize}
+  \item \cite{markowitz1952} - Grundlage der Portfolio-Optimierung; zeigt Notwendigkeit von Risikoadjustierung
+  \item \cite{favre2002} - Erweiterung der MPT für komplexe Risikoprofile (Fat Tails)
+  \item \cite{ban2018} - Brückenschlag zwischen ML und Portfolio-Optimierung
+  \item \cite{ribeiro2016} - Basis für lokale Erklärbarkeit (LIME) in Finanz-KI
+  \item \cite{lundberg2017} - SHAP als zentrale Methode für globale Erklärbarkeit
+  \item \cite{molnar2022} - Umfassender Vergleich von XAI-Methoden
+  \item \cite{demiguel2009} - Kritik an komplexen Optimierungsansätzen
+  \item \cite{salih2023} - Aktuelle Analyse von SHAP/LIME-Limitationen
+  \item \cite{ertenlice2018} - Moderne Optimierungsalgorithmen für Portfolios
+  \item \cite{hecker2017} - Transferlernen zwischen Branchen
+  \item \cite{linardatos2021} - Cross-domänen Erklärbarkeitsframework
+  \item \cite{shalit1984} - Alternative Risikometrik (Mean-Gini)
+  \item \cite{masis2021} - Praxishandbuch für XAI-Implementierungen
+\end{itemize}
+
 \end{comment}
 
 \section{Verwandte Bereiche und existierende Ansätze}
 
-Die Entwicklung von Assistenzsystemen zur Portfoliooptimierung baut auf drei zentralen Forschungssträngen auf: \textit{(1)} der klassischen Portfolio-Theorie, \textit{(2)} modernen KI-basierten Optimierungsansätzen und \textit{(3)} kommerziellen Robo-Advisor-Lösungen.
-Jeder dieser Bereiche weist Defizite auf, die das in dieser Arbeit entwickelte System adressiert.
+  \dots
 
-\subsection{Klassische Portfolio-Optimierung}
-Die von \textcite{markowitz1952} begründete moderne Portfolio-Theorie (MPT) postuliert, dass Anleger durch Diversifikation ein optimales Verhältnis von Risiko und Rendite erreichen können.
-Kern der MPT ist die \textit{Mean-Variance-Optimierung}, die auf der Annahme normalverteilter Renditen basiert.
-Diese Methodik wird bis heute in grundlegender Form eingesetzt (\textcite{demiguel2009}), stößt jedoch an Grenzen, wenn es gilt:
+  \subsection{Klassische Portfolio-Optimierung}
 
-\begin{itemize}
-    \item \textbf{Nicht-normalverteilte Risiken} (z. B. Fat Tails) zu modellieren
-    \item \textbf{Dynamische Korrelationen} zwischen Assets zu berücksichtigen
-    \item \textbf{Individuelle Anlegerpräferenzen} jenseits von Risikoaversion abzubilden
-\end{itemize}
+  \dots
 
-\textcite{favre2002} erweiterten die MPT um höhere statistische Momente, was insbesondere für alternative Anlageklassen wie Hedgefonds relevante Risikoprofile liefert.
-Dennoch bleiben diese Ansätze \textit{reaktiv} – sie optimieren auf Basis historischer Daten, ohne marktpsychologische Faktoren oder qualitative Informationen einzubeziehen.
+  \subsection{Moderne KI-basierte Ansätze}
 
-\subsection{Moderne KI-basierte Ansätze}
+  \dots
 
-Mit dem Aufkommen maschineller Lernverfahren entstanden hybride Ansätze, die klassische Optimierung mit KI-Modellen kombinieren.
-\textcite{ban2018} demonstrieren, wie tiefe neuronale Netze nicht-lineare Zusammenhänge in Multifaktor-Modellen identifizieren können.
-Ihre Architektur erreicht eine um 12\% höhere Sharpe Ratio gegenüber traditionellen Methoden, operiert jedoch als \textit{Blackbox}, die keine nachvollziehbaren Handlungsempfehlungen liefert.
+  \subsection{Kommerzielle Anwendungen: Robo-Advisor etc}
 
-Bei der Anwendung auf generative KI-Modelle (LLMs) ergeben sich neue Herausforderungen für Erklärbarkeitsmethoden.
-Während SHAP/LIME ursprünglich für klassisches ML entwickelt wurden, adaptieren neuere Ansätze wie \textit{Integrated Gradients} oder \textit{Attention Visualization} diese Konzepte für Transformer-Architekturen.
-Für LLM-basierte Systeme bietet sich zudem die \textit{Chain-of-Thought-Erklärung} an, bei der das Modell seine Entscheidungslogik in natürlicher Sprache offenlegt.
-Im Kontext dieser Arbeit werden SHAP-Werte mit \textit{Prompt-Engineering-Techniken} kombiniert, um sowohl numerische Feature-Importance als auch natürliche Sprachbegründungen zu generieren.
-Dieser Hybridansatz überwindet die Limitierungen rein statistischer Erklärungsmethoden.
+  \dots
 
-Aktuelle nicht-generative Systeme zur Portfoliooptimierung nutzen typischerweise:
+  \subsection{Brücke zu den Forschungsfragen}
 
-\begin{itemize}
-    \item \textbf{Zeitreihenvorhersagen} mit LSTM-Netzen für Einzelaktien
-    \item \textbf{Reinforcement Learning} zur dynamischen Allokationsanpassung
-    \item \textbf{Transformer-Modelle} zur Verarbeitung von Nachrichtentexten
-\end{itemize}
+  \dots
 
-Wie \textcite{ertenlice2018} in einer Meta-Studie zeigen, überperformen KI-Modelle klassische Ansätze in 73\% der Fälle – allerdings nur unter der Prämisse \textit{perfekter Datenqualität}.
-
-In der Praxis scheitern viele Modelle an:
-\begin{itemize}
-    \item \textbf{Low-Data-Regimes} für exotische Assetklassen
-    \item \textbf{Konzeptdrifts} durch sich ändernde Marktregime
-    \item \textbf{Overfitting} bei hochdimensionalen Merkmalsräumen
-\end{itemize}
-
-\subsection{Kommerzielle Anwendungen: Robo-Advisor}
-
-Der Markt kommerzieller Robo-Advisor wird von plattformgebundenen Lösungen dominiert (z. B. Betterment, Wealthfront).
-Diese Systeme basieren auf vereinfachten MPT-Varianten und weisen folgende Defizite auf, die \textcite{hecker2017} identifizierten:
-
-\begin{itemize}
-    \item \textbf{Generische Risikoprofile}: Nur 3-5 vordefinierte Risikoklassen
-    \item \textbf{Intransparente Rebalancing-Logik}: Undurchsichtige Trigger für Umschichtungen
-    \item \textbf{Cloud-Abhängigkeit}: Keine Offline-Fähigkeit für sensible Finanzdaten
-\end{itemize}
-
-Eine Analyse von 20 Robo-Advisor-Systemen durch den Autor dieser Arbeit zeigt, dass 85\% keine detaillierten Begründungen für Transaktionen liefern und 92\% keine kombinierten Einzelwert-/Portfolioanalysen durchführen.
-Dies bestätigt die von \textcite{salih2023} beschriebene \textit{Erklärbarkeitslücke} in der Finanz-KI.
-
-\subsection{Brücke zu den Forschungsfragen}
-
-Die identifizierten Lücken begründen unmittelbar die Notwendigkeit des in dieser Arbeit entwickelten Systems:
-\begin{enumerate}
-    \item \textbf{Forschungsfrage 1} adressiert das Blackbox-Problem durch eine LLM-spezifische Erklärungsarchitektur, die SHAP-Werte mit generierten Textbegründungen kombiniert (\textcite{lundberg2017}, \textcite{molnar2022}).
-    \item \textbf{Forschungsfrage 2} reagiert auf die mangelnde Risiko-Rendite-Transparenz kommerzieller Systeme durch eine neuartige Kombination von Sharpe-Ratio-Optimierung (Kennzahl für risikoadjustierte Rendite) mit dynamischen Korrelationsnetzwerken, die Marktregime-Änderungen berücksichtigen.
-\end{enumerate}
-
-Der gewählte \textit{Design Science Research}-Ansatz ermöglicht dabei die systematische Überwindung der dargestellten Limitationen existierender Lösungen.
-In jüngerer Zeit haben \textcite{ban2018} gezeigt, wie maschinelles Lernen traditionelle Optimierungsmethoden ergänzen kann.
-Ihre Arbeit demonstriert, dass KI-basierte Ansätze in der Lage sind, nicht-lineare Zusammenhänge in Finanzdaten zu identifizieren, die mit klassischen Methoden nicht erfasst werden können.
 
 \section{Offene Herausforderungen}
 
-Trotz der Fortschritte gibt es weiterhin Herausforderungen.
-\textcite{demiguel2009} zeigen, dass einfache Strategien wie die 1/N-Portfolio-Allokation oft komplexen Optimierungsmethoden überlegen sind.
-Dies wirft Fragen nach der praktischen Anwendbarkeit von KI-basierten Ansätzen auf.
-
-Ein weiteres Problem ist die Kollinearität von Merkmalen, die die Erklärbarkeit von Modellen beeinträchtigen kann.
-\textcite{salih2023} analysieren, wie sich dies auf SHAP und LIME auswirkt, und schlagen Lösungsansätze vor.
+  \dots
 
 \section{Theoretische Fundierung der Risikobewertung}
 
-Die Risikobewertung ist ein zentraler Bestandteil der Portfolio-Optimierung.
-\textcite{shalit1984} führten den Mean-Gini-Ansatz ein, der eine Alternative zur traditionellen Risikobewertung darstellt.
-Dieser Ansatz berücksichtigt die Verteilung der Renditen und ist besonders nützlich für nicht-normalverteilte Daten.
+  \dots
 
 \section{Cross-industrielle Vergleiche}
 
-Die Übertragbarkeit von KI-Methoden zwischen verschiedenen Branchen ist ein interessanter Forschungsbereich.
-\textcite{hecker2017} diskutieren, wie Methoden aus der Medizin-KI auf die Finanzbranche übertragen werden können.
-Ähnlich zeigt \textcite{linardatos2021} in ihrer Übersichtsarbeit, dass viele Erklärbarkeitsmethoden domänenübergreifend anwendbar sind.
+  \dots
 
 \section{Zusammenfassung und Forschungslücken}
 
-Zusammenfassend lässt sich feststellen, dass die Portfolio-Optimierung durch KI-basierte Ansätze erheblich verbessert werden kann.
-Allerdings gibt es noch offene Fragen, insbesondere in Bezug auf die Erklärbarkeit und Robustheit der Modelle.
-Wie \textcite{ertenlice2018} betonen, sind moderne Optimierungsalgorithmen wie Schwarmintelligenz vielversprechend, aber ihre Anwendung in der Praxis erfordert weitere Forschung.
+  \dots
 
-Diese Forschungslücken bilden die Grundlage für die Entwicklung des in dieser Arbeit vorgestellten KI-basierten Assistenzsystems.
