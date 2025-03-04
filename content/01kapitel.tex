@@ -4,7 +4,13 @@ Der Wertpapierhandel steht im Spannungsfeld zwischen zunehmender Datenkomplexit�
 Während moderne Robo-Advisors und KI-Tools quantitative Empfehlungen generieren, agieren sie oft als \textbf{Blackbox}:
 Sie liefern Kauf-/Verkaufssignale, ohne die zugrundeliegende Logik offenzulegen – etwa warum eine Aktie zu 70\% verkauft werden soll, obwohl fundamentale Kennzahlen stabil erscheinen, oder wie politische Risiken die Portfolio-Strategie beeinflussen.
 Diese Intransparenz führt zu mangelndem Vertrauen und limitiert die praktische Nutzbarkeit, wie Fallstudien zu Fehleinschätzungen bei Marktvolatilität zeigen.
-Ein Beispiel für eine solche Fehleinschätzungen ist der GameStop-Hype 2021 bei dem Retail-Anleger gegen institutionelle Anleger wetteten (Vgl. \cite{sec2021gamestop}) und schwere Verluste erlitten.
+
+%Gerade kein besseres Beispiel dabei. Vermutlich außer Short auch nicht interessant gewesen
+Ein Beispiel für die Folgen intransparenter Entscheidungsprozesse ist der GameStop-Hype im Jahr 2021.
+In diesem Fall spekulierten Retail-Anleger gegen institutionelle Anleger, was zu erheblichen Marktverwerfungen führte.
+Viele Anleger erlitten schwere Verluste, da sie die zugrundeliegenden Risiken und Marktdynamiken nicht vollständig verstanden.
+Dies verdeutlicht, wie mangelnde Transparenz und unzureichende Erklärungen von KI-Systemen zu Fehleinschätzungen führen können.
+Hätten die Anleger Zugang zu einem System gehabt, das nicht nur Handlungsempfehlungen gibt, sondern auch die zugrundeliegenden Faktoren (wie Marktmanipulation, Short-Squeeze-Dynamiken und sentimentgetriebene Volatilität) erklärt, hätten sie möglicherweise fundiertere Entscheidungen treffen können (Vgl. \cite{sec2021gamestop}).
 
 
 Die vorliegende Arbeit adressiert drei zentrale \textbf{Forschungslücken}:
@@ -23,8 +29,8 @@ Die Arbeit verfolgt das Ziel, ein \textbf{KI-Assistenzsystem} zu entwickeln, das
 
 \textbf{Forschungsfragen als Leitfaden:}
 \begin{enumerate}
-    \item Wie können Large Language Models (LLMs) quantitative Empfehlungen (z.B. \enquote{Halten: 40\%}) mit domänenspezifischen Begründungen verknüpfen, die sowohl fundamentale Kennzahlen (KGV, EBITDA-Marge) als auch qualitative Faktoren (Marktstimmung, regulatorische Änderungen) synthetisieren?
-    \item Mit welchen Methoden lässt sich eine Portfolio-Optimierung realisieren, die reale Nutzerpräferenzen (Risikotoleranz, Anlagehorizont) mit KI-gestützten Korrelationsanalysen kombiniert?
+    \item Wie kann ein KI-basiertes Assistenzsystem entwickelt werden, das für jedes Wertpapier im Depot quantifizierbare Handlungsempfehlungen (Kaufen/Verkaufen/Halten in Prozent) mit transparenten Begründungen generiert?
+    \item Inwieweit kann das System eine übergeordnete Risiko-Rendite-Bewertung des gesamten Portfolios liefern und konkrete Rebalancing-Strategien ableiten, die den individuellen Anlagezielen des Nutzers entsprechen?
 \end{enumerate}
 
 \textbf{Abgrenzung:} Der Fokus liegt auf \textbf{Transparenz durch Erklärbarkeit}, nicht auf Prognosegenauigkeit.

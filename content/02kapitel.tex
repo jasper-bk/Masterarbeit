@@ -1,38 +1,43 @@
 \chapter{Stand der Forschung}
 
   Die Portfoliooptimierung hat sich in den letzten Jahrzehnten von einer rein theoretischen Disziplin zu einem interdisziplinären Forschungsfeld entwickelt, das mathematische Modellierung, datengetriebene Methoden und praktische Anwendungsfragen vereint.
-  Dieses Kapitel analysiert den aktuellen Forschungsstand und zeigt auf, wie die in dieser Arbeit vorgeschlagene Systemarchitektur bestehende Lücken schließt.
+  Dieses Kapitel analysiert den aktuellen Forschungsstand und zeigt auf, wie die in dieser Arbeit vorgeschlagene und nachfolgende Systemarchitektur bestehende Lücken schließt.
   Dabei wird insbesondere auf die Verbindung zwischen theoretischen Grundlagen, methodischen Innovationen und praktischer Anwendbarkeit eingegangen.
-
 
 \section{Verwandte Bereiche und existierende Ansätze}
 
+  % Die drei zentralen Forschungsstränge ggf. ersetzen
   Die Entwicklung intelligenter Assistenzsysteme zur Portfoliooptimierung basiert auf drei zentralen Forschungssträngen: \textit{(1)} der klassischen Portfolio-Theorie, \textit{(2)} modernen datengetriebenen Optimierungsansätzen und \textit{(3)} kommerziellen Robo-Advisor-Systemen.
-  Jeder dieser Bereiche weist Defizite auf, die das in dieser Arbeit entwickelte System adressiert.
+  Jeder dieser Bereiche weist Defizite in Erklärbarkeit auf, die das in dieser Arbeit entwickelte System adressiert.
+
+
+  % auf jeden Fall platzieren ausdrücken, dass das Ziel nicht ist einen Robo-Advisor zu bauen und dass es naütrlich auch andere kommerzielle Systeme gibt
 
   \subsection{Klassische Portfolio-Optimierung}
 
     Die von \textcite{markowitz1952} begründete moderne Portfolio-Theorie (MPT) formuliert das Diversifikationsprinzip als Kernstrategie zur Erreichung eines optimalen Risiko-Rendite-Verhältnisses.
-    Ihr mathematischer Kern – die \textit{Mean-Variance-Optimierung} – modelliert Portfoliorisiken als Varianz der erwarteten Renditen unter der Annahme normalverteilter Rückverteilungen (\textit{Gaußsche Verteilungsannahme}).
+    Ihr mathematischer Kern – die \textit{Mean-Variance-Optimierung} – modelliert Portfoliorisiken als Varianz der erwarteten Renditen unter der Annahme normalverteilter Rückverteilungen.
+
+    \todo{moderne Portfolio-Theorie (MPT) und \textit{Mean-Variance-Optimierung} genauer ausführen!}
 
     Trotz ihrer allgegenwärtigen Anwendung in Grundlagenwerken der Finanzmathematik (Vgl. \textcite{demiguel2009}) zeigt die MPT gravierende Modelllücken bei:
     \begin{itemize}
-    \item \textbf{Leptokurtischen Risiken} (sog. \textit{Fat Tails}): Extremwertereignisse, deren Auftrittswahrscheinlichkeit die Normalverteilung unterschätzt (\textcite{cont2001})
+    \item \textbf{Leptokurtischen Risiken} (sog. \textit{Fat Tails}): Extremwertereignisse, deren Auftrittswahrscheinlichkeit die Normalverteilung unterschätzt
     \item \textbf{Kontextabhängige Zusammenhänge}: Zeitvariante Abhängigkeitsstrukturen zwischen Assetklassen
     \item \textbf{Multikriteriellen Präferenzen}: Individuelle Anlegerziele jenseits der Risikoaversion (z.B. Nachhaltigkeitsfilter)
     \end{itemize}
 
     \textcite{favre2002} erweiterten das MPT-Framework um höhere Momente (Schiefe/Wölbung), was insbesondere für alternative Anlageklassen mit asymmetrischen Risikoprofilen relevante Modellverbesserungen bringt.
-    Diese Ansätze bleiben jedoch \textit{historisch reaktiv}, da sie weder marktpsychologische Faktoren (Behavioral Finance) noch fundamentale qualitative Daten (z.B. ESG-Ratings) integrieren.
+    Diese Ansätze bleiben jedoch \textit{historisch reaktiv}, da sie weder marktpsychologische Faktoren noch fundamentale qualitative Daten (z.B. ESG-Ratings) integrieren.
 
   \subsection{Moderne datengetriebene Ansätze}
 
     Neuere Forschungsarbeiten kombinieren klassische Optimierung mit Methoden des maschinellen Lernens (ML).
-    \textcite{ban2018} demonstrieren in einer kontrollierten Simulationsstudie, dass tiefe neuronale Netze (DNN) nicht-lineare Preiszusammenhänge in multifaktoriellen Modellen mit einer risikoadjustierten Performanceverbesserung identifizieren können.
+    \textcite{ban2018} demonstrieren in einer kontrollierten Simulationsstudie, dass tiefe neuronale Netze nicht-lineare Preiszusammenhänge in multifaktoriellen Modellen mit einer risikoadjustierten Performanceverbesserung identifizieren können.
     Allerdings operieren solche Architekturen als \textit{Blackboxes}, die keine formal validierbaren Entscheidungsbegründungen liefern – ein gravierendes Defizit für regulatorische Compliance-Anforderungen (Vgl. \textcite{arrieta2019}).
 
+    \todo{moderne Portfolio-Theorie (MPT) und \textit{Mean-Variance-Optimierung} genauer ausführen!}
 
-    %bis hierhin Quellen verifiziert
 
     Für generative KI-Modelle (Large Language Models/LLMs) existieren spezifische Erklärbarkeitsherausforderungen.
     Während SHAP (SHapley Additive exPlanations) und LIME (Local Interpretable Model-agnostic Explanations) ursprünglich für klassisches ML entwickelt wurden (\textcite{lundberg2017}), adaptieren neuere Verfahren wie \textit{Integrated Gradients} (\textcite{sundararajan2017}) oder \textit{Attention Visualization} (\textcite{abnar2020}) diese Konzepte für Transformer-Architekturen.
@@ -70,7 +75,6 @@
 
     Der gewählte \textit{Design Science Research}-Ansatz (\textcite{hevner2004}) ermöglicht die systematische Überwindung der Limitationen durch iteratives Prototyping.
 
-% bis hierhin überarbeitet
 
 \section{Offene Herausforderungen}
 
@@ -119,5 +123,23 @@ Bereits referenzierte Literatur tiefer bearbeiten und Sektionen ausbauen.
     \item Network Graph von Zitationsbeziehungen relevanter Papers
   \end{itemize}
 \end{itemize}
+
+Literatur:
+\begin{itemize}
+  \item \cite{markowitz1952} - Grundlage der Portfolio-Optimierung; zeigt Notwendigkeit von Risikoadjustierung
+  \item \cite{favre2002} - Erweiterung der MPT für komplexe Risikoprofile (Fat Tails)
+  \item \cite{ban2018} - Brückenschlag zwischen ML und Portfolio-Optimierung
+  \item \cite{ribeiro2016} - Basis für lokale Erklärbarkeit (LIME) in Finanz-KI
+  \item \cite{lundberg2017} - SHAP als zentrale Methode für globale Erklärbarkeit
+  \item \cite{molnar2022} - Umfassender Vergleich von XAI-Methoden
+  \item \cite{demiguel2009} - Kritik an komplexen Optimierungsansätzen
+  \item \cite{salih2023} - Aktuelle Analyse von SHAP/LIME-Limitationen
+  \item \cite{ertenlice2018} - Moderne Optimierungsalgorithmen für Portfolios
+  \item \cite{hecker2017} - Transferlernen zwischen Branchen
+  \item \cite{linardatos2021} - Cross-domänen Erklärbarkeitsframework
+  \item \cite{shalit1984} - Alternative Risikometrik (Mean-Gini)
+  \item \cite{masis2021} - Praxishandbuch für XAI-Implementierungen
+\end{itemize}
+
 
 \end{comment}
