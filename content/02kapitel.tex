@@ -142,32 +142,108 @@
 
   \subsection{Brücke zu den Forschungsfragen}
 
-    \dots
+    Die in dieser Arbeit adressierten Forschungsfragen zielen darauf ab, die Defizite bestehender Systeme im Wertpapierhandel zu überwinden, insbesondere in Bezug auf Transparenz, Individualisierung und Erklärbarkeit.
+    Die erste Forschungsfrage untersucht, wie ein KI-basiertes Assistenzsystem entwickelt werden kann, das für jedes Wertpapier im Depot quantifizierbare Handlungsempfehlungen (Kaufen/Verkaufen/Halten in Prozent) mit transparenten Begründungen generiert.
+    Dies erfordert die Integration von Methoden der erklärbaren KI (XAI), wie \textit{Integrated Gradients} \autocite{sundararajan2017} und \textit{Chain-of-Thought-Erklärungen} \autocite{wei2022}, um die Entscheidungsprozesse des Systems nachvollziehbar zu machen.
+    Die zweite Forschungsfrage befasst sich damit, inwieweit das System eine übergeordnete Risiko-Rendite-Bewertung des gesamten Portfolios liefern und konkrete Rebalancing-Strategien ableiten kann, die den individuellen Anlagezielen des Nutzers entsprechen.
+    Hierzu müssen moderne datengetriebene Optimierungsansätze mit klassischen Portfoliooptimierungsmethoden kombiniert werden, um sowohl die Komplexität der Finanzmärkte abzubilden als auch die Präferenzen des Nutzers zu berücksichtigen \autocite{ban2018}.
 
-    Der gewählte \textit{Design Science Research}-Ansatz (\textcite{hevner2004}) ermöglicht die systematische Überwindung der Limitationen durch iteratives Prototyping.
+    Der gewählte \textit{Design Science Research}-Ansatz (\textcite{hevner2004}) ermöglicht die systematische Überwindung der Limitationen durch \textit{iterative Entwicklungszyklen}.
+    Dieser Ansatz umfasst die schrittweise Entwicklung, Evaluierung und Verbesserung des Systems in mehreren Zyklen, um sicherzustellen, dass die Anforderungen an Transparenz, Erklärbarkeit und Nutzerzentrierung erfüllt werden.
 
 
 \section{Offene Herausforderungen}
 
-  Trotz der Fortschritte gibt es weiterhin Herausforderungen.
-  \textcite{demiguel2009} zeigen, dass einfache Strategien wie die 1/N-Portfolio-Allokation oft komplexen Optimierungsmethoden überlegen sind.
-  Dies wirft Fragen nach der praktischen Anwendbarkeit von KI-basierten Ansätzen auf.
+  Trotz der Fortschritte in der KI-basierten Portfoliooptimierung und der erklärbaren KI (XAI) bleiben mehrere offene Herausforderungen bestehen, die sowohl technischer als auch praktischer Natur sind. Diese Herausforderungen müssen adressiert werden, um die breite Akzeptanz und Anwendbarkeit solcher Systeme in der Finanzbranche zu gewährleisten.
 
-  Ein weiteres Problem ist die Kollinearität von Merkmalen, die die Erklärbarkeit von Modellen beeinträchtigen kann.
-  \textcite{salih2023} analysieren, wie sich dies auf SHAP und LIME auswirkt, und schlagen Lösungsansätze vor.
+  \subsection{Begrenzte Erklärbarkeit komplexer Modelle}
+
+    Ein zentrales Problem ist die begrenzte Erklärbarkeit komplexer KI-Modelle, insbesondere von tiefen neuronalen Netzen und Transformer-Architekturen.
+    Während Methoden wie \textit{Integrated Gradients} \autocite{sundararajan2017} und \textit{Attention Visualization} \autocite{abnar2020} Fortschritte bei der Interpretation von Modellentscheidungen bieten, sind ihre Erklärungen oft technisch und für Endnutzer schwer verständlich.
+
+    Chain-of-Thought-Erklärungen (CoT) \autocite{wei2022} bieten zwar natürlichsprachige Begründungen, sind jedoch auf die Fähigkeiten des zugrunde liegenden KI-Modells beschränkt und können inkonsistente oder unvollständige Erklärungen liefern.
+    Es besteht daher ein Bedarf an intuitiveren und nutzerfreundlicheren Erklärungsmethoden, die sowohl für Fachleute als auch für Laien verständlich sind.
+
+  \subsection{Integration qualitativer und quantitativer Faktoren}
+
+    Ein weiteres Problem ist die Integration qualitativer Faktoren, wie ESG-Kriterien (Environmental, Social, Governance) oder Marktstimmung, in quantitative Optimierungsmodelle.
+    Während klassische Portfoliooptimierungsansätze wie die moderne Portfolio-Theorie (MPT) \autocite{markowitz1952} primär auf quantitativen Daten basieren, spielen qualitative Faktoren eine zunehmend wichtige Rolle in der Anlageentscheidung.
+
+    Die Herausforderung besteht darin, diese Faktoren in eine einheitliche Bewertungsmethode zu integrieren, die sowohl präzise als auch erklärbar ist.
+    Ansätze wie die Nutzung von Natural Language Processing (NLP) zur Analyse von Nachrichten und Social Media \autocite{ban2018} zeigen Potenzial, sind jedoch noch nicht ausreichend ausgereift, um zuverlässige und transparente Ergebnisse zu liefern.
+
+  \subsection{Regulatorische und ethische Anforderungen}
+
+    Die Einhaltung regulatorischer Anforderungen, wie sie beispielsweise durch die MiFID II (Markets in Financial Instruments Directive) vorgegeben werden, stellt eine weitere Herausforderung dar.
+    KI-Systeme müssen nicht nur transparente und nachvollziehbare Entscheidungen treffen, sondern auch sicherstellen, dass ihre Empfehlungen den gesetzlichen Vorgaben entsprechen.
+
+    Zudem gibt es ethische Bedenken hinsichtlich der Fairness und Diskriminierungsfreiheit von KI-Modellen, insbesondere wenn personenbezogene Daten in die Entscheidungsfindung einfließen \autocite{bendavid2021explainable}.
+    Die Entwicklung von KI-Systemen, die sowohl regulatorische als auch ethische Anforderungen erfüllen, bleibt ein offenes Forschungsfeld.
+
+    \subsection{Datenqualität und -verfügbarkeit}
+
+    Die Qualität und Verfügbarkeit von Daten sind entscheidend für die Leistungsfähigkeit von KI-Modellen.
+    Finanzdaten sind oft verrauscht, unvollständig oder unterliegen zeitlichen Verzögerungen, was die Genauigkeit von Prognosen und Empfehlungen beeinträchtigt \autocite{demiguel2009}.
+
+    Zudem sind viele relevante Datenquellen, wie Nachrichten oder Social Media, unstrukturiert und erfordern aufwendige Vorverarbeitung.
+    Die Entwicklung robuster Methoden zur Datenintegration und -bereinigung ist daher eine zentrale Herausforderung.
+
+  \subsection{Skalierbarkeit und Recheneffizienz}
+
+    Schließlich stellt die Skalierbarkeit und Recheneffizienz von KI-Modellen eine praktische Herausforderung dar.
+    Die Optimierung großer Portfolios mit komplexen KI-Modellen erfordert erhebliche Rechenressourcen, insbesondere wenn Echtzeit-Analysen durchgeführt werden sollen \autocite{ban2018}.
+
+    Effiziente Algorithmen und Hardwarebeschleuniger (z. B. GPUs) können hier Abhilfe schaffen, sind jedoch oft mit hohen Kosten verbunden.
+    Die Entwicklung skalierbarer und kosteneffizienter Lösungen bleibt daher ein wichtiges Forschungsziel.
 
 \section{Cross-industrielle Vergleiche}
 
-  Die Übertragbarkeit von KI-Methoden zwischen verschiedenen Branchen ist ein interessanter Forschungsbereich.
-  \textcite{hecker2017} diskutieren, wie Methoden aus der Medizin-KI auf die Finanzbranche übertragen werden können.
-  Ähnlich zeigt \textcite{linardatos2021} in ihrer Übersichtsarbeit, dass viele Erklärbarkeitsmethoden domänenübergreifend anwendbar sind.
+  Die Übertragbarkeit von Methoden der generativen KI, insbesondere von Large Language Models (LLMs), zwischen verschiedenen Branchen ist ein zunehmend relevanter Forschungsbereich.
+  \textcite{hecker2017} diskutieren, wie Techniken aus der Medizin-KI, die auf der Analyse von unstrukturierten Textdaten basieren, auf die Finanzbranche übertragen werden können.
+  Beispielsweise können LLMs, die in der Medizin zur Extraktion von Informationen aus klinischen Berichten oder Forschungsartikeln eingesetzt werden, auch zur Analyse von Finanzberichten, Nachrichtenartikeln oder Social-Media-Daten adaptiert werden.
+  Dies zeigt das Potenzial von LLMs, domänenspezifische Textdaten zu verarbeiten und wertvolle Erkenntnisse zu generieren.
+
+  Ähnlich zeigt \textcite{linardatos2021} in ihrer Übersichtsarbeit, dass viele Erklärbarkeitsmethoden für generative KI-Modelle domänenübergreifend anwendbar sind.
+  Methoden wie Chain-of-Thought-Erklärungen (CoT) \autocite{wei2022}, die ursprünglich für die Textgenerierung entwickelt wurden, können auch in der Finanzbranche eingesetzt werden, um die Entscheidungsprozesse von KI-Systemen transparenter zu machen.
+  CoT ermöglicht es LLMs, schrittweise natürlichsprachige Begründungen für ihre Empfehlungen zu generieren, was sowohl in der Medizin als auch in der Finanzbranche von Nutzen ist.
+
+  Ein weiteres Beispiel ist die Anwendung von LLMs in der Rechtsprechung und deren Übertragung auf die Finanzbranche.
+  LLMs, die zur Analyse von juristischen Texten und zur Generierung von Vertragsentwürfen eingesetzt werden, können auch zur Auswertung von regulatorischen Dokumenten oder zur Erstellung von Compliance-Berichten in der Finanzbranche adaptiert werden \autocite{vaswani2017}.
+  Dies unterstreicht die Flexibilität von LLMs, branchenspezifische Textdaten zu verarbeiten und komplexe Aufgaben zu automatisieren.
+
+  Trotz dieser vielversprechenden Ansätze gibt es Herausforderungen bei der domänenübergreifenden Übertragung von LLMs.
+  Branchenspezifische Anforderungen, wie die Einhaltung regulatorischer Vorgaben in der Finanzbranche oder die hohe Genauigkeitsanforderungen in der Medizin, erfordern oft eine Anpassung der Modelle an den jeweiligen Kontext \autocite{bendavid2021explainable}.
+
+  Zudem können Unterschiede in der Datenqualität und -verfügbarkeit die Übertragbarkeit von LLMs einschränken.
+  Finanzdaten sind oft verrauscht und unstrukturiert, während medizinische Daten strengen Datenschutzbestimmungen unterliegen \autocite{demiguel2009}.
+
+  Zusammenfassend zeigt sich, dass die Übertragung von LLMs und generativer KI zwischen verschiedenen Branchen ein großes Potenzial bietet, um innovative Lösungen für komplexe Probleme zu entwickeln.
+  Durch die Adaption bewährter Ansätze aus anderen Bereichen können neue Perspektiven und Methoden für die Finanzbranche erschlossen werden.
+  Gleichzeitig müssen branchenspezifische Anforderungen und Herausforderungen berücksichtigt werden, um die erfolgreiche Anwendung dieser Technologien zu gewährleisten.
 
 \section{Zusammenfassung und Forschungslücken}
 
-  Zusammenfassend lässt sich feststellen, dass die Portfolio-Optimierung durch KI-basierte Ansätze erheblich verbessert werden kann.
-  Allerdings gibt es noch offene Fragen, insbesondere in Bezug auf die Erklärbarkeit und Robustheit der Modelle.
+  Das Kapitel hat den aktuellen Kenntnisstand, die Herausforderungen und Potenziale von KI-basierten Assistenzsystemen im Wertpapierhandel untersucht, mit einem besonderen Fokus auf Transparenz, Erklärbarkeit und Nutzerzentrierung.
+  Es wurde gezeigt, dass bestehende Systeme, wie Robo-Advisor und klassische Portfoliooptimierungsansätze, erhebliche Defizite aufweisen.
+
+  Diese umfassen die mangelnde Erklärbarkeit von Entscheidungen, die unzureichende Integration qualitativer Faktoren (z. B. ESG-Kriterien, Marktstimmung) und die begrenzte Flexibilität bei der Abbildung individueller Anlegerpräferenzen \autocite{hecker2017, demiguel2009}.
+  Darüber hinaus wurde die Bedeutung von erklärbarer KI (XAI) für die Finanzbranche hervorgehoben.
+
+  Methoden wie Integrated Gradients \autocite{sundararajan2017}, Attention Visualization \autocite{abnar2020} und Chain-of-Thought-Erklärungen (CoT) \autocite{wei2022} bieten vielversprechende Ansätze, um die Transparenz von KI-Systemen zu erhöhen.
+  Allerdings bleiben technische und praktische Herausforderungen bestehen, insbesondere bei der Anwendung dieser Methoden auf komplexe Finanzdaten und die Integration in nutzerfreundliche Systeme.
+
+  Die identifizierten Forschungslücken lassen sich wie folgt zusammenfassen:
+
+  \begin{itemize}
+  \item \textbf{Erklärungsdefizit}: Bestehende Systeme liefern oft keine nachvollziehbaren Begründungen für ihre Empfehlungen, was das Vertrauen der Nutzer und die regulatorische Compliance beeinträchtigt \autocite{bendavid2021explainable}.
+  \item \textbf{Integration qualitativer und quantitativer Faktoren}: Es fehlen robuste Methoden, um qualitative Faktoren wie ESG-Kriterien oder Marktstimmung in quantitative Optimierungsmodelle zu integrieren \autocite{ban2018}.
+  \item \textbf{Nutzerzentrierte Transparenz}: Die Erklärungen von KI-Systemen sind oft zu technisch und nicht auf die Bedürfnisse von Endnutzern zugeschnitten \autocite{linardatos2021}.
+  \item \textbf{Skalierbarkeit und Recheneffizienz}: Die Anwendung von komplexen KI-Modellen in Echtzeit erfordert erhebliche Rechenressourcen, was die praktische Umsetzung erschwert \autocite{demiguel2009}.
+  \end{itemize}
 
   Diese Forschungslücken bilden die Grundlage für die Entwicklung des in dieser Arbeit vorgestellten KI-basierten Assistenzsystems.
+  Das System zielt darauf ab, diese Lücken zu schließen, indem es transparente, erklärbare und nutzerzentrierte Handlungsempfehlungen generiert, die sowohl quantitative als auch qualitative Faktoren berücksichtigen.
+  Durch die Kombination moderner KI-Methoden mit klassischen Portfoliooptimierungsansätzen soll ein Paradigmenwechsel von der Blackbox zum transparenten Berater erreicht werden.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -180,11 +256,13 @@
 Bereits referenzierte Literatur tiefer bearbeiten und Sektionen ausbauen.
 
 \begin{itemize}
-  \item Was gibt es bereits in verwandten Bereichen?
-  \item Systematische Aufarbeitung existierender Portfolio-Optimierungsansätze
-  \item Kritischer Vergleich von Erklärbarkeitsmethoden (SHAP/LIME vs. Alternativen)
-  \item Identifikation offener Herausforderungen aktueller Systeme (hinsichtlich Transparenz und Erklärbarkeit)
-  \item Theoretische Fundierung der Risikobewertungsmetriken
+  \item Jeweiligen Sektionen vertiefen
+  \item Cross-industrielle Vergleiche genauer machen
+  \begin{itemize}
+    \item Untersektionen pro Bereich erstellen
+    \item Wichtigste Erkenntnisse nutzen übernehmen
+  \end{itemize}
+  \item Bestimmte Texttteile nach Implementierung wieder streichen oder durch andere Themen ersetzen
 
   \item\textbf{Ideen:}
   \begin{itemize}
@@ -194,23 +272,5 @@ Bereits referenzierte Literatur tiefer bearbeiten und Sektionen ausbauen.
     \item Network Graph von Zitationsbeziehungen relevanter Papers
   \end{itemize}
 \end{itemize}
-
-Literatur:
-\begin{itemize}
-  \item \cite{markowitz1952} - Grundlage der Portfolio-Optimierung; zeigt Notwendigkeit von Risikoadjustierung
-  \item \cite{favre2002} - Erweiterung der MPT für komplexe Risikoprofile (Fat Tails)
-  \item \cite{ban2018} - Brückenschlag zwischen ML und Portfolio-Optimierung
-  \item \cite{ribeiro2016} - Basis für lokale Erklärbarkeit (LIME) in Finanz-KI
-  \item \cite{lundberg2017} - SHAP als zentrale Methode für globale Erklärbarkeit
-  \item \cite{molnar2022} - Umfassender Vergleich von XAI-Methoden
-  \item \cite{demiguel2009} - Kritik an komplexen Optimierungsansätzen
-  \item \cite{salih2023} - Aktuelle Analyse von SHAP/LIME-Limitationen
-  \item \cite{ertenlice2018} - Moderne Optimierungsalgorithmen für Portfolios
-  \item \cite{hecker2017} - Transferlernen zwischen Branchen
-  \item \cite{linardatos2021} - Cross-domänen Erklärbarkeitsframework
-  \item \cite{shalit1984} - Alternative Risikometrik (Mean-Gini)
-  \item \cite{masis2021} - Praxishandbuch für XAI-Implementierungen
-\end{itemize}
-
 
 \end{comment}
