@@ -1,5 +1,135 @@
 
 \chapter{Methodik}
+
+  %%%%%%%%%%%%%%%%%%%%
+  % Achtung! Entwurf %
+  %%%%%%%%%%%%%%%%%%%%
+
+  Um die identifizierten Forschungslücken – insbesondere das Erklärungsdefizit und die mangelnde Nutzerzentrierung bestehender Systeme – systematisch zu adressieren, kombiniert diese Arbeit den \textit{Design Science Research (DSR)}-Ansatz \autocite{hevner2004} mit modernen Konzepten der Softwarearchitektur.
+  Der Fokus liegt dabei auf drei Kernaspekten: der iterativen Prototypenentwicklung zur schrittweisen Verfeinerung der Anforderungen, der Implementierung einer modularen Systemarchitektur für maximale Anpassbarkeit, und der Integration quantitativer wie qualitativer Evaluationsmethoden.
+
+  Nach einer detaillierten Darstellung des DSR-Rahmens mit seinen Designzyklen wird die technische Umsetzung erläutert, einschließlich der Auswahl skalierbarer KI-Modelle, der Integration heterogener Datenquellen und der nutzerzentrierten Gestaltung der Erklärungsmechanismen.
+  Den Abschluss bildet die Vorstellung eines mehrstufigen Evaluationskonzepts, das die Performance und weitere Metriken evaluiert.
+  Diese strukturierte Vorgehensweise gewährleistet, dass das entwickelte Assistenzsystem nicht nur theoretisch fundiert, sondern auch praktisch robust und zukunftssicher ist.
+
+\section{Design Science Research (DSR)-Ansatz}
+
+  Die Arbeit folgt dem \textbf{Design Science Research (DSR)}-Ansatz nach \textcite{hevner2004} mit drei iterativen Zyklen:
+
+  \begin{itemize}
+    \item \textbf{Problemidentifikation}: Analyse existierender Systeme (Robo-Advisor, MPT-Tools) anhand der Forschungslücken aus Kapitel 2
+    \item \textbf{Design \& Entwicklung}: Modulare Prototypenentwicklung mit Feedbackschleifen durch Finanzexperten
+    \item \textbf{Evaluation}: Validierung mittels nutzerdefinierter Metriken (Kapitel 5)
+  \end{itemize}
+
+\section{Modellauswahl und Modularität}
+
+  \subsection{Entscheidungsmatrix für LLMs}
+
+    Die Architektur folgt einem \textbf{modularen Ansatz}, der den Austausch von Modellen ohne Systemüberarbeitung ermöglicht.
+
+
+    Grundlage bildete folgende Bewertung (nur Entwurf):
+    \begin{table}[ht]
+    \centering
+    \caption{LLM-Auswahlkriterien für modulare Integration}
+    \label{tab:llm-vergleich}
+    \begin{tabular}{l|cccc}
+      \textbf{Kriterium} & \textbf{DeepSeek R1} & \textbf{Llama 3} & \textbf{GPT-4o} & \textbf{Mixtral} \\
+      \hline
+      Open-Source & Ja & Ja & Nein & Ja \\
+      API-Schnittstelle & REST & gRPC & REST & REST \\
+      Finetuning-Support & PyTorch & HuggingFace & Nein & ONNX \\
+      Token-Kosten & 0 & 0 & \$0.03/M & 0 \\
+      \hline
+      \textbf{Gesamt} & \textbf{1. Platz} & 2. Platz & 4. Platz & 3. Platz \\
+    \end{tabular}
+    \end{table}
+
+  \subsection{Modulare Architektur}
+
+    Das System implementiert drei Schlüsselkonzepte für Modellflexibilität:
+    \begin{itemize}
+      \item \textbf{Plugin-System}: Modelle werden als Docker-Container gekapselt (Standard-API-Schnittstelle)
+      \item \textbf{Dynamic Routing}: Load-Balancer verteilt Anfragen basierend auf Modell-SLA (Latenz, Genauigkeit)
+      \item \textbf{Ensemble Learning}: Kombination von Modellausgaben durch gewichtete Konsensalgorithmen \autocite{linardatos2021}
+    \end{itemize}
+
+    \begin{lstlisting}[language=Python,caption={Modell-Routing im Backend}]
+    def get_ensemble_prediction(query):
+        models = ["deepseek-r1", "mixtral", "llama3"]
+        predictions = Parallel(n_jobs=3)(
+            delayed(model_api.predict)(query, model)
+            for model in models
+        )
+        return weighted_consensus(predictions)
+    \end{lstlisting}
+
+\section{Technischer Stack}
+
+  \subsection{Backend (Flask)}
+
+    \begin{itemize}
+      \item \textbf{Modularität}: Flask-Blueprints für unabhängige Module (Datenpipeline, KI-Service, API)
+      \item \textbf{LLM-Orchestrierung}: Ollama-Integration für lokales Modellmanagement \autocite{wei2022}
+      \item \textbf{Sicherheit}: JWT-Authentifizierung mit granularer Zugriffskontrolle
+    \end{itemize}
+
+  \subsection{Multi-Modell-Frontend}
+
+    \begin{itemize}
+      \item \textbf{Modellauswahl}: Nutzer können pro Anfrage Basismodell auswählen
+      \item \textbf{Vergleichsmodus}: Side-by-Side-Darstellung verschiedener Modellantworten
+      \item \textbf{Confidence Scoring}: Visualisierung von Unsicherheiten zwischen Modellen
+    \end{itemize}
+
+\section{Datenpipeline}
+
+  \subsection{Quellen}
+
+    \begin{itemize}
+      \item \textbf{Strukturiert}: Yahoo Finance API (historische Kurse), SEC EDGAR (Fundamentaldaten)
+      \item \textbf{Unstrukturiert}: Reuters/Seeking Alpha (News), Reddit/StockTwits (Social Sentiment)
+    \end{itemize}
+
+  % \subsection{Multi-Modell-Validierung}
+
+  %   \begin{figure}[ht]
+  %     \centering
+  %     \includegraphics[width=0.9\textwidth]{data_validation_flow.pdf}
+  %     \caption{Cross-Check von Modellaussagen durch unabhängige Datenquellen}
+  %     \label{fig:validation_flow}
+  %   \end{figure}
+
+\section{Evaluationskriterien}
+
+  \begin{table}[ht]
+  \centering
+  \caption{Modulspezifische Evaluationsmetriken}
+  \begin{tabular}{lll}
+    \textbf{Modul} & \textbf{KPI} & \textbf{Zielwert} \\
+    \hline
+    Modell-Interoperabilität & API-Latenz & tbd \\
+    Multi-Modell-Konsens & Fleiss' Kappa & tbd \\
+    Erklärbarkeit & SHAP-Wert-Konsistenz & tbd \\
+    Skalierbarkeit & Requests/Min (50\% Load) & tbd \\
+  \end{tabular}
+  \end{table}
+
+\section{Zusammenfassung}
+
+  Die gewählte Methodik ermöglicht durch ihren modularen Aufbau:
+  \begin{itemize}
+    \item \textbf{Flexible Modellnutzung}: Austausch/Ergänzung von LLMs ohne Codeänderung
+    \item \textbf{Plausibilitätschecks}: Cross-Validation durch parallele Modellausführungen
+    \item \textbf{Zukunftssicherheit}: Einfache Integration kommender Modelle (z.B. GPT-5)
+  \end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hspace{1.5cm}
+\hrule
+
+
 \begin{comment}
 \textbf{To-Dos:}
 \begin{itemize}
