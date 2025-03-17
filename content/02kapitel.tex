@@ -1,4 +1,14 @@
+% Allgemeine Anmerkungen:
+% Evtl später zu einem praxisintegrierten Aufbau ändern und die Literaturarbeit nicht vorab machen
+
+
 \chapter{Stand der Forschung}
+
+  % To-Do: Überschrift evalusieren
+  % alternative Überschriften:
+  % \chapter{Stand der Forschung: KI-Assistenzsysteme in der Portfoliooptimierung}
+  % \chapter{Forschungsstand: Erklärbare KI in der Finanzberatung}
+  % \chapter{Stand der Forschung: Transparente KI-Systeme im Wertpapierhandel}
 
   Die Portfoliooptimierung hat sich in den letzten Jahrzehnten von einer rein theoretischen Disziplin zu einem interdisziplinären Forschungsfeld entwickelt, das mathematische Modellierung, datengetriebene Methoden und praktische Anwendungsfragen vereint.
   Dieses Kapitel analysiert den aktuellen Forschungsstand und zeigt auf, wie die in dieser Arbeit vorgeschlagene und nachfolgende Systemarchitektur bestehende Lücken schließt.
@@ -7,7 +17,7 @@
 \section{Verwandte Bereiche und existierende Ansätze}
 
   % Die drei zentralen Forschungsstränge ggf. ersetzen
-  Die Entwicklung intelligenter Assistenzsysteme zur Portfoliooptimierung basiert auf drei zentralen Forschungssträngen: \textit{(1)} der klassischen Portfolio-Theorie, \textit{(2)} modernen datengetriebenen Optimierungsansätzen und \textit{(3)} kommerziellen Anwendungen, zu denen unter anderem Robo-Advisor-Systeme zählen.
+  Die Entwicklung intelligenter Assistenzsysteme zur Portfoliooptimierung lässt sich entlang dreier etablierter Forschungsstränge analysieren: \textit{(1)} der klassischen Portfolio-Theorie nach Markowitz \autocite{markowitz1952}, \textit{(2)} datengetriebenen Optimierungsansätzen mit maschinellem Lernen \autocite{ban2018}, und \textit{(3)} kommerziellen Anwendungen wie Robo-Advisorn, deren Limitationen in aktuellen Studien kritisch diskutiert werden \autocite{hecker2017}.
   Im Rahmen dieser Arbeit wird bzgl. der kommerziellen Anwendungen der Fokus auf Robo-Advisor gelegt, da sie weit verbreitet sind und die Defizite in der Erklärbarkeit besonders deutlich aufzeigen.
   Es sei jedoch betont, dass das Ziel dieser Arbeit nicht darin besteht, einen weiteren Robo-Advisor zu entwickeln, sondern ein KI-basiertes Assistenzsystem zu schaffen, das Transparenz und nachvollziehbare Entscheidungsbegründungen in den Vordergrund stellt.
   Jeder der genannten Forschungsstränge weist Defizite in der Erklärbarkeit auf, die das in dieser Arbeit entwickelte System gezielt adressiert.
@@ -25,6 +35,25 @@
     Die Mean-Variance-Optimierung sucht nach der Kombination von Anlagen, die bei einem gegebenen Risikoniveau die höchste erwartete Rendite erzielt oder bei einer angestrebten Rendite das geringste Risiko aufweist.
     Dieses Konzept basiert auf der Annahme, dass Renditen normalverteilt sind, also symmetrisch um einen Mittelwert schwanken.
     Allerdings wurde diese Annahme in der Praxis oft kritisiert, da reale Finanzmärkte häufig \enquote{fette Verteilungsenden} (fat tails) und Schiefe aufweisen, was zu extremen Risiken führt, die die MPT nicht vollständig abbilden kann \autocite{favre2002}.
+
+    %%%%%%%%%%%%% Neu eingefügt %%%%%%%%%%%%% %To-Do: Noch zu validieren
+    Die Portfoliooptimierung nach Markowitz \autocite{markowitz1952} formalisiert das Spannungsfeld zwischen Rendite ($\mu$) und Risiko ($\sigma$) durch mathematische Optimierung.
+    Für ein Portfolio aus $n$ Anlagen gilt:
+    \begin{align}
+      \text{Renditeerwartung:} \quad & \mu_p = \sum_{i=1}^n w_i \mu_i \label{eq:return} \\
+      \text{Portfoliorisiko:} \quad & \sigma_p^2 = \sum_{i=1}^n \sum_{j=1}^n w_i w_j \sigma_{ij} \label{eq:risk}
+    \end{align}
+
+    \noindent wobei $w_i$ den Kapitalanteil, $\mu_i$ die historische Durchschnittsrendite und $\sigma_{ij}$ die Kovarianz zwischen Anlage $i$ und $j$ bezeichnet.
+    Die Kovarianz $\sigma_{ij}$ quantifiziert, wie sich zwei Anlagen gegenseitig beeinflussen:
+    \begin{itemize}
+      \item $\sigma_{ij} > 0$: Anlagen bewegen sich gleichgerichtet (Risiko verstärkt sich)
+      \item $\sigma_{ij} < 0$: Anlagen wirken als Hedge (Risikoreduktion)
+    \end{itemize}
+
+    % To-Do: Grafik hier zu noch bauen
+    % Bisherige Beispiele gefielen nicht oder waren nicht anschaulich genug
+    %%%%%%%%%%%%%%%%%%%
 
     Fat Tails (fette Verteilungsenden) beschreiben das Phänomen, dass extreme Ereignisse – wie starke Kursverluste oder -gewinne – in realen Finanzmärkten viel häufiger auftreten, als es die Normalverteilung vorhersagen würde.
     Während die Normalverteilung annimmt, dass die meisten Renditen nahe dem Durchschnitt liegen und extreme Abweichungen sehr selten sind, zeigen Finanzdaten oft eine höhere Wahrscheinlichkeit für solche Ausreißer.
@@ -81,6 +110,8 @@
     Es bietet eine globale und lokale Erklärbarkeit, indem es die Bedeutung einzelner Features quantifiziert.
     LIME hingegen approximiert das Verhalten eines komplexen Modells lokal durch ein einfacheres, interpretierbares Modell (z. B. ein lineares Modell) in der Nähe eines bestimmten Datenpunkts .
     Beide Methoden sind jedoch primär für tabellarische Daten oder Modelle mit klar definierten Eingabefeatures konzipiert \autocite{lundberg2017}.
+
+    % To-Do: evtl hier oder doch an anderer Stelle eine unterstützende Grafik einbinden
 
     Bei LLMs, die auf unstrukturierten Textdaten operieren und hochkomplexe, nicht-lineare Zusammenhänge modellieren, stoßen SHAP und LIME an ihre Grenzen.
     Die Eingaben von LLMs sind oft Sequenzen von Tokens (Wörtern oder Teilwörtern), deren Beiträge zur Ausgabe nicht einfach auf einzelne Features reduziert werden können.
