@@ -8,7 +8,7 @@
   Um die identifizierten Forschungslücken – insbesondere das Erklärungsdefizit und die mangelnde Nutzerzentrierung bestehender Systeme – systematisch zu adressieren, kombiniert diese Arbeit den \textit{Design Science Research (DSR)}-Ansatz \autocite{hevner2004} mit modernen Konzepten der Softwarearchitektur.
   Der Fokus liegt dabei auf drei Kernaspekten: der iterativen Prototypenentwicklung zur schrittweisen Verfeinerung der Anforderungen, der Implementierung einer modularen Systemarchitektur für maximale Anpassbarkeit, und der Integration quantitativer wie qualitativer Evaluationsmethoden.
 
-  Nach einer detaillierten Darstellung des DSR-Rahmens mit seinen Designzyklen wird die technische Umsetzung erläutert, einschließlich der Auswahl skalierbarer KI-Modelle, der Integration heterogener Datenquellen und der nutzerzentrierten Gestaltung der Erklärungsmechanismen.
+  Nach einer detaillierten Darstellung des DSR-Rahmens mit seinen Designzyklen wird die technische Umsetzung erläutert, einschließlich der Auswahl geeigneter KI-Modelle, der Integration heterogener Datenquellen und der nutzerzentrierten Gestaltung der Erklärungsmechanismen.
   Den Abschluss bildet die Vorstellung eines mehrstufigen Evaluationskonzepts, das die Performance und weitere Metriken evaluiert.
   Diese strukturierte Vorgehensweise gewährleistet, dass das entwickelte Assistenzsystem nicht nur theoretisch fundiert, sondern auch praktisch robust und zukunftssicher ist.
 
@@ -27,7 +27,6 @@
   \subsection{Entscheidungsmatrix für LLMs}
 
     Die Architektur folgt einem \textbf{modularen Ansatz}, der den Austausch von Modellen ohne Systemüberarbeitung ermöglicht.
-
 
     Grundlage bildete folgende Bewertung (nur Entwurf):
     \begin{table}[ht]
@@ -50,7 +49,7 @@
 
     Das System implementiert drei Schlüsselkonzepte für Modellflexibilität:
     \begin{itemize}
-      \item \textbf{Plugin-System}: Modelle werden als Docker-Container gekapselt (Standard-API-Schnittstelle)
+      \item \textbf{Plugin-System}: Modelle werden als Pakete gekapselt (Standard-API-Schnittstelle)
       \item \textbf{Dynamic Routing}: Load-Balancer verteilt Anfragen basierend auf Modell-SLA (Latenz, Genauigkeit)
       \item \textbf{Ensemble Learning}: Kombination von Modellausgaben durch gewichtete Konsensalgorithmen \autocite{linardatos2021}
     \end{itemize}
@@ -71,6 +70,7 @@
 
     \begin{itemize}
       \item \textbf{Modularität}: Flask-Blueprints für unabhängige Module (Datenpipeline, KI-Service, API)
+      \item \textbf{API-Anbindung}: Möglichkeit größere und schnellere Online-Modelle (wie OpenAI oder Anbieter zu nutzen)
       \item \textbf{LLM-Orchestrierung}: Ollama-Integration für lokales Modellmanagement \autocite{wei2022}
       \item \textbf{Sicherheit}: JWT-Authentifizierung mit granularer Zugriffskontrolle
     \end{itemize}
@@ -88,8 +88,8 @@
   \subsection{Quellen}
 
     \begin{itemize}
-      \item \textbf{Strukturiert}: Yahoo Finance API (historische Kurse), SEC EDGAR (Fundamentaldaten)
-      \item \textbf{Unstrukturiert}: Reuters/Seeking Alpha (News), Reddit/StockTwits (Social Sentiment)
+      \item \textbf{Strukturiert}: Yahoo Finance API (historische Kurse)
+      \item \textbf{Unstrukturiert}: News und andere textuelle Informationen
     \end{itemize}
 
   % \subsection{Multi-Modell-Validierung}
@@ -122,7 +122,7 @@
   \begin{itemize}
     \item \textbf{Flexible Modellnutzung}: Austausch/Ergänzung von LLMs ohne Codeänderung
     \item \textbf{Plausibilitätschecks}: Cross-Validation durch parallele Modellausführungen
-    \item \textbf{Zukunftssicherheit}: Einfache Integration kommender Modelle (z.B. GPT-5)
+    \item \textbf{Zukunftssicherheit}: Einfache Integration kommender Modelle durch Flexibilität bei Modellauswahl
   \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
