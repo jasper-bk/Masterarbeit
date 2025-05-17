@@ -1,4 +1,104 @@
 \chapter{Evaluation}
+
+  %%%%%%%%%%%%%%%%%%%%
+  % Achtung! Entwurf %
+  %%%%%%%%%%%%%%%%%%%%
+
+  Ziel dieser Evaluation ist es, die Leistungsfähigkeit und Nutzbarkeit des entwickelten KI-basierten Assistenzsystems mit transparenter Entscheidungsbegründung zur quantitativen Portfoliooptimierung systematisch zu untersuchen.
+  Dazu werden verschiedene quantitative und qualitative Bewertungsverfahren diskutiert und auf das konkrete System übertragen.
+
+  \section{Ziele und Kennzahlen}
+
+    Im Zentrum der Evaluation stehen die folgenden Zielgrößen:
+    \begin{itemize}
+      \item \textbf{Rendite und Risiko:} Messung der finanziellen Performance mittels Kennzahlen wie Sharpe Ratio, maximale Drawdown und kumulierte Rendite.
+      \item \textbf{Statistische Signifikanz:} Überprüfung, ob die beobachteten Performanceunterschiede gegenüber einer Benchmark (z.\,B. Marktindex) nicht zufällig sind.
+      \item \textbf{Erklärbarkeitsqualität:} Bewertung der Qualität und Verständlichkeit der generierten Entscheidungsbegründungen.
+      \item \textbf{Nutzerakzeptanz:} Subjektive Einschätzung durch potenzielle Nutzer:innen hinsichtlich Vertrauen und Nachvollziehbarkeit.
+    \end{itemize}
+
+  \section{Quantitative Performance-Metriken}
+  \label{sec:quant-metrics}
+
+    \subsection{Backtesting}
+
+      Das Backtesting simuliert die Anwendung der Empfehlungen auf historische Kursdaten.
+      Als Basis dienen Zeitreihen der Aktienkurse, die über \texttt{yfinance} bezogen werden.
+      Typisches Vorgehen:
+
+      \begin{enumerate}
+        \item Auswahl eines historischen Zeitraums (z.\,B. 2015–2024). % TODO: Zeitraum festlegen
+        \item Definition einer Benchmark (z.\,B. MSCI World Index).
+        \item Anwendung der KI-Empfehlungen in diskreten Intervallen (z.\,B. tägliche oder wöchentliche Rebalancings).
+        \item Aufzeichnung der Portfolio-Returns und Vergleich mit der Benchmark.
+      \end{enumerate}
+
+      Wichtige Kennzahlen:
+      \begin{itemize}
+        \item \textbf{Sharpe Ratio} zur Risikoanpassung der Überrendite \autocite{fama1970efficient}.
+        \item \textbf{Maximaler Drawdown} zur Abschätzung des schlimmsten Verlusts.
+        \item \textbf{Trefferquote (Hit Rate)}: Anteil der Empfehlungen, die zu einer positiven Rendite führten.
+      \end{itemize}
+
+    \subsection{Risikomaße}
+
+      Zur umfassenden Risikoanalyse werden zusätzliche Risikokennzahlen herangezogen:
+      \begin{itemize}
+        \item \textbf{Value at Risk (VaR)} und \textbf{Expected Shortfall (ES)} %\autocite{jpm1997risk}. %To-Do: Quelle hinzufügen
+        \item \textbf{Volatilität} als Standardabweichung der Log-Returns.
+      \end{itemize}
+
+  \section{Statistische Signifikanzprüfung}
+
+    \label{sec:stat-significance}
+    Zur Absicherung, dass Performanceunterschiede nicht zufällig sind, stehen folgende Verfahren zur Verfügung:
+    \begin{itemize}
+      \item \textbf{t-Test} für gepaarte Stichproben zwischen Portfolio und Benchmark-Returns.
+      \item \textbf{Bootstrap-Verfahren} zur Ermittlung von Konfidenzintervallen der Kennzahlen \autocite{efron1994introduction}.
+      \item \textbf{Non-parametrische Tests} (z.\,B. Wilcoxon signed-rank test) bei Verletzung der Normalitätsannahme.
+    \end{itemize}
+
+  \section{Evaluation der Erklärbarkeit}
+    \label{sec:xai-eval}
+
+    Die Qualität der generierten Begründungen wird auf zwei Ebenen geprüft:
+
+    \subsection{Automatisierte Metriken}
+
+      \begin{itemize}
+        \item \textbf{Fidelity / Faithfulness}: Misst, inwieweit die Erklärungen die internen Entscheidungsprozesse des LLMs korrekt widerspiegeln \autocite{jacovi2020towards}.
+        \item \textbf{Comprehensibility}: Automatische Metriken wie Lesbarkeitsindizes (Flesch–Kincaid).
+      \end{itemize}
+
+    \subsection{Benutzerstudien}
+      In geplanten Nutzertests werden die Erklärungen durch Befragungen hinsichtlich Verständlichkeit, Vertrauen und Informationswert bewertet.
+      Dazu wird ein Fragebogen nach \textcite{hoffman2018metrics} eingesetzt, ergänzt um offene Feedbackfragen.
+      % TODO: Anzahl und Profil der Testpersonen festlegen
+
+  \section{Daten- und Prompt-Anforderungen}
+
+    Für eine reproduzierbare Evaluation sind folgende Daten und Prompts notwendig:
+    \begin{itemize}
+      \item Historische Portfolio-Daten und Marktdaten (CSV-Export aus \texttt{yfinance}).
+      \item Log der verwendeten Prompts und Modellantworten (Prompt-History).
+      \item Benchmark-Daten (z.\,B. Indexkurse).
+    \end{itemize}
+    % TODO: Exaktes Schema der Prompt-Dokumentation festlegen
+
+  \section{Kritische Reflexion methodischer Limitationen}
+
+    \begin{itemize}
+      \item \textbf{Overfitting im Backtest}: Historische Daten könnten speziell auf Trainingsdaten abgestimmte Entscheidungen begünstigen.
+      \item \textbf{Probabilistische Natur der LLM-Antworten}: Auch bei gleichen Prompts können unterschiedliche Antworten erzeugt werden.
+      \item \textbf{Stichprobengröße der Nutzerstudien}: Zu kleine Testgruppen limitieren die Generalisierbarkeit.
+      \item \textbf{Datenqualität und Survivorship Bias}: Achtung bei historischen Kursdaten, die Überlebende von Insolvenzen bevorzugen.
+    \end{itemize}
+
+  \section{Zusammenfassung}
+
+    Die vorgestellten Verfahren bilden ein umfassendes Evaluationsschema, das sowohl finanzielle Performance als auch Erklärbarkeitsqualität und Nutzerakzeptanz abdeckt.
+    In weiteren Arbeitsschritten werden die offenen TODOs präzisiert und erste Auswertungen auf Basis realer Portfoliodaten durchgeführt.
+
 \begin{comment}
 \textbf{To-Dos:}
 \begin{itemize}
@@ -6,7 +106,7 @@
   \item Statistische Signifikanzprüfung der Performance
   \item Kritische Reflexion methodischer Limitationen
 
-  \item\textbf{Ideen:}  
+  \item\textbf{Ideen:}
     \begin{itemize}
     \item \textbf{Stress-Tests:} Simulation von Marktcrashs (z. B. COVID-19, 2008)
     \item \textbf{Erklärungs-Robustheit:} Messung, wie konsistent die KI-Begründungen bei leicht veränderten Inputs sind

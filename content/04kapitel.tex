@@ -39,7 +39,8 @@
           \item \textbf{Frontend:} Das Frontend basiert auf einfachem \texttt{HTML} mit \texttt{Bootstrap} und \texttt{JavaScript}, welches über Flask bereitgestellt wird und mit dynamischen Elementen zur die Visualisierung und Präsentation der Handlungsempfehlungen zugängerlicher macht.
           Die UI verwendet asynchrone API-Aufrufe zur Aktualisierung der dargestellten Inhalte in Echtzeit.
 
-          \item \textbf{LangChain:} Neben den direkten Aufrufen der LLM über die API Richtung Ollama oder Online-Anbietern ist die Integration von \texttt{LangChain} zur feineren Modellsteuerung und Verkettung von LLM-Aufrufen implementiert. Etwa für multi-step Reasoning über Zeit.
+          \item \textbf{LangChain:} Neben den direkten Aufrufen der LLM über die API Richtung Ollama oder Online-Anbietern ist die Integration von \texttt{LangChain} zur feineren Modellsteuerung und Verkettung von LLM-Aufrufen implementiert.
+          Etwa für multi-step Reasoning über Zeit.
       \end{itemize}
 
       Alle Komponenten kommunizieren über klar definierte Schnittstellen.
@@ -70,7 +71,7 @@
         \item \textbf{Erweiterung der Benutzeroberfläche:} Es wurden Tabs für einzelne Aktienpositionen, modale Dialoge zur Konfiguration und Refresh-Buttons zur Aktualisierung des Portfolios implementiert (\textit{Commit: 1e3e01b2c22cd937d19ce55e32aee2f17de9dfbf}, \textit{7d7efd8d3dcfd9fba1b3c0d41c7a308fbe397479}).
 
         \item \textbf{Integration der API-Kommunikation:} Eine asynchrone Kommunikation zwischen Frontend und Backend wurde realisiert.
-         Die JavaScript-Klasse in \texttt{api.js} übernahm dabei die zentrale Steuerung der Interaktion mit der Python-API (\textit{Commit: 0b68f880eacbdaa2cf4632a342aa8b5f206b4b76}).
+        Die JavaScript-Klasse in \texttt{api.js} übernahm dabei die zentrale Steuerung der Interaktion mit der Python-API (\textit{Commit: 0b68f880eacbdaa2cf4632a342aa8b5f206b4b76}).
 
         \item \textbf{Verbesserung der Portfoliostruktur:} Eine strukturierte JSON-Repräsentation des Portfolios wurde entworfen und eingeführt, um konsistente Datenhaltung für Bewertungen und Visualisierungen sicherzustellen (\textit{Commit: 347734ed2d1f22f025b44cd2488a721c942d78c0}).
 
@@ -89,33 +90,122 @@
         Frontend und Backend sind nun durch eine stabile API vollständig entkoppelt (\textit{Commit: 211026820610ea62ab2e4eeb7d9ab3a2188ab6d5}).
     \end{enumerate}
 
-  \section{Technische Limitationen und Herausforderungen}
-
-    Trotz modularer Architektur und performanter Tools bestehen derzeit folgende technische Limitationen:
-
-    \begin{itemize}
-        \item \textbf{Latenzzeiten bei LLM-Antworten:} Der Einsatz lokaler Modelle (Ollama) kann zu spürbaren Antwortverzögerungen führen, da die lokale Hardware weniger performant ist. Online Modelle wie von OpenAI bieten hier eine schnellere Alternative, bringen jedoch andere Einschränkungen hinsichtlich Datenschutz und Kosten mit sich.
-
-        \item \textbf{Skalierung der Frontend-Interaktivität:} Mit wachsender Datenmenge steigt die Komplexität in der UI-Verwaltung.
-
-        \item \textbf{Fehlende Parallelisierung:} Aktuell sind LLM-Anfragen sequentiell implementiert. Zur Beschleunigung könnten multiprocessing- oder queue-basierte Architekturen genutzt werden.
-
-        \item \textbf{Erklärbarkeit:} Die Generierung der Begründungen basiert auf der natürlichen Sprache des LLMs, was trotz Parsingmaßnahmen keine formale Verifikation erlaubt.
-    \end{itemize}
-
   \section{Eingesetzte Frameworks und Technologien}
 
-    Die Implementierung stützt sich auf eine Vielzahl etablierter Open-Source-Frameworks:
+    Die Umsetzung des Systems basiert auf einer Kombination moderner Web- und KI-Frameworks. Dabei kamen sowohl klassische Webtechnologien als auch spezialisierte Werkzeuge zur Modellintegration und Datenverarbeitung zum Einsatz. Im Folgenden werden zentrale Technologien mit besonderem Einfluss auf Architektur und Funktionsweise näher erläutert.
 
-    \begin{itemize}
-        \item \texttt{Flask} – Python-Webframework für REST-APIs
-        \item \texttt{Ollama} – Lokale Ausführung von LLMs für niedrigere Latenz
-        \item \texttt{OpenAI API} – Anbindung an GPT-Modelle zur Entscheidungsfindung
-        \item \texttt{yfinance} – Datenbeschaffung von historischen und aktuellen Kursdaten
-        \item \texttt{LangChain} – Zur Verarbeitung komplexer Modellabläufe
-        \item \texttt{Bootstrap} – Design-Framework zur responsiven UI-Gestaltung
-        \item \texttt{JavaScript} – Logik und DOM-Manipulation im Browser
-    \end{itemize}
+    \subsection{Ollama}
+
+      Für die lokale Ausführung großer Sprachmodelle (LLMs) wurde \texttt{Ollama}\footnote{\url{https://ollama.com/}} eingesetzt.
+      Das Framework erlaubt die Einbindung quantisierter LLMs auf lokalen Maschinen, was eine signifikante Reduktion der Antwortzeiten sowie höhere Datensouveränität ermöglicht.
+      Besonders im Kontext sensitiver Finanzdaten ist die lokale Modellinferenz gegenüber Cloud-Alternativen wie der OpenAI API ein Vorteil im Hinblick auf Datenschutz und Kontrolle \autocite{rasheed2023security}.
+
+    \subsection{LangChain}
+
+      \texttt{LangChain}\footnote{\url{https://www.langchain.com/}} wurde zur Modellorchestrierung eingesetzt.
+      Das Framework ermöglicht die Verkettung von Modulen, Prompts und Speicherkomponenten und vereinfacht so die Implementierung komplexer Agentenstrukturen.
+      Besonders im Zusammenspiel mit Explainability-Komponenten erlaubt LangChain die Integration strukturierter Ausgabeformate sowie Rückgriff auf kontextuelle Zwischenergebnisse \autocite{chase2023langchain}.
+
+    \subsection{OpenAI API}
+
+      Für rechenintensive Evaluationsfunktionen sowie als Fallback-Strategie bei unzureichender lokaler Modellantwort wurde die \texttt{OpenAI API}\footnote{\url{https://platform.openai.com}} angebunden.
+      Dabei kamen GPT-4-basierte Modelle zur Anwendung, die sich durch hohe Konsistenz, Qualität und Steuerbarkeit auszeichnen.
+      Die API ermöglicht im Vergleich zu lokal betriebenen Modellen bessere Reproduzierbarkeit, birgt jedoch auch Abhängigkeiten hinsichtlich Verfügbarkeit, Preisgestaltung und Datenschutz.
+
+    \subsection{yfinance}
+
+      Für die automatisierte Abfrage von historischen und aktuellen Kursdaten kam die Python-Bibliothek \texttt{yfinance} zum Einsatz.
+      Diese greift auf Daten von Yahoo Finance zu und bietet eine einfache API zur Analyse von Aktienkursverläufen, Dividenden und Handelsvolumen.
+      Die Verwendung historischer Kursdaten erlaubt Rückschlüsse auf Volatilität, Trends und technische Indikatoren – zentrale Größen für die Entscheidungsbegründung im Assistenzsystem \autocite{fama1970efficient}.
+
+    \subsection{Sonstige Technologien}
+
+      Ergänzend zu den oben genannten Kerntechnologien kamen weitere etablierte Frameworks und Tools zum Einsatz:
+
+      \begin{itemize}
+          \item \texttt{Flask} – Minimalistisches Webframework in Python zur Bereitstellung von RESTful APIs.
+          \item \texttt{Bootstrap} – CSS-Framework zur Gestaltung einer responsiven, browserunabhängigen Benutzeroberfläche.
+          \item \texttt{JavaScript} – Für Interaktivität und DOM-Manipulation im Browser, u.a. für dynamisches Nachladen von Aktienanalysen.
+      \end{itemize}
+
+      Diese Komponenten bilden die Grundlage für die Benutzerinteraktion und das reaktive UI-Verhalten.
+
+  \section{Prompt-Engineering und Aufbau der Prompts}
+
+    Zur Steuerung der Large Language Models (LLMs) wurden gezielt formulierte Prompts eingesetzt, die einerseits die relevanten Datenstrukturen übergeben und andererseits die gewünschten Ausgaben in maschinenlesbarer Form erzwingen.
+    Die beiden zentralen Prompt-Vorlagen unterscheiden sich in ihrem Zweck und Aufbau:
+
+    \subsection{Asset-Bewertungsprompt}
+      \label{sec:prompt-asset}
+
+      Der Prompt im \texttt{assess\_security}–Modul hat das Ziel, für eine einzelne Wertpapierposition eine quantitative Dringlichkeitseinschätzung sowie eine Verteilung der Kauf-/Verkaufs-/Halt-Empfehlung zu erzeugen. Der strukturierte Aufbau lautet:
+
+      \begin{lstlisting}[language=Python, caption={Asset-Bewertungsprompt}]
+      Analyze this investment:
+
+      Quantitative data:
+      <JSON mit Kennzahlen wie Kurs, Volatilität, Dividenden>
+
+      Qualitative data:
+      <Texteingabe mit Analystenkommentar>
+
+      Portfolio context:
+      <JSON mit Portfolio-Merkmalen wie Risikoprofil, Gesamtvolumen>
+
+      Provide JSON with:
+      {
+        "urgency_to_act": <int (percent: 0 - 100)>,
+        "buy": <int (percent: 0 - 100)>,
+        "sell": <int (percent: 0 - 100)>,
+        "hold": <int (percent: 0 - 100)>,
+        "rationale": "<text>"
+      }
+      Ensure buy + sell + hold == 100
+      \end{lstlisting}
+
+
+      \begin{itemize}
+        \item \textbf{Separation of Concerns:} Durch Trennung von \emph{Quantitativen} und \emph{Qualitativen} Daten wird dem LLM explizit signalisiert, welche Informationen statistischer Natur und welche textueller Natur sind \autocite{liu2023pre}.
+        \item \textbf{Portfolio-Kontext:} Die Einbettung in das Gesamtportfolio (z.\,B. Risikoklasse, bisherige Performance) ermöglicht kontextsensitives Reasoning und verhindert isolierte Betrachtungen einzelner Assets \autocite{gao2023contextual}.
+        \item \textbf{Maschinenlesbare Ausgabe:} Die klare Spezifikation des erwarteten JSON-Schemas reduziert Parsing-Fehler und erleichtert die Weiterverarbeitung im Backend \autocite{brown2020language}.
+        \item \textbf{Konsistenzbedingung:} Die Bedingung \texttt{buy + sell + hold == 100} stellt sicher, dass die Allokationsprozente valide und vollständig sind.
+      \end{itemize}
+
+    \subsection{Portfolio-Zusammenfassungsprompt}
+      \label{sec:prompt-portfolio}
+
+      Im Modul \texttt{evaluate\_portfolio\_summary} wird ein zusammenfassender Prompt verwendet, der auf der Gesamtheit der Asset-Bewertungen aufsetzt und eine narrative Gesamtübersicht generiert:
+
+      \begin{lstlisting}[language=Python, caption={Portfolio-Zusammenfassungsprompt}]
+      Analyze this portfolio based on the following assets and their evaluations:
+
+      <JSON mit allen Assets und ihren Einzelbewertungen>
+
+      Provide a summary JSON with:
+      {
+        "market_summary": "<text>",
+        "current_opportunities": "<text>",
+        "current_risks": "<text>",
+        "other": "<text>",
+        "explanation_evaluation": "<longer explanation>"
+      }
+      \end{lstlisting}
+
+      \begin{itemize}
+        \item \textbf{Aggregation von Einzelaussagen:} Durch Übergabe der bereits bewerteten Assets (`assets`) kann das LLM seine Zusammenfassung auf validen, vorstrukturierten Inputs aufbauen und muss nicht erneut grundlegende Analysen durchführen.
+        \item \textbf{Modulare Abschnittsgliederung:} Die Unterteilung in \emph{Market Summary}, \emph{Opportunities}, \emph{Risks} und \emph{Other} folgt Best Practices zur kognitiven Entlastung und unterstützt die Nutzerfreundlichkeit \autocite{amershi2019guidelines}.
+        \item \textbf{Erklärung der Bewertung:} Das Feld \texttt{explanation\_evaluation} erlaubt einen längeren narrativen Text, um die Entscheidungspfade und Zusammenhänge ausführlich darzustellen.
+      \end{itemize}
+
+    \subsection{Integration und Dokumentation}
+
+        Beide Prompts werden in der Python-Logik syntaktisch als \texttt{f-String} konfiguriert und inklusive der zugehörigen JSON-Daten an das LLM geschickt.
+        Die vollständige Prompt-Historie und die erhaltenen Antworten werden geloggt, um \emph{Reproduzierbarkeit} und \emph{Nachvollziehbarkeit} der Entscheidungen sicherzustellen \autocite{gunning2017explainable}.
+
+        % TODO: Details zur Prompt-Feinjustierung (Temperature, Max Tokens) ergänzen
+
+        \medskip
+
 
   \section{Dokumentation und Erläuterung der Programmlogik}
 
@@ -178,12 +268,26 @@
     \subsection{Wissenschaftliche Relevanz der UI im Kontext von Entscheidungsassistenz}
 
       Die Transparenz in Assistenzsystemen beschränkt sich nicht nur auf die algorithmische Modellierung, sondern betrifft maßgeblich auch die Präsentationsebene.
-      Laut \cite{gunning2017explainable} ist eine erklärbare Benutzeroberfläche ein zentraler Bestandteil von XAI-Systemen (Explainable Artificial Intelligence), da sie den Brückenschlag zwischen Modelloutput und menschlichem Entscheidungsverhalten ermöglicht.
+      Laut \autocite{gunning2017explainable} ist eine erklärbare Benutzeroberfläche ein zentraler Bestandteil von XAI-Systemen (Explainable Artificial Intelligence), da sie den Brückenschlag zwischen Modelloutput und menschlichem Entscheidungsverhalten ermöglicht.
       Der Mehrwert einer fundierten UI liegt also nicht nur in der Ästhetik oder Bedienbarkeit, sondern in ihrer Fähigkeit, Vertrauen, Kontrolle und Nachvollziehbarkeit zu fördern.
 
-      Zudem zeigen empirische Studien zur Mensch-Maschine-Interaktion (z.B. \cite{hoffman2018metrics}), dass die Qualität der Visualisierung einen direkten Einfluss auf das Nutzervertrauen und die Akzeptanz von KI-basierten Empfehlungen hat.
+      Zudem zeigen empirische Studien zur Mensch-Maschine-Interaktion (z.B. \autocite{hoffman2018metrics}), dass die Qualität der Visualisierung einen direkten Einfluss auf das Nutzervertrauen und die Akzeptanz von KI-basierten Empfehlungen hat.
       Eine schlechte oder intransparente Visualisierung kann zu \textit{automation bias} oder kompletter Ablehnung der Empfehlung führen.
 
+
+  \section{Technische Limitationen und Herausforderungen}
+
+    Trotz modularer Architektur und performanter Tools bestehen derzeit folgende technische Limitationen:
+
+    \begin{itemize}
+        \item \textbf{Latenzzeiten bei LLM-Antworten:} Der Einsatz lokaler Modelle (Ollama) kann zu spürbaren Antwortverzögerungen führen, da die lokale Hardware weniger performant ist. Online Modelle wie von OpenAI bieten hier eine schnellere Alternative, bringen jedoch andere Einschränkungen hinsichtlich Datenschutz und Kosten mit sich.
+
+        \item \textbf{Skalierung der Frontend-Interaktivität:} Mit wachsender Datenmenge steigt die Komplexität in der UI-Verwaltung.
+
+        \item \textbf{Fehlende Parallelisierung:} Aktuell sind LLM-Anfragen sequentiell implementiert. Zur Beschleunigung könnten multiprocessing- oder queue-basierte Architekturen genutzt werden.
+
+        \item \textbf{Erklärbarkeit:} Die Generierung der Begründungen basiert auf der natürlichen Sprache des LLMs, was trotz Parsingmaßnahmen keine formale Verifikation erlaubt.
+    \end{itemize}
 
   \section{Zusammenfassung}
 
@@ -199,6 +303,7 @@
   \item Reproduzierbare Code-Beispiele für Kernfunktionen
   \item Diskussion technischer Limitationen (z. B. Latenzzeiten)
   \item Dokumentation der genutzten Frameworks/Tools (z. B. Ollama, Flask)
+  \item Nochmal Fußzeilen prüfen. Entweder rauswerfen oder vllt sogar häufiger nutzen
 
   \item\textbf{Ideen:}
   \begin{itemize}
