@@ -20,60 +20,186 @@
   \section{Quantitative Performance-Metriken}
   \label{sec:quant-metrics}
 
+    Im Kontext der quantitativen Portfoliooptimierung spielen messbare Kennzahlen eine zentrale Rolle, um die Effizienz und Stabilität der durch das Assistenzsystem vorgeschlagenen Handelsentscheidungen zu bewerten.
+    Im Folgenden werden dafür etablierte Verfahren vorgestellt, die sowohl die finanzielle Performance (Rendite und Risiko) als auch die Robustheit gegenüber Marktbedingungen abdecken.
+    Ein klassischer Einstiegspunkt ist das \emph{Backtesting}, das die realistische Nachbildung historischer Handelsszenarien erlaubt.
+
     \subsection{Backtesting}
 
-      Das Backtesting simuliert die Anwendung der Empfehlungen auf historische Kursdaten.
-      Als Basis dienen Zeitreihen der Aktienkurse, die über \texttt{yfinance} bezogen werden.
-      Typisches Vorgehen:
+      Das Backtesting simuliert die Anwendung der Empfehlungen auf historische Kursdaten und dient gleichzeitig als Grundlage für die Berechnung wichtiger Risikomaße. Als Basis nutzen wir Zeitreihen der Aktienkurse, die über \texttt{yfinance} bezogen werden. Typisches Vorgehen:
 
       \begin{enumerate}
-        \item Auswahl eines historischen Zeitraums (z.\,B. 2015–2024). % TODO: Zeitraum festlegen
-        \item Definition einer Benchmark (z.\,B. MSCI World Index).
-        \item Anwendung der KI-Empfehlungen in diskreten Intervallen (z.\,B. tägliche oder wöchentliche Rebalancings).
-        \item Aufzeichnung der Portfolio-Returns und Vergleich mit der Benchmark.
+        \item \textbf{Auswahl eines historischen Zeitraums:}
+          Übliche Gesamtdauer: 2018–2023, alternativ fokussierte Phasen wie der COVID‑Crash (März–Mai 2020) oder die Zinswende im Herbst 2022.
+        \item \textbf{Definition einer Benchmark:}
+          Beispiele: MSCI World (ETF \texttt{URTH}) oder S\&P 500 (ETF \texttt{SPY}).
+        \item \textbf{Anwendung der KI-Empfehlungen:}
+          Die Entscheidungen (\texttt{buy}/\texttt{sell}/\texttt{hold}) werden in festgelegten Intervallen (z.\,B. wöchentliche Rebalancings oder stichprobenhafte Rolling Windows) auf das Portfolio übertragen.
+        \item \textbf{Aufzeichnung und Vergleich:}
+          Portfolio- und Benchmark-Returns werden als Zeitreihen dokumentiert.
+        \item \textbf{Berechnung von Rendite- und Risikokennzahlen:}
+          Parallel zur Renditeanalyse werden folgende Risikomaße bestimmt:
+          \begin{itemize}
+            \item \textbf{Volatilität} als annualisierte Standardabweichung der Log-Returns:
+              \(\sigma_{\mathrm{p}} = \sqrt{\tfrac{1}{N-1}\sum (r_{t}-\bar r)^{2}}\).
+            \item \textbf{Sharpe Ratio} zur Risikoanpassung der Überrendite \autocite{fama1970efficient}.
+            \item \textbf{Maximaler Drawdown} zur Abschätzung des schlimmsten Wertverlusts.
+            \item \textbf{Value at Risk (VaR)} (parametrisch und historisch) \autocite{jpm1997risk}.
+            \item \textbf{Expected Shortfall (ES)} als durchschnittlicher Verlust im Worst‑\(\alpha\)%‑Fall \autocite{acerbi2002expected}.
+            \item \textbf{Trefferquote (Hit Rate)}: Anteil der Empfehlungen, die zu einer positiven Rendite führten.
+          \end{itemize}
       \end{enumerate}
 
-      Wichtige Kennzahlen:
-      \begin{itemize}
-        \item \textbf{Sharpe Ratio} zur Risikoanpassung der Überrendite \autocite{fama1970efficient}.
-        \item \textbf{Maximaler Drawdown} zur Abschätzung des schlimmsten Verlusts.
-        \item \textbf{Trefferquote (Hit Rate)}: Anteil der Empfehlungen, die zu einer positiven Rendite führten.
-      \end{itemize}
+      \textbf{Abwägung und Machbarkeit} \\ % To-Do: Mit Paragraphen ersetzen oder vollständig entfernen
 
-    \subsection{Risikomaße}
+        Ein vollständiges tägliches Backtesting über den gesamten Mehrjahreszeitraum ist aufgrund der pro–Evaluation mehrminütigen Laufzeiten des LLM-basierten Systems kaum praktikabel. Stattdessen empfiehlt sich:
 
-      Zur umfassenden Risikoanalyse werden zusätzliche Risikokennzahlen herangezogen:
-      \begin{itemize}
-        \item \textbf{Value at Risk (VaR)} und \textbf{Expected Shortfall (ES)} %\autocite{jpm1997risk}. %To-Do: Quelle hinzufügen
-        \item \textbf{Volatilität} als Standardabweichung der Log-Returns.
-      \end{itemize}
+        \begin{itemize}
+          \item \textbf{Repräsentative Zeitfenster:} Auswahl von 2–3 Schlüsselperioden (z.\,B. Crash, Erholung, Zinswende) à jeweils wenige Wochen.
+          \item \textbf{Gröbere Intervalle:} Wöchentliches oder zweiwöchentliches Rebalancing reduziert die Anzahl der Modellaufrufe erheblich.
+          \item \textbf{Stichprobenhafte Rolling-Windows:} Kurze Fenster (z.\,B. 20–30 Tage) mit einem Schritt von 30 Tagen ermöglichen eine breit gestreute, aber ressourcenschonende Evaluation.
+        \end{itemize}
+
+      \textbf{Skizzierter Ablauf in einem Notebook} \\ % To-Do: Mit Paragraphen ersetzen oder vollständig entfernen
+
+        In einem Jupyter-Notebook wird der Backtest wie folgt skizziert:
+        \begin{itemize}
+          \item Datenimport (historische Kurse und Benchmark).
+          \item Parametrisierung der Perioden und Intervalle.
+          \item Schleife über definierte Fenster bzw. Zeitabschnitte:
+            \begin{itemize}
+              \item Aufruf der Portfolio-Evaluation (LLM-basiert).
+              \item Berechnung der Kennzahlen (Sharpe, Volatilität, Drawdown, VaR, ES, Hit Rate).
+              \item Speicherung der Ergebnisse in einer Tabelle.
+            \end{itemize}
+          \item Visualisierung der Zeitreihen und tabellarischer Vergleich von System- und Benchmark-Performance.
+        \end{itemize}
+
+        Dieser Ansatz wahrt die Balance zwischen wissenschaftlicher Strenge und praktischer Umsetzbarkeit.
+        Die genaue Anzahl der Testintervalle und Benchmarks kann je nach Rechenressourcen angepasst werden.
 
   \section{Statistische Signifikanzprüfung}
+  \label{sec:stat-significance}
 
-    \label{sec:stat-significance}
-    Zur Absicherung, dass Performanceunterschiede nicht zufällig sind, stehen folgende Verfahren zur Verfügung:
-    \begin{itemize}
-      \item \textbf{t-Test} für gepaarte Stichproben zwischen Portfolio und Benchmark-Returns.
-      \item \textbf{Bootstrap-Verfahren} zur Ermittlung von Konfidenzintervallen der Kennzahlen \autocite{efron1994introduction}.
-      \item \textbf{Non-parametrische Tests} (z.\,B. Wilcoxon signed-rank test) bei Verletzung der Normalitätsannahme.
-    \end{itemize}
+    Zur Absicherung, dass beobachtete Performanceunterschiede zwischen dem KI-gestützten Portfolio und einer Benchmark (z.\,B. MSCI World Index) nicht zufällig sind, wird auf Verfahren der statistischen Inferenz zurückgegriffen.
+    Ziel ist es, robuste Aussagen darüber treffen zu können, ob eine bessere (oder schlechtere) Performance auf tatsächliche systematische Effekte oder bloßen Zufall zurückzuführen ist.
+
+    \subsection*{Mögliche Verfahren}
+
+      \begin{itemize}
+        \item \textbf{t-Test für gepaarte Stichproben:}
+        Dient der Überprüfung, ob der Mittelwert der Differenzen der täglichen (oder wöchentlichen) Returns zwischen dem System-Portfolio und der Benchmark signifikant von null abweicht.
+        Voraussetzung ist annähernde Normalverteilung der Differenzen.
+
+        \item \textbf{Non-parametrische Tests:}
+        Falls die Differenzen nicht normalverteilt sind, bieten sich Alternativen wie der \textit{Wilcoxon signed-rank test} an.
+        Dieser prüft ebenfalls, ob die mittlere Differenz systematisch von null abweicht – jedoch ohne Normalitätsannahme.
+
+        \item \textbf{Bootstrap-Verfahren:}
+        Zur Ermittlung von Konfidenzintervallen für Kennzahlen wie kumulierte Rendite, Sharpe Ratio oder maximaler Drawdown.
+        Dies geschieht durch wiederholtes Ziehen von Zufallsstichproben (mit Zurücklegen) aus den Return-Zeitreihen \autocite{efron1994introduction}.
+      \end{itemize}
+
+    \subsection*{Skizzierter Ablauf zur Signifikanzprüfung}
+
+      \begin{enumerate}
+        \item \textbf{Datenvorbereitung:}
+        Für jedes getestete Zeitfenster werden die täglichen oder wöchentlichen Renditen des KI-basierten Portfolios sowie der Benchmark gespeichert.
+        Die Differenzzeitreihe dient als Grundlage der statistischen Tests.
+
+        \item \textbf{Normalitätsprüfung (optional):}
+        Mit Tests wie dem Shapiro-Wilk-Test oder durch visuelle Inspektion (Histogramm, QQ-Plot) kann die Verteilung der Differenzzeitreihe geprüft werden.
+        Ist die Normalitätsannahme stark verletzt, sollte auf einen non-parametrischen Test ausgewichen werden.
+
+        \item \textbf{t-Test oder Wilcoxon-Test:}
+        Durchführung des Tests mit einer Signifikanzschwelle von z.\,B. \(\alpha = 0{,}05\).
+        Eine signifikante Abweichung von null (p-Wert < \(\alpha\)) spricht für eine systematische Überlegenheit des Systems.
+
+        \item \textbf{Bootstrap-Konfidenzintervalle:}
+        Für Kennzahlen wie Sharpe Ratio oder Value at Risk werden durch Bootstrapping (z.\,B. 10.000 Wiederholungen) Konfidenzintervalle berechnet.
+        Liegt der Wert des Systems signifikant außerhalb des Intervalls der Benchmark, spricht dies für eine robuste Überlegenheit.
+
+        \item \textbf{Ergebnissynthese:}
+        Die Resultate der Tests (p-Werte, Konfidenzintervalle) werden in einer Übersicht zusammengefasst und interpretierbar dargestellt (z.\,B. Heatmap, tabellarisch mit Signifikanzindikatoren).
+      \end{enumerate}
+
+    \subsection*{Praktikabilität und Grenzen}
+
+      Die Durchführung dieser Tests ist methodisch solide und lässt sich mit gängigen Statistikbibliotheken (z.\,B. \texttt{scipy.stats}, \texttt{statsmodels}, \texttt{numpy}) effizient in einem Jupyter-Notebook realisieren.
+      Folgende Aspekte sind jedoch zu berücksichtigen:
+
+      \begin{itemize}
+        \item \textbf{Begrenzter Stichprobenumfang:}
+        Die rechenintensive Modellantwort pro Zeitschritt limitiert die Zahl der bewerteten Intervalle.
+        Eine solide Signifikanzanalyse erfordert daher möglichst viele (aber realistisch testbare) Teilfenster.
+
+        \item \textbf{Autokorrelationen und Zeitabhängigkeit:}
+        Zeitreihenverletzungen der Unabhängigkeitsannahme können die Testergebnisse verzerren.
+        Dieses Problem sollte durch geeignetes Intervall-Design (z.\,B. stichprobenhafte Rolling Windows) abgemildert werden.
+
+        \item \textbf{Interpretation:}
+        Ein signifikanter Unterschied sagt noch nichts über die Ursachen aus.
+        Die Ergebnisse sind daher stets in Verbindung mit den erklärenden Prompts und Kontextfaktoren des Systems zu deuten.
+      \end{itemize}
+
+      \noindent Insgesamt erlaubt die statistische Signifikanzprüfung eine wichtige Absicherung der beobachteten Performancedifferenzen.
+      Sie ist praktikabel, wenn auch in ihrer Aussagekraft durch die systemimmanenten Rechenkosten und die begrenzte Stichprobengröße eingeschränkt.
+
 
   \section{Evaluation der Erklärbarkeit}
-    \label{sec:xai-eval}
+  \label{sec:xai-eval}
 
-    Die Qualität der generierten Begründungen wird auf zwei Ebenen geprüft:
+    Da das Assistenzsystem nicht nur auf Performance abzielt, sondern insbesondere auf eine \emph{transparente Entscheidungsbegründung}, ist die Bewertung der erzeugten Erklärungen ein zentrales Element dieser Arbeit. Dabei wird zwischen automatisierten Verfahren und subjektiver Einschätzung durch Nutzer:innen unterschieden.
 
     \subsection{Automatisierte Metriken}
 
+      Automatisierte Metriken erlauben eine objektive, wiederholbare Analyse großer Mengen generierter Erklärungen. Die folgenden Aspekte stehen im Fokus:
+
       \begin{itemize}
-        \item \textbf{Fidelity / Faithfulness}: Misst, inwieweit die Erklärungen die internen Entscheidungsprozesse des LLMs korrekt widerspiegeln \autocite{jacovi2020towards}.
-        \item \textbf{Comprehensibility}: Automatische Metriken wie Lesbarkeitsindizes (Flesch–Kincaid).
+        \item \textbf{Fidelity / Faithfulness:}
+        Diese Metrik bewertet, ob die Erklärung tatsächlich auf den relevanten Informationen basiert, die für die Modellentscheidung verantwortlich waren, also eine hohe \emph{Erklärungstreue} aufweist.
+        In der Praxis ist dies bei generativen LLMs nur indirekt messbar.
+        Ein möglicher Ansatz besteht darin, durch sogenannte \textit{input occlusion}- oder \textit{counterfactual prompting}-Techniken zu prüfen, ob Änderungen an den erklärten Faktoren zu konsistenten Änderungen in der Entscheidung führen.
+        Alternativ kann ein nachgeschalteter Klassifikator trainiert werden, der nur auf Basis der Erklärung das Modellverhalten approximiert – je besser dies gelingt, desto höher die Fidelity.
+
+        \item \textbf{Comprehensibility:}
+        Zur Bewertung der Verständlichkeit auf syntaktisch-semantischer Ebene kommen klassische Lesbarkeitsmaße zum Einsatz, z.\,B. der \textit{Flesch–Kincaid Grade Level} oder der \textit{Gunning Fog Index}.
+        Diese Metriken lassen sich direkt auf den Text der Erklärungen anwenden.
+        Sie geben Hinweise darauf, ob die Erklärungen in einer Sprache formuliert sind, die dem intendierten Nutzerkreis (z.\,B. Privatanleger:innen) entspricht.
+
+        \item \textbf{Redundanz und Konsistenz:}
+        Ergänzend können NLP-Metriken wie \textit{BLEU}, \textit{ROUGE} oder semantische Ähnlichkeitsanalysen verwendet werden, um die Konsistenz ähnlicher Empfehlungen in vergleichbaren Kontexten zu überprüfen.
       \end{itemize}
 
+      Automatisierte Metriken sind insbesondere für Regressionstests geeignet, etwa bei Änderungen am Prompt-Design oder zur vergleichenden Evaluation verschiedener Modellvarianten.
+
     \subsection{Benutzerstudien}
-      In geplanten Nutzertests werden die Erklärungen durch Befragungen hinsichtlich Verständlichkeit, Vertrauen und Informationswert bewertet.
-      Dazu wird ein Fragebogen nach \textcite{hoffman2018metrics} eingesetzt, ergänzt um offene Feedbackfragen.
-      % TODO: Anzahl und Profil der Testpersonen festlegen
+
+      Da erklärbare KI stets auch auf das subjektive Verständnis der Nutzer:innen zielt, ist eine empirische Bewertung durch menschliche Rückmeldung unverzichtbar.
+
+      \begin{itemize}
+        \item \textbf{Methodisches Vorgehen:}
+        Die Nutzerstudie basiert auf dem von \textcite{hoffman2018metrics} entwickelten Bewertungsrahmen. Die Teilnehmenden erhalten eine Reihe von KI-Empfehlungen mitsamt den zugehörigen Begründungstexten und werden gebeten, diese anhand folgender Kriterien zu bewerten:
+        \begin{itemize}
+          \item Verständlichkeit (clarity)
+          \item Nützlichkeit für die Entscheidung
+          \item Vertrauensförderlichkeit
+          \item Wahrgenommene Kausalität der Begründung
+        \end{itemize}
+
+        Diese werden auf einer Likert-Skala (z.\,B. 1–7) erfasst und durch offene Freitextantworten ergänzt.
+
+        \item \textbf{Teilnehmerprofil:}
+        % TODO: Anzahl und Profil der Testpersonen festlegen
+        Es ist geplant, unterschiedliche Zielgruppen (z.\,B. technisch versierte Nutzer:innen vs. Laien im Finanzbereich) einzubeziehen, um Rückschlüsse auf die Adressatenangemessenheit der Begründung zu ermöglichen.
+
+        \item \textbf{Ergänzende Methoden:}
+        Optional kann ein \textit{A/B-Test} mit Varianten derselben Empfehlung (z.\,B. mit/ohne Begründung oder mit unterschiedlichen Begründungsstilen) durchgeführt werden, um den Einfluss der Erklärung auf die Nutzerentscheidung zu erfassen.
+      \end{itemize}
+
+      \paragraph{Praktikabilität und Grenzen}
+
+        Während die automatisierten Metriken relativ unkompliziert umsetzbar sind, hängt der Erfolg der Nutzerstudie maßgeblich von der Rekrutierung geeigneter Testpersonen und der sorgfältigen Gestaltung der Stimuli ab. Zudem ist zu beachten, dass subjektive Bewertungen durch Vorerfahrung, Erwartungshaltungen und Testkontext beeinflusst werden können. Dennoch liefern sie entscheidende Einblicke in die \emph{praktische} Erklärbarkeit jenseits theoretischer Kriterien.
 
   \section{Daten- und Prompt-Anforderungen}
 
