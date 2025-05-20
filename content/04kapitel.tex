@@ -20,6 +20,12 @@
         \label{fig:systemarchitektur}
     \end{figure}
 
+    \subsection{Projektstruktur}
+
+      To-Do
+      Hier auf Verzeichnisstruktur eingehen und diese begruenden.
+
+
     \subsection{Komponentenübersicht und Schnittstellen}
 
       Die Systemarchitektur besteht aus den folgenden Hauptkomponenten:
@@ -27,7 +33,7 @@
       \begin{itemize}
           \item \textbf{Backend (Flask-Server):} Das Backend ist in \texttt{Python} realisiert und stellt RESTful-Endpunkte für das Frontend bereit.
           Es orchestriert die Kommunikation mit dem LLM (Large Language Model), führt die Datenanalyse durch und verwaltet Persistenzstrukturen in JSON-Format.
-          Hierzu wurde das \texttt{Flask}-Framework verwendet.
+          Hierzu wird das \texttt{Flask}-Framework verwendet.
 
           \item \textbf{KI-Logik (LLM-Modul):} Die Analyse der Portfolios erfolgt durch Integration von LLMs, initial lokal mit \texttt{Ollama} um den On-Device-Ansatz zu verfolgen, später ergänzt durch eine API-Schnittstelle zur Anbindung von größeren und schnelleren Modellen von OpenAI.
           Die Auswahl des LLM-Anbieters ist modular über das \texttt{llm.py}-Modul steuerbar.
@@ -92,53 +98,147 @@
 
   \section{Eingesetzte Frameworks und Technologien}
 
-    Die Umsetzung des Systems basiert auf einer Kombination moderner Web- und KI-Frameworks. Dabei kamen sowohl klassische Webtechnologien als auch spezialisierte Werkzeuge zur Modellintegration und Datenverarbeitung zum Einsatz. Im Folgenden werden zentrale Technologien mit besonderem Einfluss auf Architektur und Funktionsweise näher erläutert.
+    Die Umsetzung des Systems basiert auf einer Kombination moderner Web- und KI-Frameworks.
+    Dabei kamen sowohl klassische Webtechnologien als auch spezialisierte Werkzeuge zur Modellintegration und Datenverarbeitung zum Einsatz.
+    Im Folgenden werden zentrale Technologien mit besonderem Einfluss auf Architektur und Funktionsweise näher erläutert.
 
     \subsection{Ollama}
 
-      Für die lokale Ausführung großer Sprachmodelle (LLMs) wurde \texttt{Ollama}\footnote{\url{https://ollama.com/}} eingesetzt.
-      Das Framework erlaubt die Einbindung quantisierter LLMs auf lokalen Maschinen, was eine signifikante Reduktion der Antwortzeiten sowie höhere Datensouveränität ermöglicht.
-      Besonders im Kontext sensitiver Finanzdaten ist die lokale Modellinferenz gegenüber Cloud-Alternativen wie der OpenAI API ein Vorteil im Hinblick auf Datenschutz und Kontrolle \autocite{rasheed2023security}.
+      % To-Do für diesen ganzen Abschnitt: gute Quellen suchen
+
+      Für die lokale Ausführung von Sprachmodelle (LLMs) wird \texttt{Ollama}\footnote{\url{https://ollama.com/}} verwendet.
+      Dieses Open-Source-Framework ermöglicht es, moderne KI-Modelle direkt auf dem eigenen Computer auszuführen, ohne dass eine Verbindung zu externen Cloud-Diensten notwendig ist.
+      Damit lassen sich leistungsfähige Modelle wie z. B. LLaMA, Mistral oder Phi auf handelsüblicher Hardware nutzen, was vor allem im Hinblick auf Datenschutz und Kontrolle über sensible Daten einen großen Vorteil bietet.
+
+      Ollama zeichnet sich dadurch aus, dass es die Modelle bereits in einer kompakten, sogenannten quantisierten Form bereitstellt.
+      Das bedeutet, dass die Modelle weniger Speicher benötigen und dadurch deutlich schneller geladen und ausgeführt werden können.
+      Gerade im Rahmen dieser Arbeit, bei der regelmäßig umfangreiche Texte analysiert und Entscheidungen abgeleitet werden, ist eine effiziente Ausführung entscheidend.
+      Auch auf Systemen mit begrenztem Arbeitsspeicher lassen sich so moderne Sprachmodelle mit akzeptabler Reaktionszeit nutzen.
+
+      Ein weiterer Vorteil liegt in der einfachen Integration in bestehende Anwendungen.
+      Ollama stellt eine REST-API zur Verfügung, über die das Modell direkt aus Skripten oder anderen anderen Anwendungen heraus angesteuert werden kann.
+      Im hier entwickelten System, das auf dem Pythonbasiert, lassen sich damit problemlos automatisierte Anfragen an das Sprachmodell stellen.
+      Dies ermöglicht eine durchgängige Verarbeitung, bei der Nutzeranfragen entgegengenommen, analysiert und beantwortet werden – ohne dass dabei Daten an externe Server gesendet werden müssen.
+
+      Im Vergleich zu anderen lokalen Lösungen wie GPT4All oder Text Generation WebUI bietet Ollama eine besonders einfache Einrichtung und eine aktive Weiterentwicklung.
+      Inzwischen hat sich \texttt{Ollama} de facto als Standardlösung für die lokale Nutzung großer Sprachmodelle etabliert.
+      Aufgrund seiner einfachen Handhabung, aktiven Weiterentwicklung und der wachsenden Unterstützung durch die Open-Source-Community wird es in zahlreichen Projekten eingesetzt, bei denen Datenschutz und Offline-Verfügbarkeit im Vordergrund stehen.
+      Besonders in Anwendungsfällen, bei denen keine Daten an externe Anbieter übertragen werden dürfen oder eine stabile Internetverbindung nicht garantiert ist, stellt Ollama eine praxistaugliche und zuverlässige Grundlage dar.
+
+      Es ist nicht notwendig, sich mit komplexen Hardware-Konfigurationen auseinanderzusetzen oder tief in die Modellarchitektur einzugreifen.
+      Stattdessen lassen sich Modelle über einfache Kommandos starten und austauschen.
+      Dies erhöht die Flexibilität bei der Entwicklung und erlaubt es, verschiedene Sprachmodelle zu vergleichen und zu evaluieren.
+
+      Die Entscheidung für Ollama fiel somit vor allem aus Gründen der Datensicherheit, der einfachen Handhabung und der guten Integration in das bestehende Softwaresystem.
+      Gerade bei Anwendungen im Finanzbereich, in denen mit vertraulichen Daten gearbeitet wird, ist es besonders wichtig, die volle Kontrolle über die Datenverarbeitung zu behalten.
+      Durch die lokale Ausführung der Modelle mit Ollama kann dieser Anspruch in technischer Hinsicht zuverlässig erfüllt werden, ohne auf moderne Sprachverarbeitung verzichten zu müssen \autocite{frantar2022gptq}.
+
 
     \subsection{LangChain}
 
-      \texttt{LangChain}\footnote{\url{https://www.langchain.com/}} wurde zur Modellorchestrierung eingesetzt.
-      Das Framework ermöglicht die Verkettung von Modulen, Prompts und Speicherkomponenten und vereinfacht so die Implementierung komplexer Agentenstrukturen.
-      Besonders im Zusammenspiel mit Explainability-Komponenten erlaubt LangChain die Integration strukturierter Ausgabeformate sowie Rückgriff auf kontextuelle Zwischenergebnisse \autocite{chase2023langchain}.
+      % To-Do für diesen ganzen Abschnitt: gute Quellen suchen
+
+      \texttt{LangChain}\footnote{\url{https://www.langchain.com/}} wird als zentrales Framework zur Modellorchestrierung innerhalb des Assistenzsystems eingesetzt.
+      Es handelt sich dabei um eine Open-Source-Bibliothek, die speziell für die Entwicklung von Anwendungen auf Basis großer Sprachmodelle (LLMs) konzipiert wurde.
+      Das Besondere an LangChain ist seine Fähigkeit, verschiedene Komponenten eines LLM-Workflows—wie Prompts, Datenquellen, Werkzeuge, Speicher oder Agenten—modular zu verketten und dabei logisch zu koordinieren.
+      Dies erlaubt eine flexible und wiederverwendbare Strukturierung komplexer Modellinteraktionen \autocite{chase2023langchain}.
+
+      In der vorliegenden Anwendung wird LangChain insbesondere zur Steuerung mehrstufiger Prompt-Logik und zur Integration erklärbarer Entscheidungsbegründungen verwendet.
+      Die strukturierte Verarbeitung der Ausgabeformate, etwa in JSON, konnte durch den Einsatz spezialisierter Output-Parser von LangChain elegant realisiert werden.
+      Ebenso erleichtert das Framework die Nutzung externer Wissensquellen oder Zwischenergebnisse im Dialogverlauf, was insbesondere für erklärungsorientierte Systeme von Vorteil ist.
+
+      Die Integration in das bestehende Python-Backend erfolgte reibungslos, da LangChain nativ in Python geschrieben ist und eine Vielzahl von Schnittstellen zu gängigen Modellen wie OpenAI, HuggingFace oder lokal ausgeführten LLMs via \texttt{Ollama} unterstützt.
+      Überdies konnte LangChain nahtlos mit bereits vorhandenen Komponenten, etwa zur Bewertung von Portfolios oder zur Entscheidungslogik, verbunden werden.
+
+      Im Vergleich zu Alternativen wie \texttt{Haystack} oder \texttt{LlamaIndex} (ehemals GPT Index) bietet LangChain eine größere Bandbreite an Agentenfunktionen und Werkzeuge zur Ablaufsteuerung.
+      Während Haystack vor allem für Suchanwendungen mit Vektordatenbanken optimiert ist und LlamaIndex sich auf das Retrieval-augmented Generation (RAG) fokussiert, ist LangChain universeller einsetzbar.
+      Die Entscheidung zugunsten von LangChain fiel letztlich aufgrund seiner hohen Community-Aktivität, umfassenden Dokumentation und der bereits verfügbaren Werkzeuge für strukturierte Ausgabeformate sowie XAI-nahe Anwendungen.
+
 
     \subsection{OpenAI API}
 
-      Für rechenintensive Evaluationsfunktionen sowie als Fallback-Strategie bei unzureichender lokaler Modellantwort wurde die \texttt{OpenAI API}\footnote{\url{https://platform.openai.com}} angebunden.
-      Dabei kamen GPT-4-basierte Modelle zur Anwendung, die sich durch hohe Konsistenz, Qualität und Steuerbarkeit auszeichnen.
-      Die API ermöglicht im Vergleich zu lokal betriebenen Modellen bessere Reproduzierbarkeit, birgt jedoch auch Abhängigkeiten hinsichtlich Verfügbarkeit, Preisgestaltung und Datenschutz.
+      % To-Do für diesen ganzen Abschnitt: gute Quellen suchen
+
+      Für besonders rechenintensive Evaluationsfunktionen sowie als Fallback-Lösung bei unzureichender oder fehlerhafter lokaler Modellantwort wird ergänzend die \texttt{OpenAI API}\footnote{\url{https://platform.openai.com}} eingebunden.
+      Im Fokus steht dabei die Nutzung der GPT-4-Modelle, die sich in zahlreichen Studien durch eine besonders hohe Konsistenz, Sprachqualität und logische Kohärenz auszeichnen \autocite{openai2023gpt4}.
+      Diese Modelle ermöglichen insbesondere bei komplexen Aufgabenstellungen im Bereich der Portfolioanalyse eine zuverlässige Verarbeitung und Bewertung, was sie zu einer sinnvollen Ergänzung lokaler LLMs wie jenen unter \texttt{Ollama} macht.
+
+      Ein entscheidender Vorteil der API-basierten Lösung liegt in der verbesserten Reproduzierbarkeit der Ergebnisse: Da der Modellzustand und die Inferenzumgebung vollständig durch den Anbieter kontrolliert werden, sind Output-Unterschiede über Zeit hinweg tendenziell geringer als bei lokal betriebenen Modellen.
+      Auch die systematische Skalierung bei Lastspitzen ist durch die Cloud-Infrastruktur einfacher umsetzbar.
+      Dies ist insbesondere in Phasen hoher Evaluationsanforderungen relevant, etwa bei der Analyse großer Portfolios oder der gleichzeitigen Verarbeitung mehrerer Nutzeranfragen.
+
+      Gleichzeitig ist jedoch auch eine kritische Abwägung erforderlich.
+      Die Nutzung der OpenAI API macht das System in Teilen abhängig von einem externen Anbieter, was sowohl Fragen der technischen Verfügbarkeit als auch der wirtschaftlichen Planbarkeit aufwirft.
+      Preisanpassungen oder API-Änderungen können sich direkt auf das Systemverhalten und die Kostenstruktur auswirken.
+      Darüber hinaus müssen bei der Übertragung sensibler Finanzdaten in eine Cloud-Infrastruktur strenge Datenschutzaspekte berücksichtigt werden.
+      Zwar bietet OpenAI mittlerweile explizite Möglichkeiten zur Deaktivierung der Speicherung von Nutzerdaten, dennoch verbleibt ein gewisses Restrisiko hinsichtlich Datensouveränität und regulatorischer Anforderungen.
 
     \subsection{yfinance}
 
-      Für die automatisierte Abfrage von historischen und aktuellen Kursdaten kam die Python-Bibliothek \texttt{yfinance} zum Einsatz.
+      % To-Do für diesen ganzen Abschnitt: gute Quellen suchen
+
+      Für die automatisierte Abfrage von historischen und aktuellen Kursdaten kommt die Python-Bibliothek \texttt{yfinance} zum Einsatz.
       Diese greift auf Daten von Yahoo Finance zu und bietet eine einfache API zur Analyse von Aktienkursverläufen, Dividenden und Handelsvolumen.
       Die Verwendung historischer Kursdaten erlaubt Rückschlüsse auf Volatilität, Trends und technische Indikatoren – zentrale Größen für die Entscheidungsbegründung im Assistenzsystem \autocite{fama1970efficient}.
 
+      Die Installation von \texttt{yfinance} erfolgt unkompliziert über den Python-Paketmanager.
+      Die Bibliothek ermöglicht es, Daten für einzelne oder mehrere Ticker gleichzeitig abzurufen und bietet Funktionen zur Anpassung des Zeitraums, der Intervallgröße (z.\,B. täglich, wöchentlich) sowie zur Einbindung von Dividenden- und Splitevents.
+
+      Darüber hinaus bietet \texttt{yfinance} Zugriff auf umfassende Metadaten, wie Unternehmensinformationen, Analystenbewertungen und Bilanzzahlen, welche weitere Analysemöglichkeiten eröffnen.
+      Die Nutzung von \texttt{yfinance} stellt somit eine zentrale Komponente zur datenbasierten Entscheidungsunterstützung in unserem Assistenzsystem dar.
+
+
     \subsection{Sonstige Technologien}
 
-      Ergänzend zu den oben genannten Kerntechnologien kamen weitere etablierte Frameworks und Tools zum Einsatz:
+      % To-Do für diesen ganzen Abschnitt: gute Quellen suchen
+
+      Ergänzend zu den oben genannten Kerntechnologien kamen weitere etablierte Frameworks und Tools zum Einsatz, die entscheidend zur Realisierung und Nutzerfreundlichkeit des Assistenzsystems beitrugen.
 
       \begin{itemize}
-          \item \texttt{Flask} – Minimalistisches Webframework in Python zur Bereitstellung von RESTful APIs.
-          \item \texttt{Bootstrap} – CSS-Framework zur Gestaltung einer responsiven, browserunabhängigen Benutzeroberfläche.
-          \item \texttt{JavaScript} – Für Interaktivität und DOM-Manipulation im Browser, u.a. für dynamisches Nachladen von Aktienanalysen.
+          \item \texttt{Flask} – Dieses minimalistische und dennoch leistungsstarke Webframework in Python diente als Grundlage für die Bereitstellung von RESTful APIs.
+          Durch seine einfache Struktur und Erweiterbarkeit ermöglicht Flask eine schnelle Entwicklung von Webanwendungen und Backend-Diensten.
+          Im Rahmen des Assistenzsystems wird Flask eingesetzt, um Anfragen an die Datenbank und externe APIs zu koordinieren, die Ergebnisse zu verarbeiten und sie in einem standardisierten JSON-Format für die Frontend-Komponenten bereitzustellen.
+          Die modulare Architektur von Flask erleichtert zudem die Integration zusätzlicher Middleware und Authentifizierungsmechanismen, was die Sicherheit und Skalierbarkeit des Systems unterstützt.
+
+          \item \texttt{Bootstrap} – Als eines der populärsten CSS-Frameworks wird Bootstrap verwendet, um eine moderne, optisch ansprechende und zugleich responsive Benutzeroberfläche zu gestalten.
+          Bootstrap bietet ein umfangreiches Set an vorgefertigten Komponenten wie Buttons, Navigationsleisten, Formularen und Grid-Systemen, die eine konsistente Darstellung auf unterschiedlichen Endgeräten und Bildschirmgrößen gewährleisten.
+          Im Assistenzsystem wird Bootstrap eingesetzt, um die Usability zu verbessern, indem komplexe Layouts mit minimalem Aufwand realisiert werden und die Anwendung gleichzeitig auf Desktop, Tablets und Smartphones gleichermaßen gut nutzbar ist.
+           Zudem unterstützt Bootstrap die schnelle Anpassung des Designs durch einfaches Überschreiben von Variablen und Klassen.
+
+          \item \texttt{JavaScript} – JavaScript fungiert als zentrale Programmiersprache für die Implementierung von Interaktivität im Browser.
+          Innerhalb des Assistenzsystems wird JavaScript verwendet, um dynamische Inhalte zu laden und die Benutzererfahrung zu verbessern.
+          Dies umfasst beispielsweise das asynchrone Nachladen von Aktienanalysen und Kursdaten mittels asynchroner Requests, wodurch Seitenaktualisierungen ohne komplettes Neuladen ermöglicht werden.
+          Zusätzlich sorgen clientseitige DOM-Manipulationen für reaktive Benutzeroberflächen, beispielsweise das Anzeigen von Diagrammen, das Hervorheben relevanter Datenpunkte und die Umsetzung von Filtern und Sortierfunktionen.
+          Die Kombination mit Bibliotheken wie \texttt{jQuery} erleichert die Entwicklung zusätzlich.
+
+          % Später noch mehr Technologien einführen: Podman, Podman-Compose, ...
       \end{itemize}
 
-      Diese Komponenten bilden die Grundlage für die Benutzerinteraktion und das reaktive UI-Verhalten.
+      Durch den gezielten Einsatz dieser Technologien wird die Funktionalität des Assistenzsystems sinnvoll ergänzt, die Entwicklung beschleunigt und die Benutzerfreundlichkeit auf einem hohen Niveau sichergestellt.
+
 
   \section{Prompt-Engineering und Aufbau der Prompts}
 
-    Zur Steuerung der Large Language Models (LLMs) wurden gezielt formulierte Prompts eingesetzt, die einerseits die relevanten Datenstrukturen übergeben und andererseits die gewünschten Ausgaben in maschinenlesbarer Form erzwingen.
+    Zur Steuerung der Large Language Models (LLMs) werden gezielt formulierte Prompts eingesetzt, die einerseits die relevanten Datenstrukturen übergeben und andererseits die gewünschten Ausgaben in maschinenlesbarer Form erzwingen.
+
+
+    Prompts sind dabei im Wesentlichen präzise formulierte Eingabetexte, die dem Modell als Anleitung dienen.
+    Sie definieren den Kontext, die Aufgabenstellung und die Art der gewünschten Antwort.
+    Da LLMs keine explizite Programmierung im klassischen Sinne verwenden, ist die Qualität und Struktur der Prompts entscheidend für die Qualität der generierten Ergebnisse.
+
+    Das sogenannte Prompt-Engineering beschäftigt sich mit der systematischen Gestaltung und Optimierung dieser Eingabetexte, um die Modelle möglichst effizient und zielgerichtet zu steuern.
+    Dabei wird beispielsweise festgelegt, welche Informationen das Modell berücksichtigen soll, in welchem Format die Antwort erwartet wird und welche Einschränkungen oder Bedingungen gelten.
+
+    Der Einsatz von Prompts ermöglicht es, komplexe Aufgaben flexibel zu lösen, ohne dass das Modell selbst verändert werden muss.
+    Durch gezieltes Prompt-Engineering wird somit die Leistungsfähigkeit von LLMs maximiert und die Integration in verschiedenste Anwendungsfälle, wie die Verarbeitung von Finanzdaten oder die Unterstützung bei Entscheidungsprozessen, erleichtert.
+
     Die beiden zentralen Prompt-Vorlagen unterscheiden sich in ihrem Zweck und Aufbau:
 
     \subsection{Asset-Bewertungsprompt}
-      \label{sec:prompt-asset}
+    \label{sec:prompt-asset}
 
-      Der Prompt im \texttt{assess\_security}–Modul hat das Ziel, für eine einzelne Wertpapierposition eine quantitative Dringlichkeitseinschätzung sowie eine Verteilung der Kauf-/Verkaufs-/Halt-Empfehlung zu erzeugen. Der strukturierte Aufbau lautet:
+      Der Prompt im \texttt{assess\_security}–Modul hat das Ziel, für eine einzelne Wertpapierposition eine quantitative Dringlichkeitseinschätzung sowie eine Verteilung der Kauf-/Verkaufs-/Halt-Empfehlung zu erzeugen.
+      Der strukturierte Aufbau lautet:
 
       \begin{lstlisting}[language=Python, caption={Asset-Bewertungsprompt}]
       Analyze this investment:
@@ -163,39 +263,78 @@
       Ensure buy + sell + hold == 100
       \end{lstlisting}
 
+      \paragraph{Detaillierte Analyse der Prompt-Zusammensetzung}
+
+      Der Prompt ist so gestaltet, dass er mehrere wichtige Prinzipien des Prompt-Engineerings berücksichtigt, um eine präzise, kontextbewusste und maschinenlesbare Antwort zu generieren:
 
       \begin{itemize}
-        \item \textbf{Separation of Concerns:} Durch Trennung von \emph{Quantitativen} und \emph{Qualitativen} Daten wird dem LLM explizit signalisiert, welche Informationen statistischer Natur und welche textueller Natur sind \autocite{liu2023pre}.
-        \item \textbf{Portfolio-Kontext:} Die Einbettung in das Gesamtportfolio (z.\,B. Risikoklasse, bisherige Performance) ermöglicht kontextsensitives Reasoning und verhindert isolierte Betrachtungen einzelner Assets \autocite{gao2023contextual}.
-        \item \textbf{Maschinenlesbare Ausgabe:} Die klare Spezifikation des erwarteten JSON-Schemas reduziert Parsing-Fehler und erleichtert die Weiterverarbeitung im Backend \autocite{brown2020language}.
-        \item \textbf{Konsistenzbedingung:} Die Bedingung \texttt{buy + sell + hold == 100} stellt sicher, dass die Allokationsprozente valide und vollständig sind.
+        \item \textbf{Klar getrennte Informationsblöcke:} Die Unterteilung in \emph{Quantitative data}, \emph{Qualitative data} und \emph{Portfolio context} schafft eine strukturierte Informationsbasis.
+        Dies hilft dem LLM, die unterschiedlichen Datenarten gezielt zu interpretieren, da numerische Kennzahlen andere Analyseverfahren erfordern als textuelle Kommentare.
+        Die explizite Benennung der Abschnitte reduziert Unklarheiten und verbessert die Relevanz der generierten Antwort.
+
+        \item \textbf{Verwendung von JSON als Eingabeformat:} Durch die Einbettung der quantitativen Daten und Portfolio-Merkmale in JSON wird ein standardisiertes, gut interpretierbares Datenformat verwendet.
+        Dies unterstützt die Konsistenz der Eingabedaten und ermöglicht dem Modell, komplexe verschachtelte Strukturen effizient zu erfassen und zu verarbeiten.
+
+        \item \textbf{Explizite Anweisung zur Ausgabe:} Die Aufforderung, eine JSON-Antwort mit klar definierten Feldern zu liefern, ist entscheidend für die automatisierte Weiterverarbeitung.
+        Das Modell wird gezielt instruiert, nicht nur Text zu generieren, sondern strukturierte Daten zurückzugeben, die direkt vom Backend interpretiert werden können nach dem das JSON über Regex aus der Antwort extrahiert und geprüft wird.
+
+        \item \textbf{Numerische Wahrscheinlichkeitsverteilungen:} Die Felder \texttt{buy}, \texttt{sell} und \texttt{hold} sind als prozentuale Anteile definiert, die zusammen 100 ergeben müssen.
+        Dies gewährleistet eine konsistente und vollständige Allokationsempfehlung, die als gewichteter Entscheidungsoutput interpretiert werden kann.
+
+        \item \textbf{Dringlichkeitseinschätzung als separates Maß:} Das Feld \texttt{urgency\_to\_act} ermöglicht eine differenzierte Bewertung, wie schnell eine Handlung erfolgen sollte.
+        Dies ist besonders relevant für Portfolio-Management, da nicht alle Empfehlungen dieselbe Priorität besitzen.
+
+        \item \textbf{Erklärung der Empfehlung (Rationale):} Das Textfeld \texttt{rationale} bietet eine qualitative Begründung, die Transparenz schafft und Vertrauen in die automatisierten Entscheidungen fördert.
+        Es ermöglicht zudem eine nachvollziehbare Dokumentation der Entscheidungsfindung.
+
+        \item \textbf{Separation of Concerns:} Die klare Trennung von Daten, Kontext und Ausgabe stellt sicher, dass das Modell die Eingabe in logisch abgegrenzten Einheiten verarbeitet, was die Genauigkeit und Reproduzierbarkeit der Ergebnisse verbessert \autocite{gao2023contextual}.
+
+        \item \textbf{Eindeutige Formatierung und Anweisungen:} Die Verwendung von Groß-/Kleinschreibung, strukturiertem Text und klaren Instruktionen minimiert Missverständnisse und erleichtert dem Modell, die Aufgabe korrekt zu erfassen.
+
       \end{itemize}
 
-    \subsection{Portfolio-Zusammenfassungsprompt}
-      \label{sec:prompt-portfolio}
+    Diese bewusste Gestaltung des Prompts trägt entscheidend zur Qualität der erzeugten Bewertung bei und unterstützt eine robuste Integration in automatisierte Analyse- und Entscheidungssysteme.
 
-      Im Modul \texttt{evaluate\_portfolio\_summary} wird ein zusammenfassender Prompt verwendet, der auf der Gesamtheit der Asset-Bewertungen aufsetzt und eine narrative Gesamtübersicht generiert:
+      \subsection{Portfolio-Zusammenfassungsprompt}
+        \label{sec:prompt-portfolio}
 
-      \begin{lstlisting}[language=Python, caption={Portfolio-Zusammenfassungsprompt}]
-      Analyze this portfolio based on the following assets and their evaluations:
+        Im Modul \texttt{evaluate\_portfolio\_summary} wird ein zusammenfassender Prompt verwendet, der auf der Gesamtheit der einzelnen Asset-Bewertungen aufsetzt und eine umfassende, narrative Gesamtübersicht über das Portfolio generiert.
+        Ziel ist es, die vielfältigen Einzelbewertungen in einen verständlichen und handlungsorientierten Gesamtbericht zu überführen.
 
-      <JSON mit allen Assets und ihren Einzelbewertungen>
+        \begin{lstlisting}[language=Python, caption={Portfolio-Zusammenfassungsprompt}]
+        Analyze this portfolio based on the following assets and their evaluations:
 
-      Provide a summary JSON with:
-      {
-        "market_summary": "<text>",
-        "current_opportunities": "<text>",
-        "current_risks": "<text>",
-        "other": "<text>",
-        "explanation_evaluation": "<longer explanation>"
-      }
-      \end{lstlisting}
+        <JSON mit allen Assets und ihren Einzelbewertungen>
 
-      \begin{itemize}
-        \item \textbf{Aggregation von Einzelaussagen:} Durch Übergabe der bereits bewerteten Assets (`assets`) kann das LLM seine Zusammenfassung auf validen, vorstrukturierten Inputs aufbauen und muss nicht erneut grundlegende Analysen durchführen.
-        \item \textbf{Modulare Abschnittsgliederung:} Die Unterteilung in \emph{Market Summary}, \emph{Opportunities}, \emph{Risks} und \emph{Other} folgt Best Practices zur kognitiven Entlastung und unterstützt die Nutzerfreundlichkeit \autocite{amershi2019guidelines}.
-        \item \textbf{Erklärung der Bewertung:} Das Feld \texttt{explanation\_evaluation} erlaubt einen längeren narrativen Text, um die Entscheidungspfade und Zusammenhänge ausführlich darzustellen.
-      \end{itemize}
+        Provide a summary JSON with:
+        {
+          "market_summary": "<text>",
+          "current_opportunities": "<text>",
+          "current_risks": "<text>",
+          "other": "<text>",
+          "explanation_evaluation": "<longer explanation>"
+        }
+        \end{lstlisting}
+
+        \paragraph{Detaillierte Analyse der Prompt-Zusammensetzung}
+
+        \begin{itemize}
+          \item \textbf{Aggregation von validierten Einzelaussagen:} Indem bereits bewertete Assets mit ihren jeweiligen quantitativen und qualitativen Einschätzungen in Form eines strukturierten JSON übergeben werden, muss das LLM keine Basisanalyse der Rohdaten vornehmen.
+          Dies steigert die Effizienz und Genauigkeit, da das Modell auf konsolidierten, validierten Informationen aufbaut und sich auf die Synthese fokussiert.
+
+          \item \textbf{Klare modulare Abschnittsgliederung:} Die Aufteilung in die Teilbereiche \emph{Market Summary}, \emph{Current Opportunities}, \emph{Current Risks} und \emph{Other} unterstützt die kognitive Verarbeitung, indem sie die Informationen thematisch ordnet.
+          Diese Strukturierung orientiert sich an anerkannten Designprinzipien für Berichterstattung und Nutzerführung, wodurch die Lesbarkeit und Verständlichkeit deutlich verbessert wird. % To-Do: Quelle
+
+          \item \textbf{Narrative Erläuterungen:} Das Feld \texttt{explanation\_evaluation} ermöglicht eine ausführliche, narrative Darstellung der Bewertungslogik und der Zusammenhänge zwischen den einzelnen Asset-Analysen.
+          Diese Transparenz trägt dazu bei, das Vertrauen der Nutzer in die automatisierten Einschätzungen zu stärken und komplexe Entscheidungen nachvollziehbar zu machen.
+
+          \item \textbf{Flexible Erweiterbarkeit:} Das zusätzliche Feld \texttt{other} bietet Raum für ergänzende Informationen, etwa besondere Hinweise, temporäre Marktphänomene oder kontextuelle Anmerkungen, die nicht direkt in die Hauptkategorien passen, aber für die Gesamtbewertung relevant sind.
+
+          \item \textbf{Förderung von Interpretierbarkeit und Handlungsrelevanz:} Durch die narrative Zusammenfassung werden die oft komplexen Einzelbewertungen in eine verständliche, handlungsorientierte Form gebracht.
+          Dies unterstützt Portfolio-Manager und Analyst dabei, schnelle und fundierte Entscheidungen zu treffen.
+
+        \end{itemize}
+
 
     \subsection{Integration und Dokumentation}
 
