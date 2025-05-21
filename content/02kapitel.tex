@@ -169,18 +169,85 @@
 
     Diese systemischen Defizite zeigen, dass kommerzielle Robo-Advisor trotz ihrer Benutzerfreundlichkeit und Zugänglichkeit erhebliche Einschränkungen aufweisen, insbesondere in Bezug auf Transparenz, Individualisierung und Flexibilität.
 
-    %Bis hierhin überarbeitet und angepasst. Zweite Meinung erforderlich
 
-  \subsection{Brücke zu den Forschungsfragen}
+\section{Erklärbare KI in der Finanzdomäne}
 
-    Die in dieser Arbeit adressierten Forschungsfragen zielen darauf ab, die Defizite bestehender Systeme im Wertpapierhandel zu überwinden, insbesondere in Bezug auf Transparenz, Individualisierung und Erklärbarkeit.
-    Die erste Forschungsfrage untersucht, wie ein KI-basiertes Assistenzsystem entwickelt werden kann, das für jedes Wertpapier im Depot quantifizierbare Handlungsempfehlungen (Kaufen/Verkaufen/Halten in Prozent) mit transparenten Begründungen generiert.
-    Dies erfordert die Integration von Methoden der erklärbaren KI (XAI), wie \textit{Integrated Gradients} \autocite{sundararajan2017} und \textit{Chain-of-Thought-Erklärungen} \autocite{wei2022}, um die Entscheidungsprozesse des Systems nachvollziehbar zu machen.
-    Die zweite Forschungsfrage befasst sich damit, inwieweit das System eine übergeordnete Risiko-Rendite-Bewertung des gesamten Portfolios liefern und konkrete Rebalancing-Strategien ableiten kann, die den individuellen Anlagezielen des Nutzers entsprechen.
-    Hierzu müssen moderne datengetriebene Optimierungsansätze mit klassischen Portfoliooptimierungsmethoden kombiniert werden, um sowohl die Komplexität der Finanzmärkte abzubilden als auch die Präferenzen des Nutzers zu berücksichtigen \autocite{ban2018}.
+  Moderne Portfoliomodelle basieren auf zunehmend komplexen KI- und Machine-Learning-Ansätzen, deren Entscheidungswege für menschliche Anwender häufig undurchsichtig sind.
+  In der stark regulierten Finanzbranche führt dies zu einem Spannungsfeld: Einerseits versprechen fortgeschrittene Modelle bessere Prognosen (z.\,B. für Kreditbewertungen oder Marktbewegungen), andererseits verlangen Aufsichtsbehörden und Nutzer nach hoher Nachvollziehbarkeit.
+  XAI-Methoden zielen darauf ab, diese Black-Box-Prozesse aufzubrechen und erklärbare Entscheidungsgrundlagen zu liefern.
+  Forschende betonen, dass XAI-Anwendungen gerade in regulierten Domänen unverzichtbar sind, um Transparenz zu gewährleisten und Vertrauen aufzubauen \autocite{Weber2024, Yeo2025}.
 
-    Der gewählte \textit{Design Science Research}-Ansatz (\textcite{hevner2004}) ermöglicht die systematische Überwindung der Limitationen durch \textit{iterative Entwicklungszyklen}.
-    Dieser Ansatz umfasst die schrittweise Entwicklung, Evaluierung und Verbesserung des Systems in mehreren Zyklen, um sicherzustellen, dass die Anforderungen an Transparenz, Erklärbarkeit und Nutzerzentrierung erfüllt werden.
+  Typische Finanzanwendungen für XAI umfassen etwa Kreditwürdigkeitsprüfungen, Börsenprognosen oder Betrugserkennung.
+  \autocite{Cerneviciene2024} zeigen, dass insbesondere Kreditmanagement, Aktienpreisvorhersage und Fraud Detection zu den häufig untersuchten Einsatzgebieten zählen.
+  Auch die Portfoliooptimierung ist ein prominentes Anwendungsfeld: Hier können XAI-Methoden Anlegern helfen, Investmentempfehlungen besser nachzuvollziehen und Risiken transparenter zu bewerten \autocite{Cerneviciene2024}.
+  Darüber hinaus unterstützen Erklärungen die ethische und rechtliche Prüfung von KI-Modellen – beispielsweise indem sie ermöglichen, systematische Verzerrungen zu erkennen oder regulatorische Vorgaben zu überprüfen.
+  Insgesamt stellen XAI-Methoden somit einen wichtigen Baustein dar, um die Akzeptanz und Nachvollziehbarkeit KI-gestützter Finanzentscheidungen zu erhöhen \autocite{Weber2024, Cerneviciene2024}.
+
+  \subsection{Transparenzanforderungen bei Finanzentscheidungen}
+
+    Finanzentscheidungen unterliegen strengen Regulierungsvorgaben, die auch die Verwendung von KI-Systemen betreffen.
+    In Europa beispielsweise verpflichtete die Datenschutzgrundverordnung (DSGVO) bereits 2018 Unternehmen dazu, Betroffenen auf Nachfrage nachvollziehbare Erklärungen zu automatisierten Entscheidungen bereitzustellen (sog. \emph{Right to Explanation}) \autocite{Weber2024}.
+    Das jüngst in Vorbereitung befindliche EU-„Künstliche Intelligenz Gesetz“ (AI Act) kategorisiert Finanzanwendungen als „High-Risk-Systeme“ und sieht umfangreiche Transparenzpflichten vor \autocite{Weber2024}.
+    Auch nationale Regulierungsbehörden (z.\,B. die deutsche Bundesanstalt für Finanzdienstleistungsaufsicht, BaFin) fordern explizit eine lückenlose Dokumentation und Nachvollziehbarkeit von KI-basierten Entscheidungsverfahren \autocite{Weber2024}. In den USA brachte der Financial Transparency Act (2021) ähnliche Vorgaben: KI-Systeme müssen offenlegen, welche Faktoren zu einer Entscheidung geführt haben, um Manipulationen oder Diskriminierungen zu verhindern \autocite{Weber2024}.
+
+    Für Anleger und Entscheidungsträger schaffen solche Vorgaben einen zusätzlichen Druck: Nutzer erwarten nicht nur akkurate Vorhersagen, sondern auch verständliche Begründungen.
+    Forschende argumentieren, dass nur so das notwendige Vertrauen in automatisierte Portfoliosysteme gewährleistet werden kann \autocite{Weber2024}.
+    Gleichzeitig verdeutlichen Regulierungsberichte, dass fehlende Transparenz hohe Haftungsrisiken birgt.
+    XAI wird daher als Schlüsselfaktor gesehen, um die rechtlichen und ethischen Anforderungen im Finanzwesen einzuhalten und zugleich den Anwendern ein besseres Verständnis der Modelle zu vermitteln \autocite{Weber2024}.
+
+  \subsection{Symbolische Ansätze zur Erhöhung der Transparenz}
+
+    Traditionell wurden Finanzentscheidungen oft auf regelbasierten oder symbolischen Modellen aufgebaut (etwa Scoring-Modelle mit festen Gewichtungen oder Entscheidungsbäumen).
+    Solche weißen Boxen sind von Natur aus gut interpretierbar. Neuere Ansätze im Bereich „neuro-symbolischer KI“ versuchen, die Stärken neuronaler Netze mit symbolischer Repräsentation zu verbinden: Während das neuronale Netz Daten generalisiert, übernimmt das symbolische System die explizite Wissensrepräsentation.
+    \autocite{Yeo2025} heben hervor, dass symbolisches Schließen genau das erlaubt, was Nutzer wünschen – nämlich \emph{menschlich verständliche Erklärungen} des Entscheidungsprozesses, wodurch die Transparenz signifikant steigt.
+    Ein Vorteil ist, dass einmal definiertes Fachwissen dauerhaft in einer Wissensbasis gespeichert werden kann, was das „Wissen vergessen“ der Netze verhindert und klare Audit-Trails schafft \autocite{Yeo2025}.
+
+    Allerdings ist die Entwicklung domänenspezifischer symbolischer Modelle aufwändig.
+    Die Erstellung vollständiger Wissensbasen für Finanzprozesse, die alle Eventualitäten eines Portfolios abbilden, erfordert beträchtlichen Aufwand und Expertenwissen \autocite{Yeo2025}.
+    Deshalb werden symbolische Methoden oft in Teilbereichen eingesetzt oder hybrid mit ML kombiniert.
+    So können beispielsweise Entscheidungsbäume oder if-then-Regelsätze zur anfänglichen Strukturierung genutzt und anschließend durch ML-Module ergänzt werden.
+    Insgesamt zeigen solche symbolischen und hybriden Verfahren ein hohes Potenzial, die Erklärbarkeit zu erhöhen, indem sie Klarheit in die Modelllogik bringen \autocite{Yeo2025}.
+
+\section{Menschzentrierte Erklärbarkeit und Interaktion}
+
+  Die allein technische Betrachtung von Erklärbarkeit reicht nicht aus, wenn Menschen mit den Systemen interagieren sollen.
+  Human-Centered XAI bedeutet, die Erklärungen an den kognitiven und emotionalen Bedürfnissen der Nutzer auszurichten. \autocite{Liao2022} betonen, dass der Erfolg von XAI-Anwendungen letztlich über das Nutzererlebnis definiert wird, nicht nur über technische Leistungsmaße.
+  Das Ziel ist, Anwender zu \emph{empowern}: Erklärungen sollen Nutzer befähigen, bessere Entscheidungen zu treffen und das System kritisch zu hinterfragen, statt nur als Black-Box akzeptiert zu werden.
+  Die neu entstehende Forschungsgemeinschaft für Human-Centered XAI verknüpft dabei Perspektiven aus Kognitionswissenschaft, HCI-Design und Soziologie, um Erklärungsstrategien zu entwickeln, die sich an realen Arbeitsabläufen und mentalen Modellen von Nutzern orientieren \autocite{Liao2022}.
+
+  Dabei gilt es zu berücksichtigen, dass Erklärungen ein \emph{interaktiver Kommunikationsprozess} sind.
+  \autocite{Kopecka2020} fassen Miller (2019) dahingehend zusammen: Während ein KI-Agent die Ursachen für seine Entscheidung kognitiv ermittelt, muss er diese Wissenserzeugung anschließend in einem sozialen Austausch dem Nutzer vermitteln.
+  Das heißt: Erklärungen sind keine bloßen Produkte, sondern Dialoge, in denen sowohl Explainer (System) als auch Explainee (Nutzer) aktiv involviert sind.
+  Für die Finanzwelt bedeutet das, dass ein Erklärungsmodul auch Nachfragen, Gegenbeispiele oder Rückversicherungen unterstützen sollte, um die menschliche Logik zu adressieren.
+
+  Gleichzeitig zeigen nutzerorientierte Studien, dass viele bestehende XAI-Methoden in der Praxis noch zu selten evaluiert werden. \autocite{Rong2022} finden in einer Übersicht, dass vergleichsweise wenige Arbeiten empirische Nutzerstudien durchführen; oft fehlen Einblicke aus kognitiven oder soziotechnischen Analysen ganz.
+  Aus humanistischer Sicht wird gefordert, dass Erklärungen intuitiv, verständlich und aufgabenspezifisch sind – etwa als Grafiken, Beispiele oder kontrafaktische Szenarien, die das Vertrauen der Anwender stärken.
+  Insgesamt legt die Human-Centered-Forschung nahe, dass XAI-Systeme nicht nur korrekte, sondern vor allem \emph{menschlich verständliche} Erklärungen erzeugen müssen \autocite{Liao2022, Rong2022}.
+
+\section{Evaluation und Trade-offs}
+
+  Ein zentrales Thema der XAI-Literatur ist der Zielkonflikt zwischen komplexen, performanten Modellen und deren Erklärbarkeit.
+  Black-Box-Modelle wie tiefe neuronale Netze erzielen oft eine höhere Prognosegüte als einfache Verfahren – insbesondere bei unstrukturierten Daten. \autocite{Liao2022} fassen diesen Unterschied als „performance-interpretability tradeoff“ zusammen.
+  Allerdings betonen sie, dass dieser Trade-off nicht universell ist: Bei gut strukturierten Daten können auch interpretierbare Modelle ähnliche Genauigkeiten erreichen.
+  Die aktuelle Forschung schlägt zunehmend Brücken, etwa durch transparente Modelle wie GA²Ms oder CoFrNet \autocite{Liao2022}.
+
+  Ein weiteres Schlüsselthema ist die Evaluation der erzeugten Erklärungen. \autocite{Kadir2023} zeigen, dass nur ein Bruchteil der XAI-Literatur formale Metriken definiert hat.
+  Die gängigen Verfahren reichen von objektiven Metriken (Treue, Stabilität) bis hin zu subjektiven Nutzerstudien. Letztere gewinnen an Bedeutung, wie \autocite{Rong2022} dokumentieren.
+  Ein standardisiertes Evaluationsschema fehlt jedoch bislang – was die Vergleichbarkeit der Verfahren erschwert. Die Literatur fordert daher, XAI systematischer zu evaluieren und Benchmarks zu etablieren \autocite{Kadir2023, Rong2022}.
+
+  % Bis hierhin überarbeitet und angepasst. Zweite Meinung erforderlich
+  % Nachstehenden Teil noch mal nachpfelgen um neue Inhalte auch richtig abzudecken.
+
+\section{Brücke zu den Forschungsfragen}
+
+  Die in dieser Arbeit adressierten Forschungsfragen zielen darauf ab, die Defizite bestehender Systeme im Wertpapierhandel zu überwinden, insbesondere in Bezug auf Transparenz, Individualisierung und Erklärbarkeit.
+  Die erste Forschungsfrage untersucht, wie ein KI-basiertes Assistenzsystem entwickelt werden kann, das für jedes Wertpapier im Depot quantifizierbare Handlungsempfehlungen (Kaufen/Verkaufen/Halten in Prozent) mit transparenten Begründungen generiert.
+  Dies erfordert die Integration von Methoden der erklärbaren KI (XAI), wie \textit{Integrated Gradients} \autocite{sundararajan2017} und \textit{Chain-of-Thought-Erklärungen} \autocite{wei2022}, um die Entscheidungsprozesse des Systems nachvollziehbar zu machen.
+  Die zweite Forschungsfrage befasst sich damit, inwieweit das System eine übergeordnete Risiko-Rendite-Bewertung des gesamten Portfolios liefern und konkrete Rebalancing-Strategien ableiten kann, die den individuellen Anlagezielen des Nutzers entsprechen.
+  Hierzu müssen moderne datengetriebene Optimierungsansätze mit klassischen Portfoliooptimierungsmethoden kombiniert werden, um sowohl die Komplexität der Finanzmärkte abzubilden als auch die Präferenzen des Nutzers zu berücksichtigen \autocite{ban2018}.
+
+  Der gewählte \textit{Design Science Research}-Ansatz (\textcite{hevner2004}) ermöglicht die systematische Überwindung der Limitationen durch \textit{iterative Entwicklungszyklen}.
+  Dieser Ansatz umfasst die schrittweise Entwicklung, Evaluierung und Verbesserung des Systems in mehreren Zyklen, um sicherzustellen, dass die Anforderungen an Transparenz, Erklärbarkeit und Nutzerzentrierung erfüllt werden.
 
 
 \section{Offene Herausforderungen}
@@ -211,7 +278,7 @@
     Zudem gibt es ethische Bedenken hinsichtlich der Fairness und Diskriminierungsfreiheit von KI-Modellen, insbesondere wenn personenbezogene Daten in die Entscheidungsfindung einfließen \autocite{bendavid2021explainable}.
     Die Entwicklung von KI-Systemen, die sowohl regulatorische als auch ethische Anforderungen erfüllen, bleibt ein offenes Forschungsfeld.
 
-    \subsection{Datenqualität und -verfügbarkeit}
+  \subsection{Datenqualität und -verfügbarkeit}
 
     Die Qualität und Verfügbarkeit von Daten sind entscheidend für die Leistungsfähigkeit von KI-Modellen.
     Finanzdaten sind oft verrauscht, unvollständig oder unterliegen zeitlichen Verzögerungen, was die Genauigkeit von Prognosen und Empfehlungen beeinträchtigt \autocite{demiguel2009}.
