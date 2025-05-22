@@ -1,0 +1,96 @@
+digraph PortfolioAIFlow {
+    rankdir=TB;
+    node [shape=box, style=filled, fontname="Arial"];
+
+    // Main entry point
+    main [label="Call evaluation method", fillcolor=lightblue];
+
+    // File operations
+    load_portfolio [label="Load portfolio from JSON", fillcolor=lightyellow];
+
+    // Initialization
+    init_assistant [label="Initialize\nPortfolioAIAssistant\n(provider, model)", fillcolor=lightgreen];
+
+    // Main evaluation
+    evaluate_portfolio [label="evaluate_portfolio()\nwith specific_assets", fillcolor=orange];
+
+    // Portfolio evaluation loop
+    loop_assets [label="For each asset\nin portfolio", fillcolor=lightcyan, shape=diamond];
+
+    // Data gathering
+    get_quant_data [label="get_quantitative_data()\n• yfinance API call\n• Extract price, PE, cap, volume", fillcolor=wheat];
+    get_qual_data [label="get_qualitative_data()\n• LLM analysis\n• News scraping (placeholder)", fillcolor=wheat];
+
+    // LLM analysis
+    llm_analysis [label="_get_llm_analysis()\nGenerate LLM response\nfor business analysis", fillcolor=lavender];
+    news_scraping [label="_get_scraped_news()\n(Not implemented)", fillcolor=lightgray];
+
+    // Security assessment
+    assess_security [label="assess_security()\n• Combine quant + qual data\n• Generate LLM assessment\n• Parse JSON response", fillcolor=lightsalmon];
+
+    // JSON parsing and validation
+    parse_json [label="Parse LLM JSON response\n• Extract and validate response", fillcolor=lightpink];
+
+    // Store results
+    store_results [label="Store evaluation_results\nin asset data", fillcolor=lightsteelblue];
+
+    // Portfolio summary
+    portfolio_summary [label="evaluate_portfolio_summary()\nGenerate portfolio-level\nanalysis via LLM", fillcolor=gold];
+
+    // Final output
+    output_json [label="Return final portfolio\nwith all evaluations", fillcolor=lightblue];
+
+    // Error handling nodes
+    error_quant [label="Error handling:\nQuantitative data", fillcolor=mistyrose, shape=ellipse];
+    error_qual [label="Error handling:\nQualitative data", fillcolor=mistyrose, shape=ellipse];
+    error_assess [label="Error handling:\nSecurity assessment", fillcolor=mistyrose, shape=ellipse];
+    error_summary [label="Error handling:\nPortfolio summary", fillcolor=mistyrose, shape=ellipse];
+
+    // Flow connections
+    main -> load_portfolio;
+    load_portfolio -> init_assistant;
+    init_assistant -> evaluate_portfolio;
+    evaluate_portfolio -> loop_assets;
+
+    loop_assets -> get_quant_data [label="Yes"];
+    loop_assets -> portfolio_summary [label="All done"];
+
+    get_quant_data -> get_qual_data;
+    get_quant_data -> error_quant [style=dashed, color=red];
+
+    get_qual_data -> llm_analysis;
+    get_qual_data -> news_scraping;
+    get_qual_data -> error_qual [style=dashed, color=red];
+
+    llm_analysis -> assess_security;
+    news_scraping -> assess_security;
+
+    assess_security -> parse_json;
+    assess_security -> error_assess [style=dashed, color=red];
+
+    parse_json -> store_results;
+    store_results -> loop_assets [label="Next asset"];
+
+    portfolio_summary -> output_json;
+    portfolio_summary -> error_summary [style=dashed, color=red];
+
+    output_json -> main [style=dotted, label="End"];
+
+    // Error flows back to main processing
+    error_quant -> store_results [style=dashed, color=red, label="Empty data"];
+    error_qual -> store_results [style=dashed, color=red, label="Empty data"];
+    error_assess -> store_results [style=dashed, color=red, label="Default values"];
+    error_summary -> output_json [style=dashed, color=red, label="Default summary"];
+
+    // Legend
+    subgraph cluster_legend {
+        label="Legend";
+        style=filled;
+        color=lightgrey;
+
+        legend_main [label="Main Flow", fillcolor=lightblue, shape=box];
+        legend_data [label="Data Operations", fillcolor=wheat, shape=box];
+        legend_llm [label="LLM Operations", fillcolor=lavender, shape=box];
+        legend_error [label="Error Handling", fillcolor=mistyrose, shape=ellipse];
+    }
+}

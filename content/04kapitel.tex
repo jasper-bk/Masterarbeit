@@ -346,17 +346,84 @@
         \medskip
 
 
-  \section{Dokumentation und Erläuterung der Programmlogik}
+  \section{Dokumentation und Erläuterung der Hauptprogrammlogik}
 
-    Nachfolgend werden exemplarische Platzhalter für Code-Auszüge angegeben, die im weiteren Verlauf der Arbeit durch echte Implementierungen ersetzt werden:
+    Die Architektur des Systems folgt einem modularen Ansatz, der sowohl die Skalierbarkeit als auch die Wartbarkeit des Codes gewährleistet.
 
-    \begin{lstlisting}[language=Python, caption=API-Endpunkt zur Portfoliobewertung]
-      // Platzhalter
-    \end{lstlisting}
+    \subsection{Systemarchitektur und Klassendesign}
 
-    \begin{lstlisting}[caption=Asynchrone API-Kommunikation im Frontend]
-      // Platzhalter
-    \end{lstlisting}
+        Das Herzstück der Anwendung bildet die \texttt{PortfolioAIAssistant}-Klasse, welche von einer \texttt{AIAssistant}-Basisklasse erbt, die bereits die wesentlichen Methoden für die Interaktion zu KI-Modellen mitbringt.
+        Diese Vererbungsstruktur ermöglicht eine flexible Integration verschiedener KI-Provider und Modelle, wie in Abbildung \ref{fig:uml_diagram} dargestellt.
+
+        % To-Do: Diagramm nochmal anpassen
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{assets/pictures/uml_PortfolioAIAssistant.png}
+            \caption{UML-Klassendiagramm des Portfolio AI Assistant Systems}
+            \label{fig:uml_diagram}
+        \end{figure}
+
+        Die Klasse implementiert eine klare Trennung zwischen Datenakquisition, -verarbeitung und -bewertung.
+        Dabei werden sowohl quantitative Marktdaten über die \texttt{yfinance}-API als auch qualitative Analysen durch Large Language Models (LLMs) integriert.
+        Die Datenstrukturen sind als eigenständige Entitäten modelliert, wobei \texttt{Portfolio}, \texttt{Asset} und \texttt{EvaluationResults} eine hierarchische Komposition bilden.
+
+        Ein besonderes Augenmerk liegt auf der robusten Fehlerbehandlung: Jede kritische Operation ist mit entsprechenden Exception-Handling-Mechanismen ausgestattet, welche bei Fehlern standardisierte Fallback-Werte zurückgeben.
+        Dies gewährleistet die Stabilität des Systems auch bei temporären API-Ausfällen oder unvollständigen Datenquellen.
+
+    \subsection{Programmablauf und Datenverarbeitung}
+
+        Der Verarbeitungsprozess folgt einem strukturierten Workflow, welcher in Abbildung \ref{fig:flowchart} visualisiert ist.
+        Der Ablauf beginnt mit der Initialisierung des Systems und der Konfiguration des gewünschten KI-Providers.
+
+        % To-Do: Diagramm nochmal anpassen. Z. B.: kleinere Unstimmigkeiten bei Legende
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{assets/pictures/flowchart_evaluate_portfolio.png}
+            \caption{Ablaufdiagramm des Portfolio-Evaluierungsprozesses}
+            \label{fig:flowchart}
+        \end{figure}
+
+        Für jedes Asset im Portfolio werden zunächst quantitative Daten über die \texttt{get\_quantitative\_data()}-Methode erfasst.
+        Diese umfassen fundamentale Kennzahlen wie Kurs-Gewinn-Verhältnis, Marktkapitalisierung und Handelsvolumen.
+        Parallel dazu werden über \texttt{get\_qualitative\_data()} textbasierte Analysen durch das LLM generiert, welche Geschäftsmodell, aktuelle Ereignisse sowie Risiken und Chancen bewerten.
+
+        Die Synthese beider Datenquellen erfolgt in der \texttt{assess\_security()}-Methode, welche einen strukturierten Prompt an das LLM sendet und eine JSON-formatierte Bewertung zurückerhält.
+        Diese beinhaltet prozentuale Empfehlungen für Kauf-, Verkaufs- und Halteentscheidungen sowie eine Dringlichkeitsbewertung.
+        Ein integrierter Validierungsmechanismus stellt sicher, dass die Summe aller Prozentangaben exakt 100\% beträgt.
+
+        Nach der individuellen Asset-Bewertung folgt eine portfolioweite Analyse durch \texttt{evaluate\_portfolio\_summary()}, welche übergeordnete Markteinschätzungen, Chancen und Risiken identifiziert.
+        Diese Methode berücksichtigt die Interdependenzen zwischen den einzelnen Positionen und liefert eine ganzheitliche Portfolioperspektive.
+
+    \subsection{Performance-Monitoring und Debugging}
+
+        Das System implementiert umfassende Zeitmessungen für alle kritischen Operationen, von API-Aufrufen bis hin zu LLM-Inferenzen.
+        Diese Metriken werden sowohl für Performance-Optimierungen als auch für die Identifikation von Bottlenecks genutzt.
+        Zusätzlich sind Logging-Mechanismen vorgesehen, welche in zukünftigen Versionen erweiterte Debugging-Funktionalitäten ermöglichen sollen.
+
+        Die modulare Struktur des Codes erlaubt es, Zwischenergebnisse und LLM-Prompts zu persistieren, was sowohl für die Nachvollziehbarkeit der Entscheidungen als auch für die kontinuierliche Verbesserung der Prompt-Engineering-Strategien von Bedeutung ist.
+
+    \subsection{Deployment und Nutzungsszenarien}
+
+        Die Anwendung ist für zwei primäre Einsatzszenarien konzipiert, welche unterschiedliche Anwenderfälle adressieren:
+
+        \textbf{Web-basierte interaktive Nutzung:} Über eine Flask-Webapplikation wird das System als benutzerfreundliche Webanwendung bereitgestellt.
+        Diese Implementierung ermöglicht es Nutzern, Portfolios hochzuladen, Analyseparameter zu konfigurieren und Ergebnisse in Echtzeit zu visualisieren. Die Flask-Integration abstrahiert die technische Komplexität und bietet eine intuitive Benutzeroberfläche für Portfoliomanager und Investoren.
+
+        \textbf{Analytische Forschungsumgebung:} Für tiefergehende Analysen und Forschungszwecke kann das System direkt in Jupyter Lab-Umgebungen eingebunden werden.
+        Diese Variante richtet sich an Datenanalysten und Forscher, welche erweiterte Parametrisierungen vornehmen, experimentelle Evaluierungen durchführen oder das System in komplexere Analysepipelines integrieren möchten.
+
+        Die Flexibilität der Architektur ermöglicht es, beide Deployment-Modi mit derselben Codebasis zu betreiben, wobei lediglich die Eingabe- und Ausgabeschnittstellen entsprechend angepasst werden.
+        Dies reduziert den Wartungsaufwand erheblich und gewährleistet Konsistenz zwischen den verschiedenen Nutzungsszenarien.
+
+    \subsection{Erweiterbarkeit und zukünftige Entwicklungen}
+
+        Die objektorientierte Struktur des Systems bietet zahlreiche Ansatzpunkte für zukünftige Erweiterungen.
+        Die Implementierung zusätzlicher Datenquellen kann durch Erweiterung der entsprechenden Methoden erfolgen, während neue KI-Provider durch das bestehende Vererbungsschema nahtlos integriert werden können.
+
+        Besonders hervorzuheben ist die vorbereitete Integration von News-Scraping-Funktionalitäten, welche die qualitative Datengrundlage erheblich erweitern wird.
+        Die bereits implementierte Schnittstelle ermöglicht eine einfache Aktivierung dieser Funktionalität, sobald entsprechende Datenquellen verfügbar sind.
+
+        Die Kombination aus strukturiertem Design, robusten Fehlerbehandlungsmechanismen und flexiblen Deployment-Optionen macht das Portfolio AI Assistant System zu einer vielseitigen Lösung für automatisierte Portfolioanalysen in verschiedenen Anwendungskontexten.
 
   \section{Frontend}
 
@@ -389,7 +456,7 @@
 
     \subsection{Implementierung und aktuelle Ausgestaltung}
 
-      Auf Basis des oben dargestellten Drafts erfolgte eine iterative Umsetzung in HTML, CSS und JavaScript (vgl. Abschnitt~\ref{sec:entwicklung}).
+      Auf Basis des oben dargestellten Drafts erfolgte eine iterative Umsetzung in HTML, CSS und JavaScript.
       Die fertige Anwendung (siehe Abbildung~\ref{fig:frontend_live}) übernimmt viele der Grundideen des Entwurfs, wurde jedoch hinsichtlich Usability und technischer Umsetzbarkeit weiter verfeinert.
       Die Tabs erlauben eine navigation durch verschiedene Aktienansichten.
 
@@ -399,6 +466,14 @@
           \caption{Live-System: Interaktive Web-Oberfläche zur Portfolioanalyse und Handlungsunterstützung}
           \label{fig:frontend_live}
       \end{figure}
+
+    \begin{lstlisting}[language=Python, caption=API-Endpunkt zur Portfoliobewertung]
+      // Platzhalter
+    \end{lstlisting}
+
+    \begin{lstlisting}[caption=Asynchrone API-Kommunikation im Frontend]
+      // Platzhalter
+    \end{lstlisting}
 
       Die Anwendung zeigt aggregierte Portfolioinformationen und erlaubt auf Einzelwertebene eine genaue Analyse mit erklärender Textausgabe, die durch das LLM generiert wird.
       Dies ist besonders im Kontext der \textit{Erklärbarkeit} (\textit{Explainability}) entscheidend.
@@ -412,6 +487,10 @@
 
       Zudem zeigen empirische Studien zur Mensch-Maschine-Interaktion (z.B. \autocite{hoffman2018metrics}), dass die Qualität der Visualisierung einen direkten Einfluss auf das Nutzervertrauen und die Akzeptanz von KI-basierten Empfehlungen hat.
       Eine schlechte oder intransparente Visualisierung kann zu \textit{automation bias} oder kompletter Ablehnung der Empfehlung führen.
+
+  \section{Jupyter-Lab Notebook}
+
+      To-Do:
 
 
   \section{Technische Limitationen und Herausforderungen}
@@ -439,8 +518,24 @@
 \textbf{To-Dos:}
 \begin{itemize}
   \item Modulare Darstellung der Systemkomponenten mit Schnittstellen
+  \begin{itemize}
+    \item Genauer auf Schnittstellen eingehen: Ollama-API / OpenAI / Nexus API  (wie sieht der Payload bzw gesamte Aufruf aus)
+    \item Auf Entkoppelung der Logik eingehen (Klassen und unterschiedliche Verantwortlichkeiten)
+    \item Wie sind die Klassen und Methoden strukturiert bzw. verbunden. Evtl. ein UML und mehrere Flow-Charts
+    \item System-Architektur granularer machen. Wie sehen Zugriffe auf Klassen und Artefakte aus. Nutzung von Jupyter-Lab UI, und anderen Sachen
+    \item Darstellung der Projekt-Struktur als Baum
+  \end{itemize}
   \item Reproduzierbare Code-Beispiele für Kernfunktionen
+  \begin{itemize}
+    \item Wie werden die LLM Responses geparst und behandelt?
+    \item Wie werden Daten gespeichert und gehalten.
+    \item
+  \end{itemize}
   \item Diskussion technischer Limitationen (z. B. Latenzzeiten)
+  \begin{itemize}
+    \item Messungen und Vergleiche anstellen: Für unterschiedliche Modelle und auch Schnittstellen (Ollama/OpenAI)
+    \item Messungen auch visualisieren mit matplotlib
+  \end{itemize}
   \item Dokumentation der genutzten Frameworks/Tools (z. B. Ollama, Flask)
   \item Nochmal Fußzeilen prüfen. Entweder rauswerfen oder vllt sogar häufiger nutzen
 

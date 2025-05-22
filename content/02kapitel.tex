@@ -240,19 +240,30 @@
 
 \section{Brücke zu den Forschungsfragen}
 
-  Die in dieser Arbeit adressierten Forschungsfragen zielen darauf ab, die Defizite bestehender Systeme im Wertpapierhandel zu überwinden, insbesondere in Bezug auf Transparenz, Individualisierung und Erklärbarkeit.
-  Die erste Forschungsfrage untersucht, wie ein KI-basiertes Assistenzsystem entwickelt werden kann, das für jedes Wertpapier im Depot quantifizierbare Handlungsempfehlungen (Kaufen/Verkaufen/Halten in Prozent) mit transparenten Begründungen generiert.
-  Dies erfordert die Integration von Methoden der erklärbaren KI (XAI), wie \textit{Integrated Gradients} \autocite{sundararajan2017} und \textit{Chain-of-Thought-Erklärungen} \autocite{wei2022}, um die Entscheidungsprozesse des Systems nachvollziehbar zu machen.
-  Die zweite Forschungsfrage befasst sich damit, inwieweit das System eine übergeordnete Risiko-Rendite-Bewertung des gesamten Portfolios liefern und konkrete Rebalancing-Strategien ableiten kann, die den individuellen Anlagezielen des Nutzers entsprechen.
-  Hierzu müssen moderne datengetriebene Optimierungsansätze mit klassischen Portfoliooptimierungsmethoden kombiniert werden, um sowohl die Komplexität der Finanzmärkte abzubilden als auch die Präferenzen des Nutzers zu berücksichtigen \autocite{ban2018}.
+    Die in dieser Arbeit adressierten Forschungsfragen zielen darauf ab, zentrale Defizite bestehender Systeme im Wertpapierhandel zu überwinden, insbesondere in Bezug auf Transparenz, Individualisierung und Erklärbarkeit von Anlageempfehlungen. Bestehende Systeme bieten oft keine nachvollziehbaren Handlungsempfehlungen, vernachlässigen individuelle Anlegerprofile und liefern unzureichende Begründungen für automatisierte Entscheidungen – ein Umstand, der die Nutzerakzeptanz und regulatorische Compliance gleichermaßen gefährdet \autocite{Weber2024, Liao2022}.
 
-  Der gewählte \textit{Design Science Research}-Ansatz (\textcite{hevner2004}) ermöglicht die systematische Überwindung der Limitationen durch \textit{iterative Entwicklungszyklen}.
-  Dieser Ansatz umfasst die schrittweise Entwicklung, Evaluierung und Verbesserung des Systems in mehreren Zyklen, um sicherzustellen, dass die Anforderungen an Transparenz, Erklärbarkeit und Nutzerzentrierung erfüllt werden.
+    Die erste Forschungsfrage untersucht, wie ein KI-basiertes Assistenzsystem entwickelt werden kann, das für jedes Wertpapier im Depot quantifizierbare Handlungsempfehlungen (Kaufen/Verkaufen/Halten in Prozent) mit transparenten, nutzerverständlichen Begründungen generiert.
+    Dieses Ziel erfordert die Integration von Methoden der erklärbaren KI (XAI), die es ermöglichen, Entscheidungsprozesse maschineller Modelle transparent zu machen.
+    Ansätze wie \textit{Integrated Gradients} \autocite{sundararajan2017} liefern dabei attributbasierte Wichtigkeiten, während neuere Methoden wie \textit{Chain-of-Thought-Erklärungen} \autocite{wei2022} kognitive Argumentationspfade imitieren, um dem Nutzer eine Schritt-für-Schritt-Nachvollziehbarkeit zu bieten.
+    Die Herausforderung liegt dabei nicht nur in der technischen Umsetzung dieser Verfahren, sondern auch in deren kontextgerechter Visualisierung und sprachlichen Darstellung, sodass Erklärungen als sinnvoll und vertrauenswürdig wahrgenommen werden \autocite{Liao2022, Rong2022}.
+
+    Die zweite Forschungsfrage adressiert die Systemebene: Inwieweit kann ein solches System eine übergeordnete Risiko-Rendite-Bewertung des gesamten Portfolios liefern und daraus konkrete Rebalancing-Strategien ableiten, die den individuellen Anlagezielen und Risikopräferenzen des Nutzers entsprechen?
+    Um diese Frage zu beantworten, müssen moderne datengetriebene Optimierungsverfahren mit klassischen Methoden der Portfoliotheorie (z.\,B. Mean-Variance-Optimierung) kombiniert werden.
+    Besonders geeignet erscheinen hier \textit{Distributionally Robust Optimization}-Ansätze, die Unsicherheiten in den Eingabedaten modellieren und robuste Handlungsempfehlungen ableiten können \autocite{ban2018}.
+    Gleichzeitig ist es notwendig, Nutzerpräferenzen – etwa in Bezug auf Nachhaltigkeit, Risikobereitschaft oder Anlagedauer – als weiche Nebenbedingungen oder Zielrestriktionen in die Modellierung zu integrieren.
+
+    Diese Forschungsfragen positionieren sich im Spannungsfeld zwischen technischer Komplexität und menschlicher Interpretierbarkeit: Einerseits müssen hochgradig adaptive Algorithmen entwickelt werden, die präzise Empfehlungen erzeugen; andererseits darf dabei die Transparenz gegenüber dem Nutzer nicht verloren gehen.
+    Der Einsatz von XAI ist hier nicht optional, sondern konstitutiv für die Funktionsweise des Systems – insbesondere in einer Domäne, die regulatorisch als \enquote{High Risk} klassifiziert ist \autocite{Weber2024}.
+
+    Der gewählte \textit{Design Science Research} (DSR)-Ansatz bietet ein methodisches Gerüst, um diese Herausforderungen systematisch anzugehen.
+    \textcite{hevner2004} beschreiben DSR als einen iterativen Prozess, der sowohl das Gestalten (Design) als auch das Evaluieren von artefaktbasierten Lösungen umfasst. In der vorliegenden Arbeit wird dieser Ansatz durch mehrstufige Entwicklungszyklen operationalisiert: Zunächst werden prototypische Systemmodule entwickelt (z.\,B. Empfehlungsgenerierung, Erk
+
 
 
 \section{Offene Herausforderungen}
 
-  Trotz der Fortschritte in der KI-basierten Portfoliooptimierung und der erklärbaren KI (XAI) bleiben mehrere offene Herausforderungen bestehen, die sowohl technischer als auch praktischer Natur sind. Diese Herausforderungen müssen adressiert werden, um die breite Akzeptanz und Anwendbarkeit solcher Systeme in der Finanzbranche zu gewährleisten.
+  Trotz der Fortschritte in der KI-basierten Portfoliooptimierung und der erklärbaren KI (XAI) bleiben mehrere offene Herausforderungen bestehen, die sowohl technischer als auch praktischer Natur sind.
+  Diese Herausforderungen müssen adressiert werden, um die breite Akzeptanz und Anwendbarkeit solcher Systeme in der Finanzbranche zu gewährleisten.
 
   \subsection{Begrenzte Erklärbarkeit komplexer Modelle}
 
@@ -315,9 +326,27 @@
   Zudem können Unterschiede in der Datenqualität und -verfügbarkeit die Übertragbarkeit von LLMs einschränken.
   Finanzdaten sind oft verrauscht und unstrukturiert, während medizinische Daten strengen Datenschutzbestimmungen unterliegen \autocite{demiguel2009}.
 
-  Zusammenfassend zeigt sich, dass die Übertragung von LLMs und generativer KI zwischen verschiedenen Branchen ein großes Potenzial bietet, um innovative Lösungen für komplexe Probleme zu entwickeln.
+  Ein tiefergehender Vergleich mit anderen datenintensiven Branchen zeigt, dass der Einsatz von Large Language Models (LLMs) in der Finanzbranche ähnliche strukturelle Herausforderungen aufweist wie in der Medizin oder dem Rechtswesen, jedoch auch einige branchenspezifische Besonderheiten birgt.
+
+  In der Medizin wurde etwa mit Modellen wie \textit{BioGPT} oder \textit{Med-PaLM} demonstriert, dass LLMs in der Lage sind, komplexe, fachspezifische Inhalte mit hoher Präzision zu verarbeiten und erklärbar darzustellen \autocite{singhal2022large,luo2022biogpt}.
+  Diese Fähigkeiten lassen sich auch auf finanzielle Inhalte übertragen, z.\,B. bei der semantischen Analyse von Ad-hoc-Mitteilungen, Finanzanalysen oder regulatorischen Texten.
+  Entscheidend ist hierbei, dass die Modelle nicht nur syntaktisch korrekt, sondern auch inhaltlich verlässlich und nachvollziehbar argumentieren.
+
+  Im Finanzbereich ist mit \textit{BloombergGPT} ein Meilenstein gelungen, der gezielt auf Daten aus der Branche trainiert wurde.
+  Das Modell wurde auf mehr als 700 Milliarden Token aus Wirtschaftsnachrichten, Firmenberichten, Analystenkommentaren und internen Daten trainiert und übertrifft generische Modelle signifikant in Finanzbenchmarks \autocite{wu2023}. Es zeigt, dass branchenspezifisches Pretraining eine zentrale Voraussetzung für hohe Performance und Relevanz in der jeweiligen Domäne ist.
+
+  Zudem existieren mit \textit{FinGPT} Open-Source-Initiativen, die darauf abzielen, domänenspezifische Modellentwicklung demokratischer zu gestalten, indem sie transparente Datenpipelines und Finetuning-Prozesse für den Finanzbereich anbieten \autocite{yang2023fingpt}.
+  Dadurch entsteht ein wachsendes Ökosystem, das den Transfer von LLM-Technologien aus anderen Branchen erleichtert.
+
+  Die Herausforderung besteht jedoch nicht nur im Modell selbst, sondern in der Qualität und Struktur der zugrundeliegenden Daten.
+  Während in der Medizin standardisierte Datenformate (wie ICD-10, HL7) und strukturierte Repositories (z.\,B. MIMIC-III) weit verbreitet sind, dominieren im Finanzwesen semi-strukturierte oder unstrukturierte Formate wie PDFs, HTML-Tables oder Textauszüge aus Earnings Calls \autocite{hassani2024}.
+  Diese Unterschiede erhöhen die Komplexität bei der Datenverarbeitung erheblich und erfordern zusätzliche Vorverarbeitung oder spezialisierte Retrieval-Systeme.
+
+  Zusammenfassend lässt sich feststellen, dass der Cross-Industry-Transfer von LLMs in den Finanzbereich nicht nur möglich, sondern bereits in der Praxis erfolgreich demonstriert wurde.
   Durch die Adaption bewährter Ansätze aus anderen Bereichen können neue Perspektiven und Methoden für die Finanzbranche erschlossen werden.
-  Gleichzeitig müssen branchenspezifische Anforderungen und Herausforderungen berücksichtigt werden, um die erfolgreiche Anwendung dieser Technologien zu gewährleisten.
+  Gleichzeitig verdeutlichen die branchenspezifischen Anforderungen, dass ein reiner \enquote{Plug-and-Play}-Ansatz nicht ausreicht.
+  Erfolgreiche Implementierungen setzen auf maßgeschneiderte Datenstrategien, erklärbare Modellarchitekturen und eine tiefe Integration regulatorischer Rahmenbedingungen.
+
 
 \section{Zusammenfassung und Forschungslücken}
 
