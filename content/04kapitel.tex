@@ -22,8 +22,46 @@
 
     \subsection{Projektstruktur}
 
-      To-Do
-      Hier auf Verzeichnisstruktur eingehen und diese begruenden.
+      Das entwickelte Portfolio AI Assistant System folgt einer modularen und klar strukturierten Architektur, welche sowohl die Entwicklung als auch die Wartung des Systems erleichtert.
+      Die Projektorganisation ist in Abbildung \ref{fig:project_structure} dargestellt und gliedert sich in mehrere funktionale Bereiche.
+
+      % Bash: find . -type f -not -path "./.git/*" -not -path "./portfolio-env/*" -not -path "./env/*" -not -path "./__pycache__/*" -not -path "./.pytest_cache/*" -not -path "./.mypy_cache/*" -not -path "./node_modules/*" -not -path "./.vscode/*" -not -path "./.idea/*" -not -name "*.pyc" -not -name "*.pyo" -not -name "*.pyd" -not -name ".DS_Store" -not -name "Thumbs.db" -not -name "*.log" | sort
+      \begin{figure}[H]
+          \dirtree{%
+              .1 portfolio-ai-assistant/.
+              .2 evaluation/.
+              .3 evaluation.ipynb.
+              .2 test\_data/.
+              .3 sample\_portfolio.json.
+              .3 sample\_portfolio\_2\_default.json.
+              .2 webpage/.
+              .3 static/.
+              .4 api.js.
+              .4 model.js.
+              .4 style.css.
+              .4 ui\_actions.js.
+              .3 templates/.
+              .4 index.html.
+              .2 .env.
+              .2 .gitignore.
+              .2 llm.py.
+              .2 main.py.
+              .2 portfolio\_ai.py.
+              .2 requirements.txt.
+              .2 scraping.py.
+              .2 server.py.
+              .2 To-Dos.txt.
+          }
+          \caption{Projektstruktur des Portfolio AI Assistant Systems}
+          \label{fig:project_structure}
+      \end{figure}
+
+      Das Hauptverzeichnis enthält die zentralen Python-Module, welche die Kernfunktionalitäten des Systems implementieren.
+      Hierzu gehören die Portfolio-Analyse-Engine, die LLM-Integration sowie die Server-Komponenten für die Webschnittstelle.
+      Der \texttt{evaluation}-Ordner beherbergt Jupyter-Notebooks für analytische Auswertungen und Systemtests, während der \texttt{test\_data}-Bereich Beispiel-Portfolios für Entwicklungs- und Demonstrationszwecke bereitstellt.
+      Die Webkomponenten sind im \texttt{webpage}-Verzeichnis organisiert, welches sowohl die Frontend-Logik als auch die Benutzeroberfläche umfasst.
+      Diese klare Trennung zwischen Backend-Logik und Frontend-Präsentation ermöglicht eine unabhängige Entwicklung und Wartung beider Systemteile.
+      Konfigurationsdateien und Projektmetadaten sind auf der obersten Ebene positioniert, um eine zentrale Verwaltung der Systemeinstellungen und Abhängigkeiten zu gewährleisten.
 
 
     \subsection{Komponentenübersicht und Schnittstellen}
@@ -490,7 +528,46 @@
 
   \section{Jupyter-Lab Notebook}
 
-      To-Do:
+    Ein zentrales Element der Systemarchitektur stellt die Evaluation und Testbarkeit des entwickelten KI-gestützten Portfolioassistenzsystems dar.
+    Um dies effizient und transparent zu realisieren, kommt in dieser Arbeit \textit{Jupyter-Lab} zum Einsatz.
+    Jupyter-Lab ist eine modulare, webbasierte Entwicklungsumgebung, die auf dem bekannten Jupyter-Notebook-Format basiert und dieses erweitert.
+    Sie erlaubt es, Quellcode, Visualisierungen, Textkommentare und Ausgaben in einem einzigen interaktiven Dokument zu kombinieren.
+    Der besondere Vorteil liegt dabei in der engen Verzahnung von experimenteller Programmierung, Dokumentation und unmittelbarem Feedback, was die explorative Arbeit mit datengetriebenen Systemen erheblich vereinfacht \autocite{kluyver2016jupyter}.
+
+    Im Rahmen dieses Projekts wird Jupyter-Lab genutzt, um direkt mit dem in Python implementierten \texttt{PortfolioAIAssistant} zu interagieren.
+    Der Import der Systemklasse erfolgt direkt über die Paketstruktur mittels:
+
+    \begin{lstlisting}[language=Python, caption=Import des PortfolioAIAssistant]
+    from portfolio_ai import PortfolioAIAssistant
+    \end{lstlisting}
+
+    Dies ermöglicht es, verschiedene Anwendungsfälle, Parameterkonfigurationen und Auswertungen ohne Umweg über ein separates Frontend durchzuführen.
+    Im Gegensatz zu einer webbasierten Benutzeroberfläche, die in der Regel eine fest definierte Interaktionslogik aufweist und daher nur begrenzte Flexibilität für hypothetische Tests bietet, erlaubt die Jupyter-Lab-Umgebung eine vollständige Kontrolle über die zugrunde liegende Systemlogik.
+    Auch gegenüber klassischen Kommandozeileninterfaces oder isolierten Python-Skripten bietet Jupyter-Lab entscheidende Vorteile: Die interaktive Umgebung erlaubt es, Zwischenergebnisse direkt zu inspizieren, Visualisierungen inline zu betrachten und Analyseschritte in unmittelbarer Nähe zum Code zu dokumentieren.
+    Damit eignet sich das Notebook-Format ideal für Forschungsvorhaben, in denen Nachvollziehbarkeit, Reproduzierbarkeit und Interaktivität im Vordergrund stehen \autocite{rule2018exploration}.
+
+    Das entwickelte Notebook ist in mehrere logisch aufeinander aufbauende Abschnitte unterteilt.
+    Es beginnt mit einer Setup-Phase, in der alle relevanten Bibliotheken und Konfigurationsparameter geladen werden.
+    Anschließend erfolgt der Import und die Vorverarbeitung der benötigten Daten, darunter historische Kursverläufe, Depotinformationen und benutzerspezifische Präferenzen.
+    In einem weiteren Schritt wird die Klasse \texttt{PortfolioAIAssistant} instanziiert und mit den geladenen Daten konfiguriert.
+    Darauf aufbauend lassen sich verschiedene Szenarien zur Portfolioanalyse, Risikobewertung, Handlungsempfehlung und Rebalancing testen.
+    Die Ergebnisse werden durch interaktive Visualisierungen, wie Zeitreihenanalysen, Balkendiagramme oder Heatmaps ergänzt, die mit \texttt{matplotlib} oder \texttt{seaborn} erzeugt werden.
+    Auch erklärbare KI-Komponenten wie \textit{Integrated Gradients} oder \textit{Chain-of-Thought-Prompts} lassen sich innerhalb dieser Struktur transparent darstellen und analysieren.
+
+    Die Verwendung von Jupyter-Lab ist jedoch nicht frei von Herausforderungen.
+    Eine der zentralen Hürden besteht in der potentiell eingeschränkten Performance bei der Verarbeitung großer Datenmengen oder der Ausführung komplexer Modelle.
+    Insbesondere beim parallelen Arbeiten mit mehreren Zellen kann es zu Speicherengpässen kommen, weshalb systematische Ressourcenplanung notwendig ist.
+    Auch die Versionierung und Nachvollziehbarkeit von Experimenten gestaltet sich schwieriger als bei klassischen Softwareprojekten, da Notebooks nicht zeilenweise ausgeführt werden und der Zustand des Kernels entscheidend für die Ergebnisse ist.
+
+    Das methodische Vorgehen in der Arbeit sieht eine iterative Nutzung des Notebooks vor.
+    In einem ersten Schritt werden konkrete Testszenarien definiert, die beispielsweise aus Nutzeranfragen zur Bewertung einzelner Wertpapiere oder zur Optimierung ganzer Portfolios bestehen.
+    Anschließend erfolgt die Durchführung der Szenarien unter Variation definierter Parameter, etwa Risikotoleranz oder Anlagedauer.
+    Die generierten Ausgaben des Assistenten werden analysiert und mit Erwartungswerten sowie alternativen Systemvorschlägen verglichen.
+    Erkenntnisse und Abweichungen werden direkt im Notebook kommentiert und zur iterativen Weiterentwicklung des Systems dokumentiert.
+    Dieser Ansatz kombiniert methodische Strenge mit technischer Flexibilität und erlaubt eine vollständig nachvollziehbare Evaluation des Assistenten.
+
+    Jupyter-Lab fungiert somit nicht nur als Werkzeug zur Exploration, sondern auch als strukturierender Rahmen für die gesamte Evaluationslogik.
+    Durch seine Offenheit, Erweiterbarkeit und Visualisierungsfähigkeit stellt es eine effektive Lösung für die Evaluation der Lösung dar.
 
 
   \section{Technische Limitationen und Herausforderungen}
@@ -522,14 +599,13 @@
     \item Genauer auf Schnittstellen eingehen: Ollama-API / OpenAI / Nexus API  (wie sieht der Payload bzw gesamte Aufruf aus)
     \item Auf Entkoppelung der Logik eingehen (Klassen und unterschiedliche Verantwortlichkeiten)
     \item Wie sind die Klassen und Methoden strukturiert bzw. verbunden. Evtl. ein UML und mehrere Flow-Charts
-    \item System-Architektur granularer machen. Wie sehen Zugriffe auf Klassen und Artefakte aus. Nutzung von Jupyter-Lab UI, und anderen Sachen
+    \item System-Architektur granularer machen. Wie sehen Zugriffe auf Klassen und Artefakte aus. Nutzung von Jupyter-Lab, UI, und anderen Sachen
     \item Darstellung der Projekt-Struktur als Baum
   \end{itemize}
   \item Reproduzierbare Code-Beispiele für Kernfunktionen
   \begin{itemize}
     \item Wie werden die LLM Responses geparst und behandelt?
     \item Wie werden Daten gespeichert und gehalten.
-    \item
   \end{itemize}
   \item Diskussion technischer Limitationen (z. B. Latenzzeiten)
   \begin{itemize}
