@@ -26,7 +26,8 @@
   \subsection{Klassische Portfolio-Optimierung}
 
     Die moderne Portfolio-Theorie (MPT), begründet von \textcite{markowitz1952}, ist ein grundlegendes Konzept der Finanzwissenschaft, das Anlegern hilft, ein optimales Verhältnis zwischen Risiko und Rendite zu erreichen.
-    Das zentrale Prinzip der MPT ist die Diversifikation, also die Streuung von Investitionen über verschiedene Werpapiere und Anlageklassen (z. B. Aktien, Anleihen, Rohstoffe), um das Gesamtrisiko des Portfolios zu reduzieren. Die Idee dahinter ist, dass sich die Risiken einzelner Anlagen gegenseitig ausgleichen können, wenn sie nicht perfekt korreliert sind.
+    Das zentrale Prinzip der MPT ist die Diversifikation, also die Streuung von Investitionen über verschiedene Werpapiere und Anlageklassen (z. B. Aktien, Anleihen, Rohstoffe), um das Gesamtrisiko des Portfolios zu reduzieren.
+    Die Idee dahinter ist, dass sich die Risiken einzelner Anlagen gegenseitig ausgleichen können, wenn sie nicht perfekt korreliert sind.
 
     Der mathematische Kern der MPT ist die \textit{Mean-Variance-Optimierung}.
     Dabei wird das Risiko eines Portfolios als die Varianz (Streuung) der erwarteten Renditen modelliert.
@@ -82,11 +83,30 @@
 
   \subsection{Moderne datengetriebene Ansätze}
 
-    Neuere Forschungsarbeiten kombinieren klassische Portfoliooptimierung mit Methoden des maschinellen Lernens (ML), um die Grenzen traditioneller Ansätze zu überwinden.
-    \textcite{ban2018} untersuchen in einer umfangreichen Simulationsstudie, wie tiefe neuronale Netze (DNNs) nicht-lineare Preiszusammenhänge in multifaktoriellen Modellen identifizieren können.
-    Die Autoren zeigen, dass DNNs in der Lage sind, komplexe Muster in Finanzdaten zu erkennen, die mit klassischen linearen Modellen nicht abgebildet werden können.
-    Insbesondere demonstrieren sie, dass DNNs eine risikoadjustierte Performanceverbesserung erzielen, indem sie nicht-lineare Abhängigkeiten zwischen Faktoren wie Marktvolatilität, makroökonomischen Indikatoren und Unternehmensdaten nutzen.
-    Diese Ergebnisse legen nahe, dass ML-Methoden das Potenzial haben, die Genauigkeit von Portfoliooptimierungsmodellen signifikant zu steigern.
+    % noch zu schwammig und ungenau
+    % mehr auf konkrete Anwendungen eingehen und wie diese funktionieren und was deren Zielsetzung ist
+
+    Moderne Ansätze der Portfoliooptimierung kombinieren klassische Modelle mit Techniken der Künstlichen Intelligenz (KI), um die wachsende Komplexität der Finanzmärkte besser zu adressieren.
+    Dabei geht es vor allem darum, flexibel auf sich verändernde Marktbedingungen zu reagieren, komplexe Muster in Finanzdaten zu erkennen und fundierte Empfehlungen für die Allokation von Kapital bereitzustellen.
+
+    Ein zentrales Beispiel für diese Entwicklung ist der Einsatz von tiefem Reinforcement Learning (DRL), wie es etwa in der Arbeit von \autocite{sood2023} dargestellt wird.
+    Hier wird die Portfolioentscheidung als sequentieller Entscheidungsprozess modelliert, bei dem ein lernender Agent – trainiert auf historischen Daten – eine Gewichtung über verschiedene Anlageklassen vornimmt.
+    Der Ansatz zeigt, dass ein solcher Agent durch Anpassung an Marktveränderungen konsistent eine bessere risikoadjustierte Rendite erzielt als klassische Strategien wie die Mean-Variance-Optimierung nach Markowitz.
+
+    Auch \autocite{orra2025} entwickeln ein DRL-basiertes System, das zunächst mit Hilfe statistischer Volatilitätsmodelle wie GARCH Anlageklassen vorselektiert, um anschließend innerhalb dieser Cluster individuell optimierte Portfolios für verschiedene Risikoprofile zu generieren.
+    Die Autoren betonen, dass gerade diese Kombination aus datengetriebener Vorverarbeitung und adaptiver Entscheidungsfindung eine robuste und flexible Portfoliosteuerung erlaubt.
+
+    Neben der direkten Steuerung von Anlageentscheidungen kommen zunehmend auch Large Language Models (LLMs) zum Einsatz.
+    So demonstrieren \autocite{lu2023} und \autocite{ko2023}, dass generative Sprachmodelle wie ChatGPT in der Lage sind, verständliche, fundierte Portfolioempfehlungen zu generieren, die in Backtests mit realen Finanzdaten vergleichbare oder sogar bessere Ergebnisse als traditionelle Verfahren erzielen.
+    Dabei nutzen die Modelle sowohl historische Kursdaten als auch natürlichsprachliche Informationen wie Nachrichten oder Unternehmensprofile.
+
+    Ein konkretes Beispiel für ein KI-basiertes Assistenzsystem ist \textit{GPTQuant} \autocite{yue2023}, das auf GPT-3 aufsetzt und über eine Chatbot-Oberfläche Anlagevorschläge macht, Codebeispiele für Backtests liefert und auf Wunsch Strategien automatisch analysiert.
+
+    Besonders relevant für die eigene Arbeit ist, dass viele dieser Systeme bereits Komponenten wie Nutzerinteraktion, Erklärbarkeit und automatische Entscheidungsfindung enthalten.
+    Diese Punkte sind auch zentrale Bausteine des hier vorgestellten Assistenzsystems.
+    Was jedoch oft fehlt, ist eine durchgängige Transparenz über die Entscheidungsschritte hinweg oder eine flexible Anpassbarkeit der Modelllogik an veränderte regulatorische oder individuelle Anforderungen.
+
+    Ein weiterer Ansatzpunkt, von dem gelernt werden kann, sind Modelle zur datengetriebenen Informationsgewinnung. So zeigen \autocite{vamvourellis2023}, dass mit Hilfe von LLMs Unternehmensdaten aus Finanzberichten so aufbereitet werden können, dass daraus semantisch fundierte Embeddings entstehen, mit denen sich Firmen mit ähnlichem Risiko-Rendite-Profil clustern lassen.
 
     Allerdings weisen \textcite{ban2018} auch auf ein zentrales Problem hin: Die Architekturen tief neuronaler Netze operieren als \textit{Blackboxes}.
     Das bedeutet, dass ihre Entscheidungsprozesse nicht transparent sind und keine formal validierbaren Begründungen für ihre Empfehlungen liefern.
@@ -94,22 +114,50 @@
     \textcite{bendavid2021explainable} betonen in ihrer experimentellen Studie, dass die mangelnde Erklärbarkeit von ML-Modellen das Vertrauen von Anlegern und Aufsichtsbehörden erheblich beeinträchtigt.
     Sie zeigen, dass Anleger eher bereit sind, KI-basierte Empfehlungen zu akzeptieren, wenn diese durch nachvollziehbare Argumente gestützt werden.
 
+  \subsection{Mögliche Erklärungsmetriken}
+
+    % To-Do: Evtl. noch mehr Regulatorische Rahmenwerke nennen um die Wichtigkeit zu verdeutlichen
     Regulatorische Rahmenwerke wie die MiFID II (Markets in Financial Instruments Directive) verlangen von Finanzdienstleistern, dass sie ihren Kunden transparente und verständliche Informationen über Anlageentscheidungen bereitstellen.
     Dies umfasst nicht nur die Offenlegung von Risiken und Kosten, sondern auch die Erklärung der zugrundeliegenden Entscheidungsprozesse.
     KI-Systeme, die als Blackboxes operieren, erfüllen diese Anforderungen nicht, da sie keine Einsicht in ihre Entscheidungslogik bieten.
     Dies kann zu regulatorischen Herausforderungen führen, insbesondere wenn Aufsichtsbehörden die Einhaltung von Transparenzvorschriften überprüfen.
 
+    Die Erklärung von Entscheidungen großer Sprachmodelle (LLMs) ist eine besondere Herausforderung.
+    Es gibt verschiedene Methoden, um nachzuvollziehen, warum ein Modell eine bestimmte Antwort gegeben hat.
     Für generative KI-Modelle (Large Language Models/LLMs) existieren spezifische Erklärbarkeitsherausforderungen.
     Während SHAP (SHapley Additive exPlanations) und LIME (Local Interpretable Model-agnostic Explanations) ursprünglich für klassisches ML entwickelt wurden (\textcite{lundberg2017}), adaptieren neuere Verfahren wie \textit{Integrated Gradients} (\textcite{sundararajan2017}) oder \textit{Attention Visualization} (\textcite{abnar2020}) diese Konzepte für Transformer-Architekturen.
     Im Kontext LLM-basierter Systeme etabliert sich zudem die \textit{Chain-of-Thought-Erklärung} (CoT), die Entscheidungsprozesse durch schrittweise natürlichsprachige Begründungen expliziert (\textcite{wei2022}).
+    Im Folgenden werden diese wichtigen Verfahren vorgestellt und erklärt, wie sie funktionieren, was sie leisten können – und wo ihre Grenzen liegen.
+
+    % To-Do: Übergang zwischen oben und unten besser hinbekommen
+
+    \textit{SHAP (SHapley Additive Explanations)} basiert auf einer Idee aus der Spieltheorie.
+    Dort wird berechnet, wie viel jeder einzelne Spieler zum Gesamterfolg beiträgt.
+    Übertragen auf maschinelles Lernen bedeutet das: Man versucht herauszufinden, wie stark jedes einzelne Eingabemerkmal (zum Beispiel ein bestimmtes Wort) die Entscheidung des Modells beeinflusst hat.
+    Dazu vergleicht man, wie sich das Ergebnis verändert, wenn man einzelne Informationen weglässt oder hinzufügt.
+    Die zugrundeliegende Formel lautet:
+
+    \begin{equation}
+    \phi_i = \sum_{S \subseteq F \setminus \{i\}} \frac{|S|! (|F| - |S| - 1)!}{|F|!} \left[ f(S \cup \{i\}) - f(S) \right]
+    \end{equation}
+
+    Hierbei bezeichnet \( \phi_i \) den Shapley-Wert für das Feature \( i \), \( F \) ist die Gesamtmenge aller Features, \( S \) ist eine Teilmenge von \( F \) ohne \( i \), und \( f \) ist die Modellvorhersage.
+    Die genaue Berechnung ist aufwendig und erfordert viele Durchläufe mit unterschiedlichen Kombinationen von Eingaben.
+    SHAP ist sehr genau und liefert oft gute Ergebnisse – bei großen Sprachmodellen mit langen Texteingaben wird es aber schnell sehr rechenintensiv und schwer anzuwenden, weil die Bedeutung eines Wortes vom gesamten Kontext abhängt.
+
+    LIME hingegen approximiert das Verhalten eines komplexen Modells lokal durch ein einfacheres, interpretierbares Modell (z. B. ein lineares Modell) in der Nähe eines bestimmten Datenpunkts.
+    Es erzeugt in der Nähe einer konkreten Eingabe (zum Beispiel einer Frage an das Modell) viele leicht veränderte Versionen dieser Eingabe und schaut, wie sich das Modellverhalten verändert. Daraus wird ein einfaches Modell gebaut, das ungefähr erklärt, wie das komplexe große Modell an dieser Stelle arbeitet. LIME ist flexibel und kann mit vielen Modellen verwendet werden.
+    Formal ergibt sich das Optimierungsproblem wie folgt:
+
+    \begin{equation}
+    \underset{g \in G}{\arg \min} \ \mathcal{L}(f, g, \pi_x) + \Omega(g)
+    \end{equation}
+
+    LIME liefert intuitiv verständliche lokale Erklärungen und ist durch seine Modellagnostik vielseitig einsetzbar. Dennoch ergeben sich gerade im Kontext großer Sprachmodelle erhebliche Herausforderungen: Die Struktur natürlicher Sprache wird durch zufällige Perturbation oft zerstört, was zu irrelevanten oder nicht interpretierbaren Resultaten führen kann. Zudem ist die Reproduzierbarkeit der Ergebnisse begrenzt, da das Verfahren stochastische Elemente enthält.
+    Sowohl LIME als auch SHAP sind jedoch primär für tabellarische Daten oder Modelle mit klar definierten Eingabefeatures konzipiert \autocite{lundberg2017}.
 
     Für generative KI-Modelle, insbesondere Large Language Models (LLMs), existieren spezifische Erklärbarkeitsherausforderungen, die sich von denen klassischer Machine-Learning-Modelle unterscheiden.
     Während Methoden wie SHAP (SHapley Additive exPlanations) und LIME (Local Interpretable Model-agnostic Explanations) ursprünglich für klassisches ML entwickelt wurden \autocite{lundberg2017}, sind sie für generative KI-Modelle nur bedingt geeignet.
-
-    SHAP basiert auf der Spieltheorie und verteilt den Beitrag jedes Features (Eingabevariable) zur Vorhersage eines Modells.
-    Es bietet eine globale und lokale Erklärbarkeit, indem es die Bedeutung einzelner Features quantifiziert.
-    LIME hingegen approximiert das Verhalten eines komplexen Modells lokal durch ein einfacheres, interpretierbares Modell (z. B. ein lineares Modell) in der Nähe eines bestimmten Datenpunkts .
-    Beide Methoden sind jedoch primär für tabellarische Daten oder Modelle mit klar definierten Eingabefeatures konzipiert \autocite{lundberg2017}.
 
     % To-Do: evtl hier oder doch an anderer Stelle eine unterstützende Grafik einbinden
 
@@ -121,25 +169,62 @@
     Transformer nutzen Aufmerksamkeitsmechanismen (Attention), um die Beziehungen zwischen verschiedenen Teilen der Eingabesequenz zu modellieren \autocite{vaswani2017}.
     Für solche Modelle wurden spezielle Erklärbarkeitsmethoden entwickelt, darunter Integrated Gradients, Attention Visualization und Chain-of-Thought-Erklärungen (CoT).
 
-    Integrated Gradients \autocite{sundararajan2017} ist eine Technik, die die Beiträge von Eingabefeatures zur Ausgabe eines Modells berechnet, indem sie den Gradienten des Modells entlang eines Pfades zwischen einem Baseline-Input (z. B. ein Nullvektor) und dem tatsächlichen Input integriert.
-    Diese Methode eignet sich besonders für tiefe neuronale Netze, einschließlich Transformer, da sie die kontinuierliche Natur der Eingabedaten berücksichtigt .
-    Allerdings setzt sie voraus, dass das Modell differenzierbar ist, was bei den meisten Transformer-basierten LLMs der Fall ist \autocite{sundararajan2017, vaswani2017}.
+    \textit{Integrated Gradients} \autocite{sundararajan2017} ist ein Verfahren, das sich die inneren Rechenwege des Modells zunutze macht.
+    Es berechnet, wie sich die Ausgabe des Modells verändert, wenn man langsam von einer neutralen Eingabe (zum Beispiel ein leerer Text) zur tatsächlichen Eingabe übergeht.
+    Die Beiträge von Eingabefeatures zur Ausgabe eines Modells werden berechnet, indem sie den Gradienten des Modells entlang eines Pfades zwischen einem Baseline-Input (z. B. ein Nullvektor) und dem tatsächlichen Input integriert.
+    Dabei wird gemessen, wie stark sich jedes Merkmal – zum Beispiel ein Wort oder ein Token – auf das Ergebnis auswirkt.
+    Die grundlegende Formel dafür lautet:
+
+    \begin{equation}
+    \mathrm{IG}_i(x) = (x_i - x_i') \cdot \int_{\alpha=0}^{1} \frac{\partial f(x' + \alpha \cdot (x - x'))}{\partial x_i} \, d\alpha
+    \end{equation}
+
+    Diese Methode eignet sich besonders für tiefe neuronale Netze, einschließlich Transformer wie sie in LLMs verwendet, da sie die kontinuierliche Natur der Eingabedaten berücksichtigt.
+    Ein Nachteil ist jedoch, dass man eine geeignete neutrale Eingabe definieren muss – was bei Sprache nicht immer einfach ist.
+    Außerdem sind die Ergebnisse oft schwer zu interpretieren, da sie sich auf abstrakte Zahlen im sogenannten \enquote{Embedding-Raum} beziehen.
+    Zudem ist die Anwendung von Integrated Gradients auf große Sprachmodelle komplex, da die hohe Dimensionalität, Kontextabhängigkeit und nicht-linearen Beziehungen der Modelle die Attribution von Vorhersagen erschweren.
+    Des weiteren können die Wahl des Basispunkts und der hohe Rechenaufwand zu variablen und schwer interpretierbaren Ergebnissen führen. \autocite{sundararajan2017, vaswani2017}.
 
     Attention Visualization \autocite{abnar2020} ist eine Methode, die speziell für Transformer-Modelle entwickelt wurde.
-    Sie macht die Aufmerksamkeitsgewichte sichtbar, die der Transformer verwendet, um die Beziehungen zwischen verschiedenen Teilen der Eingabesequenz zu modellieren .
-    Dies bietet Einblicke in die Entscheidungsprozesse von LLMs, ist jedoch oft komplex und erfordert eine sorgfältige Interpretation.
-    Diese Methode ist nur anwendbar, wenn das Modell explizit Aufmerksamkeitsmechanismen verwendet, was bei Transformer-Architekturen der Fall ist \autocite{abnar2020, vaswani2017}.
+    Es ist ein weiteres beliebtes Werkzeug, um zu verstehen, wie Transformer-Modelle wie GPT oder BERT arbeiten.
+    Sie macht die Aufmerksamkeitsgewichte sichtbar, die der Transformer verwendet, um die Beziehungen zwischen verschiedenen Teilen der Eingabesequenz zu modellieren.
+    Diese Modelle nutzen sogenannte Aufmerksamkeitsmechanismen (engl. Attention), um zu entscheiden, welche Wörter im Eingabetext besonders wichtig sind.
+    Bei der Visualisierung zeigt man an, auf welche Wörter sich das Modell beim Verarbeiten eines bestimmten Wortes konzentriert. Das kann dabei helfen, Muster zu erkennen oder zu sehen, wie das Modell Informationen über längere Texte hinweg kombiniert.
+    Allerdings ist Vorsicht geboten: Nur weil das Modell \enquote{Aufmerksamkeit“} auf ein bestimmtes Wort richtet, heißt das nicht unbedingt, dass dieses Wort entscheidend für die Antwort war.
+    Attention-Gewichte sind nicht immer gleichbedeutend mit Bedeutung oder Ursache.
+    Dies bietet Einblicke in die Entscheidungsprozesse von LLMs, ist jedoch oft komplex und erfordert eine sorgfältige Interpretation \autocite{abnar2020, vaswani2017}.
 
-    Chain-of-Thought-Erklärungen (CoT) \autocite{wei2022} nutzen die Fähigkeit von LLMs, schrittweise natürlichsprachige Begründungen zu generieren, um ihre Entscheidungsprozesse zu explizieren.
+
+    Eine besonders interessante Methode speziell für Sprachmodelle ist die sogenannte \textit{Chain-of-Thought}-Erklärung (CoT).
+    Dabei wird das Modell nicht nur gebeten, eine Antwort zu geben, sondern auch die Schritte dahin zu erklären – ähnlich wie ein Mensch, der seinen Denkprozess laut beschreibt \autocite{wei2022}.
+    Ein einfaches Beispiel wäre:
+
+    \begin{quote}
+    Frage: Wenn ich drei Körbe mit je fünf Äpfeln habe und noch zwei Äpfel dazu bekomme, wie viele Äpfel habe ich insgesamt? \\
+    Antwort: Drei Körbe mit je fünf Äpfeln ergeben 3 × 5 = 15. Zwei Äpfel dazu ergibt 15 + 2 = 17. Antwort: 17.
+    \end{quote}
+
     Anstatt nur eine finale Antwort zu liefern, generiert das Modell eine Abfolge von Zwischenschritten, die den logischen Pfad zur Lösung eines Problems aufzeigen.
+    Solche Erklärungen sind besonders hilfreich, wenn man nachvollziehen möchte, wie das Modell \enquote{denkt}.
+    Sie helfen auch dabei, bessere Ergebnisse zu erzielen – insbesondere bei komplexen Aufgaben.
     CoT ist besonders nützlich für LLMs, die auf Textgenerierung spezialisiert sind, da es die inhärenten Fähigkeiten dieser Modelle nutzt, um Transparenz zu schaffen.
-    Allerdings setzt CoT voraus, dass das Modell in der Lage ist, kohärente und logische Zwischenschritte zu generieren, was nicht bei allen LLMs gegeben ist.
+    Außerdem setzt CoT voraus, dass das Modell in der Lage ist, kohärente und logische Zwischenschritte zu generieren, was nicht bei allen LLMs gegeben ist.
+    Zudem ist rücksicht darauf zu nehmen, dass die Erklärungen stark davon abhängen, wie genau man die Aufgabe stellt.
+    Kleine Änderungen in der Fragestellung können zu völlig anderen Erklärungsschritten führen.
+    Außerdem sagen solche sprachlichen Erklärungen nichts darüber aus, wie das Modell intern rechnet – sie sind eher ein \enquote{erklärendes Sprachspiel} \autocite{wei2022}.
 
-    Zusammenfassend bieten Methoden wie Integrated Gradients, Attention Visualization und Chain-of-Thought-Erklärungen vielversprechende Ansätze, um die Erklärbarkeit von LLMs zu verbessern.
-    Diese Methoden sind jedoch nicht universell anwendbar: Integrated Gradients erfordert differenzierbare Modelle, Attention Visualization setzt Transformer-Architekturen mit Aufmerksamkeitsmechanismen voraus, und CoT erfordert LLMs, die in der Lage sind, kohärente Zwischenschritte zu generieren.
-    Die meisten aktuellen LLMs erfüllen diese Bedingungen, da sie auf Transformer-Architekturen basieren und für Textgenerierung optimiert sind.
+    In der Abgrenzung dieser Methoden wird deutlich, dass keine Technik universell über alle Anwendungskontexte hinweg überlegen ist.
+    SHAP und LIME bieten robuste und weit verbreitete Verfahren für strukturierte Daten, stoßen jedoch bei sequenziellen, kontextabhängigen Inputs wie bei LLMs an ihre Grenzen.
+    Integrated Gradients nutzen die interne Struktur neuronaler Netze aus und liefern mathematisch fundierte Attributionen, die aber in der Praxis nur mit vertieftem Verständnis der Modellstruktur sinnvoll einsetzbar sind.
+    Attention-Visualisierung ist hilfreich für ein erstes Verständnis von Informationsflüssen, liefert aber keine kausalen Attributionen.
+    Chain-of-Thought schließlich stellt eine stark nutzerzentrierte, linguistische Erklärweise dar, die insbesondere im interaktiven Kontext wertvoll ist, jedoch kein vollständiges Verständnis der internen Funktionsweise eines Modells erlaubt.
+
+    % Evtl. To-Do: Evtl schon erwähnen was man wohl nutzen wird.
+    % Oder es nochmal visualisieren und evaluieren. Evtl mit Venn Diagramm
 
   \subsection{Kommerzielle Anwendungen: Robo-Advisor}
+
+    %To-Do: Anders einleiten
 
     Der kommerzielle Robo-Advisor-Markt wird von plattformzentrierten SaaS-Lösungen (Software-as-a-Service) dominiert, darunter bekannte Anbieter wie Betterment und Wealthfront in den USA.
     Betterment und Wealthfront sind führende Robo-Advisor-Plattformen, die automatisierte Anlageempfehlungen basierend auf den Präferenzen und Risikoprofilen ihrer Nutzer anbieten.
