@@ -31,14 +31,59 @@ Als Leitfaden dienen zwei Forschungsfragen:
 
 Die Arbeit fokussiert sich bewusst auf Transparenz durch Erklärbarkeit statt Prognosegenauigkeit.
 Das System dient als Entscheidungsunterstützung – nicht als autonomer Trader – und kombiniert strukturierte Daten (Fundamentalkennzahlen, historische Korrelationen) mit unstrukturierten Quellen (Nachrichten, Social-Media-Trends).
-Methodisch werden adaptierte XAI-Verfahren (Explainable AI) eingesetzt, etwa Feature-Attribution zur Identifikation entscheidungsrelevanter Cluster wie \enquote{Politische Risiken} aus Gesetzesänderungen und Führungswechseln.
+%Methodisch werden adaptierte XAI-Verfahren (Explainable AI) eingesetzt, etwa Feature-Attribution zur Identifikation entscheidungsrelevanter Cluster wie \enquote{Politische Risiken} aus Gesetzesänderungen und Führungswechseln.
 
 Der praktische Beitrag liegt in drei Anwendungsdimensionen: Investoren können (1) KI-Empfehlungen durch nachvollziehbare Argumente validieren (z.B. Nachfrage von 70\% Verkaufsempfehlungen trotz positiver Quartalszahlen), (2) Portfolio-Risiken durch interaktive Visualisierungen von Korrelationsmatrizen und Stress-Tests aktiv steuern, sowie (3) Anlagestrategien durch \enquote{Was-wäre-wenn}-Szenarien explorieren.
 Dies ermöglicht einen Paradigmenwechsel von Blackbox-Modellen hin zu transparenten, dialogfähigen Beratungssystemen.
 
+%%%%%%%%%%
+% Ab hier wird das Vorgehen in der Arbeit skizziert.
+%%%%%%%%%%
+
+Um diese Forschungsfragen zu beantworten und das Ziel der Arbeit zu erreichen wird in der Arbeit wie folgt vorgegangen:
+Zunächst werden die theoretischen Grundlagen und der Stand der Technik analysiert, um das bestehende Forschungsfeld einzuordnen.
+Darauf aufbauend wird im Kapitel „Methodik“ erläutert, wie die identifizierten Forschungslücken – insbesondere das Erklärungsdefizit und die mangelnde Nutzerzentrierung bestehender Systeme – durch eine Kombination aus dem \textit{Design Science Research (DSR)}-Ansatz und modernen Konzepten der Softwarearchitektur adressiert werden.
+Anschließend folgt die Konzeption und Implementierung des Assistenzsystems, dessen Kernfunktionen und technische Architektur vorgestellt werden.
+Im Anschluss wird das System einer umfassenden Evaluation unterzogen, deren Methoden und Ergebnisse in den darauffolgenden Kapiteln detailliert erläutert werden.
+Im Folgenden wird dabei noch einmal auf die einzelnen Kapitel im Detail eingegangen.
+
+% Bzgl. Abschnitt Stand der Forschung
+
+%...
+
+% Bzgl. Methodik
+
+%...
+
+% Bzgl. Systemarchitektur und Implementierung
+
+%...
+
+% Bzgl Abschnitt Evaluation (nochmal überarbeiten)
+
+\todo[inline]{To-Do: Besser einleiten. Aber dann nach den die anderen Abschnitte besser geschrieben sind.}
+
+Darüber hinaus wird im Rahmen dieser Arbeit untersucht, wie sich generative KI-Modelle – insbesondere Large Language Models (LLMs) – in den Finanzkontext integrieren lassen, ohne dass dabei das Risiko inkonsistenter oder missverständlicher Antworten die Entscheidungsqualität der Anleger gefährdet.
+Eine besondere Herausforderung besteht darin, dass LLMs zwar in der Lage sind, plausible Erklärungen und Begründungen zu generieren, diese jedoch nicht immer konsistent oder faktisch korrekt sind.
+Gerade im sensiblen Bereich der Finanzmärkte kann eine inkonsistente Begründung – z.B. unterschiedliche Einschätzungen zum Kauf- oder Verkaufszeitpunkt derselben Aktie bei identischen Eingaben – erhebliche Risiken bergen.
+Deshalb wird eine zweistufige Evaluationsstrategie verfolgt: Zunächst werden die gängigen Evaluationsverfahren selbst einer kritischen Betrachtung unterzogen, um ihre Eignung im Finanzkontext zu prüfen.
+Anschließend werden diese Verfahren systematisch auf das entwickelte Assistenzsystem angewendet.
+Ziel ist es, nicht nur die Qualität der generierten Handlungsempfehlungen zu bewerten, sondern auch die Konsistenz und Robustheit der Entscheidungsbegründungen sicherzustellen.
+
+Ein weiterer Aspekt ist der Vergleich mit etablierten Analystenmeinungen.
+Analysten verfügen über Marktwissen und Erfahrung, ihre Einschätzungen sind jedoch nicht unfehlbar und unterliegen eigenen Biases.
+Deshalb wird geprüft, inwieweit das System in seiner neutralen Ausprägung (ohne Anpassungen durch Nutzereingaben) ähnliche Tendenzen oder fundamentale Einschätzungen liefert.
+Dabei wird bewusst berücksichtigt, dass Analysten auch von subjektiven Einschätzungen beeinflusst werden können, und der Vergleich daher eher eine Orientierungshilfe als ein objektives Maß ist.
+Gleichzeitig eröffnet dieser Vergleich ein Fenster zur Validierung der grundsätzlichen Funktionsweise des Systems: Stimmen Richtung und Trend der Handlungsempfehlung grundsätzlich überein, deutet das auf eine solide Modellierung hin.
+Abweichungen können wiederum genutzt werden, um potenzielle Verbesserungen in Prompt-Gestaltung und Modell-Parametrierung zu identifizieren.
+
+% Bzgl. Fazit
+
+%...
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\hspace{1.5cm}
-\hrule
+%\hspace{1.5cm}
+%\hrule
 
 \begin{comment}
 \textbf{To-Dos:}
