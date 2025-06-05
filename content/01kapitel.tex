@@ -4,15 +4,14 @@ Der Wertpapierhandel steht im Spannungsfeld zwischen zunehmender Datenkomplexit�
 Während moderne Robo-Advisors und KI-Tools quantitative Empfehlungen generieren, agieren sie oft als \textbf{Blackbox}:
 Sie liefern Kauf-/Verkaufssignale, ohne die zugrundeliegende Logik offenzulegen – etwa warum eine Aktie zu 70\% verkauft werden soll, obwohl fundamentale Kennzahlen stabil erscheinen, oder wie politische Risiken die Portfolio-Strategie beeinflussen.
 Diese Intransparenz führt zu mangelndem Vertrauen und limitiert die praktische Nutzbarkeit, wie Fallstudien zu Fehleinschätzungen bei Marktvolatilität zeigen.
+\todo[inline]{To-Do: Quelle für Studie}
 
-
-%% Gerade kein besseres Beispiel dabei. Vermutlich außer Short auch nicht interessant gewesen
-%% Alternativ: Weniger Corner-Case behandeln und z. B. auf Zykliker und deren Erklärung eingehen
-% Ein Beispiel für die Folgen intransparenter Entscheidungsprozesse ist der GameStop-Hype im Jahr 2021.
-% In diesem Fall spekulierten Retail-Anleger gegen institutionelle Anleger, was zu erheblichen Marktverwerfungen führte.
-% Viele Anleger erlitten schwere Verluste, da sie die zugrundeliegenden Risiken und Marktdynamiken nicht vollständig verstanden.
-% Dies verdeutlicht, wie mangelnde Transparenz und unzureichende Erklärungen von KI-Systemen zu Fehleinschätzungen führen können.
-% Hätten die Anleger Zugang zu einem System gehabt, das nicht nur Handlungsempfehlungen gibt, sondern auch die zugrundeliegenden Faktoren (wie Marktmanipulation, Short-Squeeze-Dynamiken und sentimentgetriebene Volatilität) erklärt, hätten sie möglicherweise fundiertere Entscheidungen treffen können (Vgl. \cite{sec2021gamestop}).
+Ein Beispiel für die Folgen intransparenter Entscheidungsprozesse ist das Verhalten vieler Anleger während Phasen wirtschaftlicher Unsicherheit, etwa bei Inflationsängsten oder bevorstehenden Rezessionen.
+In solchen Zeiten reagieren automatisierte Handelssysteme häufig mit Verkaufsbefehlen auf sinkende Kurse, ohne die zugrunde liegenden wirtschaftlichen Zusammenhänge zu erläutern.
+Dies kann dazu führen, dass Anleger überhastet Positionen in zyklischen Branchen wie der Automobilindustrie oder dem Tourismussektor auflösen, obwohl solche Sektoren typischerweise in späteren Konjunkturphasen wieder an Wert gewinnen.
+Ohne transparente Informationen über makroökonomische Zyklen und deren Einfluss auf bestimmte Branchen besteht die Gefahr, dass Anleger in Panik handeln und dadurch potenzielle Erholungen verpassen.
+Ein System, das diese wirtschaftlichen Zusammenhänge verständlich macht, könnte helfen, fundiertere und langfristig orientierte Entscheidungen zu treffen. \autocite{schnorpfeil2025inflation}
+\todo[inline]{To-Do: Dieser Abschnitt Bedarf ggf. noch mehr Anpassung (abhängig von Ergebnis der Arbeit)}
 
 Die vorliegende Arbeit adressiert drei zentrale Forschungslücken im Bereich KI-gestützter Portfoliooptimierung.
 Erstens besteht ein Erklärungsdefizit existierender Systeme, die prozentuale Handlungsempfehlungen (z.B. \enquote{Verkauf: 60\%}) ohne kontextspezifische Begründung liefern.
@@ -49,15 +48,27 @@ Im Folgenden wird dabei noch einmal auf die einzelnen Kapitel im Detail eingegan
 
 % Bzgl. Abschnitt Stand der Forschung
 
-%...
+Das Kapitel Stand der Forschung \todo[inline]{To-Do: hrefs einfügen?} untersucht die Entwicklung und den aktuellen Forschungsstand von Portfoliooptimierungssystemen und deren Verbindung zu erklärbarer KI (XAI).
+Dabei werden drei Hauptforschungsstränge identifiziert: klassische Portfolio-Theorie, datengetriebene Optimierungsansätze (wie Reinforcement Learning) und kommerzielle Robo-Advisor-Anwendungen.
+Trotz Fortschritten bleibt die Erklärbarkeit von Entscheidungen ein zentrales Defizit.
+Regulatorische Anforderungen wie MiFID II oder der AI Act fordern zunehmend transparente Entscheidungsgrundlagen.
+
+In der Finanzdomäne stehen XAI-Methoden vor besonderen Herausforderungen: Komplexe KI-Modelle wie tiefe neuronale Netze und Transformer sind schwer interpretierbar, auch wenn Ansätze wie Integrated Gradients oder Attention Visualization Fortschritte bieten.
+Symbolische und neuro-symbolische Verfahren versprechen hier neue Lösungsansätze, um menschlich verständliche Erklärungen zu ermöglichen.
+
+Zudem wird die Relevanz von Human-Centered XAI betont, das sich stärker an den Bedürfnissen und mentalen Modellen der Nutzer orientiert, anstatt rein technische Erklärungen zu liefern.
+Dabei spielt auch die Integration qualitativer Faktoren (z. B. ESG-Kriterien, Marktstimmung) in quantitative Modelle eine Rolle – eine Aufgabe, die bisher noch nicht zufriedenstellend gelöst ist.
+
+Abschließend identifiziert das Kapitel mehrere Forschungslücken: mangelnde Erklärbarkeit aktueller Systeme, fehlende Integration qualitativer Faktoren, unzureichende Nutzerzentrierung, Herausforderungen bei der Skalierbarkeit sowie regulatorische und ethische Hürden.
+Diese Lücken motivieren die in der Arbeit entwickelte Systemarchitektur, die auf eine Kombination aus datengetriebenen Methoden, erklärbarer KI und nutzerzentrierter Gestaltung setzt.
 
 % Bzgl. Methodik
 
-%...
+\todo[inline]{To-Do: Zusammenfassende Einleitung für Kapitel \enquote{Methodik} machen}
 
 % Bzgl. Systemarchitektur und Implementierung
 
-%...
+\todo[inline]{To-Do: Zusammenfassende Einleitung für Kapitel \enquote{Systemarchitektur und Implementierung} machen}
 
 % Bzgl Abschnitt Evaluation (nochmal überarbeiten)
 
@@ -79,7 +90,7 @@ Abweichungen können wiederum genutzt werden, um potenzielle Verbesserungen in P
 
 % Bzgl. Fazit
 
-%...
+\todo[inline]{To-Do: Zusammenfassende Einleitung für Kapitel \enquote{Fazit} und generell ein Fazit machen}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\hspace{1.5cm}

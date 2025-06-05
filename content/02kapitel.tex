@@ -2,6 +2,9 @@
 % Evtl später zu einem praxisintegrierten Aufbau ändern und die Literaturarbeit nicht vorab machen
 
 
+% Dieses Kapitel bis "Erklärbare KI in der Finanzdomäne" überarbeitet
+
+
 \chapter{Stand der Forschung}
 
   % To-Do: Überschrift evalusieren
@@ -10,14 +13,19 @@
   % \chapter{Forschungsstand: Erklärbare KI in der Finanzberatung}
   % \chapter{Stand der Forschung: Transparente KI-Systeme im Wertpapierhandel}
 
-  Die Portfoliooptimierung hat sich in den letzten Jahrzehnten von einer rein theoretischen Disziplin zu einem interdisziplinären Forschungsfeld entwickelt, das mathematische Modellierung, datengetriebene Methoden und praktische Anwendungsfragen vereint.
+  Die Portfoliooptimierung hat sich in den letzten Jahrzehnten von einer rein theoretischen Disziplin -- mit dessen frühen Ansätzen welche sich auf die mathematische Modellierung von Risiko und Rendite unter der Annahme idealisierter Märkte und verfügbarer Daten konzentrierte -- zu einem interdisziplinären Forschungsfeld entwickelt, das mathematische Modellierung, datengetriebene Methoden und praktische Anwendungsfragen vereint.
+
   Dieses Kapitel analysiert den aktuellen Forschungsstand und zeigt auf, wie die in dieser Arbeit vorgeschlagene und nachfolgende Systemarchitektur bestehende Lücken schließt.
   Dabei wird insbesondere auf die Verbindung zwischen theoretischen Grundlagen, methodischen Innovationen und praktischer Anwendbarkeit eingegangen.
 
 \section{Verwandte Bereiche und existierende Ansätze}
 
   % Die drei zentralen Forschungsstränge ggf. ersetzen
-  Die Entwicklung intelligenter Assistenzsysteme zur Portfoliooptimierung lässt sich entlang dreier etablierter Forschungsstränge analysieren: \textit{(1)} der klassischen Portfolio-Theorie nach Markowitz \autocite{markowitz1952}, \textit{(2)} datengetriebenen Optimierungsansätzen mit maschinellem Lernen \autocite{ban2018}, und \textit{(3)} kommerziellen Anwendungen wie Robo-Advisorn, deren Limitationen in aktuellen Studien kritisch diskutiert werden \autocite{hecker2017}.
+  Die Entwicklung intelligenter Assistenzsysteme zur Portfoliooptimierung lässt sich entlang dreier etablierter Forschungsstränge analysieren:
+  \textit{(1)} der klassischen Portfolio-Theorie nach Markowitz \autocite{markowitz1952},
+  \textit{(2)} datengetriebenen Optimierungsansätzen mit maschinellem Lernen \autocite{ban2018},
+  und \textit{(3)} kommerziellen Anwendungen wie Robo-Advisorn, deren Limitationen in aktuellen Studien kritisch diskutiert werden \autocite{hecker2017}.
+
   Im Rahmen dieser Arbeit wird bzgl. der kommerziellen Anwendungen der Fokus auf Robo-Advisor gelegt, da sie weit verbreitet sind und die Defizite in der Erklärbarkeit besonders deutlich aufzeigen.
   Es sei jedoch betont, dass das Ziel dieser Arbeit nicht darin besteht, einen weiteren Robo-Advisor zu entwickeln, sondern ein KI-basiertes Assistenzsystem zu schaffen, das Transparenz und nachvollziehbare Entscheidungsbegründungen in den Vordergrund stellt.
   Jeder der genannten Forschungsstränge weist Defizite in der Erklärbarkeit auf, die das in dieser Arbeit entwickelte System gezielt adressiert.
@@ -31,13 +39,14 @@
 
     Der mathematische Kern der MPT ist die \textit{Mean-Variance-Optimierung}.
     Dabei wird das Risiko eines Portfolios als die Varianz (Streuung) der erwarteten Renditen modelliert.
+
     Die Varianz misst, wie stark die Renditen um den Durchschnittswert schwanken können.
     Ein Portfolio mit geringerer Varianz gilt als weniger riskant, da die Renditen vorhersehbarer sind.
+
     Die Mean-Variance-Optimierung sucht nach der Kombination von Anlagen, die bei einem gegebenen Risikoniveau die höchste erwartete Rendite erzielt oder bei einer angestrebten Rendite das geringste Risiko aufweist.
     Dieses Konzept basiert auf der Annahme, dass Renditen normalverteilt sind, also symmetrisch um einen Mittelwert schwanken.
     Allerdings wurde diese Annahme in der Praxis oft kritisiert, da reale Finanzmärkte häufig \enquote{fette Verteilungsenden} (fat tails) und Schiefe aufweisen, was zu extremen Risiken führt, die die MPT nicht vollständig abbilden kann \autocite{favre2002}.
 
-    %%%%%%%%%%%%% Neu eingefügt %%%%%%%%%%%%% %To-Do: Noch zu validieren
     Die Portfoliooptimierung nach Markowitz \autocite{markowitz1952} formalisiert das Spannungsfeld zwischen Rendite ($\mu$) und Risiko ($\sigma$) durch mathematische Optimierung.
     Für ein Portfolio aus $n$ Anlagen gilt:
     \begin{align}
@@ -52,9 +61,11 @@
       \item $\sigma_{ij} < 0$: Anlagen wirken als Hedge (Risikoreduktion)
     \end{itemize}
 
+    \todo[inline]{To-Do: Unterstützende Grafik oder Beispiele einbauen}
+
     % To-Do: Grafik hier zu noch bauen
     % Bisherige Beispiele gefielen nicht oder waren nicht anschaulich genug
-    %%%%%%%%%%%%%%%%%%%
+
 
     Fat Tails (fette Verteilungsenden) beschreiben das Phänomen, dass extreme Ereignisse – wie starke Kursverluste oder -gewinne – in realen Finanzmärkten viel häufiger auftreten, als es die Normalverteilung vorhersagen würde.
     Während die Normalverteilung annimmt, dass die meisten Renditen nahe dem Durchschnitt liegen und extreme Abweichungen sehr selten sind, zeigen Finanzdaten oft eine höhere Wahrscheinlichkeit für solche Ausreißer.
@@ -62,7 +73,8 @@
 
     Schiefe (Skewness) bezieht sich auf die Asymmetrie der Verteilung von Renditen.
     Eine symmetrische Verteilung, wie die Normalverteilung, hat eine Schiefe von null.
-    In Finanzmärkten ist die Verteilung der Renditen jedoch oft schief: Entweder gibt es eine höhere Wahrscheinlichkeit für starke negative Abweichungen (linksschief) oder für starke positive Abweichungen (rechtsschief). Beispielsweise neigen Aktienmärkte dazu, linksschief zu sein, da extreme Verluste (z. B. während einer Finanzkrise) häufiger auftreten als extreme Gewinne \autocite{favre2002}.
+    In Finanzmärkten ist die Verteilung der Renditen jedoch oft schief: Entweder gibt es eine höhere Wahrscheinlichkeit für starke negative Abweichungen (linksschief) oder für starke positive Abweichungen (rechtsschief).
+    Beispielsweise neigen Aktienmärkte dazu, linksschief zu sein, da extreme Verluste (z. B. während einer Finanzkrise) häufiger auftreten als extreme Gewinne \autocite{favre2002}.
 
     Diese Asymmetrie wird von der MPT nicht berücksichtigt, obwohl sie erhebliche Auswirkungen auf das Risikomanagement hat.
     Beide Phänomene – fat tails und Schiefe – führen dazu, dass die MPT die tatsächlichen Risiken von Portfolios unterschätzt.
@@ -99,14 +111,16 @@
     Neben der direkten Steuerung von Anlageentscheidungen kommen zunehmend auch Large Language Models (LLMs) zum Einsatz.
     So demonstrieren \autocite{lu2023} und \autocite{ko2023}, dass generative Sprachmodelle wie ChatGPT in der Lage sind, verständliche, fundierte Portfolioempfehlungen zu generieren, die in Backtests mit realen Finanzdaten vergleichbare oder sogar bessere Ergebnisse als traditionelle Verfahren erzielen.
     Dabei nutzen die Modelle sowohl historische Kursdaten als auch natürlichsprachliche Informationen wie Nachrichten oder Unternehmensprofile.
+    \todo[inline]{To-Do: Stärkeren Deep-Dive in die beiden Arbeiten}
 
     Ein konkretes Beispiel für ein KI-basiertes Assistenzsystem ist \textit{GPTQuant} \autocite{yue2023}, das auf GPT-3 aufsetzt und über eine Chatbot-Oberfläche Anlagevorschläge macht, Codebeispiele für Backtests liefert und auf Wunsch Strategien automatisch analysiert.
-
     Besonders relevant für die eigene Arbeit ist, dass viele dieser Systeme bereits Komponenten wie Nutzerinteraktion, Erklärbarkeit und automatische Entscheidungsfindung enthalten.
     Diese Punkte sind auch zentrale Bausteine des hier vorgestellten Assistenzsystems.
     Was jedoch oft fehlt, ist eine durchgängige Transparenz über die Entscheidungsschritte hinweg oder eine flexible Anpassbarkeit der Modelllogik an veränderte regulatorische oder individuelle Anforderungen.
+    \todo[inline]{To-Do: Definitiv stärker in praktischer Arbeit adressieren}
 
-    Ein weiterer Ansatzpunkt, von dem gelernt werden kann, sind Modelle zur datengetriebenen Informationsgewinnung. So zeigen \autocite{vamvourellis2023}, dass mit Hilfe von LLMs Unternehmensdaten aus Finanzberichten so aufbereitet werden können, dass daraus semantisch fundierte Embeddings entstehen, mit denen sich Firmen mit ähnlichem Risiko-Rendite-Profil clustern lassen.
+    Ein weiterer Ansatzpunkt, von dem gelernt werden kann, sind Modelle zur datengetriebenen Informationsgewinnung.
+    So zeigen \autocite{vamvourellis2023}, dass mit Hilfe von LLMs Unternehmensdaten aus Finanzberichten so aufbereitet werden können, dass daraus semantisch fundierte Embeddings entstehen, mit denen sich Firmen mit ähnlichem Risiko-Rendite-Profil clustern lassen.
 
     Allerdings weisen \textcite{ban2018} auch auf ein zentrales Problem hin: Die Architekturen tief neuronaler Netze operieren als \textit{Blackboxes}.
     Das bedeutet, dass ihre Entscheidungsprozesse nicht transparent sind und keine formal validierbaren Begründungen für ihre Empfehlungen liefern.
@@ -116,44 +130,56 @@
 
   \subsection{Mögliche Erklärungsmetriken}
 
-    % To-Do: Evtl. noch mehr Regulatorische Rahmenwerke nennen um die Wichtigkeit zu verdeutlichen
-    Regulatorische Rahmenwerke wie die MiFID II (Markets in Financial Instruments Directive) verlangen von Finanzdienstleistern, dass sie ihren Kunden transparente und verständliche Informationen über Anlageentscheidungen bereitstellen.
-    Dies umfasst nicht nur die Offenlegung von Risiken und Kosten, sondern auch die Erklärung der zugrundeliegenden Entscheidungsprozesse.
+    Regulatorische Rahmenwerke wie MiFID II (Markets in Financial Instruments Directive), PRIIPs (Packaged Retail and Insurance-based Investment Products Regulation) oder UCITS (Undertakings for Collective Investment in Transferable Securities) verlangen von Finanzdienstleistern, dass sie ihren Kunden transparente und verständliche Informationen über Anlageentscheidungen bereitstellen.
+
+    MiFID II steht jedoch im Fokus, da es die Grundlage für den Anlegerschutz und die Kundenberatung im Wertpapiergeschäft bildet und damit nicht nur Transparenz- und Informationspflichten definiert, sondern auch umfassende Anforderungen an die Geeignetheit von Produkten, die Qualität der Beratung sowie die Überwachungspflichten von Finanzdienstleistern regelt.
+    Im Vergleich zu anderen regulatorischen Rahmenwerken wie der PRIIPs-Verordnung oder der SFDR (Sustainable Finance Disclosure Regulation) ist MiFID II dabei deutlich weiterreichender, da es als umfassendes Regelwerk für den europäischen Finanzmarkt nicht nur Nachhaltigkeitsthemen oder Produktinformationen abdeckt, sondern das gesamte Wertpapierdienstleistungsangebot und die Beziehung zwischen Finanzdienstleistern und ihren Kunden in den Mittelpunkt stellt \autocite{ESMA2023MiFIDII}.
+
+    MiFID II ist eine EU-weite Richtlinie zur Harmonisierung der Finanzmärkte darstellt und darauf abzielt, den Anlegerschutz zu stärken sowie die Transparenz und Effizienz der Märkte zu erhöhen, und verlangt von Finanzdienstleistern, dass sie ihren Kunden transparente und verständliche Informationen über Anlageentscheidungen bereitstellen \autocite{ESMA2023MiFIDII}.
+
+    MiFID II zeichnet sich durch umfangreiche Transparenzanforderungen und Berichtspflichten aus, die über die ursprüngliche MiFID-Richtlinie hinausgehen und insbesondere algorithmische Handelssysteme sowie die Offenlegungspflichten bei Finanzprodukten stärker regeln.
+    Damit grenzt sich MiFID II von anderen regulatorischen Rahmenwerken ab, indem es explizit auf die technologische Entwicklung und die zunehmende Automatisierung der Finanzdienstleistungen eingeht.
+    Für KI-gestützte Finanzsysteme ist MiFID II besonders relevant, da es sicherstellen soll, dass auch bei automatisierten Entscheidungen ein hohes Maß an Nachvollziehbarkeit und Fairness gewährleistet wird \autocite{ESMA2023MiFIDII}.
+
+    MiFID II umfasst nicht nur die Offenlegung von Risiken und Kosten, sondern auch die Erklärung der zugrundeliegenden Entscheidungsprozesse.
     KI-Systeme, die als Blackboxes operieren, erfüllen diese Anforderungen nicht, da sie keine Einsicht in ihre Entscheidungslogik bieten.
     Dies kann zu regulatorischen Herausforderungen führen, insbesondere wenn Aufsichtsbehörden die Einhaltung von Transparenzvorschriften überprüfen.
 
     Die Erklärung von Entscheidungen großer Sprachmodelle (LLMs) ist eine besondere Herausforderung.
     Es gibt verschiedene Methoden, um nachzuvollziehen, warum ein Modell eine bestimmte Antwort gegeben hat.
-    Für generative KI-Modelle (Large Language Models/LLMs) existieren spezifische Erklärbarkeitsherausforderungen.
-    Während SHAP (SHapley Additive exPlanations) und LIME (Local Interpretable Model-agnostic Explanations) ursprünglich für klassisches ML entwickelt wurden (\textcite{lundberg2017}), adaptieren neuere Verfahren wie \textit{Integrated Gradients} (\textcite{sundararajan2017}) oder \textit{Attention Visualization} (\textcite{abnar2020}) diese Konzepte für Transformer-Architekturen.
-    Im Kontext LLM-basierter Systeme etabliert sich zudem die \textit{Chain-of-Thought-Erklärung} (CoT), die Entscheidungsprozesse durch schrittweise natürlichsprachige Begründungen expliziert (\textcite{wei2022}).
-    Im Folgenden werden diese wichtigen Verfahren vorgestellt und erklärt, wie sie funktionieren, was sie leisten können – und wo ihre Grenzen liegen.
 
+    Für generative KI-Modelle (Large Language Models/LLMs) existieren spezifische Erklärbarkeitsherausforderungen.
+    Während SHAP (SHapley Additive exPlanations) und LIME (Local Interpretable Model-agnostic Explanations) ursprünglich für klassisches ML entwickelt wurden \autocite{lundberg2017}, adaptieren neuere Verfahren wie \textit{Integrated Gradients} (\textcite{sundararajan2017}) oder \textit{Attention Visualization} \autocite{abnar2020} diese Konzepte für Transformer-Architekturen.
+    Im Kontext LLM-basierter Systeme etabliert sich zudem die \textit{Chain-of-Thought-Erklärung} (CoT), die Entscheidungsprozesse durch schrittweise natürlichsprachige Begründungen expliziert \autocite{wei2022}.
+    Im Folgenden werden diese wichtigen Verfahren vorgestellt und erklärt, wie sie funktionieren, was sie leisten können – und wo ihre Grenzen liegen sowie ihre Eignung zu Anwendbarkeit.
+
+    \todo[inline]{Übergang zum nächsten Block gut genug?}
     % To-Do: Übergang zwischen oben und unten besser hinbekommen
 
     \textit{SHAP (SHapley Additive Explanations)} basiert auf einer Idee aus der Spieltheorie.
     Dort wird berechnet, wie viel jeder einzelne Spieler zum Gesamterfolg beiträgt.
     Übertragen auf maschinelles Lernen bedeutet das: Man versucht herauszufinden, wie stark jedes einzelne Eingabemerkmal (zum Beispiel ein bestimmtes Wort) die Entscheidung des Modells beeinflusst hat.
-    Dazu vergleicht man, wie sich das Ergebnis verändert, wenn man einzelne Informationen weglässt oder hinzufügt.
-    Die zugrundeliegende Formel lautet:
+    Dazu vergleicht man, wie sich das Ergebnis verändert, wenn man einzelne Informationen weglässt oder hinzufügt\autocite{lundberg2017}.
 
+    Die zugrundeliegende Formel lautet:
     \begin{equation}
     \phi_i = \sum_{S \subseteq F \setminus \{i\}} \frac{|S|! (|F| - |S| - 1)!}{|F|!} \left[ f(S \cup \{i\}) - f(S) \right]
     \end{equation}
 
     Hierbei bezeichnet \( \phi_i \) den Shapley-Wert für das Feature \( i \), \( F \) ist die Gesamtmenge aller Features, \( S \) ist eine Teilmenge von \( F \) ohne \( i \), und \( f \) ist die Modellvorhersage.
     Die genaue Berechnung ist aufwendig und erfordert viele Durchläufe mit unterschiedlichen Kombinationen von Eingaben.
-    SHAP ist sehr genau und liefert oft gute Ergebnisse – bei großen Sprachmodellen mit langen Texteingaben wird es aber schnell sehr rechenintensiv und schwer anzuwenden, weil die Bedeutung eines Wortes vom gesamten Kontext abhängt.
+    SHAP ist sehr genau und liefert oft gute Ergebnisse – bei großen Sprachmodellen mit langen Texteingaben wird es aber schnell sehr rechenintensiv und schwer anzuwenden, weil die Bedeutung eines Wortes vom gesamten Kontext abhängt \autocite{lundberg2017}.
 
     LIME hingegen approximiert das Verhalten eines komplexen Modells lokal durch ein einfacheres, interpretierbares Modell (z. B. ein lineares Modell) in der Nähe eines bestimmten Datenpunkts.
-    Es erzeugt in der Nähe einer konkreten Eingabe (zum Beispiel einer Frage an das Modell) viele leicht veränderte Versionen dieser Eingabe und schaut, wie sich das Modellverhalten verändert. Daraus wird ein einfaches Modell gebaut, das ungefähr erklärt, wie das komplexe große Modell an dieser Stelle arbeitet. LIME ist flexibel und kann mit vielen Modellen verwendet werden.
-    Formal ergibt sich das Optimierungsproblem wie folgt:
+    Es erzeugt in der Nähe einer konkreten Eingabe (zum Beispiel einer Frage an das Modell) viele leicht veränderte Versionen dieser Eingabe und schaut, wie sich das Modellverhalten verändert. Daraus wird ein einfaches Modell gebaut, das ungefähr erklärt, wie das komplexe große Modell an dieser Stelle arbeitet. LIME ist flexibel und kann mit vielen Modellen verwendet werden \autocite{lundberg2017}.
 
+    Formal ergibt sich das Optimierungsproblem wie folgt:
     \begin{equation}
     \underset{g \in G}{\arg \min} \ \mathcal{L}(f, g, \pi_x) + \Omega(g)
     \end{equation}
 
-    LIME liefert intuitiv verständliche lokale Erklärungen und ist durch seine Modellagnostik vielseitig einsetzbar. Dennoch ergeben sich gerade im Kontext großer Sprachmodelle erhebliche Herausforderungen: Die Struktur natürlicher Sprache wird durch zufällige Perturbation oft zerstört, was zu irrelevanten oder nicht interpretierbaren Resultaten führen kann. Zudem ist die Reproduzierbarkeit der Ergebnisse begrenzt, da das Verfahren stochastische Elemente enthält.
+    LIME liefert intuitiv verständliche lokale Erklärungen und ist durch seine Modellagnostik vielseitig einsetzbar.
+    Dennoch ergeben sich gerade im Kontext großer Sprachmodelle erhebliche Herausforderungen: Die Struktur natürlicher Sprache wird durch zufällige Perturbation oft zerstört, was zu irrelevanten oder nicht interpretierbaren Resultaten führen kann. Zudem ist die Reproduzierbarkeit der Ergebnisse begrenzt, da das Verfahren stochastische Elemente enthält.
     Sowohl LIME als auch SHAP sind jedoch primär für tabellarische Daten oder Modelle mit klar definierten Eingabefeatures konzipiert \autocite{lundberg2017}.
 
     Für generative KI-Modelle, insbesondere Large Language Models (LLMs), existieren spezifische Erklärbarkeitsherausforderungen, die sich von denen klassischer Machine-Learning-Modelle unterscheiden.
@@ -173,27 +199,30 @@
     Es berechnet, wie sich die Ausgabe des Modells verändert, wenn man langsam von einer neutralen Eingabe (zum Beispiel ein leerer Text) zur tatsächlichen Eingabe übergeht.
     Die Beiträge von Eingabefeatures zur Ausgabe eines Modells werden berechnet, indem sie den Gradienten des Modells entlang eines Pfades zwischen einem Baseline-Input (z. B. ein Nullvektor) und dem tatsächlichen Input integriert.
     Dabei wird gemessen, wie stark sich jedes Merkmal – zum Beispiel ein Wort oder ein Token – auf das Ergebnis auswirkt.
-    Die grundlegende Formel dafür lautet:
 
+    Die grundlegende Formel dafür lautet:
     \begin{equation}
     \mathrm{IG}_i(x) = (x_i - x_i') \cdot \int_{\alpha=0}^{1} \frac{\partial f(x' + \alpha \cdot (x - x'))}{\partial x_i} \, d\alpha
     \end{equation}
 
     Diese Methode eignet sich besonders für tiefe neuronale Netze, einschließlich Transformer wie sie in LLMs verwendet, da sie die kontinuierliche Natur der Eingabedaten berücksichtigt.
     Ein Nachteil ist jedoch, dass man eine geeignete neutrale Eingabe definieren muss – was bei Sprache nicht immer einfach ist.
-    Außerdem sind die Ergebnisse oft schwer zu interpretieren, da sie sich auf abstrakte Zahlen im sogenannten \enquote{Embedding-Raum} beziehen.
+    Außerdem sind die Ergebnisse oft schwer zu interpretieren, da sie sich auf abstrakte Zahlen im sogenannten \enquote{Embedding-Raum} beziehen. \todo[inline]{To-Do: Embedding in diesem Zusammenhang erklärem}
     Zudem ist die Anwendung von Integrated Gradients auf große Sprachmodelle komplex, da die hohe Dimensionalität, Kontextabhängigkeit und nicht-linearen Beziehungen der Modelle die Attribution von Vorhersagen erschweren.
     Des weiteren können die Wahl des Basispunkts und der hohe Rechenaufwand zu variablen und schwer interpretierbaren Ergebnissen führen. \autocite{sundararajan2017, vaswani2017}.
 
     Attention Visualization \autocite{abnar2020} ist eine Methode, die speziell für Transformer-Modelle entwickelt wurde.
     Es ist ein weiteres beliebtes Werkzeug, um zu verstehen, wie Transformer-Modelle wie GPT oder BERT arbeiten.
+
     Sie macht die Aufmerksamkeitsgewichte sichtbar, die der Transformer verwendet, um die Beziehungen zwischen verschiedenen Teilen der Eingabesequenz zu modellieren.
-    Diese Modelle nutzen sogenannte Aufmerksamkeitsmechanismen (engl. Attention), um zu entscheiden, welche Wörter im Eingabetext besonders wichtig sind.
-    Bei der Visualisierung zeigt man an, auf welche Wörter sich das Modell beim Verarbeiten eines bestimmten Wortes konzentriert. Das kann dabei helfen, Muster zu erkennen oder zu sehen, wie das Modell Informationen über längere Texte hinweg kombiniert.
-    Allerdings ist Vorsicht geboten: Nur weil das Modell \enquote{Aufmerksamkeit“} auf ein bestimmtes Wort richtet, heißt das nicht unbedingt, dass dieses Wort entscheidend für die Antwort war.
+    Diese Modelle nutzen sogenannte Aufmerksamkeitsmechanismen (engl. Attention), um zu entscheiden, welche Wörter im Eingabetext besonders wichtig sind \autocite{abnar2020, vaswani2017}.
+
+    Bei der Visualisierung zeigt man an, auf welche Wörter sich das Modell beim Verarbeiten eines bestimmten Wortes konzentriert.
+    Das kann dabei helfen, Muster zu erkennen oder zu sehen, wie das Modell Informationen über längere Texte hinweg kombiniert \autocite{abnar2020, vaswani2017}.
+
+    Allerdings ist Vorsicht geboten: Nur weil das Modell \enquote{Aufmerksamkeit} auf ein bestimmtes Wort richtet, heißt das nicht unbedingt, dass dieses Wort entscheidend für die Antwort war.
     Attention-Gewichte sind nicht immer gleichbedeutend mit Bedeutung oder Ursache.
     Dies bietet Einblicke in die Entscheidungsprozesse von LLMs, ist jedoch oft komplex und erfordert eine sorgfältige Interpretation \autocite{abnar2020, vaswani2017}.
-
 
     Eine besonders interessante Methode speziell für Sprachmodelle ist die sogenannte \textit{Chain-of-Thought}-Erklärung (CoT).
     Dabei wird das Modell nicht nur gebeten, eine Antwort zu geben, sondern auch die Schritte dahin zu erklären – ähnlich wie ein Mensch, der seinen Denkprozess laut beschreibt \autocite{wei2022}.
@@ -205,9 +234,11 @@
     \end{quote}
 
     Anstatt nur eine finale Antwort zu liefern, generiert das Modell eine Abfolge von Zwischenschritten, die den logischen Pfad zur Lösung eines Problems aufzeigen.
-    Solche Erklärungen sind besonders hilfreich, wenn man nachvollziehen möchte, wie das Modell \enquote{denkt}.
+    Solche Erklärungen sind besonders hilfreich, wenn man nachvollziehen möchte, wie das Modell \enquote{denkt} \autocite{wei2022}.
+
     Sie helfen auch dabei, bessere Ergebnisse zu erzielen – insbesondere bei komplexen Aufgaben.
-    CoT ist besonders nützlich für LLMs, die auf Textgenerierung spezialisiert sind, da es die inhärenten Fähigkeiten dieser Modelle nutzt, um Transparenz zu schaffen.
+    CoT ist besonders nützlich für LLMs, die auf Textgenerierung spezialisiert sind, da es die inhärenten Fähigkeiten dieser Modelle nutzt, um Transparenz zu schaffen \autocite{wei2022}.
+
     Außerdem setzt CoT voraus, dass das Modell in der Lage ist, kohärente und logische Zwischenschritte zu generieren, was nicht bei allen LLMs gegeben ist.
     Zudem ist rücksicht darauf zu nehmen, dass die Erklärungen stark davon abhängen, wie genau man die Aufgabe stellt.
     Kleine Änderungen in der Fragestellung können zu völlig anderen Erklärungsschritten führen.
@@ -219,19 +250,32 @@
     Attention-Visualisierung ist hilfreich für ein erstes Verständnis von Informationsflüssen, liefert aber keine kausalen Attributionen.
     Chain-of-Thought schließlich stellt eine stark nutzerzentrierte, linguistische Erklärweise dar, die insbesondere im interaktiven Kontext wertvoll ist, jedoch kein vollständiges Verständnis der internen Funktionsweise eines Modells erlaubt.
 
+    \todo[inline]{To-Do: Noch erwähnen was es bishin zur tatsächlichen Anwendung findet und was nicht? Oder wird erst wieder bei Implementierung aufgegriffen?}
+
     % Evtl. To-Do: Evtl schon erwähnen was man wohl nutzen wird.
     % Oder es nochmal visualisieren und evaluieren. Evtl mit Venn Diagramm
 
   \subsection{Kommerzielle Anwendungen: Robo-Advisor}
 
-    %To-Do: Anders einleiten
+    Angesichts der wachsenden Bedeutung digitaler Finanzdienstleistungen in der privaten Vermögensverwaltung und der breiten Zugänglichkeit von automatisierten Anlagelösungen lohnt es sich, einen genaueren Blick auf kommerzielle Robo-Advisor zu werfen.
+    Es gilt zu verstehen, wie diese Plattformen die theoretischen Grundlagen der Portfoliooptimierung für den Massenmarkt operationalisieren und dabei neue Chancen aber auch Risiken für Anleger schaffen sowie welche Defizite sie noch aufweisen.
 
-    Der kommerzielle Robo-Advisor-Markt wird von plattformzentrierten SaaS-Lösungen (Software-as-a-Service) dominiert, darunter bekannte Anbieter wie Betterment und Wealthfront in den USA.
-    Betterment und Wealthfront sind führende Robo-Advisor-Plattformen, die automatisierte Anlageempfehlungen basierend auf den Präferenzen und Risikoprofilen ihrer Nutzer anbieten.
-    Beide Plattformen nutzen eine Mischung aus ETFs (Exchange-Traded Funds) und algorithmischen Strategien, um Portfolios zu erstellen und zu verwalten.
-    Sie implementieren vereinfachte Varianten der modernen Portfolio-Theorie (MPT), indem sie die Komplexität der ursprünglichen Theorie reduzieren, um sie für den Massenmarkt zugänglich zu machen.
+    Der kommerzielle Robo-Advisor-Markt wird maßgeblich von plattformzentrierten Software-as-a-Service (SaaS)-Lösungen geprägt, insbesondere durch Anbieter wie Betterment und Wealthfront in den USA.
+    Diese Plattformen bieten automatisierte Anlageempfehlungen, die auf den individuellen Präferenzen und Risikoprofilen ihrer Nutzer basieren.
+    Dabei nutzen sie eine Kombination aus Exchange-Traded Funds (ETFs) und algorithmischen Strategien, um diversifizierte Portfolios zu erstellen und zu verwalten.
+    Die zugrunde liegenden Modelle orientieren sich an der Modernen Portfolio-Theorie (MPT), wobei die Komplexität der ursprünglichen Theorie reduziert wird, um sie für den Massenmarkt zugänglich zu machen \autocite{investopedia_wealthfront_betterment_2023}.
 
-    Während die MPT eine kontinuierliche Optimierung von Portfolios basierend auf individuellen Risikopräferenzen und Marktbedingungen vorsieht, verwenden Robo-Advisor wie Betterment und Wealthfront standardisierte Risikoprofile und vordefinierte Anlagestrategien.
+    Aus Kostensicht bieten Robo-Advisor-Plattformen grundsätzlich klare Vorteile: Sie erheben in der Regel niedrigere Gebühren als traditionelle Finanzberater (typischerweise zwischen 0,25\% und 0,50\% des verwalteten Vermögens) und ermöglichen es damit auch Anlegern mit kleineren Budgets, professionell gemanagte Portfolios zu nutzen \autocite{investopedia_wealthfront_betterment_2023}.
+    Dies ist vor allem deshalb relevant, weil die Einstiegshürden im klassischen Wealth Management oft sehr hoch sind.
+
+    Allerdings sind diese Kosten nicht zu unterschätzen.
+    Neben der Servicegebühr fallen zusätzliche Kosten für die zugrunde liegenden ETFs an, was die Gesamtkostenquote in die Höhe treiben kann \autocite{investopedia_wealthfront_betterment_2023}.
+    Gerade über die Jahre wirken sich die prozentualen Gebühren stark aus – ein Aspekt, der von Anlegern oft übersehen wird.
+
+    Zudem fehlen häufig individuelle Beratungsgespräche, die bei komplexen oder unklaren Lebenssituationen hilfreich sein können.
+    Robo-Advisor stellen somit einen Mittelweg dar: Sie sind kostengünstiger und zugänglicher als viele traditionelle Angebote, können aber nicht alle Bedürfnisse abdecken.
+
+    Während die MPT eine kontinuierliche Optimierung von Portfolios basierend auf individuellen Risikopräferenzen und Marktbedingungen vorsieht, verwenden Robo-Advisor wie Betterment und Wealthfront standardisierte Risikoprofile und vordefinierte Anlagestrategien \autocite{investopedia_wealthfront_betterment_2023}.
 
     Dies führt zu einer Vereinfachung, die zwar benutzerfreundlich ist, aber die Flexibilität und Präzision der ursprünglichen MPT einschränkt \autocite{hecker2017}.
     Im deutschen Markt finden sich ähnliche Robo-Advisor-Lösungen, die jedoch an die lokalen regulatorischen und marktspezifischen Anforderungen angepasst sind.
@@ -243,6 +287,7 @@
     \item \textbf{Klassenbasierte Risikoprofile}: Robo-Advisor verwenden starre 3-5-Stufen-Schemata, um das Risikoprofil der Nutzer zu kategorisieren.
     Diese Schemata unterteilen Anleger in grobe Kategorien wie „konservativ“, „moderat“ oder „aggressiv“, ohne kontinuierliche Präferenzabbildung zu ermöglichen.
     Dies bedeutet, dass die individuellen Risikotoleranzen und Anlageziele der Nutzer nicht präzise abgebildet werden, was zu suboptimalen Portfolioempfehlungen führen kann \autocite{hecker2017}.
+
     \item \textbf{Monolithische Rebalancing-Logik}: Die Portfolioanpassungen (Rebalancing) erfolgen oft nach intransparenten Schwellwertmodellen.
     Diese Modelle lösen Anpassungen aus, wenn bestimmte vordefinierte Schwellenwerte (z. B. Abweichungen von der Zielallokation) überschritten werden.
     Die genauen Kriterien und Algorithmen hinter diesen Schwellwerten sind jedoch für die Nutzer nicht einsehbar, was die Transparenz und Nachvollziehbarkeit der Entscheidungen einschränkt \autocite{hecker2017}.
@@ -255,7 +300,7 @@
     Diese systemischen Defizite zeigen, dass kommerzielle Robo-Advisor trotz ihrer Benutzerfreundlichkeit und Zugänglichkeit erhebliche Einschränkungen aufweisen, insbesondere in Bezug auf Transparenz, Individualisierung und Flexibilität.
 
 
-\section{Erklärbare KI in der Finanzdomäne}
+\section{Erklärbare KI in der Finanzdomäne} %%%%%%%%%%%%%% <- bis hierhin überarbeitet
 
   Moderne Portfoliomodelle basieren auf zunehmend komplexen KI- und Machine-Learning-Ansätzen, deren Entscheidungswege für menschliche Anwender häufig undurchsichtig sind.
   In der stark regulierten Finanzbranche führt dies zu einem Spannungsfeld: Einerseits versprechen fortgeschrittene Modelle bessere Prognosen (z.\,B. für Kreditbewertungen oder Marktbewegungen), andererseits verlangen Aufsichtsbehörden und Nutzer nach hoher Nachvollziehbarkeit.
