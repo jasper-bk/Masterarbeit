@@ -1,5 +1,5 @@
 
-\chapter{Methodik}
+\chapter{Vorgehen und Technologieauswahl}
 
   \todo[inline]{To-Do: Evtl. Kapitel umbenenne. Fraglich wie gut der Titel zum Inhalt passt. Evtl bessere Alternative: Methodik und verwendete Technologien?}
 
@@ -26,7 +26,8 @@
         \caption{Ablauf des Design Science Research (DSR)-Ansatz}
         \small{
         % (Basierend auf
-        (Quelle: \url{https://commons.wikimedia.org/wiki/File:DSR_methodology.png})}
+        (Quelle: \url{https://commons.wikimedia.org/wiki/File:DSR_methodology.png})
+        }
         \label{fig:dsr}
     \end{figure}
 
@@ -73,8 +74,8 @@
 \section{Technologieauswahl}
 
     Die Entwicklung eines transparenten und dialogfähigen Assistenzsystems für die Portfolio-Optimierung erfordert eine präzise Auswahl geeigneter Technologien in allen relevanten Bereichen.
-    Dieser Abschnitt stellt daher die betrachteten Optionen vor und bewertet sie anhand einer Entscheidungsmatrix, die verschiedene Kriterien berücksichtigt.
-    \todo[inline]{To-Do: Kriterien müssen vernünftig augestellt werden}
+    Dieser Abschnitt stellt daher die betrachteten Optionen vor und bewertet sie anhand einer Entscheidungsmatrix, die die für die jeweiligen Kriterien der verschiedenen Bereiche berücksichtigt.
+    \todo[inline]{To-Do: Kriterien müssen vernünftig begründet werden zu Beginn der jeweiligen Bereiche}
 
     Konkret werden Technologien für die folgenden fünf Kernbereiche beleuchtet: die Programmlogik (Programmiersprache und Frameworks), die Anbindung der künstlichen Intelligenz, die Integration quantitativer Finanzdaten, die Anbindung qualitativer Finanzdaten sowie die Gestaltung des Frontends.
     Dabei wird nicht nur der jeweils technisch beste Ansatz identifiziert, sondern auch diskutiert, wo Kompromisse erforderlich sind, um eine optimale Balance zwischen Innovationskraft, Komplexität und langfristiger Praxistauglichkeit zu erzielen.
@@ -195,6 +196,8 @@
 
     \subsubsection{Auswertung}
 
+      \todo[inline]{To-Do}
+
       \global\def\VGewichtAPI              {3}
       \global\def\VGewichtPerformance      {4}
       \global\def\VGewichtKosten           {2}
@@ -278,12 +281,80 @@
       Darüber hinaus bietet \texttt{yfinance} Zugriff auf umfassende Metadaten, wie Unternehmensinformationen, Analystenbewertungen und Bilanzzahlen, welche weitere Analysemöglichkeiten eröffnen.
       Die Nutzung von \texttt{yfinance} stellt somit eine zentrale Komponente zur datenbasierten Entscheidungsunterstützung in unserem Assistenzsystem dar.
 
+      \global\def\VyfinanceDaten{4}
+      \global\def\VyfinanceStabilität{4}
+      \global\def\VyfinanceUsability{5}
+      \global\def\VyfinanceLizenz{5}
+      \global\def\VyfinanceImplement{4}
+      \global\def\VyfinanceErweiterung{4}
+      \global\def\VyfinanceDokumentation{3}
 
     \subsubsection{Finnhub}
 
       \todo[inline]{To-Do}
 
+      \global\def\VfinnhubDaten{3}
+      \global\def\VfinnhubStabilität{4}
+      \global\def\VfinnhubUsability{3}
+      \global\def\VfinnhubLizenz{5}
+      \global\def\VfinnhubImplement{3}
+      \global\def\VfinnhubErweiterung{3}
+      \global\def\VfinnhubDokumentation{3}
+
+    \subsubsection{Alpha Vantage}
+
+      \todo[inline]{To-Do}
+
+      \global\def\ValphaVantageDaten{4}
+      \global\def\ValphaVantageStabilität{3}
+      \global\def\ValphaVantageUsability{4}
+      \global\def\ValphaVantageLizenz{2}
+      \global\def\ValphaVantageImplement{3}
+      \global\def\ValphaVantageErweiterung{3}
+      \global\def\ValphaVantageDokumentation{4}
+
     \subsubsection{Auswertung}
+
+      \todo[inline]{To-Do}
+
+      \global\def\VGewichtDatenquellen{3}
+      \global\def\VGewichtStabilität{4}
+      \global\def\VGewichtUsability{2}
+      \global\def\VGewichtLizenz{3}
+      \global\def\VGewichtImplementierung{4}
+      \global\def\VGewichtErweiterung{2}
+      \global\def\VGewichtDokumentation{2}
+
+      \begin{table}[H]
+        \centering
+        \begin{spreadtab}
+          [
+          \STsavecell\VyfinanceScore{c9}
+          \STsavecell\VfinnhubScore{d9}
+          \STsavecell\ValphaVantageScore{e9}
+          \STsavecell\VyahooqueryScore{f9}
+          \STsavecell\VintrinioScore{g9}
+          ]{{tabular}{ |c|c||c|c|c|c|c| }}
+          \hline
+          @ Kriterium                  & @ Gewichtung            & @ yfinance           & @ FinnHub & @ Alpha Vantage API  \\
+          \hline
+          @ Abdeckung von Datenquellen & \VGewichtDatenquellen   & \VyfinanceDaten      & \VfinnhubDaten & \ValphaVantageDaten       \\
+          @ API-Stabilität             & \VGewichtStabilität     & \VyfinanceStabilität & \VfinnhubStabilität & \ValphaVantageStabilität  \\
+          @ Benutzerfreundlichkeit     & \VGewichtUsability      & \VyfinanceUsability  & \VfinnhubUsability  & \ValphaVantageUsability   \\
+          @ Lizenzmodell/Kosten        & \VGewichtLizenz         & \VyfinanceLizenz     & \VfinnhubLizenz    & \ValphaVantageLizenz       \\
+          @ Implementierungsaufwand    & \VGewichtImplementierung & \VyfinanceImplement  & \VfinnhubImplement & \ValphaVantageImplement   \\
+          @ Erweiterbarkeit            & \VGewichtErweiterung    & \VyfinanceErweiterung & \VfinnhubErweiterung & \ValphaVantageErweiterung  \\
+          @ Dokumentation              & \VGewichtDokumentation  & \VyfinanceDokumentation & \VfinnhubDokumentation & \ValphaVantageDokumentation  \\
+          \hline\hline
+          @ Gesamtpunktzahl & sum(b2:[0,-1]) &
+          sumprod(b2:[-1,-1];c2:[0,-1]) &
+          sumprod(b2:[-2,-1];d2:[0,-1]) &
+          sumprod(b2:[-3,-1];e2:[0,-1])  \\
+          \hline
+        \end{spreadtab}
+        \caption{Nutzwertanalyse für die Auswahl zur Anbindung quantitativer Finanzdaten}
+        \label{tab:matrix_quantfinanz}
+      \end{table}
 
   \subsection{Auswahl zur Anbindung qualitativer Finanzdaten}
 
@@ -298,7 +369,7 @@
 
       \todo[inline]{To-Do}
 
-    \subsubsection{API ...}
+    \subsubsection{REST via News-API}
 
       \todo[inline]{To-Do}
 
@@ -320,17 +391,80 @@
 
       \todo[inline]{To-Do}
 
+      \global\def\VFlaskFlexibilität{4}
+      \global\def\VFlaskEinarbeitung{4}
+      \global\def\VFlaskAnpassbarkeit{4}
+      \global\def\VFlaskCommunity{4}
+      \global\def\VFlaskPerformance{3}
+      \global\def\VFlaskImplementierung{4}
+      \global\def\VFlaskWartung{3}
+
     \subsubsection{Webbasiert mit Django}
 
       \todo[inline]{To-Do}
+
+      \global\def\VDjangoFlexibilität{3}
+      \global\def\VDjangoEinarbeitung{3}
+      \global\def\VDjangoAnpassbarkeit{5}
+      \global\def\VDjangoCommunity{5}
+      \global\def\VDjangoPerformance{4}
+      \global\def\VDjangoImplementierung{3}
+      \global\def\VDjangoWartung{3}
 
     \subsubsection{Desktop-Anwendung mit Tkinter}
 
       \todo[inline]{To-Do}
 
+      \global\def\VTkinterFlexibilität{2}
+      \global\def\VTkinterEinarbeitung{4}
+      \global\def\VTkinterAnpassbarkeit{3}
+      \global\def\VTkinterCommunity{3}
+      \global\def\VTkinterPerformance{2}
+      \global\def\VTkinterImplementierung{3}
+      \global\def\VTkinterWartung{2}
+
     \subsubsection{Auswertung}
 
       \todo[inline]{To-Do}
+
+      \global\def\VGewichtFlexibilität{3}
+      \global\def\VGewichtEinarbeitung{3}
+      \global\def\VGewichtAnpassbarkeit{4}
+      \global\def\VGewichtCommunity{2}
+      \global\def\VGewichtPerformance{3}
+      \global\def\VGewichtImplementierung{3}
+      \global\def\VGewichtWartung{2}
+
+
+      \begin{table}[H]
+        \centering
+        \begin{spreadtab}
+          [
+          \STsavecell\VFlaskScore{c8}
+          \STsavecell\VDjangoScore{d8}
+          \STsavecell\VTkinterScore{e8}
+          ]{{tabular}{ |c|c||c|c|c| }}
+          \hline
+          @ Kriterium                 & @ Gewichtung            & @ Flask (Web)      & @ Django (Web)    & @ Tkinter (Desktop) \\
+          \hline
+          @ Flexibilität              & \VGewichtFlexibilität   & \VFlaskFlexibilität & \VDjangoFlexibilität & \VTkinterFlexibilität \\
+          @ Einarbeitungsaufwand      & \VGewichtEinarbeitung   & \VFlaskEinarbeitung & \VDjangoEinarbeitung & \VTkinterEinarbeitung \\
+          @ Anpassbarkeit             & \VGewichtAnpassbarkeit  & \VFlaskAnpassbarkeit & \VDjangoAnpassbarkeit & \VTkinterAnpassbarkeit \\
+          @ Community/Ökosystem       & \VGewichtCommunity      & \VFlaskCommunity    & \VDjangoCommunity    & \VTkinterCommunity    \\
+          @ Performance/Skalierbarkeit & \VGewichtPerformance    & \VFlaskPerformance  & \VDjangoPerformance  & \VTkinterPerformance  \\
+          @ Implementierungsaufwand   & \VGewichtImplementierung & \VFlaskImplementierung & \VDjangoImplementierung & \VTkinterImplementierung \\
+          @ Wartung & \VGewichtWartung & \VFlaskWartung & \VDjangoWartung & \VTkinterWartung \\
+          \hline\hline
+          @ Gesamtpunktzahl & sum(b2:[0,-1]) &
+          sumprod(b2:[-1,-1];c2:[0,-1]) &
+          sumprod(b2:[-2,-1];d2:[0,-1]) &
+          sumprod(b2:[-3,-1];e2:[0,-1]) \\
+          \hline
+        \end{spreadtab}
+        \caption{Nutzwertanalyse für die Auswahl zur Frontend-Gestaltung}
+        \label{tab:matrix_frontend}
+      \end{table}
+
 
 
 \section{Zusammenfassung}
