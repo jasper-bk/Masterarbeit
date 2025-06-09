@@ -1,9 +1,7 @@
 
 \chapter{Methodik}
 
-  %%%%%%%%%%%%%%%%%%%%
-  % Achtung! Entwurf %
-  %%%%%%%%%%%%%%%%%%%%
+  \todo[inline]{To-Do: Evtl. Kapitel umbenenne. Fraglich wie gut der Titel zum Inhalt passt. Evtl bessere Alternative: Methodik und verwendete Technologien?}
 
   Um die identifizierten Forschungslücken – insbesondere das Erklärungsdefizit und die mangelnde Nutzerzentrierung bestehender Systeme – systematisch zu adressieren, kombiniert diese Arbeit den \textit{Design Science Research (DSR)}-Ansatz \autocite{hevner2004} mit modernen Konzepten der Softwarearchitektur.
   Der Fokus liegt dabei auf drei Kernaspekten: der iterativen Prototypenentwicklung zur schrittweisen Verfeinerung der Anforderungen, der Implementierung einer modularen Systemarchitektur für maximale Anpassbarkeit, und der Integration quantitativer wie qualitativer Evaluationsmethoden.
@@ -16,131 +14,328 @@
 
     Der Design Science Research-Ansatz (DSR) verfolgt als forschungsleitendes Paradigma primär das Ziel, durch die Entwicklung neuartiger Artefakte praxisrelevante Probleme zu lösen.
     Im Unterschied zur verhaltenswissenschaftlichen Forschung, die auf Erklärungs- oder Prognosetheorien abzielt, steht bei DSR die Konstruktion nützlicher IT-Artefakte im Vordergrund, die die Grenzen menschlicher und organisatorischer Fähigkeiten erweitern können \autocite{hevner2004}.
-    Hevner et al. betonen, dass im Design-Science-Paradigma Wissen über einen Problemraum gerade durch das Bauen und Anwenden des Artefakts gewonnen wird \autocite{hevner2004}.
+
+    Im Design-Science-Paradigma wird Wissen über einen Problemraum gerade durch das Bauen und Anwenden des Artefakts gewonnen \autocite{hevner2004}.
     Ein DSR-Vorgehen ist somit ein prinzipieller Problemlösungsprozess, in dem \enquote{zweckgerichtete Artefakte} für spezifische Problem-domänen entwickelt werden müssen, um darin einen praktischen Nutzen zu stiften.
     Dabei sind Innovation und eine gründliche Evaluation des Artefakts zentrale Anforderungen \autocite{hevner2004}.
 
-    Dieser Ansatz eignet sich besonders für die vorliegende Arbeit, da hier ein modularer Prototyp eines Finanzinformationssystems entwickelt wird, um identifizierte Forschungslücken im Bereich Robo-Advisors und MPT-gestützter Portfoliooptimierung zu schließen.
+    In der nachfolgenden Abbildung Abbildung~\ref{fig:dsr} wird der Ablauf anschaulich zusammenfasst.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{assets/pictures/extern/DSR_methodology.png}
+        \caption{Ablauf des Design Science Research (DSR)-Ansatz}
+        \small{
+        % (Basierend auf
+        (Quelle: \url{https://commons.wikimedia.org/wiki/File:DSR_methodology.png})}
+        \label{fig:dsr}
+    \end{figure}
+
+    \todo[inline]{To-Do: Evtl die Grafik noch auf Deutsch übersetzen.}
+
+    Dieser Ansatz eignet sich besonders für die vorliegende Arbeit, da hier ein KI-gestütztes Assistenzsystems zur quantitativen Portfoliooptimierung entwickelt wird, um identifizierte Forschungslücken im diesem Bereich zu schließen.
     Konkret wird zunächst eine Problemidentifikation durchgeführt, in der bestehende Systeme (Robo-Advisor, MPT-Tools) und die aus Kapitel 2 abgeleiteten Anforderungen analysiert werden.
+
     Anschließend folgt die Design- und Entwicklungsphase, in der ein artefaktspezifischer Prototyp unter iterativem Vorgehen erstellt wird.
     Dabei steuern Rückkopplungen mit Finanzexperten die sukzessive Verfeinerung des Moduls, was dem in der DSR-Literatur beschriebenen suchenden Entwicklungsprozess entspricht.
+
     Die abschließende Evaluationsphase validiert das Artefakt anhand definierter Nutzermetriken (Kapitel 5) und sichert so die praktische Relevanz und Wirksamkeit der Lösung.
     Insofern entspricht die methodische Vorgehensweise dem typischen DSR-Zyklus, bei dem Problemfindung, Konstruktion und Untersuchung des Artefakts eng verzahnt sind.
+    \todo[inline]{To-Do: href zu Kapiteln hinzufügen}
 
     Theoretisch wird das Design-Science-Vorgehen häufig als ein Zusammenspiel mehrerer Zyklen beschrieben.
-    Hevner (2007) unterscheidet beispielsweise einen Relevanz-Zyklus, der Anforderungen aus dem Anwendungsumfeld in die Forschung einspeist, einen Rigor-Zyklus, der bewährte Theorien und Methoden einbindet, sowie einen mittleren Design-Zyklus, der die eigentliche Konstruktion und Evaluierung des Artefakts umfasst \autocite{hevner2007}.
-    Der Relevanz-Zyklus stellt sicher, dass reale Problemstellungen berücksichtigt werden, der Rigor-Zyklus verankert das Vorgehen in der bestehenden Forschungsliteratur, und der zentrale Design-Zyklus widmet sich der konkreten Umsetzung und Prüfung der Lösung \autocite{hevner2007}.
+    Hevner (2007) unterscheidet beispielsweise einen Relevanz-Zyklus, der Anforderungen aus dem Anwendungsumfeld in die Forschung einspeist, einen Rigor- oder auch Forschungs-Zyklus, der bewährte Theorien und Methoden einbindet, sowie einen mittleren Design-Zyklus, der die eigentliche Konstruktion und Evaluierung des Artefakts umfasst \autocite{hevner2007}.
+
+    Der Relevanz-Zyklus stellt sicher, dass reale Problemstellungen berücksichtigt werden, der Rigor-Zyklus verankert das Vorgehen in der bestehenden Forschungsliteratur und der zentrale Design-Zyklus widmet sich der konkreten Umsetzung und Prüfung der Lösung \autocite{hevner2007}.
     Diese Struktur verdeutlicht, dass DSR sowohl theoriegeleitet als auch anwendungsorientiert ist.
 
     Die in dieser Arbeit angewandten Phasen lassen sich an klassischen DSR-Modellen ablesen.
     Entsprechend den Vorschlägen von Peffers et al. werden die DSR-Aktivitäten typischerweise in die Schritte Problemidentifikation und -motivation, Zielformulierung, Konstruktion/Entwicklung, Demonstration (Nachweis der Nützlichkeit), Evaluation und Kommunikation unterteilt \autocite{peffers2007}.
+
     In der vorliegenden Arbeit wird der Schritt der Problemidentifikation durch die Analyse relevanter Finanzsysteme und identifizierter Forschungslücken umgesetzt.
     In der Konstruktionsphase entsteht der modulare Prototyp, der durch wiederholte Feedbackschleifen mit Experten ständig verfeinert wird.
+    \todo[inline]{To-Do: Einbindung von Experten fehlt oder man nennt was anderes}
+
     Schließlich werden im Demonstrations- und Evaluationsschritt die definierten Metriken (Kapitel 5) herangezogen, um die Leistungsfähigkeit und den praktischen Nutzen des Artefakts zu überprüfen.
     Somit gehen alle geplanten Arbeitsschritte auf bewährte DSR-Methoden zurück und sind iterativ angelegt.
 
     Wesentliche methodische Prinzipien des DSR sind dabei die enge Verknüpfung von Theorie und Praxis sowie die Fokussierung auf innovative Beiträge (Artefakte) und deren Qualität.
     Hevner et al. fordern, dass Design-Science-Artefakte sowohl neuartig (Guideline 4) als auch zweckgerichtet sein müssen und in ihrem Nutzen gründlich evaluiert werden \autocite{hevner2004}.
+
     Dies entspricht dem Vorgehen, wonach das entwickelte Finanzwerkzeug konkrete Verbesserungen gegenüber bestehenden Lösungen bieten soll und systematisch anhand festgelegter Kriterien bewertet wird.
     Der gesamte Forschungsprozess ist iterativ gestaltet: Erkenntnisse aus jeder Entwicklungs- und Testphase fließen in die Weiterentwicklung des Artefakts ein, was den konstruktiv-forschenden Charakter von DSR unterstreicht.
     Durch diese methodische Verankerung im DSR-Ansatz wird sichergestellt, dass die Arbeit nicht nur ein funktionierendes System erstellt, sondern auch wissenschaftlich relevante Erkenntnisse über den Lösungsprozess und das Design generiert \autocite{march1995}\autocite{hevner2004}.
 
 
-\section{Modellauswahl und Modularität}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % Achtung! Ab hier gilt es vieles zu überarbeiten! %
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  \subsection{Entscheidungsmatrix für LLMs}
+\section{Technologieauswahl}
 
-    Die Architektur folgt einem \textbf{modularen Ansatz}, der den Austausch von Modellen ohne Systemüberarbeitung ermöglicht.
+    Die Entwicklung eines transparenten und dialogfähigen Assistenzsystems für die Portfolio-Optimierung erfordert eine präzise Auswahl geeigneter Technologien in allen relevanten Bereichen.
+    Dieser Abschnitt stellt daher die betrachteten Optionen vor und bewertet sie anhand einer Entscheidungsmatrix, die verschiedene Kriterien berücksichtigt.
+    \todo[inline]{To-Do: Kriterien müssen vernünftig augestellt werden}
 
-    Grundlage bildete folgende Bewertung (nur Entwurf):
-    \begin{table}[ht]
-    \centering
-    \caption{LLM-Auswahlkriterien für modulare Integration}
-    \label{tab:llm-vergleich}
-    \begin{tabular}{l|cccc}
-      \textbf{Kriterium} & \textbf{DeepSeek R1} & \textbf{Llama 3} & \textbf{GPT-4o} & \textbf{Mixtral} \\
-      \hline
-      Open-Source & Ja & Ja & Nein & Ja \\
-      API-Schnittstelle & REST & gRPC & REST & REST \\
-      Finetuning-Support & PyTorch & HuggingFace & Nein & ONNX \\
-      Token-Kosten & 0 & 0 & \$0.03/M & 0 \\
-      \hline
-      \textbf{Gesamt} & \textbf{1. Platz} & 2. Platz & 4. Platz & 3. Platz \\
-    \end{tabular}
-    \end{table}
+    Konkret werden Technologien für die folgenden fünf Kernbereiche beleuchtet: die Programmlogik (Programmiersprache und Frameworks), die Anbindung der künstlichen Intelligenz, die Integration quantitativer Finanzdaten, die Anbindung qualitativer Finanzdaten sowie die Gestaltung des Frontends.
+    Dabei wird nicht nur der jeweils technisch beste Ansatz identifiziert, sondern auch diskutiert, wo Kompromisse erforderlich sind, um eine optimale Balance zwischen Innovationskraft, Komplexität und langfristiger Praxistauglichkeit zu erzielen.
 
-  \subsection{Modulare Architektur}
+    \todo[inline]{To-Do: Klären ob subsubsection Okay sind, oder ob man das besser auslässt oder zumindest aus dem Inhaltsverzeichnis streicht}
 
-    Das System implementiert drei Schlüsselkonzepte für Modellflexibilität:
-    \begin{itemize}
-      \item \textbf{Plugin-System}: Modelle werden als Pakete gekapselt (Standard-API-Schnittstelle)
-      \item \textbf{Dynamic Routing}: Load-Balancer verteilt Anfragen basierend auf Modell-SLA (Latenz, Genauigkeit)
-      \item \textbf{Ensemble Learning}: Kombination von Modellausgaben durch gewichtete Konsensalgorithmen \autocite{linardatos2021}
-    \end{itemize}
+  \subsection{Auswahl der Programmiersprache}
 
-    \begin{lstlisting}[language=Python,caption={Modell-Routing im Backend}]
-    def get_ensemble_prediction(query):
-        models = ["deepseek-r1", "mixtral", "llama3"]
-        predictions = Parallel(n_jobs=3)(
-            delayed(model_api.predict)(query, model)
-            for model in models
-        )
-        return weighted_consensus(predictions)
-    \end{lstlisting}
+    Für die technische Umsetzung dieser Arbeit wird direkt und ohne Vergleich Python als Programmiersprache festgelegt.
+    Python hat sich in der wissenschaftlichen und datengetriebenen Softwareentwicklung als De-facto-Standard etabliert und bietet ein nahezu konkurrenzloses Ökosystem an spezialisierten Bibliotheken für numerische Berechnungen (wie \texttt{numpy}, \texttt{pandas}, \texttt{scipy}), Datenvisualisierung (\texttt{matplotlib}, \texttt{seaborn}) sowie Machine Learning und künstliche Intelligenz (\texttt{scikit-learn}, \texttt{transformers}, \texttt{tensorflow}, \texttt{pytorch}).
 
-\section{Technischer Stack}
+    Diese Vielfalt an Tools erlaubt eine vollständige Implementierung sämtlicher Arbeitspakete – von der Datenaggregation und -vorverarbeitung bis hin zur Modellierung und Visualisierung – ohne auf hybride oder gar mehrsprachige Ansätze zurückgreifen zu müssen.
+    Gerade im Bereich Explainable AI (XAI) und Finanzdatenanalyse sind zahlreiche erprobte Python-Bibliotheken verfügbar, die sowohl für den experimentellen Prototypenbau als auch für robuste Anwendungen geeignet sind.
+    Darüber hinaus ist Python aufgrund seiner klaren Syntax und breiten Community-Unterstützung besonders für interaktive Entwicklungsumgebungen wie Jupyter-Lab prädestiniert, was iterative Evaluationsschritte erleichtert.
+    Insofern erübrigt sich eine vergleichende Analyse anderer Programmiersprachen: Python deckt sämtliche funktionalen und methodischen Anforderungen ab und bietet darüber hinaus eine zukunftssichere Basis für Erweiterungen und Anpassungen.
 
-  \subsection{Backend (Flask)}
+  \subsection{Auswahl zur Anbindung der künstlichen Intelligenz}
 
-    \begin{itemize}
-      \item \textbf{Modularität}: Flask-Blueprints für unabhängige Module (Datenpipeline, KI-Service, API)
-      \item \textbf{API-Anbindung}: Möglichkeit größere und schnellere Online-Modelle (wie OpenAI oder Anbieter zu nutzen)
-      \item \textbf{LLM-Orchestrierung}: Ollama-Integration für lokales Modellmanagement \autocite{wei2022}
-      \item \textbf{Sicherheit}: JWT-Authentifizierung mit granularer Zugriffskontrolle
-    \end{itemize}
+    Für die Implementierung der generativen KI-Komponente des Assistenzsystems wird zunächst ein Überblick über potenzielle KI-Provider erstellt.
+    Neben den marktführenden Providern OpenAI, Ollama und Claude werden dabei auch Alternativen wie Mistral, Cohere sowie Hugging Face Inference API in die Betrachtung einbezogen, um ein möglichst breites Spektrum an funktionalen Möglichkeiten und Preismodellen zu berücksichtigen.
+    \todo[inline]{To-Do: Auch noch Begründung liefern warum ausgerechnet die X Tools und nicht andere}
 
-  \subsection{Multi-Modell-Frontend}
+    Neben den Modellen selbst werden auch deren Schnittstellen (z.,B. REST, gRPC, WebSocket) sowie Aspekte wie Datensouveränität, Anpassbarkeit und langfristige Verfügbarkeit in den Vergleich einbezogen.
+    Nach der Vorstellung dieser Anbieter erfolgt eine systematische Bewertung mittels Entscheidungsmatrix, auf deren Grundlage die Auswahl oder ein möglicher Kompromiss für die finale Integration in das Assistenzsystem getroffen wird.
 
-    \begin{itemize}
-      \item \textbf{Modellauswahl}: Nutzer können pro Anfrage Basismodell auswählen
-      \item \textbf{Vergleichsmodus}: Side-by-Side-Darstellung verschiedener Modellantworten
-      \item \textbf{Confidence Scoring}: Visualisierung von Unsicherheiten zwischen Modellen
-    \end{itemize}
+    \subsubsection{Ollama}
 
-\section{Datenpipeline}
+      % To-Do für diesen ganzen Abschnitt: gute Quellen suchen
+      \todo[inline]{To-Do: Gilt es anzupassen zu neuer Struktur. Stammt vorher aus Kapitel 4}
 
-  \subsection{Quellen}
+      Für die lokale Ausführung von Sprachmodelle (LLMs) wird \texttt{Ollama}\footnote{\url{https://ollama.com/}} verwendet.
+      Dieses Open-Source-Framework ermöglicht es, moderne KI-Modelle direkt auf dem eigenen Computer auszuführen, ohne dass eine Verbindung zu externen Cloud-Diensten notwendig ist.
+      Damit lassen sich leistungsfähige Modelle wie z. B. LLaMA, Mistral oder Phi auf handelsüblicher Hardware nutzen, was vor allem im Hinblick auf Datenschutz und Kontrolle über sensible Daten einen großen Vorteil bietet.
 
-    \begin{itemize}
-      \item \textbf{Strukturiert}: Yahoo Finance API (historische Kurse)
-      \item \textbf{Unstrukturiert}: News und andere textuelle Informationen
-    \end{itemize}
+      Ollama zeichnet sich dadurch aus, dass es die Modelle bereits in einer kompakten, sogenannten quantisierten Form bereitstellt.
+      Das bedeutet, dass die Modelle weniger Speicher benötigen und dadurch deutlich schneller geladen und ausgeführt werden können.
+      Gerade im Rahmen dieser Arbeit, bei der regelmäßig umfangreiche Texte analysiert und Entscheidungen abgeleitet werden, ist eine effiziente Ausführung entscheidend.
+      Auch auf Systemen mit begrenztem Arbeitsspeicher lassen sich so moderne Sprachmodelle mit akzeptabler Reaktionszeit nutzen.
 
-  % \subsection{Multi-Modell-Validierung}
+      Ein weiterer Vorteil liegt in der einfachen Integration in bestehende Anwendungen.
+      Ollama stellt eine REST-API zur Verfügung, über die das Modell direkt aus Skripten oder anderen anderen Anwendungen heraus angesteuert werden kann.
+      Im hier entwickelten System, das auf dem Pythonbasiert, lassen sich damit problemlos automatisierte Anfragen an das Sprachmodell stellen.
+      Dies ermöglicht eine durchgängige Verarbeitung, bei der Nutzeranfragen entgegengenommen, analysiert und beantwortet werden – ohne dass dabei Daten an externe Server gesendet werden müssen.
 
-  %   \begin{figure}[ht]
-  %     \centering
-  %     \includegraphics[width=0.9\textwidth]{data_validation_flow.pdf}
-  %     \caption{Cross-Check von Modellaussagen durch unabhängige Datenquellen}
-  %     \label{fig:validation_flow}
-  %   \end{figure}
+      Im Vergleich zu anderen lokalen Lösungen wie GPT4All oder Text Generation WebUI bietet Ollama eine besonders einfache Einrichtung und eine aktive Weiterentwicklung.
+      Inzwischen hat sich \texttt{Ollama} de facto als Standardlösung für die lokale Nutzung großer Sprachmodelle etabliert.
+      Aufgrund seiner einfachen Handhabung, aktiven Weiterentwicklung und der wachsenden Unterstützung durch die Open-Source-Community wird es in zahlreichen Projekten eingesetzt, bei denen Datenschutz und Offline-Verfügbarkeit im Vordergrund stehen.
+      Besonders in Anwendungsfällen, bei denen keine Daten an externe Anbieter übertragen werden dürfen oder eine stabile Internetverbindung nicht garantiert ist, stellt Ollama eine praxistaugliche und zuverlässige Grundlage dar.
 
-\section{Evaluationskriterien}
+      Es ist nicht notwendig, sich mit komplexen Hardware-Konfigurationen auseinanderzusetzen oder tief in die Modellarchitektur einzugreifen.
+      Stattdessen lassen sich Modelle über einfache Kommandos starten und austauschen.
+      Dies erhöht die Flexibilität bei der Entwicklung und erlaubt es, verschiedene Sprachmodelle zu vergleichen und zu evaluieren.
 
-  \begin{table}[ht]
-  \centering
-  \caption{Modulspezifische Evaluationsmetriken}
-  \begin{tabular}{lll}
-    \textbf{Modul} & \textbf{KPI} & \textbf{Zielwert} \\
-    \hline
-    Modell-Interoperabilität & API-Latenz & tbd \\
-    Multi-Modell-Konsens & Fleiss' Kappa & tbd \\
-    Erklärbarkeit & SHAP-Wert-Konsistenz & tbd \\
-    Skalierbarkeit & Requests/Min (50\% Load) & tbd \\
-  \end{tabular}
-  \end{table}
+      Die Entscheidung für Ollama fiel somit vor allem aus Gründen der Datensicherheit, der einfachen Handhabung und der guten Integration in das bestehende Softwaresystem.
+      Gerade bei Anwendungen im Finanzbereich, in denen mit vertraulichen Daten gearbeitet wird, ist es besonders wichtig, die volle Kontrolle über die Datenverarbeitung zu behalten.
+      Durch die lokale Ausführung der Modelle mit Ollama kann dieser Anspruch in technischer Hinsicht zuverlässig erfüllt werden, ohne auf moderne Sprachverarbeitung verzichten zu müssen \autocite{frantar2022gptq}.
+
+      \global\def\VOllamaAPI               {3}
+      \global\def\VOllamaPerformance       {4}
+      \global\def\VOllamaKosten            {4}
+      \global\def\VOllamaAnpassung         {3}
+      \global\def\VOllamaDatenschutz       {4}
+      \global\def\VOllamaSupport           {3}
+      \global\def\VOllamaDokumentation     {4}
+
+    \subsubsection{OpenAI}
+
+      % To-Do für diesen ganzen Abschnitt: gute Quellen suchen
+      \todo[inline]{To-Do: Gilt es anzupassen zu neuer Struktur. Stammt vorher aus Kapitel 4}
+
+      Für besonders rechenintensive Evaluationsfunktionen sowie als Fallback-Lösung bei unzureichender oder fehlerhafter lokaler Modellantwort wird ergänzend die \texttt{OpenAI API}\footnote{\url{https://platform.openai.com}} eingebunden.
+      Im Fokus steht dabei die Nutzung der GPT-4-Modelle, die sich in zahlreichen Studien durch eine besonders hohe Konsistenz, Sprachqualität und logische Kohärenz auszeichnen \autocite{openai2023gpt4}.
+      Diese Modelle ermöglichen insbesondere bei komplexen Aufgabenstellungen im Bereich der Portfolioanalyse eine zuverlässige Verarbeitung und Bewertung, was sie zu einer sinnvollen Ergänzung lokaler LLMs wie jenen unter \texttt{Ollama} macht.
+
+      Ein entscheidender Vorteil der API-basierten Lösung liegt in der verbesserten Reproduzierbarkeit der Ergebnisse: Da der Modellzustand und die Inferenzumgebung vollständig durch den Anbieter kontrolliert werden, sind Output-Unterschiede über Zeit hinweg tendenziell geringer als bei lokal betriebenen Modellen.
+      Auch die systematische Skalierung bei Lastspitzen ist durch die Cloud-Infrastruktur einfacher umsetzbar.
+      Dies ist insbesondere in Phasen hoher Evaluationsanforderungen relevant, etwa bei der Analyse großer Portfolios oder der gleichzeitigen Verarbeitung mehrerer Nutzeranfragen.
+
+      Gleichzeitig ist jedoch auch eine kritische Abwägung erforderlich.
+      Die Nutzung der OpenAI API macht das System in Teilen abhängig von einem externen Anbieter, was sowohl Fragen der technischen Verfügbarkeit als auch der wirtschaftlichen Planbarkeit aufwirft.
+      Preisanpassungen oder API-Änderungen können sich direkt auf das Systemverhalten und die Kostenstruktur auswirken.
+      Darüber hinaus müssen bei der Übertragung sensibler Finanzdaten in eine Cloud-Infrastruktur strenge Datenschutzaspekte berücksichtigt werden.
+      Zwar bietet OpenAI mittlerweile explizite Möglichkeiten zur Deaktivierung der Speicherung von Nutzerdaten, dennoch verbleibt ein gewisses Restrisiko hinsichtlich Datensouveränität und regulatorischer Anforderungen.
+
+      \global\def\VOpenAIAPI               {4}
+      \global\def\VOpenAIPerformance       {5}
+      \global\def\VOpenAIKosten            {3}
+      \global\def\VOpenAIAnpassung         {4}
+      \global\def\VOpenAIDatenschutz       {3}
+      \global\def\VOpenAISupport           {4}
+      \global\def\VOpenAIDokumentation     {5}
+
+    \subsubsection{Claude}
+
+      \todo[inline]{To-Do}
+
+      % Claude
+      \global\def\VClaudeAPI               {4}
+      \global\def\VClaudePerformance       {4}
+      \global\def\VClaudeKosten            {3}
+      \global\def\VClaudeAnpassung         {3}
+      \global\def\VClaudeDatenschutz       {5}
+      \global\def\VClaudeSupport           {4}
+      \global\def\VClaudeDokumentation     {3}
+
+    \subsubsection{Mistral}
+
+      \todo[inline]{To-Do}
+
+      % Alternative (Platzhalter)
+      \global\def\VAlternativeAPI          {3}
+      \global\def\VAlternativePerformance  {3}
+      \global\def\VAlternativeKosten       {4}
+      \global\def\VAlternativeAnpassung    {3}
+      \global\def\VAlternativeDatenschutz  {3}
+      \global\def\VAlternativeSupport      {3}
+      \global\def\VAlternativeDokumentation{2}
+
+    \subsubsection{Auswertung}
+
+      \global\def\VGewichtAPI              {3}
+      \global\def\VGewichtPerformance      {4}
+      \global\def\VGewichtKosten           {2}
+      \global\def\VGewichtAnpassung        {3}
+      \global\def\VGewichtDatenschutz      {4}
+      \global\def\VGewichtSupport          {3}
+      \global\def\VGewichtDokumentation    {2}
+
+      \begin{table}[H]
+          \centering
+          \begin{spreadtab}
+              [
+              \STsavecell\VOpenAIPunktzahl{c9}
+              \STsavecell\VOllamaPunktzahl{d9}
+              \STsavecell\VClaudePunktzahl{e9}
+              \STsavecell\VAlternativePunktzahl{f9}
+              ]{{tabular}{ |c|c||c|c|c|c| }}
+              \hline
+              @ Kriterium               & @ Gewichtung              & @ OpenAI               & @ Ollama               & @ Claude               & @ Alternative         \\
+              \hline
+              @ API-Stabilität          & \VGewichtAPI              & \VOpenAIAPI            & \VOllamaAPI            & \VClaudeAPI            & \VAlternativeAPI      \\
+              @ Performance             & \VGewichtPerformance      & \VOpenAIPerformance    & \VOllamaPerformance    & \VClaudePerformance    & \VAlternativePerformance\\
+              @ Kosten                  & \VGewichtKosten           & \VOpenAIKosten         & \VOllamaKosten         & \VClaudeKosten         & \VAlternativeKosten   \\
+              @ Anpassungsfähigkeit     & \VGewichtAnpassung        & \VOpenAIAnpassung      & \VOllamaAnpassung      & \VClaudeAnpassung      & \VAlternativeAnpassung\\
+              @ Datenschutz/Compliance  & \VGewichtDatenschutz      & \VOpenAIDatenschutz    & \VOllamaDatenschutz    & \VClaudeDatenschutz    & \VAlternativeDatenschutz\\
+              @ Community/Support       & \VGewichtSupport          & \VOpenAISupport        & \VOllamaSupport        & \VClaudeSupport        & \VAlternativeSupport  \\
+              @ Dokumentation           & \VGewichtDokumentation    & \VOpenAIDokumentation  & \VOllamaDokumentation  & \VClaudeDokumentation  & \VAlternativeDokumentation\\
+              \hline \hline
+              @ Gesamtpunktzahl         & sum(b2:[0,-1]) &
+              sumprod(b2:[-1,-1];c2:[0,-1]) &
+              sumprod(b2:[-2,-1];d2:[0,-1]) &
+              sumprod(b2:[-3,-1];e2:[0,-1]) &
+              sumprod(b2:[-4,-1];f2:[0,-1]) \\
+              \hline
+          \end{spreadtab}
+          \caption{Nutzwertanalyse für die Auswahl zur Anbindung der künstlichen Intelligenz}
+          \label{tab:matrix_ki_provider}
+      \end{table}
+
+
+      \todo[inline]{To-Do: Entscheidungsmatrix und Kompromiss schreiben}
+
+      Das System implementiert drei Schlüsselkonzepte für Modellflexibilität:
+      \begin{itemize}
+        \item \textbf{Plugin-System}: Modelle werden als Pakete gekapselt (Standard-API-Schnittstelle)
+        \item \textbf{Dynamic Routing}: Load-Balancer verteilt Anfragen basierend auf Modell-SLA (Latenz, Genauigkeit)
+        \item \textbf{Ensemble Learning}: Kombination von Modellausgaben durch gewichtete Konsensalgorithmen \autocite{linardatos2021}
+      \end{itemize}
+
+      \begin{lstlisting}[language=Python,caption={Modell-Routing im Backend}]
+      def get_ensemble_prediction(query):
+          models = ["deepseek-r1", "mixtral", "llama3"]
+          predictions = Parallel(n_jobs=3)(
+              delayed(model_api.predict)(query, model)
+              for model in models
+          )
+          return weighted_consensus(predictions)
+      \end{lstlisting}
+
+  \subsection{Auswahl zur Anbindung quantitativer Finanzdaten}
+
+    Ein zentraler Bestandteil des Assistenzsystems ist die Anbindung von quantitativen Finanzdaten, um eine valide Grundlage für die Handlungsempfehlungen und deren Begründung zu schaffen.
+    Hierzu werden verschiedene Datenquellen und Schnittstellen betrachtet, die unter anderem Kursdaten, fundamentale Kennzahlen, historische Korrelationen und ökonomische Indikatoren bereitstellen können.
+
+    Neben bekannten APIs wie yfinance werden auch Alternativen wie Alpha Vantage, Twelve Data oder EOD Historical Data in die Auswahl aufgenommen.
+    Bei der Evaluation werden Faktoren wie Datenabdeckung, Aktualität, API-Zugänglichkeit und Kostenstruktur berücksichtigt.
+    Abschließend erfolgt eine Bewertung mittels Entscheidungsmatrix, um die bestmögliche Anbindung für die quantitativen Datenbedürfnisse des Systems zu ermitteln.
+
+    \subsubsection{yfinance}
+
+      % To-Do für diesen ganzen Abschnitt: gute Quellen suchen
+      \todo[inline]{To-Do: Gilt es anzupassen zu neuer Struktur. Stammt vorher aus Kapitel 4}
+
+      Für die automatisierte Abfrage von historischen und aktuellen Kursdaten kommt die Python-Bibliothek \texttt{yfinance} zum Einsatz.
+      Diese greift auf Daten von Yahoo Finance zu und bietet eine einfache API zur Analyse von Aktienkursverläufen, Dividenden und Handelsvolumen.
+      Die Verwendung historischer Kursdaten erlaubt Rückschlüsse auf Volatilität, Trends und technische Indikatoren – zentrale Größen für die Entscheidungsbegründung im Assistenzsystem \autocite{fama1970efficient}.
+
+      Die Installation von \texttt{yfinance} erfolgt unkompliziert über den Python-Paketmanager.
+      Die Bibliothek ermöglicht es, Daten für einzelne oder mehrere Ticker gleichzeitig abzurufen und bietet Funktionen zur Anpassung des Zeitraums, der Intervallgröße (z.\,B. täglich, wöchentlich) sowie zur Einbindung von Dividenden- und Splitevents.
+
+      Darüber hinaus bietet \texttt{yfinance} Zugriff auf umfassende Metadaten, wie Unternehmensinformationen, Analystenbewertungen und Bilanzzahlen, welche weitere Analysemöglichkeiten eröffnen.
+      Die Nutzung von \texttt{yfinance} stellt somit eine zentrale Komponente zur datenbasierten Entscheidungsunterstützung in unserem Assistenzsystem dar.
+
+
+    \subsubsection{Finnhub}
+
+      \todo[inline]{To-Do}
+
+    \subsubsection{Auswertung}
+
+  \subsection{Auswahl zur Anbindung qualitativer Finanzdaten}
+
+    Neben den quantitativen Kennzahlen ist der Zugriff auf qualitative Finanzdaten wie Nachrichten, Unternehmensmeldungen, Marktkommentare und Stimmungsanalysen entscheidend, um die Empfehlungen des Assistenzsystems mit kontextbasierten Informationen anzureichern.
+    Dabei werden unterschiedliche Technologien und Dienste zur automatisierten Erfassung und Integration dieser Daten in Betracht gezogen.
+
+    Neben Web-Scraping-Ansätzen mit Tools wie BeautifulSoup oder Scrapy stehen auch APIs wie die News-API, AlphaSense oder RavenPack zur Verfügung.
+    Darüber hinaus bieten manche Anbieter (z.B. Bloomberg oder Reuters) kostenpflichtige Schnittstellen für eine umfassendere Nachrichtenabdeckung.
+    Alle Technologien werden hinsichtlich Zugriffsmöglichkeiten, Integrationsaufwand, Kosten und rechtlicher Rahmenbedingungen verglichen, bevor im Anschluss eine finale Auswahl anhand einer Entscheidungsmatrix getroffen wird.
+
+    \subsubsection{Scraping von Yahoo Finance}
+
+      \todo[inline]{To-Do}
+
+    \subsubsection{API ...}
+
+      \todo[inline]{To-Do}
+
+    \subsubsection{Auswertung}
+
+      \todo[inline]{To-Do}
+
+  \subsection{Auswahl zur Gestaltung des Frontends}
+
+    Die Gestaltung des Frontends ist von zentraler Bedeutung, da sie maßgeblich über die Benutzerfreundlichkeit und die Akzeptanz des Assistenzsystems entscheidet.
+    In dieser Arbeit werden insbesondere drei Technologien verglichen: webbasierte Frontends mit Flask, webbasierte Frontends mit Django und Desktop-Anwendungen mit Tkinter. Diese Auswahl orientiert sich an der Zielsetzung, ein möglichst breites Spektrum an Benutzeroberflächen zu evaluieren – von leichtgewichtigen Webanwendungen (Flask) über robuste Webframeworks mit integrierter Benutzerverwaltung und erweiterter Funktionalität (Django) bis hin zu lokalen, leichtgewichtigen Desktop-Anwendungen (Tkinter), die keine Internetverbindung erfordern.
+
+    Andere Technologien wie React oder Electron werden bewusst ausgeklammert, da sie einen stärkeren Fokus auf reine Webtechnologien legen oder zusätzliche Komplexität in der Architektur verursachen, die über das Ziel dieser Arbeit hinausgeht.
+    Die finale Entscheidung wird im Anschluss anhand einer Entscheidungsmatrix getroffen.
+
+    \todo[inline]{To-Do}
+
+    \subsubsection{Webbasiert mit Flask}
+
+      \todo[inline]{To-Do}
+
+    \subsubsection{Webbasiert mit Django}
+
+      \todo[inline]{To-Do}
+
+    \subsubsection{Desktop-Anwendung mit Tkinter}
+
+      \todo[inline]{To-Do}
+
+    \subsubsection{Auswertung}
+
+      \todo[inline]{To-Do}
+
 
 \section{Zusammenfassung}
+
+  \todo[inline]{To-Do: komplett neu schreiben}
 
   Die gewählte Methodik ermöglicht durch ihren modularen Aufbau:
   \begin{itemize}
@@ -150,8 +345,8 @@
   \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\hspace{1.5cm}
-\hrule
+%\hspace{1.5cm}
+%\hrule
 
 
 \begin{comment}

@@ -13,12 +13,14 @@
     Der gesamte Software-Stack gliedert sich in mehrere logische Komponenten, die sowohl funktional als auch technologisch getrennt implementiert wurden.
     Die Architektur gewährleistet eine klare Trennung von Zuständigkeiten sowie eine einfache Erweiterbarkeit einzelner Module (siehe Abbildung~\ref{fig:systemarchitektur}).
 
-    \begin{figure}[h]
+    \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{assets/pictures/vereinfachte_systemarchitektur.png}
         \caption{Modulare Systemarchitektur des KI-Assistenzsystems in vereinfachter Form}
+        \small{(Quelle: eigene Darstellung)}
         \label{fig:systemarchitektur}
     \end{figure}
+    \todo[inline]{To-Do: Grafik überarbeiten}
 
     \subsection{Projektstruktur}
 
@@ -27,33 +29,35 @@
 
       % Bash: find . -type f -not -path "./.git/*" -not -path "./portfolio-env/*" -not -path "./env/*" -not -path "./__pycache__/*" -not -path "./.pytest_cache/*" -not -path "./.mypy_cache/*" -not -path "./node_modules/*" -not -path "./.vscode/*" -not -path "./.idea/*" -not -name "*.pyc" -not -name "*.pyo" -not -name "*.pyd" -not -name ".DS_Store" -not -name "Thumbs.db" -not -name "*.log" | sort
       \begin{figure}[H]
-          \dirtree{%
-              .1 portfolio-ai-assistant/.
-              .2 evaluation/.
-              .3 evaluation.ipynb.
-              .2 test\_data/.
-              .3 sample\_portfolio.json.
-              .3 sample\_portfolio\_2\_default.json.
-              .2 webpage/.
-              .3 static/.
-              .4 api.js.
-              .4 model.js.
-              .4 style.css.
-              .4 ui\_actions.js.
-              .3 templates/.
-              .4 index.html.
-              .2 .env.
-              .2 .gitignore.
-              .2 llm.py.
-              .2 main.py.
-              .2 portfolio\_ai.py.
-              .2 requirements.txt.
-              .2 scraping.py.
-              .2 server.py.
-              .2 To-Dos.txt.
-          }
-          \caption{Projektstruktur des Portfolio AI Assistant Systems}
-          \label{fig:project_structure}
+        \centering
+        \dirtree{%
+            .1 portfolio-ai-assistant/.
+            .2 evaluation/.
+            .3 evaluation.ipynb.
+            .2 test\_data/.
+            .3 sample\_portfolio.json.
+            .3 sample\_portfolio\_2\_default.json.
+            .2 webpage/.
+            .3 static/.
+            .4 api.js.
+            .4 model.js.
+            .4 style.css.
+            .4 ui\_actions.js.
+            .3 templates/.
+            .4 index.html.
+            .2 .env.
+            .2 .gitignore.
+            .2 llm.py.
+            .2 main.py.
+            .2 portfolio\_ai.py.
+            .2 requirements.txt.
+            .2 scraping.py.
+            .2 server.py.
+            .2 To-Dos.txt.
+        }
+        \caption{Projektstruktur des Portfolio AI Assistant Systems}
+        \small{(Quelle: eigene Darstellung)}
+        \label{fig:project_structure}
       \end{figure}
 
       Das Hauptverzeichnis enthält die zentralen Python-Module, welche die Kernfunktionalitäten des Systems implementieren.
@@ -134,43 +138,13 @@
         Frontend und Backend sind nun durch eine stabile API vollständig entkoppelt (\textit{Commit: 211026820610ea62ab2e4eeb7d9ab3a2188ab6d5}).
     \end{enumerate}
 
-  \section{Eingesetzte Frameworks und Technologien}
+  \section{Integration von Frameworks und Technologien}
+
+    \todo[inline]{To-Do: Aufgreifen der Ergebnisse aus Kapitel 3 mit der Auswahl der jeweiligen Tools und daran anpassen}
 
     Die Umsetzung des Systems basiert auf einer Kombination moderner Web- und KI-Frameworks.
     Dabei kamen sowohl klassische Webtechnologien als auch spezialisierte Werkzeuge zur Modellintegration und Datenverarbeitung zum Einsatz.
     Im Folgenden werden zentrale Technologien mit besonderem Einfluss auf Architektur und Funktionsweise näher erläutert.
-
-    \subsection{Ollama}
-
-      % To-Do für diesen ganzen Abschnitt: gute Quellen suchen
-
-      Für die lokale Ausführung von Sprachmodelle (LLMs) wird \texttt{Ollama}\footnote{\url{https://ollama.com/}} verwendet.
-      Dieses Open-Source-Framework ermöglicht es, moderne KI-Modelle direkt auf dem eigenen Computer auszuführen, ohne dass eine Verbindung zu externen Cloud-Diensten notwendig ist.
-      Damit lassen sich leistungsfähige Modelle wie z. B. LLaMA, Mistral oder Phi auf handelsüblicher Hardware nutzen, was vor allem im Hinblick auf Datenschutz und Kontrolle über sensible Daten einen großen Vorteil bietet.
-
-      Ollama zeichnet sich dadurch aus, dass es die Modelle bereits in einer kompakten, sogenannten quantisierten Form bereitstellt.
-      Das bedeutet, dass die Modelle weniger Speicher benötigen und dadurch deutlich schneller geladen und ausgeführt werden können.
-      Gerade im Rahmen dieser Arbeit, bei der regelmäßig umfangreiche Texte analysiert und Entscheidungen abgeleitet werden, ist eine effiziente Ausführung entscheidend.
-      Auch auf Systemen mit begrenztem Arbeitsspeicher lassen sich so moderne Sprachmodelle mit akzeptabler Reaktionszeit nutzen.
-
-      Ein weiterer Vorteil liegt in der einfachen Integration in bestehende Anwendungen.
-      Ollama stellt eine REST-API zur Verfügung, über die das Modell direkt aus Skripten oder anderen anderen Anwendungen heraus angesteuert werden kann.
-      Im hier entwickelten System, das auf dem Pythonbasiert, lassen sich damit problemlos automatisierte Anfragen an das Sprachmodell stellen.
-      Dies ermöglicht eine durchgängige Verarbeitung, bei der Nutzeranfragen entgegengenommen, analysiert und beantwortet werden – ohne dass dabei Daten an externe Server gesendet werden müssen.
-
-      Im Vergleich zu anderen lokalen Lösungen wie GPT4All oder Text Generation WebUI bietet Ollama eine besonders einfache Einrichtung und eine aktive Weiterentwicklung.
-      Inzwischen hat sich \texttt{Ollama} de facto als Standardlösung für die lokale Nutzung großer Sprachmodelle etabliert.
-      Aufgrund seiner einfachen Handhabung, aktiven Weiterentwicklung und der wachsenden Unterstützung durch die Open-Source-Community wird es in zahlreichen Projekten eingesetzt, bei denen Datenschutz und Offline-Verfügbarkeit im Vordergrund stehen.
-      Besonders in Anwendungsfällen, bei denen keine Daten an externe Anbieter übertragen werden dürfen oder eine stabile Internetverbindung nicht garantiert ist, stellt Ollama eine praxistaugliche und zuverlässige Grundlage dar.
-
-      Es ist nicht notwendig, sich mit komplexen Hardware-Konfigurationen auseinanderzusetzen oder tief in die Modellarchitektur einzugreifen.
-      Stattdessen lassen sich Modelle über einfache Kommandos starten und austauschen.
-      Dies erhöht die Flexibilität bei der Entwicklung und erlaubt es, verschiedene Sprachmodelle zu vergleichen und zu evaluieren.
-
-      Die Entscheidung für Ollama fiel somit vor allem aus Gründen der Datensicherheit, der einfachen Handhabung und der guten Integration in das bestehende Softwaresystem.
-      Gerade bei Anwendungen im Finanzbereich, in denen mit vertraulichen Daten gearbeitet wird, ist es besonders wichtig, die volle Kontrolle über die Datenverarbeitung zu behalten.
-      Durch die lokale Ausführung der Modelle mit Ollama kann dieser Anspruch in technischer Hinsicht zuverlässig erfüllt werden, ohne auf moderne Sprachverarbeitung verzichten zu müssen \autocite{frantar2022gptq}.
-
 
     \subsection{LangChain}
 
@@ -191,25 +165,6 @@
       Im Vergleich zu Alternativen wie \texttt{Haystack} oder \texttt{LlamaIndex} (ehemals GPT Index) bietet LangChain eine größere Bandbreite an Agentenfunktionen und Werkzeuge zur Ablaufsteuerung.
       Während Haystack vor allem für Suchanwendungen mit Vektordatenbanken optimiert ist und LlamaIndex sich auf das Retrieval-augmented Generation (RAG) fokussiert, ist LangChain universeller einsetzbar.
       Die Entscheidung zugunsten von LangChain fiel letztlich aufgrund seiner hohen Community-Aktivität, umfassenden Dokumentation und der bereits verfügbaren Werkzeuge für strukturierte Ausgabeformate sowie XAI-nahe Anwendungen.
-
-
-    \subsection{OpenAI API}
-
-      % To-Do für diesen ganzen Abschnitt: gute Quellen suchen
-
-      Für besonders rechenintensive Evaluationsfunktionen sowie als Fallback-Lösung bei unzureichender oder fehlerhafter lokaler Modellantwort wird ergänzend die \texttt{OpenAI API}\footnote{\url{https://platform.openai.com}} eingebunden.
-      Im Fokus steht dabei die Nutzung der GPT-4-Modelle, die sich in zahlreichen Studien durch eine besonders hohe Konsistenz, Sprachqualität und logische Kohärenz auszeichnen \autocite{openai2023gpt4}.
-      Diese Modelle ermöglichen insbesondere bei komplexen Aufgabenstellungen im Bereich der Portfolioanalyse eine zuverlässige Verarbeitung und Bewertung, was sie zu einer sinnvollen Ergänzung lokaler LLMs wie jenen unter \texttt{Ollama} macht.
-
-      Ein entscheidender Vorteil der API-basierten Lösung liegt in der verbesserten Reproduzierbarkeit der Ergebnisse: Da der Modellzustand und die Inferenzumgebung vollständig durch den Anbieter kontrolliert werden, sind Output-Unterschiede über Zeit hinweg tendenziell geringer als bei lokal betriebenen Modellen.
-      Auch die systematische Skalierung bei Lastspitzen ist durch die Cloud-Infrastruktur einfacher umsetzbar.
-      Dies ist insbesondere in Phasen hoher Evaluationsanforderungen relevant, etwa bei der Analyse großer Portfolios oder der gleichzeitigen Verarbeitung mehrerer Nutzeranfragen.
-
-      Gleichzeitig ist jedoch auch eine kritische Abwägung erforderlich.
-      Die Nutzung der OpenAI API macht das System in Teilen abhängig von einem externen Anbieter, was sowohl Fragen der technischen Verfügbarkeit als auch der wirtschaftlichen Planbarkeit aufwirft.
-      Preisanpassungen oder API-Änderungen können sich direkt auf das Systemverhalten und die Kostenstruktur auswirken.
-      Darüber hinaus müssen bei der Übertragung sensibler Finanzdaten in eine Cloud-Infrastruktur strenge Datenschutzaspekte berücksichtigt werden.
-      Zwar bietet OpenAI mittlerweile explizite Möglichkeiten zur Deaktivierung der Speicherung von Nutzerdaten, dennoch verbleibt ein gewisses Restrisiko hinsichtlich Datensouveränität und regulatorischer Anforderungen.
 
     \subsection{yfinance}
 
@@ -412,6 +367,7 @@
             \centering
             \includegraphics[width=1\textwidth]{assets/pictures/uml_PortfolioAIAssistant.png}
             \caption{UML-Klassendiagramm des Portfolio AI Assistant Systems}
+            \small{(Quelle: eigene Darstellung)}
             \label{fig:uml_diagram}
         \end{figure}
 
@@ -432,6 +388,7 @@
             \centering
             \includegraphics[width=1\textwidth]{assets/pictures/flowchart_evaluate_portfolio.png}
             \caption{Ablaufdiagramm des Portfolio-Evaluierungsprozesses}
+            \small{(Quelle: eigene Darstellung)}
             \label{fig:flowchart}
         \end{figure}
 
@@ -491,6 +448,7 @@
           \centering
           \includegraphics[width=0.85\textwidth]{assets/pictures/draft_portfolio_overview_frontend.png}
           \caption{Früher UI-Entwurf für die Portfolio-Übersicht zur Visualisierung}
+          \small{(Quelle: eigene Darstellung)}
           \label{fig:frontend_draft}
       \end{figure}
 
@@ -505,6 +463,7 @@
           \centering
           \includegraphics[width=0.85\textwidth]{assets/pictures/draft_portfolio_aktie_frontend.png}
           \caption{Früher UI-Entwurf für die Einzelwertpapiersicht zur Visualisierung}
+          \small{(Quelle: eigene Darstellung)}
           \label{fig:frontend_draft_aktie}
       \end{figure}
 
@@ -518,6 +477,7 @@
           \centering
           \includegraphics[width=0.9\textwidth]{assets/pictures/screenshot_frontend_vor_evaluierung.png}
           \caption{Live-System: Interaktive Web-Oberfläche zur Portfolioanalyse und Handlungsunterstützung}
+          \small{(Quelle: eigener Screenshot)}
           \label{fig:frontend_live}
       \end{figure}
 
