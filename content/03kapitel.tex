@@ -1,7 +1,7 @@
 
 \chapter{Vorgehen und Technologieauswahl}
 
-  \todo[inline]{To-Do: Evtl. Kapitel umbenenne. Fraglich wie gut der Titel zum Inhalt passt. Evtl bessere Alternative: Methodik und verwendete Technologien?}
+  \todo[inline]{To-Do: Evtl. Kapitel umbenennen. Fraglich wie gut der Titel zum Inhalt passt. Evtl bessere Alternative: Methodik und verwendete Technologien?}
 
   Um die identifizierten Forschungslücken – insbesondere das Erklärungsdefizit und die mangelnde Nutzerzentrierung bestehender Systeme – systematisch zu adressieren, kombiniert diese Arbeit den \textit{Design Science Research (DSR)}-Ansatz \autocite{hevner2004} mit modernen Konzepten der Softwarearchitektur.
   Der Fokus liegt dabei auf drei Kernaspekten: der iterativen Prototypenentwicklung zur schrittweisen Verfeinerung der Anforderungen, der Implementierung einer modularen Systemarchitektur für maximale Anpassbarkeit, und der Integration quantitativer wie qualitativer Evaluationsmethoden.
@@ -94,131 +94,240 @@
 
   \subsection{Auswahl zur Anbindung der künstlichen Intelligenz}
 
-    Für die Implementierung der generativen KI-Komponente des Assistenzsystems wird zunächst ein Überblick über potenzielle KI-Provider erstellt.
-    Neben den marktführenden Providern OpenAI, Ollama und Claude werden dabei auch Alternativen wie Mistral, Cohere sowie Hugging Face Inference API in die Betrachtung einbezogen, um ein möglichst breites Spektrum an funktionalen Möglichkeiten und Preismodellen zu berücksichtigen.
-    \todo[inline]{To-Do: Auch noch Begründung liefern warum ausgerechnet die X Tools und nicht andere}
+    Für die Implementierung der generativen KI-Komponente des Assistenzsystems wird zunächst ein umfassender Überblick über relevante KI-Provider erstellt.
+    Neben der quelloffenen Plattform Ollama werden marktführende proprietäre Anbieter wie OpenAI, Claude und Gemini (Google) verglichen. Dadurch wird ein breites Spektrum abgedeckt, das sowohl Open-Source-Lösungen als auch kommerzielle Dienste umfasst.
+    Diese Vielfalt ermöglicht es, die unterschiedlichen funktionalen Möglichkeiten, Preismodelle sowie Vor- und Nachteile hinsichtlich technischer und organisatorischer Aspekte systematisch zu bewerten.
 
-    Neben den Modellen selbst werden auch deren Schnittstellen (z.,B. REST, gRPC, WebSocket) sowie Aspekte wie Datensouveränität, Anpassbarkeit und langfristige Verfügbarkeit in den Vergleich einbezogen.
-    Nach der Vorstellung dieser Anbieter erfolgt eine systematische Bewertung mittels Entscheidungsmatrix, auf deren Grundlage die Auswahl oder ein möglicher Kompromiss für die finale Integration in das Assistenzsystem getroffen wird.
+    Die Bewertung der Anbieter erfolgt anhand von sieben sorgfältig gewählten Kriterien: \textit{API}, \textit{Performance}, \textit{Kosten}, \textit{Anpassung}, \textit{Datenschutz}, \textit{Support} und \textit{Dokumentation}.
+    Diese Kriterien wurden ausgewählt, weil sie einen ganzheitlichen und praxisnahen Vergleich der Lösungen ermöglichen.
+
+    Die Hintergründe für die Auswahl der Kriterien ist nachfolgends ausgestellt:
+    \begin{itemize}
+      \item \textbf{API:} Eine leistungsfähige und gut dokumentierte Programmierschnittstelle ist entscheidend für die Integration in das bestehende System und die Flexibilität künftiger Erweiterungen.
+      \item \textbf{Performance:} Hierbei wird die tatsächliche Leistungsfähigkeit der generativen KI-Modelle betrachtet, da diese maßgeblich für die Qualität der Analyse- und Beratungsergebnisse verantwortlich ist.
+      \item \textbf{Kosten:} Die Betriebskosten spielen insbesondere für die nachhaltige Nutzung und Skalierbarkeit eine zentrale Rolle. Aufgrund ihrer direkten Auswirkung auf das Geschäftsmodell und Budget wird diesem Kriterium ein besonders hohes Gewicht beigemessen.
+      \item \textbf{Anpassung:} Die Möglichkeit, die Modelle individuell anzupassen oder zu erweitern (z.\,B. Finetuning), ist entscheidend, um die generativen Fähigkeiten optimal auf die Anforderungen im Finanzkontext zuzuschneiden.
+      \item \textbf{Datenschutz:} Da im Finanzkontext sensible Daten verarbeitet werden, ist der Schutz dieser Informationen von höchster Bedeutung. Anbieter, die keine datenschutzkonforme Nutzung gewährleisten, scheiden faktisch aus.
+      \item \textbf{Support:} Um eine reibungslose Implementierung und den dauerhaften Betrieb sicherzustellen, ist professioneller Support besonders für Unternehmen und langfristige Projekte unverzichtbar.
+      \item \textbf{Dokumentation:} Eine ausführliche und aktuelle Dokumentation erleichtert die Einarbeitung, fördert die effiziente Nutzung und verringert den Aufwand für spätere Anpassungen und Wartung.
+    \end{itemize}
+
+    Insbesondere \textit{Kosten}, \textit{Datenschutz} und \textit{Anpassung} werden dabei als die wichtigsten Kriterien angesehen.
+    Diese drei Faktoren entscheiden nicht nur über die kurzfristige technische Machbarkeit, sondern vor allem über die langfristige Akzeptanz, Wirtschaftlichkeit und rechtliche Sicherheit des Assistenzsystems.
+    Ohne ein angemessenes Kostenmodell kann keine nachhaltige Nutzung gewährleistet werden; ohne Datenschutzkonformität keine regulatorische Zulässigkeit; und ohne Anpassungsfähigkeit keine strategische Flexibilität.
+
+    Daher erfolgt folgende Gewichtung der Kriterien für die Entscheidungsmatrix:
+
+    \global\def\VGewichtKosten           {25}
+    \global\def\VGewichtPerformance      {20}
+    \global\def\VGewichtDatenschutz      {20}
+    \global\def\VGewichtAPI              {10}
+    \global\def\VGewichtAnpassung        {10}
+    \global\def\VGewichtSupport          {10}
+    \global\def\VGewichtDokumentation    {5}
+
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+          \pie[
+            text=legend,
+            radius=3,
+            color={blue!50!cyan, red!50!orange, green!60!lime, yellow!85!orange, magenta!60, cyan!70!blue, gray!60}
+          ]{
+            \VGewichtKosten /Kosten (\VGewichtKosten \%),
+            \VGewichtPerformance/Performance (\VGewichtPerformance\%),
+            \VGewichtDatenschutz/Datenschutz (\VGewichtDatenschutz\%),
+            \VGewichtAnpassung /Anpassung (\VGewichtAnpassung \%),
+            \VGewichtAPI/API (\VGewichtAPI\%),
+            \VGewichtSupport/Support (\VGewichtSupport\%),
+            \VGewichtDokumentation/Dokumentation (\VGewichtDokumentation\%)
+          }
+        \end{tikzpicture}
+        \caption{Gewichtung der Kriterien zur Anbindung der künstlichen Intelligenz}
+        \small{(Quelle: eigene Darstellung)}
+        \label{fig:gewichtung_ai}
+    \end{figure}
+
+    Diese ausgewogene und nachvollziehbare Gewichtung bildet die Basis für die folgende Entscheidungsmatrix.
+    In dieser werden alle betrachteten Anbieter anhand des Punktesystems (0–3 Punkte pro Kriterium) bewertet, um eine fundierte Auswahl oder einen geeigneten Kompromiss für die finale Integration zu ermöglichen.
+
+    \begin{itemize}
+        \item \textbf{API:} 0 Punkte bei nicht vorhandener oder kaum nutzbarer API, 1 Punkt bei schlechter Dokumentation oder schwieriger Integration, 2 Punkte bei gut dokumentierter und stabiler API mit kleineren Einschränkungen, 3 Punkte bei sehr gut dokumentierter, einfach zu integrierender und vielseitig nutzbarer API.
+
+        \item \textbf{Performance:} 0 Punkte bei sehr langsamen oder fehleranfälligen Antworten, 1 Punkt bei langsamer Performance oder gelegentlichen Ausfällen, 2 Punkte bei guter, meist stabiler Performance, 3 Punkte bei sehr schneller und zuverlässiger Performance, auch unter hoher Last.
+
+        \item \textbf{Kosten:} 0 Punkte bei sehr hohen, nicht tragbaren Kosten, 1 Punkt bei hohen Kosten ohne Flexibilität, 2 Punkte bei moderaten Kosten und transparenter Preisgestaltung, 3 Punkte bei sehr günstigen oder kostenlosen Angeboten für kleinere Projekte.
+
+        \item \textbf{Anpassung:} 0 Punkte, wenn keine Anpassung möglich ist, 1 Punkt, wenn nur sehr eingeschränkte Anpassungen machbar sind, 2 Punkte bei guter Anpassbarkeit (z.B. Feintuning, Parameter), 3 Punkte bei sehr flexiblen Möglichkeiten zur Anpassung an spezifische Anwendungsfälle.
+
+        \item \textbf{Datenschutz:} 0 Punkte, wenn Datenschutz nicht existent oder unzureichend ist, 1 Punkt bei schwachen oder unklaren Datenschutzmaßnahmen, 2 Punkte bei akzeptablen, aber nicht optimalen Datenschutzstandards, 3 Punkte bei sehr hohen Datenschutzanforderungen, wie z.B. DSGVO-Konformität oder europäische Serverstandorte.
+
+        \item \textbf{Support:} 0 Punkte, wenn kein Support existiert, 1 Punkt bei sehr schlechtem oder kaum verfügbarem Support, 2 Punkte bei gut erreichbarem, aber nicht optimalem Support, 3 Punkte bei sehr gutem Support über mehrere Kanäle und mit schneller Reaktionszeit.
+
+        \item \textbf{Dokumentation:} 0 Punkte bei fehlender oder veralteter Dokumentation, 1 Punkt bei unvollständiger oder schwer verständlicher Dokumentation, 2 Punkte bei guter, aber nicht perfekt strukturierter Dokumentation, 3 Punkte bei sehr umfangreicher, aktueller und gut verständlicher Dokumentation.
+    \end{itemize}
+
+    Dieses transparente und nachvollziehbare Bewertungsschema bildet die Grundlage für die anschließende Entscheidungsmatrix und stellt sicher, dass die Auswahl der Anbieter objektiv und fundiert erfolgt.
 
     \subsubsection{Ollama}
 
-      % To-Do für diesen ganzen Abschnitt: gute Quellen suchen
-      \todo[inline]{To-Do: Gilt es anzupassen zu neuer Struktur. Stammt vorher aus Kapitel 4}
+      Ollama ist eine Open-Source-Software, die es ermöglicht, Large Language Models lokal auszuführen.
+      Sie zeichnet sich durch einen besonderen Fokus auf Datenschutz und lokale Rechenleistung aus, was insbesondere für sensible Anwendungsfälle im Finanzbereich interessant ist.
 
-      Für die lokale Ausführung von Sprachmodelle (LLMs) wird \texttt{Ollama}\footnote{\url{https://ollama.com/}} verwendet.
-      Dieses Open-Source-Framework ermöglicht es, moderne KI-Modelle direkt auf dem eigenen Computer auszuführen, ohne dass eine Verbindung zu externen Cloud-Diensten notwendig ist.
-      Damit lassen sich leistungsfähige Modelle wie z. B. LLaMA, Mistral oder Phi auf handelsüblicher Hardware nutzen, was vor allem im Hinblick auf Datenschutz und Kontrolle über sensible Daten einen großen Vorteil bietet.
+      Im Folgenden wird Ollama anhand des definierten Bewertungsschemas detailliert bewertet:
+      \begin{itemize}
+          \item \textbf{API (2 Punkte):} Ollama bietet eine REST-basierte API, die gut dokumentiert ist und eine einfache Integration in bestehende Systeme ermöglicht. Im Vergleich zu proprietären Lösungen wie OpenAI oder Claude fehlen jedoch einige erweiterte Features, was eine perfekte Bewertung verhindert.
 
-      Ollama zeichnet sich dadurch aus, dass es die Modelle bereits in einer kompakten, sogenannten quantisierten Form bereitstellt.
-      Das bedeutet, dass die Modelle weniger Speicher benötigen und dadurch deutlich schneller geladen und ausgeführt werden können.
-      Gerade im Rahmen dieser Arbeit, bei der regelmäßig umfangreiche Texte analysiert und Entscheidungen abgeleitet werden, ist eine effiziente Ausführung entscheidend.
-      Auch auf Systemen mit begrenztem Arbeitsspeicher lassen sich so moderne Sprachmodelle mit akzeptabler Reaktionszeit nutzen.
+          \item \textbf{Performance (2 Punkte):} Die Performance von Ollama hängt stark von der lokalen Hardware ab. Auf leistungsfähiger Hardware können Anfragen zügig bearbeitet werden. Auf schwächeren Systemen sind jedoch Verzögerungen oder Stabilitätsprobleme möglich. Daher erhält Ollama hier eine solide Bewertung, aber keinen Spitzenwert.
 
-      Ein weiterer Vorteil liegt in der einfachen Integration in bestehende Anwendungen.
-      Ollama stellt eine REST-API zur Verfügung, über die das Modell direkt aus Skripten oder anderen anderen Anwendungen heraus angesteuert werden kann.
-      Im hier entwickelten System, das auf dem Pythonbasiert, lassen sich damit problemlos automatisierte Anfragen an das Sprachmodell stellen.
-      Dies ermöglicht eine durchgängige Verarbeitung, bei der Nutzeranfragen entgegengenommen, analysiert und beantwortet werden – ohne dass dabei Daten an externe Server gesendet werden müssen.
+          \item \textbf{Kosten (3 Punkte):} Da Ollama Open Source ist, fallen keine Lizenzgebühren oder Nutzungsentgelte an. Dies macht es zu einer sehr kostengünstigen Lösung, insbesondere für Forschungs- oder Prototyping-Zwecke.
 
-      Im Vergleich zu anderen lokalen Lösungen wie GPT4All oder Text Generation WebUI bietet Ollama eine besonders einfache Einrichtung und eine aktive Weiterentwicklung.
-      Inzwischen hat sich \texttt{Ollama} de facto als Standardlösung für die lokale Nutzung großer Sprachmodelle etabliert.
-      Aufgrund seiner einfachen Handhabung, aktiven Weiterentwicklung und der wachsenden Unterstützung durch die Open-Source-Community wird es in zahlreichen Projekten eingesetzt, bei denen Datenschutz und Offline-Verfügbarkeit im Vordergrund stehen.
-      Besonders in Anwendungsfällen, bei denen keine Daten an externe Anbieter übertragen werden dürfen oder eine stabile Internetverbindung nicht garantiert ist, stellt Ollama eine praxistaugliche und zuverlässige Grundlage dar.
+          \item \textbf{Anpassung (3 Punkte):} Ollama lässt sich gut anpassen. Die Möglichkeit, eigene Modelle zu hosten oder bestehende Modelle zu ersetzen, erlaubt eine hohe Flexibilität. Darüber hinaus ist die Software quelloffen, sodass tiefgreifende Anpassungen möglich sind.
 
-      Es ist nicht notwendig, sich mit komplexen Hardware-Konfigurationen auseinanderzusetzen oder tief in die Modellarchitektur einzugreifen.
-      Stattdessen lassen sich Modelle über einfache Kommandos starten und austauschen.
-      Dies erhöht die Flexibilität bei der Entwicklung und erlaubt es, verschiedene Sprachmodelle zu vergleichen und zu evaluieren.
+          \item \textbf{Datenschutz (3 Punkte):} Ein wesentlicher Vorteil von Ollama ist, dass sämtliche Daten lokal verarbeitet werden können. Damit ist eine vollständige Kontrolle über die Daten gewährleistet, was höchsten Datenschutzstandards entspricht.
 
-      Die Entscheidung für Ollama fiel somit vor allem aus Gründen der Datensicherheit, der einfachen Handhabung und der guten Integration in das bestehende Softwaresystem.
-      Gerade bei Anwendungen im Finanzbereich, in denen mit vertraulichen Daten gearbeitet wird, ist es besonders wichtig, die volle Kontrolle über die Datenverarbeitung zu behalten.
-      Durch die lokale Ausführung der Modelle mit Ollama kann dieser Anspruch in technischer Hinsicht zuverlässig erfüllt werden, ohne auf moderne Sprachverarbeitung verzichten zu müssen \autocite{frantar2022gptq}.
+          \item \textbf{Support (1 Punkt):} Als Open-Source-Projekt ist der Support in erster Linie community-basiert. Es gibt keine offizielle Supportstruktur oder garantierte Reaktionszeiten. Das schränkt den professionellen Einsatz ein.
 
-      \global\def\VOllamaAPI               {3}
-      \global\def\VOllamaPerformance       {4}
-      \global\def\VOllamaKosten            {4}
+          \item \textbf{Dokumentation (2 Punkte):} Die Dokumentation von Ollama ist gut, jedoch nicht so umfassend wie bei kommerziellen Anbietern. Sie deckt grundlegende Anwendungsfälle und Installationsanleitungen ab, bietet jedoch keine tiefergehenden Beispiele oder Troubleshooting-Guides.
+      \end{itemize}
+
+      Zusammenfassend lässt sich sagen, dass Ollama vor allem durch seine Datenschutzvorteile, hohe Anpassbarkeit und die Tatsache, dass keine laufenden Kosten anfallen, überzeugt.
+      Allerdings muss der schwächere Support berücksichtigt werden, insbesondere in produktiven oder komplexen Szenarien.
+
+      \global\def\VOllamaAPI               {2}
+      \global\def\VOllamaPerformance       {2}
+      \global\def\VOllamaKosten            {3}
       \global\def\VOllamaAnpassung         {3}
-      \global\def\VOllamaDatenschutz       {4}
-      \global\def\VOllamaSupport           {3}
-      \global\def\VOllamaDokumentation     {4}
+      \global\def\VOllamaDatenschutz       {3}
+      \global\def\VOllamaSupport           {1}
+      \global\def\VOllamaDokumentation     {2}
 
     \subsubsection{OpenAI}
 
       % To-Do für diesen ganzen Abschnitt: gute Quellen suchen
-      \todo[inline]{To-Do: Gilt es anzupassen zu neuer Struktur. Stammt vorher aus Kapitel 4}
+      \todo[inline]{To-Do: Mehr auf die aktuellen Modelle Bezug nehmen}
 
-      Für besonders rechenintensive Evaluationsfunktionen sowie als Fallback-Lösung bei unzureichender oder fehlerhafter lokaler Modellantwort wird ergänzend die \texttt{OpenAI API}\footnote{\url{https://platform.openai.com}} eingebunden.
-      Im Fokus steht dabei die Nutzung der GPT-4-Modelle, die sich in zahlreichen Studien durch eine besonders hohe Konsistenz, Sprachqualität und logische Kohärenz auszeichnen \autocite{openai2023gpt4}.
-      Diese Modelle ermöglichen insbesondere bei komplexen Aufgabenstellungen im Bereich der Portfolioanalyse eine zuverlässige Verarbeitung und Bewertung, was sie zu einer sinnvollen Ergänzung lokaler LLMs wie jenen unter \texttt{Ollama} macht.
+      OpenAI bietet mit seinen GPT-Modellen einen der fortschrittlichsten und leistungsfähigsten generativen KI-Dienste am Markt. Die Modelle zeichnen sich durch eine exzellente Sprachqualität und breite Einsatzmöglichkeiten aus. Im Folgenden wird OpenAI anhand des Bewertungsschemas systematisch bewertet:
 
-      Ein entscheidender Vorteil der API-basierten Lösung liegt in der verbesserten Reproduzierbarkeit der Ergebnisse: Da der Modellzustand und die Inferenzumgebung vollständig durch den Anbieter kontrolliert werden, sind Output-Unterschiede über Zeit hinweg tendenziell geringer als bei lokal betriebenen Modellen.
-      Auch die systematische Skalierung bei Lastspitzen ist durch die Cloud-Infrastruktur einfacher umsetzbar.
-      Dies ist insbesondere in Phasen hoher Evaluationsanforderungen relevant, etwa bei der Analyse großer Portfolios oder der gleichzeitigen Verarbeitung mehrerer Nutzeranfragen.
+      \begin{itemize}
+          \item \textbf{API (3 Punkte):} Die API von OpenAI ist hervorragend dokumentiert und bietet zahlreiche Endpunkte und Parameter, die eine flexible Integration und Nutzung ermöglichen. Außerdem existieren zahlreiche Bibliotheken (z.\,B. \texttt{openai-python}) und Beispiele, die den Einstieg erleichtern.
 
-      Gleichzeitig ist jedoch auch eine kritische Abwägung erforderlich.
-      Die Nutzung der OpenAI API macht das System in Teilen abhängig von einem externen Anbieter, was sowohl Fragen der technischen Verfügbarkeit als auch der wirtschaftlichen Planbarkeit aufwirft.
-      Preisanpassungen oder API-Änderungen können sich direkt auf das Systemverhalten und die Kostenstruktur auswirken.
-      Darüber hinaus müssen bei der Übertragung sensibler Finanzdaten in eine Cloud-Infrastruktur strenge Datenschutzaspekte berücksichtigt werden.
-      Zwar bietet OpenAI mittlerweile explizite Möglichkeiten zur Deaktivierung der Speicherung von Nutzerdaten, dennoch verbleibt ein gewisses Restrisiko hinsichtlich Datensouveränität und regulatorischer Anforderungen.
+          \item \textbf{Performance (3 Punkte):} Die Performance der OpenAI-API ist ausgezeichnet. Anfragen werden in der Regel sehr schnell verarbeitet, da OpenAI auf eine leistungsstarke, cloudbasierte Infrastruktur zurückgreift. Auch unter hoher Last bleibt die Antwortzeit stabil.
 
-      \global\def\VOpenAIAPI               {4}
-      \global\def\VOpenAIPerformance       {5}
-      \global\def\VOpenAIKosten            {3}
-      \global\def\VOpenAIAnpassung         {4}
-      \global\def\VOpenAIDatenschutz       {3}
-      \global\def\VOpenAISupport           {4}
-      \global\def\VOpenAIDokumentation     {5}
+          \item \textbf{Kosten (1 Punkt):} Die Nutzung der OpenAI-API ist kostenpflichtig und kann bei hoher Nutzungsintensität schnell teuer werden. Für umfangreiche Analysen oder kontinuierliche Anwendungen sind daher hohe Kosten einzuplanen.
+
+          \item \textbf{Anpassung (1 Punkt):} Bei OpenAI besteht keine Möglichkeit, eigene Modelle zu hosten oder tiefgreifende Anpassungen vorzunehmen. Anpassungen sind nur über Prompt Engineering oder das Fine-Tuning (das nicht für alle Modelle verfügbar ist) möglich, was die Flexibilität stark einschränkt.
+
+          \item \textbf{Datenschutz (1 Punkt):} Die Verarbeitung erfolgt in der Cloud, sodass die Daten an einen externen Dienstleister gesendet werden. Insbesondere im Finanzbereich kann dies datenschutzrechtliche Risiken bergen. Obwohl OpenAI Richtlinien zum Datenschutz befolgt, bleibt eine gewisse Unsicherheit.
+
+          \item \textbf{Support (3 Punkte):} OpenAI bietet einen professionellen Support mit verlässlichen Reaktionszeiten und umfangreicher Hilfestellung, insbesondere für zahlende Kunden. Dies erleichtert die Integration in produktive Anwendungen.
+
+          \item \textbf{Dokumentation (3 Punkte):} Die Dokumentation von OpenAI ist sehr umfangreich und wird kontinuierlich gepflegt. Neben API-Referenzen gibt es praxisnahe Beispiele und Best Practices, die eine schnelle Einarbeitung ermöglichen.
+      \end{itemize}
+
+      Zusammenfassend bietet OpenAI eine exzellente technische Grundlage und umfassenden Support, was insbesondere für produktive Anwendungen von Vorteil ist.
+      Die hohen Kosten und datenschutzrechtlichen Bedenken schränken jedoch die uneingeschränkte Nutzung – gerade im sensiblen Finanzkontext – ein.
+
+
+      \global\def\VOpenAIAPI               {3}
+      \global\def\VOpenAIPerformance       {3}
+      \global\def\VOpenAIKosten            {1}
+      \global\def\VOpenAIAnpassung         {1}
+      \global\def\VOpenAIDatenschutz       {1}
+      \global\def\VOpenAISupport           {3}
+      \global\def\VOpenAIDokumentation     {3}
 
     \subsubsection{Claude}
 
-      \todo[inline]{To-Do}
+      \todo[inline]{To-Do: Mehr auf die aktuellen Modelle Bezug nehmen}
+
+      Claude von Anthropic ist ein auf Sicherheit und dialogorientierte Interaktionen optimiertes Large-Language-Model.
+      Im Vergleich zu anderen Anbietern legt Claude besonderen Wert auf ethische Grundsätze und eine hohe Nutzerzentrierung.
+      Die folgende Bewertung basiert auf dem festgelegten Schema:
+
+      \begin{itemize}
+          \item \textbf{API (2 Punkte):} Claude bietet eine stabile und gut dokumentierte API. Allerdings ist die API noch nicht so umfassend etabliert wie die von OpenAI. Bibliotheken und Integrationen sind vorhanden, aber nicht so zahlreich wie bei OpenAI oder Google.
+
+          \item \textbf{Performance (3 Punkte):} Claude überzeugt durch eine sehr gute Performance, sowohl in der Antwortgeschwindigkeit als auch in der Qualität der generierten Antworten. Besonders für dialogbasierte Anwendungen liefert Claude stabile und zuverlässige Ergebnisse.
+
+          \item \textbf{Kosten (2 Punkte):} Die Preisgestaltung von Anthropic ist transparent, aber ebenfalls kostenpflichtig. Im Vergleich zu OpenAI sind die Kosten etwas geringer, insbesondere für kontinuierliche Nutzung oder größere Datenmengen.
+
+          \item \textbf{Anpassung (1 Punkt):} Wie bei OpenAI ist eine tiefgreifende Modellanpassung (z.\,B. Feintuning) nicht vorgesehen. Anpassungen sind vor allem über Prompts möglich, was die Flexibilität einschränkt.
+
+          \item \textbf{Datenschutz (2 Punkte):} Anthropic legt Wert auf verantwortungsvolle KI-Nutzung und Sicherheit, was im Finanzbereich relevant ist. Dennoch ist auch hier die Verarbeitung cloudbasiert, sodass personenbezogene oder sensible Daten an externe Server gesendet werden.
+
+          \item \textbf{Support (2 Punkte):} Claude bietet einen soliden Support, jedoch mit etwas eingeschränkter Verfügbarkeit im Vergleich zu den großen Anbietern wie OpenAI. Reaktionszeiten sind insgesamt gut, jedoch nicht immer so schnell wie bei OpenAI.
+
+          \item \textbf{Dokumentation (2 Punkte):} Die Dokumentation ist gut strukturiert und verständlich, allerdings (noch) nicht so umfangreich oder detailliert wie bei OpenAI. Für Entwickler mit Grundkenntnissen ist der Einstieg trotzdem einfach.
+      \end{itemize}
+
+
+      Insgesamt zeigt Claude eine sehr gute Performance und punktet insbesondere bei der Qualität der Antworten sowie im Hinblick auf Sicherheit und Ethik.
+      Leichte Abstriche gibt es in der API-Dokumentation und der Anpassungsfähigkeit.
 
       % Claude
-      \global\def\VClaudeAPI               {4}
-      \global\def\VClaudePerformance       {4}
-      \global\def\VClaudeKosten            {3}
-      \global\def\VClaudeAnpassung         {3}
-      \global\def\VClaudeDatenschutz       {5}
-      \global\def\VClaudeSupport           {4}
-      \global\def\VClaudeDokumentation     {3}
+      \global\def\VClaudeAPI               {2}
+      \global\def\VClaudePerformance       {3}
+      \global\def\VClaudeKosten            {2}
+      \global\def\VClaudeAnpassung         {1}
+      \global\def\VClaudeDatenschutz       {2}
+      \global\def\VClaudeSupport           {2}
+      \global\def\VClaudeDokumentation     {2}
 
-    \subsubsection{Mistral}
+    \subsubsection{Gemini}
 
-      \todo[inline]{To-Do}
+      \todo[inline]{To-Do: Mehr auf die aktuellen Modelle Bezug nehmen}
+
+      Gemini – die generative KI-Plattform von Google, eingebettet in Google Cloud – stellt eine leistungsfähige und flexible Option für generative KI-Anwendungen dar.
+      Die Plattform ist vor allem für Unternehmen und professionelle Anwendungen interessant und bietet eine breite Palette an Integrationsmöglichkeiten.
+
+      \begin{itemize}
+          \item \textbf{API (3 Punkte):} Gemini bietet eine ausgereifte und umfangreiche API, die gut dokumentiert und zuverlässig ist. Insbesondere die enge Verzahnung mit der Google-Cloud-Infrastruktur ermöglicht eine nahtlose Integration.
+
+          \item \textbf{Performance (3 Punkte):} Die aktuellen Gemini-Modelle liefern exzellente Ergebnisse. Sie erreichen in Benchmarks ein Niveau, das mit OpenAI- oder Claude-Modellen vergleichbar ist, und sind auch in praxisnahen Anwendungen äußerst leistungsfähig.
+
+          \item \textbf{Kosten (1 Punkt):} Die Nutzung von Gemini ist in der Regel kostenpflichtig und an Google-Cloud-Abonnements gebunden. Gerade bei intensiver Nutzung oder für kleinere Forschungsteams können die Kosten erheblich sein.
+
+          \item \textbf{Anpassung (2 Punkte):} Gemini bietet in Vertex AI gewisse Anpassungsmöglichkeiten, beispielsweise für das Finetuning. Eine vollständige lokale oder individuelle Anpassung bleibt jedoch eingeschränkt.
+
+          \item \textbf{Datenschutz (1 Punkt):} Der Betrieb in der Google-Cloud-Infrastruktur erfordert die Übertragung von Daten an Google. Auch wenn die Sicherheits- und Datenschutzstandards hoch sind, ist dies für sensible Finanzdaten nicht immer akzeptabel.
+
+          \item \textbf{Support (3 Punkte):} Google bietet professionellen Support und umfassende Hilfestellungen über sein Cloud-Ökosystem. Damit steht eine solide Basis für Entwickler- und Unternehmensprojekte bereit.
+
+          \item \textbf{Dokumentation (3 Punkte):} Die Dokumentation ist hervorragend und umfasst Tutorials, Referenzen und Best Practices. Dies erleichtert sowohl die Einarbeitung als auch den Betrieb.
+
+      \end{itemize}
+
+      Zusammenfassend ist Gemini eine hochleistungsfähige und gut integrierbare Lösung für den Einsatz von generativer KI.
+      Der Datenschutz bleibt dabei ein kritischer Punkt – insbesondere für hochsensible Finanzanwendungen.
 
       % Alternative (Platzhalter)
       \global\def\VAlternativeAPI          {3}
       \global\def\VAlternativePerformance  {3}
-      \global\def\VAlternativeKosten       {4}
-      \global\def\VAlternativeAnpassung    {3}
-      \global\def\VAlternativeDatenschutz  {3}
+      \global\def\VAlternativeKosten       {1}
+      \global\def\VAlternativeAnpassung    {2}
+      \global\def\VAlternativeDatenschutz  {1}
       \global\def\VAlternativeSupport      {3}
-      \global\def\VAlternativeDokumentation{2}
+      \global\def\VAlternativeDokumentation{3}
 
     \subsubsection{Auswertung}
 
-      \todo[inline]{To-Do}
-
-      \global\def\VGewichtAPI              {3}
-      \global\def\VGewichtPerformance      {4}
-      \global\def\VGewichtKosten           {2}
-      \global\def\VGewichtAnpassung        {3}
-      \global\def\VGewichtDatenschutz      {4}
-      \global\def\VGewichtSupport          {3}
-      \global\def\VGewichtDokumentation    {2}
+      \todo[inline]{To-Do: Einleiten}
 
       \begin{table}[H]
           \centering
           \begin{spreadtab}
               [
-              \STsavecell\VOpenAIPunktzahl{c9}
-              \STsavecell\VOllamaPunktzahl{d9}
-              \STsavecell\VClaudePunktzahl{e9}
-              \STsavecell\VAlternativePunktzahl{f9}
+              % Das Speichern funktioniert nicht. Beim Referenzieren kommt nur ein Fehler
+              \STsavecell{\VOpenAIPunktzahl}{c9}
+              \STsavecell{\VOllamaPunktzahl}{d9}
+              \STsavecell{\VClaudePunktzahl}{e9}
+              \STsavecell{\VAlternativePunktzahl}{f9}
               ]{{tabular}{ |c|c||c|c|c|c| }}
               \hline
-              @ Kriterium               & @ Gewichtung              & @ OpenAI               & @ Ollama               & @ Claude               & @ Alternative         \\
+              @ Kriterium               & @ Gewichtung              & @ OpenAI               & @ Ollama               & @ Claude               & @ Gemini         \\
               \hline
-              @ API-Stabilität          & \VGewichtAPI              & \VOpenAIAPI            & \VOllamaAPI            & \VClaudeAPI            & \VAlternativeAPI      \\
+              @ API                     & \VGewichtAPI              & \VOpenAIAPI            & \VOllamaAPI            & \VClaudeAPI            & \VAlternativeAPI      \\
               @ Performance             & \VGewichtPerformance      & \VOpenAIPerformance    & \VOllamaPerformance    & \VClaudePerformance    & \VAlternativePerformance\\
               @ Kosten                  & \VGewichtKosten           & \VOpenAIKosten         & \VOllamaKosten         & \VClaudeKosten         & \VAlternativeKosten   \\
               @ Anpassungsfähigkeit     & \VGewichtAnpassung        & \VOpenAIAnpassung      & \VOllamaAnpassung      & \VClaudeAnpassung      & \VAlternativeAnpassung\\
@@ -237,8 +346,9 @@
           \label{tab:matrix_ki_provider}
       \end{table}
 
+      \todo[inline]{To-Do: ggf. Ergebnisse visualisieren}
 
-      \todo[inline]{To-Do: Entscheidungsmatrix und Kompromiss schreiben}
+      \todo[inline]{To-Do: Entscheidungsmatrix auswerten und Kompromiss schreiben}
 
       Das System implementiert drei Schlüsselkonzepte für Modellflexibilität:
       \begin{itemize}
@@ -262,11 +372,114 @@
     Ein zentraler Bestandteil des Assistenzsystems ist die Anbindung von quantitativen Finanzdaten, um eine valide Grundlage für die Handlungsempfehlungen und deren Begründung zu schaffen.
     Hierzu werden verschiedene Datenquellen und Schnittstellen betrachtet, die unter anderem Kursdaten, fundamentale Kennzahlen, historische Korrelationen und ökonomische Indikatoren bereitstellen können.
 
-    Neben bekannten APIs wie yfinance werden auch Alternativen wie Alpha Vantage, Twelve Data oder EOD Historical Data in die Auswahl aufgenommen.
+    Dafür werden die APIs yfinance, Alpha Vantage und Finnhub untersucht.
     Bei der Evaluation werden Faktoren wie Datenabdeckung, Aktualität, API-Zugänglichkeit und Kostenstruktur berücksichtigt.
+    Für die Auswahl eines geeigneten Werkzeugs zur Anbindung quantitativer Finanzdaten wurden sieben Bewertungskriterien definiert, die jeweils eine entscheidende Rolle für den erfolgreichen Einsatz im Rahmen des geplanten Assistenzsystems spielen:
+
+    \begin{itemize}
+      \item \textbf{Datenverfügbarkeit}: Dieses Kriterium bewertet, in welchem Umfang und in welcher Vielfalt die Finanzdaten über die Schnittstelle bereitgestellt werden. Da die Qualität und Abdeckung der Daten wesentlich für die Analyse und die daraus abgeleiteten Empfehlungen ist, hat dieses Kriterium eine hohe Priorität.
+
+      \item \textbf{Stabilität der API}: Hier wird geprüft, wie zuverlässig und konsistent die API in der Praxis funktioniert, also beispielsweise hinsichtlich Ausfallsicherheit und Aktualität der Daten. Eine stabile Anbindung ist entscheidend, um Unterbrechungen im Betrieb des Assistenzsystems zu vermeiden.
+
+      \item \textbf{Benutzerfreundlichkeit}: Dieses Kriterium berücksichtigt die Bedienbarkeit und die Verständlichkeit der Schnittstelle, insbesondere für Entwickler:innen. Eine intuitive API erleichtert die Integration und spart Entwicklungsaufwand.
+
+      \item \textbf{Lizenzierung und rechtliche Aspekte}: Die Lizenzbedingungen (z.\,B. Open Source oder proprietär, Kostenpflichtigkeit) sowie rechtliche Rahmenbedingungen (z.\,B. Datenschutz, Nutzungslizenzen) sind von großer Bedeutung, um spätere Komplikationen zu vermeiden.
+
+      \item \textbf{Implementierungsaufwand}: Dieses Kriterium beurteilt, wie aufwendig und komplex die Einbindung der Schnittstelle in das bestehende System ist. Ein geringer Implementierungsaufwand beschleunigt die Entwicklung und erhöht die Robustheit.
+
+      \item \textbf{Erweiterbarkeit}: Hierbei geht es darum, wie flexibel sich die Schnittstelle in Zukunft an neue Anforderungen oder zusätzliche Funktionalitäten anpassen lässt. Eine gute Erweiterbarkeit gewährleistet die Zukunftsfähigkeit des Systems.
+
+      \item \textbf{Dokumentation und Community-Support}: Eine umfassende, aktuelle Dokumentation und eine aktive Community sind wichtige Faktoren, um Integrationsprobleme schnell zu lösen und sich über Best Practices zu informieren.
+    \end{itemize}
+
+    Die Kriterien werden in Abhängigkeit von ihrer Relevanz für das Projekt unterschiedlich stark gewichtet.
+    Insbesondere \textbf{Datenverfügbarkeit} (30\,\%) und \textbf{Stabilität} (20\,\%) haben den höchsten Stellenwert, da sie direkt den Kernnutzen und die Zuverlässigkeit des Assistenzsystems beeinflussen. \textbf{Lizenzierung} (15\,\%) ist ebenfalls hoch gewichtet, da rechtliche und finanzielle Aspekte für den dauerhaften Betrieb entscheidend sind.
+    \textbf{Implementierungsaufwand} und \textbf{Erweiterbarkeit} (jeweils 10\,\%) sind wichtig für die effiziente Umsetzung und zukünftige Anpassung. \textbf{Usability} (10\,\%) fließt ebenfalls ein, um eine einfache und schnelle Integration zu fördern. Schließlich ist \textbf{Dokumentation und Support} (5\,\%) wichtig, um auch bei Problemen oder neuen Anforderungen eine solide Basis zu haben.
+
+    \global\def\VGewichtDatenquellen{30}
+    \global\def\VGewichtStabilität{20}
+    \global\def\VGewichtUsability{10}
+    \global\def\VGewichtLizenz{15}
+    \global\def\VGewichtImplementierung{10}
+    \global\def\VGewichtErweiterung{10}
+    \global\def\VGewichtDokumentation{5}
+
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+          \pie[
+            text=legend,
+            radius=3,
+            color={blue!50!cyan, red!50!orange, green!60!lime, yellow!85!orange, magenta!60, cyan!70!blue, gray!60}
+          ]{
+            \VGewichtDatenquellen /Datenverfügbarkeit (\VGewichtDatenquellen \%),
+            \VGewichtStabilität/Stabilität (\VGewichtStabilität\%),
+            \VGewichtLizenz /Lizenzierung (\VGewichtLizenz \%),
+            \VGewichtUsability/Benutzerfreundlichkeit (\VGewichtUsability\%),
+            \VGewichtImplementierung/Implementierungsaufwand (\VGewichtImplementierung\%),
+            \VGewichtErweiterung/Implementierungsaufwand (\VGewichtErweiterung\%),
+            \VGewichtDokumentation/Dokumentation (\VGewichtDokumentation\%)
+          }
+        \end{tikzpicture}
+        \caption{Gewichtung der Kriterien zur Anbindung quantitativer Finanzdaten}
+        \small{(Quelle: eigene Darstellung)}
+        \label{fig:gewichtung_quant_daten}
+    \end{figure}
+
+    Um die Auswahl der geeigneten Datenquelle objektiv und nachvollziehbar zu gestalten, wird ein Punktesystem von 0 bis 3 Punkten verwendet.
+    Dabei gilt: 0 Punkte stehen für eine unzureichende oder unbrauchbare Ausprägung des Kriteriums, während 3 Punkte den bestmöglichen Wert darstellen.
+
+    \begin{itemize}
+      \item \textbf{Daten:} 0 Punkte, wenn keine oder veraltete Daten vorhanden sind; 1 Punkt bei lückenhaften oder teilweise veralteten Daten; 2 Punkte bei weitgehend aktuellen, aber nicht perfekten Daten; 3 Punkte bei sehr aktuellen, vollständigen und hochwertigen Daten.
+
+      \item \textbf{Stabilität:} 0 Punkte bei häufigen Ausfällen oder massiven Problemen; 1 Punkt bei gelegentlichen, aber spürbaren Instabilitäten; 2 Punkte bei meist stabiler Funktion mit kleinen Einschränkungen; 3 Punkte bei durchgehend stabiler und zuverlässiger Funktion.
+
+      \item \textbf{Usability:} 0 Punkte, wenn kaum nutzbar oder sehr unübersichtlich; 1 Punkt bei rudimentärer Nutzbarkeit, aber großen Hürden; 2 Punkte bei guter Nutzbarkeit mit kleineren Schwächen; 3 Punkte bei intuitiver, komfortabler Bedienung und einfacher Integration.
+
+      \item \textbf{Lizenz:} 0 Punkte bei rechtlich unklarer oder problematischer Lizenz; 1 Punkt bei restriktiver oder schwieriger Lizenz; 2 Punkte bei überwiegend klarer und sinnvoller Lizenz; 3 Punkte bei sehr klarer, rechtssicherer und gut passender Lizenz (z.\,B. Open Source).
+
+      \item \textbf{Implementierungsaufwand:} 0 Punkte bei sehr großem Aufwand oder kaum umsetzbar; 1 Punkt bei hohem, aber realisierbarem Aufwand; 2 Punkte bei überschaubarem Aufwand; 3 Punkte bei sehr einfacher und schneller Umsetzung.
+
+      \item \textbf{Erweiterung:} 0 Punkte, wenn keine Erweiterungen möglich sind; 1 Punkt, wenn Erweiterungen nur mit erheblichem Aufwand; 2 Punkte, wenn Erweiterungen gut machbar sind, aber nicht ideal; 3 Punkte, wenn Erweiterungen sehr leicht und flexibel möglich sind.
+
+      \item \textbf{Dokumentation:} 0 Punkte, wenn kaum Dokumentation existiert; 1 Punkt bei sehr lückenhafter oder schwer verständlicher Doku; 2 Punkte bei guter, aber nicht perfekter Doku; 3 Punkte bei sehr guter, aktueller und klarer Dokumentation.
+    \end{itemize}
+
     Abschließend erfolgt eine Bewertung mittels Entscheidungsmatrix, um die bestmögliche Anbindung für die quantitativen Datenbedürfnisse des Systems zu ermitteln.
 
-    \subsubsection{yfinance}
+    \subsubsection{Finnhub}
+
+    Finnhub ist eine umfassende Finanzdaten-API, die eine Vielzahl an Echtzeit- und historischen Marktdaten für Aktien, Devisen, Krypto-Währungen, Unternehmensdaten und Nachrichten anbietet.
+    Die API wird von Entwicklern, Unternehmen und Analysten genutzt, um Finanz- und Wirtschaftsdaten automatisiert abzurufen und in eigene Anwendungen zu integrieren.
+    Finnhub stellt dafür eine REST-basierte Schnittstelle sowie eine gut gepflegte Python-Bibliothek zur Verfügung.
+
+    Die Bewertung erfolgt anhand der festgelegten Kriterien:
+
+      \begin{itemize}
+        \item \textbf{Daten (2 Punkte):} Finnhub bietet eine sehr breite Abdeckung an Finanzdaten (Aktienkurse, Währungen, Wirtschaftsdaten, Nachrichten etc.), die auch recht aktuell sind. Allerdings können bestimmte Datensätze (z.\,B. Unternehmensdaten) kostenpflichtig sein oder weniger aktuell für kostenlose Accounts.
+
+        \item \textbf{Stabilität (3 Punkte):} Die API ist insgesamt stabil und gut gewartet. Kleinere Ausfälle oder Einschränkungen sind selten.
+
+        \item \textbf{Usability (3 Punkte):} Die API ist leicht zu nutzen, mit klaren Endpunkten und Beispielen. Die Integration in Python ist durch eigene Bibliotheken sehr einfach.
+
+        \item \textbf{Lizenz (2 Punkte).:} Finnhub hat eine klare Lizenzstruktur. Für private Zwecke oder kleine Projekte ist die kostenlose Nutzung sehr gut möglich, kommerzielle Nutzung bedarf eines API Keys mit klaren Bedingungen.
+
+        \item \textbf{Implementierungsaufwand (3 Punkte).:} Die Implementierung ist durch RESTful-Endpunkte und Beispielcode (Python-Client etc.) sehr leicht.
+
+        \item \textbf{Erweiterung (3 Punkte):} Erweiterungen sind gut möglich (z.\,B. Kombination mit anderen Datenquellen, Weiterverarbeitung). Finnhub selbst bietet eine wachsende Zahl an Endpunkten.
+
+        \item \textbf{Dokumentation (3 Punkte):} Die Dokumentation ist sehr gut strukturiert, aktuell und enthält viele Beispiele.
+      \end{itemize}
+
+      \global\def\VfinnhubDaten{2}
+      \global\def\VfinnhubStabilität{3}
+      \global\def\VfinnhubUsability{3}
+      \global\def\VfinnhubLizenz{2}
+      \global\def\VfinnhubImplement{3}
+      \global\def\VfinnhubErweiterung{3}
+      \global\def\VfinnhubDokumentation{3}
+
+    \subsubsection{yfinance} %%%%%%%%%%%%%%%%%%%% Bis hierhin gekommen. Hier weitermachen
 
       % To-Do für diesen ganzen Abschnitt: gute Quellen suchen
       \todo[inline]{To-Do: Gilt es anzupassen zu neuer Struktur. Stammt vorher aus Kapitel 4}
@@ -289,18 +502,6 @@
       \global\def\VyfinanceErweiterung{4}
       \global\def\VyfinanceDokumentation{3}
 
-    \subsubsection{Finnhub}
-
-      \todo[inline]{To-Do}
-
-      \global\def\VfinnhubDaten{3}
-      \global\def\VfinnhubStabilität{4}
-      \global\def\VfinnhubUsability{3}
-      \global\def\VfinnhubLizenz{5}
-      \global\def\VfinnhubImplement{3}
-      \global\def\VfinnhubErweiterung{3}
-      \global\def\VfinnhubDokumentation{3}
-
     \subsubsection{Alpha Vantage}
 
       \todo[inline]{To-Do}
@@ -316,14 +517,6 @@
     \subsubsection{Auswertung}
 
       \todo[inline]{To-Do}
-
-      \global\def\VGewichtDatenquellen{3}
-      \global\def\VGewichtStabilität{4}
-      \global\def\VGewichtUsability{2}
-      \global\def\VGewichtLizenz{3}
-      \global\def\VGewichtImplementierung{4}
-      \global\def\VGewichtErweiterung{2}
-      \global\def\VGewichtDokumentation{2}
 
       \begin{table}[H]
         \centering
