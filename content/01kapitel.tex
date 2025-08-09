@@ -1,7 +1,14 @@
 \chapter{Einleitung}
 
-\todo[inline]{To-Do: Evtl. noch in sections gliedern?}
-\todo[inline]{Idee: Einleitung ..., 1.1. Motivation, 1.2. Ziele der Forschung, 1.3. Bedeutung der Forschung, 1.4. Struktur}
+Die fortschreitende Digitalisierung und der Einsatz künstlicher Intelligenz haben die Finanzbranche grundlegend verändert.
+Während traditionelle Anlageberatung auf persönlichen Gesprächen und manuellen Analysen basierte, übernehmen heute zunehmend algorithmische Systeme die Portfoliooptimierung und Anlageempfehlungen.
+Diese Entwicklung verspricht objektivere Entscheidungen, schnellere Reaktionszeiten auf Marktveränderungen und eine kosteneffiziente Betreuung auch kleinerer Anlagesummen.
+Gleichzeitig entstehen jedoch neue Herausforderungen: Die Komplexität der eingesetzten KI-Modelle macht es für Anleger schwer nachzuvollziehen, wie Investitionsentscheidungen zustande kommen.
+Diese Intransparenz kann das Vertrauen in automatisierte Beratungssysteme untergraben und deren Akzeptanz limitieren.
+
+Die vorliegende Arbeit widmet sich dieser Problematik und untersucht, wie KI-gestützte Portfoliooptimierung transparenter und nachvollziehbarer gestaltet werden kann, ohne dabei die Vorteile automatisierter Datenverarbeitung und -analyse zu verlieren.
+
+\section{Motivation}
 
 Der Wertpapierhandel steht im Spannungsfeld zwischen zunehmender Datenkomplexität und dem Bedürfnis von Anlegern nach nachvollziehbaren Entscheidungen.
 Während moderne Robo-Advisors und KI-Tools quantitative Empfehlungen generieren, agieren sie oft als \textbf{Blackbox}:
@@ -23,6 +30,8 @@ Zweitens zeigt sich ein Portfolio-Dilemma durch die mangelnde risikoadaptive Int
 So werden dynamische Korrelationen zwischen Assetklassen – etwa die Entkopplung von Tech-Aktien und Rohstoffen während geopolitischer Krisen – in aktuellen Robo-Advisor-Lösungen nicht ausreichend berücksichtigt \autocite{ban2018}.
 Drittens unterstreicht der Verbraucherzentrale Bundesverband die Transparenzforderung: Studien zeigen, dass das Vertrauen in KI-Anwendungen wie Robo-Advisor direkt mit der Nachvollziehbarkeit ihrer Entscheidungslogik korreliert \autocite{vzbv2018}.
 
+\section{Ziele der Forschung}
+
 Ziel der Arbeit ist die Entwicklung eines KI-Assistenzsystems, das drei Kernfunktionen vereint: (1) Generierung prozentualer Handlungsempfehlungen (Kaufen/Verkaufen/Halten) für einzelne Wertpapiere, (2) natürlichsprachige Begründungen dieser Empfehlungen durch Integration quantitativer Kennzahlen (z.B. \enquote{-15\% Chip-Nachfrage YoY (Jahr-auf-Jahr)} und qualitativer Faktoren (z.B. politische Lieferkettenrisiken), sowie (3) Ableitung risikoadaptiver Gesamtstrategien, die Korrelationsmuster zwischen Anlageklassen und individuelle Anlageziele systematisch verbinden.
 
 Als Leitfaden dienen zwei Forschungsfragen:
@@ -35,8 +44,16 @@ Die Arbeit fokussiert sich bewusst auf Transparenz durch Erklärbarkeit statt Pr
 Das System dient als Entscheidungsunterstützung – nicht als autonomer Trader – und kombiniert strukturierte Daten (Fundamentalkennzahlen, historische Korrelationen) mit unstrukturierten Quellen (Nachrichten, Social-Media-Trends).
 %Methodisch werden adaptierte XAI-Verfahren (Explainable AI) eingesetzt, etwa Feature-Attribution zur Identifikation entscheidungsrelevanter Cluster wie \enquote{Politische Risiken} aus Gesetzesänderungen und Führungswechseln.
 
+\section{Bedeutung der Forschung}
+
 Der praktische Beitrag liegt in drei Anwendungsdimensionen: Investoren können (1) KI-Empfehlungen durch nachvollziehbare Argumente validieren (z.B. Nachfrage von 70\% Verkaufsempfehlungen trotz positiver Quartalszahlen), (2) Portfolio-Risiken durch interaktive Visualisierungen von Korrelationsmatrizen und Stress-Tests aktiv steuern, sowie (3) Anlagestrategien durch \enquote{Was-wäre-wenn}-Szenarien explorieren.
 Dies ermöglicht einen Paradigmenwechsel von Blackbox-Modellen hin zu transparenten, dialogfähigen Beratungssystemen.
+
+Darüber hinaus leistet die Arbeit einen Beitrag zur Erforschung generativer KI-Modelle im Finanzkontext, insbesondere zur Integration von Large Language Models (LLMs) ohne das Risiko inkonsistenter oder missverständlicher Antworten, die die Entscheidungsqualität der Anleger gefährden könnten.
+Eine besondere Herausforderung besteht darin, dass LLMs zwar in der Lage sind, plausible Erklärungen und Begründungen zu generieren, diese jedoch nicht immer konsistent oder faktisch korrekt sind.
+Gerade im sensiblen Bereich der Finanzmärkte kann eine inkonsistente Begründung – z.B. unterschiedliche Einschätzungen zum Kauf- oder Verkaufszeitpunkt derselben Aktie bei identischen Eingaben – erhebliche Risiken bergen.
+
+\section{Struktur}
 
 %%%%%%%%%%
 % Ab hier wird das Vorgehen in der Arbeit skizziert.

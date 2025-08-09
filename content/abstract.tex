@@ -8,7 +8,17 @@
 
     \todo[inline]{Sperrvermerk und Erklärung auch ins Dokument? To-Do: Nochmal nachlesen oder klären}
 
-    \todo[inline]{To-Do: Zum Schluss schreiben}
+    Die Arbeit entwickelt ein KI-basiertes Assistenzsystem zur quantitativen Portfoliooptimierung, das prozentuale Handlungsempfehlungen für Einzelwerte mit transparenten, natürlichsprachlichen Begründungen verknüpft und zu einer risikoadaptiven Portfoliosicht einschließlich Rebalancing-Implikationen aggregiert.
+    Daraus leiten sich zwei Forschungsfragen zur konstruktiven Realisierung eines solchen Systems sowie zu seiner Fähigkeit ab, eine übergeordnete Risiko-Rendite-Bewertung auf Portfolioebene bereitzustellen.
+
+    Methodisch folgt die Arbeit einem Design-Science-Research-Ansatz und realisiert einen modularen Prototypen mit klaren HTTP/JSON-Schnittstellen: Python/Flask als Backend, eine austauschbare LLM-Schicht (lokal via Ollama, optional per API zu externen Anbietern), \texttt{yfinance} als zentrale Kursdatenquelle, LangChain zur Orchestrierung sowie ein leichtgewichtiges Web-Frontend (HTML/Bootstrap/JS).
+    Die klare Projektstruktur und Entkopplung der Komponenten unterstützen Erweiterbarkeit, Austauschbarkeit und Reproduzierbarkeit.
+
+    Die Evaluation ist als ressourcensensitives Backtesting über repräsentative Marktphasen angelegt und kombiniert finanzielle Performancekennzahlen (u.\,a. Sharpe Ratio, Volatilität, maximaler Drawdown, VaR/ES) mit statistischen Absicherungen (t-/Wilcoxon-Tests, Bootstrap) sowie XAI- und Nutzerstudien-Bausteinen.
+    Damit wird ein Evaluationsraster bereitgestellt, das Transparenz- und Leistungsaspekte integriert und für zukünftige Auswertungen operationalisiert.
+
+    Die wesentlichen Limitationen betreffen die probabilistische Natur großer Sprachmodelle und deren Prompt-Sensitivität, potenzielle Datenqualitäts- und Abdeckungsgrenzen sowie Rechenkosten, die die Tiefe der Tests begrenzen und die externe Validität einschränken.
+    Praktisch adressiert der Prototyp Transparenz-, Dokumentations- und Governance-Anforderungen und schafft eine belastbare Grundlage für vertiefte Evaluationen, funktionsseitige Erweiterungen und anwendungsnahe Pilotierungen.
 \end{abstract}
 
 

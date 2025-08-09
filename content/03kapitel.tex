@@ -71,7 +71,7 @@
   % Achtung! Ab hier gilt es vieles zu überarbeiten! %
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Technologieauswahl}
+\section{Technologieauswahl} %nicht mehr als 10 Seiten für Technologieauswahl. Weniger Dimensionen. % Evtl qual. und quant. zusammen legen
 
     Die Entwicklung eines transparenten und dialogfähigen Assistenzsystems für die Portfolio-Optimierung erfordert eine präzise Auswahl geeigneter Technologien in allen relevanten Bereichen.
     Dieser Abschnitt stellt daher die betrachteten Optionen vor und bewertet sie anhand einer Entscheidungsmatrix, die die für die jeweiligen Kriterien der verschiedenen Bereiche berücksichtigt.
@@ -479,32 +479,27 @@
       \global\def\VfinnhubErweiterung{3}
       \global\def\VfinnhubDokumentation{3}
 
-    \subsubsection{yfinance} %%%%%%%%%%%%%%%%%%%% Bis hierhin gekommen. Hier weitermachen
-
-      % To-Do für diesen ganzen Abschnitt: gute Quellen suchen
-      \todo[inline]{To-Do: Gilt es anzupassen zu neuer Struktur. Stammt vorher aus Kapitel 4}
-
-      Für die automatisierte Abfrage von historischen und aktuellen Kursdaten kommt die Python-Bibliothek \texttt{yfinance} zum Einsatz.
-      Diese greift auf Daten von Yahoo Finance zu und bietet eine einfache API zur Analyse von Aktienkursverläufen, Dividenden und Handelsvolumen.
-      Die Verwendung historischer Kursdaten erlaubt Rückschlüsse auf Volatilität, Trends und technische Indikatoren – zentrale Größen für die Entscheidungsbegründung im Assistenzsystem \autocite{fama1970efficient}.
-
-      Die Installation von \texttt{yfinance} erfolgt unkompliziert über den Python-Paketmanager.
-      Die Bibliothek ermöglicht es, Daten für einzelne oder mehrere Ticker gleichzeitig abzurufen und bietet Funktionen zur Anpassung des Zeitraums, der Intervallgröße (z.\,B. täglich, wöchentlich) sowie zur Einbindung von Dividenden- und Splitevents.
-
-      Darüber hinaus bietet \texttt{yfinance} Zugriff auf umfassende Metadaten, wie Unternehmensinformationen, Analystenbewertungen und Bilanzzahlen, welche weitere Analysemöglichkeiten eröffnen.
-      Die Nutzung von \texttt{yfinance} stellt somit eine zentrale Komponente zur datenbasierten Entscheidungsunterstützung in unserem Assistenzsystem dar.
-
-      \global\def\VyfinanceDaten{4}
-      \global\def\VyfinanceStabilität{4}
-      \global\def\VyfinanceUsability{5}
-      \global\def\VyfinanceLizenz{5}
-      \global\def\VyfinanceImplement{4}
-      \global\def\VyfinanceErweiterung{4}
-      \global\def\VyfinanceDokumentation{3}
-
     \subsubsection{Alpha Vantage}
 
-      \todo[inline]{To-Do}
+      Alpha Vantage ist ein US-amerikanischer Anbieter von Finanzmarktdaten, der eine REST-API für den Abruf von historischen und aktuellen Kursdaten, technischen Indikatoren, Währungsdaten und mehr zur Verfügung stellt.
+      Der Service richtet sich besonders an Entwickler, Forscher und kleinere Unternehmen und bietet sowohl einen kostenlosen Zugang (mit Limitierungen) als auch kostenpflichtige Pläne für professionelle Anwendungen.
+
+      Die folgende Bewertung basiert auf den zuvor definierten sieben Kriterien für quantitative Datenquellen:
+      \begin{itemize}
+          \item \textbf{Datenumfang:} 2 Punkte – Alpha Vantage deckt eine große Bandbreite an Aktien-, Währungs- und technischen Indikator-Daten ab, jedoch fehlen teilweise tiefere Fundamentaldaten und Echtzeitdaten in der Free-Version.
+
+          \item \textbf{Stabilität:} 2 Punkte – Die API ist grundsätzlich stabil, gelegentliche Downtimes oder langsame Antwortzeiten treten aber in der Free-Version vereinzelt auf.
+
+          \item \textbf{Usability:} 3 Punkte – Die API ist sehr gut strukturiert, klar dokumentiert und mit Beispielen ausgestattet. Es existieren zudem offizielle und inoffizielle Python-Bibliotheken für eine einfache Einbindung.
+
+          \item \textbf{Lizenzmodell:} 2 Punkte – Ein kostenloses Nutzungskontingent ist verfügbar (5 API Calls/Minute), professionelle Nutzung erfordert aber ein Upgrade.
+
+          \item \textbf{Implementierungsaufwand:} 3 Punkte – Dank zahlreicher Tutorials, Bibliotheken und JSON-Antworten ist die Integration einfach und schnell möglich.
+
+          \item \textbf{Erweiterbarkeit:} 1 Punkt – Alpha Vantage bietet nur vordefinierte Endpunkte ohne Möglichkeiten zur Abfrage eigener Metriken oder individuellen Kombinationslogiken.
+
+          \item \textbf{Dokumentation:} 3 Punkte – Sehr klar gegliedert, verständlich, mit Beispielen und Fehlerbeschreibungen.
+      \end{itemize}
 
       \global\def\ValphaVantageDaten{4}
       \global\def\ValphaVantageStabilität{3}
@@ -513,6 +508,42 @@
       \global\def\ValphaVantageImplement{3}
       \global\def\ValphaVantageErweiterung{3}
       \global\def\ValphaVantageDokumentation{4}
+
+    \subsubsection{yfinance} %%%%%%%%%%%%%%%%%%%% Bis hierhin gekommen. Hier weitermachen
+
+      Die Python-Bibliothek \texttt{yfinance} stellt eine inoffizielle Schnittstelle zur Verfügung, um auf Marktdaten von Yahoo Finance zuzugreifen.
+      Sie erlaubt den Abruf von historischen Kursen, Dividenden, Splits, Unternehmensinformationen und mehr – ganz ohne Registrierung oder API-Schlüssel.
+      Die Nutzung erfolgt dabei durch Web-Scraping-Mechanismen, was gewisse Einschränkungen bei Stabilität und Datenkonsistenz mit sich bringt.
+      Dennoch ist \texttt{yfinance} eine der meistverwendeten Bibliotheken für schnelle Finanzdatenanalysen in Python.
+
+      Die Bewertung erfolgt anhand der etablierten sieben Kriterien:
+
+      \begin{itemize}
+          \item \textbf{Datenumfang:} 3 Punkte – \texttt{yfinance} bietet Zugang zu historischen Kursdaten, Intraday-Daten, Unternehmenskennzahlen, Dividenden, Splits, Ticker-Metadaten und mehr. Für viele Anwendungsfälle ist dies mehr als ausreichend.
+
+          \item \textbf{Stabilität:} 1 Punkt – Da der Datenabruf auf Web-Scraping basiert, ist die Schnittstelle anfällig für strukturelle Änderungen auf der Yahoo-Seite. Es kann gelegentlich zu Ausfällen oder fehlerhaften Abfragen kommen.
+
+          \item \textbf{Usability:} 3 Punkte – Die Bibliothek ist sehr einfach zu verwenden, mit klarer API-Struktur und guten Pandas-Integrationen. Ein typischer Datenabruf ist mit einer einzigen Codezeile möglich.
+
+          \item \textbf{Lizenzmodell:} 3 Punkte – \texttt{yfinance} ist vollständig Open Source und kostenlos nutzbar, ohne API-Key oder Nutzerkonto.
+
+          \item \textbf{Implementierungsaufwand:} 3 Punkte – Die Einbindung ist sehr einfach. Die Bibliothek lässt sich über \texttt{pip} installieren und ist direkt in Data-Science-Workflows integrierbar.
+
+          \item \textbf{Erweiterbarkeit:} 2 Punkte – Zwar basiert \texttt{yfinance} auf einer festen Datenstruktur von Yahoo Finance, dennoch lassen sich die Funktionen kombinieren und überarbeiten. Direkte Abfragen benutzerdefinierter Metriken sind jedoch nicht möglich.
+
+          \item \textbf{Dokumentation:} 2 Punkte – Eine offizielle Dokumentation ist vorhanden, allerdings nicht sehr ausführlich. Die Community bietet aber viele Beispiele, Tutorials und Support über GitHub und Stack Overflow.
+      \end{itemize}
+
+      Diese Bewertung zeigt, dass \texttt{yfinance} besonders für schnelle, kostenfreie Datenanalysen mit Python sehr gut geeignet ist.
+      Die Schwächen liegen primär im Bereich Stabilität, was bei professionellen oder produktiven Anwendungen berücksichtigt werden muss.
+
+      \global\def\VyfinanceDaten{4}
+      \global\def\VyfinanceStabilität{4}
+      \global\def\VyfinanceUsability{5}
+      \global\def\VyfinanceLizenz{5}
+      \global\def\VyfinanceImplement{4}
+      \global\def\VyfinanceErweiterung{4}
+      \global\def\VyfinanceDokumentation{3}
 
     \subsubsection{Auswertung}
 
