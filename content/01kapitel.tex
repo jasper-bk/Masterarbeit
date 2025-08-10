@@ -14,7 +14,7 @@ Der Wertpapierhandel steht im Spannungsfeld zwischen zunehmender Datenkomplexit�
 Während moderne Robo-Advisors und KI-Tools quantitative Empfehlungen generieren, agieren sie oft als \textbf{Blackbox}:
 Sie liefern Kauf-/Verkaufssignale, ohne die zugrundeliegende Logik offenzulegen – etwa warum eine Aktie zu 70\% verkauft werden soll, obwohl fundamentale Kennzahlen stabil erscheinen, oder wie politische Risiken die Portfolio-Strategie beeinflussen.
 Diese Intransparenz führt zu mangelndem Vertrauen und limitiert die praktische Nutzbarkeit, wie Fallstudien zu Fehleinschätzungen bei Marktvolatilität zeigen.
-\todo[inline]{To-Do: Quelle für Studie}
+\autocite{CFAInstitute2020Trust}.
 
 Ein Beispiel für die Folgen intransparenter Entscheidungsprozesse ist das Verhalten vieler Anleger während Phasen wirtschaftlicher Unsicherheit, etwa bei Inflationsängsten oder bevorstehenden Rezessionen.
 In solchen Zeiten reagieren automatisierte Handelssysteme häufig mit Verkaufsbefehlen auf sinkende Kurse, ohne die zugrunde liegenden wirtschaftlichen Zusammenhänge zu erläutern.
@@ -59,6 +59,8 @@ Gerade im sensiblen Bereich der Finanzmärkte kann eine inkonsistente Begründun
 % Ab hier wird das Vorgehen in der Arbeit skizziert.
 %%%%%%%%%%
 
+% To-Do: evtl noch überall hrefs in die jeweiligen Kapitel hinzufügen und ggf. dick gedruckt
+
 Um diese Forschungsfragen zu beantworten und das Ziel der Arbeit zu erreichen wird in der Arbeit wie folgt vorgegangen:
 Zunächst werden die theoretischen Grundlagen und der Stand der Technik analysiert, um das bestehende Forschungsfeld einzuordnen.
 Darauf aufbauend wird im Kapitel \enquote{Methodik} erläutert, wie die identifizierten Forschungslücken – insbesondere das Erklärungsdefizit und die mangelnde Nutzerzentrierung bestehender Systeme – durch eine Kombination aus dem \textit{Design Science Research (DSR)}-Ansatz und modernen Konzepten der Softwarearchitektur adressiert werden.
@@ -68,7 +70,7 @@ Im Folgenden wird dabei noch einmal auf die einzelnen Kapitel im Detail eingegan
 
 % Bzgl. Abschnitt Stand der Forschung
 
-Das Kapitel Stand der Forschung \todo[inline]{To-Do: hrefs einfügen?} untersucht die Entwicklung und den aktuellen Forschungsstand von Portfoliooptimierungssystemen und deren Verbindung zu erklärbarer KI (XAI).
+Das Kapitel \enquote{Stand der Forschung} untersucht die Entwicklung und den aktuellen Forschungsstand von Portfoliooptimierungssystemen und deren Verbindung zu erklärbarer KI (XAI).
 Dabei werden drei Hauptforschungsstränge identifiziert: klassische Portfolio-Theorie, datengetriebene Optimierungsansätze (wie Reinforcement Learning) und kommerzielle Robo-Advisor-Anwendungen.
 Trotz Fortschritten bleibt die Erklärbarkeit von Entscheidungen ein zentrales Defizit.
 Regulatorische Anforderungen wie MiFID II oder der AI Act fordern zunehmend transparente Entscheidungsgrundlagen.
@@ -84,17 +86,25 @@ Diese Lücken motivieren die in der Arbeit entwickelte Systemarchitektur, die au
 
 % Bzgl. Methodik
 
-\todo[inline]{To-Do: Zusammenfassende Einleitung für Kapitel \enquote{Methodik} machen}
+Das Kapitel \enquote{Vorgehen und Methodik} verankert die Arbeit im Design-Science-Research (DSR) und begründet die gewählte Vorgehensweise sowie die Technologieauswahl zur Schließung der identifizierten Forschungslücken (Erklärungsdefizit, mangelnde Nutzerzentrierung).
+Es beschreibt die iterative Prototypenentwicklung, die modulare Systemarchitektur und die Kombination quantitativer wie qualitativer Evaluationsverfahren.
+Methodisch werden der DSR-Rahmen mit Relevanz-, Rigor- und Design-Zyklus sowie die konkreten Phasen von der Problemidentifikation über die Konstruktion/Entwicklung bis zur Evaluation erläutert.
+Auf technischer Ebene legt das Kapitel zentrale Komponenten und Schnittstellen fest (Python/Flask-Backend, austauschbare LLM-Schicht via Ollama/OpenAI, Finanzdaten über yfinance, Orchestrierung mit LangChain) und begründet deren Auswahl im Hinblick auf Austauschbarkeit und Reproduzierbarkeit.
+Abschließend skizziert es ein mehrstufiges Evaluationskonzept mit Backtests und Leistungsmetriken als Brücke zu den nachfolgenden Architektur- und Evaluationskapiteln.
 
 % Bzgl. Systemarchitektur und Implementierung
 
-\todo[inline]{To-Do: Zusammenfassende Einleitung für Kapitel \enquote{Systemarchitektur und Implementierung} machen}
+Das Kapitel \enquote{Systemarchitektur und Implementierung} beschreibt die modulare Client-Server-Architektur des Assistenzsystems, die klar getrennte Zuständigkeiten und austauschbare Komponenten vorsieht: ein Flask-Backend mit REST/HTTP-Schnittstellen und JSON-Strukturen orchestriert LLM-Aufrufe (lokal via Ollama bzw. Online-Modelle) und den Datenzugriff über \texttt{yfinance}, während ein leichtgewichtiges HTML/Bootstrap/JS-Frontend per asynchronen API-Calls die Ergebnisse präsentiert.
+Es erläutert Projektstruktur, Hauptkomponenten und deren Zusammenspiel und zeichnet die iterative Entwicklung vom frühen Konsolen-Backend bis zur entkoppelten Web-App anhand konkreter Meilensteine und Commits nach.
+Für die Modellorchestrierung und die konsistente, maschinenlesbare Ausgabe werden LangChain sowie gezielt gestaltete Prompts mit JSON-Extraktion eingesetzt.
+Zudem dokumentiert das Kapitel die eingesetzten Frameworks/Tools und den reproduzierbaren Arbeitsmodus in Jupyter-Lab für explorative Tests, Auswertungen und transparente Ergebnisdarstellung.
+Abschließend adressiert es technische Herausforderungen wie LLM-Latenzen und Schnittstellendefinitionen und begründet die Designentscheidungen im Hinblick auf Erweiterbarkeit, Wartbarkeit und Austauschbarkeit.
 
 % Bzgl Abschnitt Evaluation (nochmal überarbeiten)
 
 \todo[inline]{To-Do: Besser einleiten. Aber dann nach den die anderen Abschnitte besser geschrieben sind.}
 
-Darüber hinaus wird im Rahmen dieser Arbeit untersucht, wie sich generative KI-Modelle – insbesondere Large Language Models (LLMs) – in den Finanzkontext integrieren lassen, ohne dass dabei das Risiko inkonsistenter oder missverständlicher Antworten die Entscheidungsqualität der Anleger gefährdet.
+Darüber hinaus wird im Rahmen dieser Arbeit im Kapitel \enquote{Evaluation} untersucht, wie sich generative KI-Modelle – insbesondere Large Language Models (LLMs) – in den Finanzkontext integrieren lassen, ohne dass dabei das Risiko inkonsistenter oder missverständlicher Antworten die Entscheidungsqualität der Anleger gefährdet.
 Eine besondere Herausforderung besteht darin, dass LLMs zwar in der Lage sind, plausible Erklärungen und Begründungen zu generieren, diese jedoch nicht immer konsistent oder faktisch korrekt sind.
 Gerade im sensiblen Bereich der Finanzmärkte kann eine inkonsistente Begründung – z.B. unterschiedliche Einschätzungen zum Kauf- oder Verkaufszeitpunkt derselben Aktie bei identischen Eingaben – erhebliche Risiken bergen.
 Deshalb wird eine zweistufige Evaluationsstrategie verfolgt: Zunächst werden die gängigen Evaluationsverfahren selbst einer kritischen Betrachtung unterzogen, um ihre Eignung im Finanzkontext zu prüfen.
@@ -110,7 +120,10 @@ Abweichungen können wiederum genutzt werden, um potenzielle Verbesserungen in P
 
 % Bzgl. Fazit
 
-\todo[inline]{To-Do: Zusammenfassende Einleitung für Kapitel \enquote{Fazit} und generell ein Fazit machen}
+Das Kapitel \enquote{Fazit und Ausblick} bündelt die zentralen Ergebnisse entlang der eingangs formulierten Forschungsfragen, ordnet den wissenschaftlichen und praktischen Beitrag des entwickelten Artefakts ein und verdichtet die wichtigsten Erkenntnisse der Arbeit.
+Es reflektiert kritisch die Grenzen und Validitätsbedrohungen (u. a. Datenbasis, LLM-Stochastik, Evaluationsdesign) und leitet daraus Implikationen für Interpretation und Einsatz ab.
+Darauf aufbauend skizziert das Kapitel priorisierte Entwicklungslinien für Technik, Daten und Evaluation und formuliert konkrete Schritte für einen praxisnahen Transfer.
+Den Abschluss bildet eine kurze Schlussbemerkung, die den Nutzen der Arbeit pointiert zusammenfasst und den Ausblick rahmt.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\hspace{1.5cm}

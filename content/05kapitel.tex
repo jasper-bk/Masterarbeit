@@ -74,9 +74,11 @@
       Im Folgenden werden dafür etablierte Verfahren vorgestellt, die sowohl die finanzielle Performance (Rendite und Risiko) als auch die Robustheit gegenüber Marktbedingungen abdecken.
       Ein klassischer Einstiegspunkt ist das \emph{Backtesting}, das die realistische Nachbildung historischer Handelsszenarien erlaubt.
 
-      \textbf{Abwägung und Machbarkeit} \\
+      \subsubsection{Abwägung und Machbarkeit}
 
-        Das Backtesting simuliert die Anwendung der Empfehlungen auf historische Kursdaten und dient gleichzeitig als Grundlage für die Berechnung wichtiger Risikomaße. Als Basis nutzen wir Zeitreihen der Aktienkurse, die über \texttt{yfinance} bezogen werden. Typisches Vorgehen:
+        Das Backtesting simuliert die Anwendung der Empfehlungen auf historische Kursdaten und dient gleichzeitig als Grundlage für die Berechnung wichtiger Risikomaße.
+        Als Basis nutzen wir Zeitreihen der Aktienkurse, die über \texttt{yfinance} bezogen werden.
+        Typisches Vorgehen:
 
         \begin{enumerate}
           \item \textbf{Auswahl eines historischen Zeitraums:}
@@ -100,9 +102,10 @@
             \end{itemize}
         \end{enumerate}
 
-        \textbf{Abwägung und Machbarkeit} \\ % To-Do: Mit Paragraphen ersetzen oder vollständig entfernen
+        \subsubsection{Abwägung und Machbarkeit}
 
-          Ein vollständiges tägliches Backtesting über den gesamten Mehrjahreszeitraum ist aufgrund der pro–Evaluation mehrminütigen Laufzeiten des LLM-basierten Systems kaum praktikabel. Stattdessen empfiehlt sich:
+          Ein vollständiges tägliches Backtesting über den gesamten Mehrjahreszeitraum ist aufgrund der pro–Evaluation mehrminütigen Laufzeiten des LLM-basierten Systems kaum praktikabel.
+          Stattdessen empfiehlt sich:
 
           \begin{itemize}
             \item \textbf{Repräsentative Zeitfenster:} Auswahl von 2–3 Schlüsselperioden (z.\,B. Crash, Erholung, Zinswende) à jeweils wenige Wochen.
@@ -110,7 +113,7 @@
             \item \textbf{Stichprobenhafte Rolling-Windows:} Kurze Fenster (z.\,B. 20–30 Tage) mit einem Schritt von 30 Tagen ermöglichen eine breit gestreute, aber ressourcenschonende Evaluation.
           \end{itemize}
 
-        \textbf{Skizzierter Ablauf in einem Notebook} \\ % To-Do: Mit Paragraphen ersetzen oder vollständig entfernen
+        \subsubsection{Skizzierter Ablauf in einem Notebook}
 
           In einem Jupyter-Notebook wird der Backtest wie folgt skizziert:
           \begin{itemize}
@@ -195,9 +198,10 @@
     \subsection{Evaluation der Erklärbarkeit}
     \label{sec:xai-eval}
 
-      Da das Assistenzsystem nicht nur auf Performance abzielt, sondern insbesondere auf eine \emph{transparente Entscheidungsbegründung}, ist die Bewertung der erzeugten Erklärungen ein zentrales Element dieser Arbeit. Dabei wird zwischen automatisierten Verfahren und subjektiver Einschätzung durch Nutzer unterschieden.
+      Da das Assistenzsystem nicht nur auf Performance abzielt, sondern insbesondere auf eine \emph{transparente Entscheidungsbegründung}, ist die Bewertung der erzeugten Erklärungen ein zentrales Element dieser Arbeit.
+      Dabei wird zwischen automatisierten Verfahren und subjektiver Einschätzung durch Nutzer unterschieden.
 
-      \textbf{Automatisierte Metriken} \\
+      \subsubsection{Automatisierte Metriken}
 
         Automatisierte Metriken erlauben eine objektive, wiederholbare Analyse großer Mengen generierter Erklärungen. Die folgenden Aspekte stehen im Fokus:
 
@@ -219,7 +223,7 @@
 
         Automatisierte Metriken sind insbesondere für Regressionstests geeignet, etwa bei Änderungen am Prompt-Design oder zur vergleichenden Evaluation verschiedener Modellvarianten.
 
-      \textbf{Benutzerstudien} \\
+      \subsubsection{Benutzerstudien}
 
         Da erklärbare KI stets auch auf das subjektive Verständnis der Nutzer zielt, ist eine empirische Bewertung durch menschliche Rückmeldung unverzichtbar.
 

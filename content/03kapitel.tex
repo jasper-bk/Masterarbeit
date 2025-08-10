@@ -367,7 +367,7 @@
           return weighted_consensus(predictions)
       \end{lstlisting}
 
-  \subsection{Auswahl zur Anbindung quantitativer Finanzdaten}
+  \subsection{Auswahl zur Anbindung Finanzdaten}
 
     Ein zentraler Bestandteil des Assistenzsystems ist die Anbindung von quantitativen Finanzdaten, um eine valide Grundlage für die Handlungsempfehlungen und deren Begründung zu schaffen.
     Hierzu werden verschiedene Datenquellen und Schnittstellen betrachtet, die unter anderem Kursdaten, fundamentale Kennzahlen, historische Korrelationen und ökonomische Indikatoren bereitstellen können.
@@ -579,116 +579,6 @@
         \caption{Nutzwertanalyse für die Auswahl zur Anbindung quantitativer Finanzdaten}
         \label{tab:matrix_quantfinanz}
       \end{table}
-
-  \subsection{Auswahl zur Anbindung qualitativer Finanzdaten}
-
-    Neben den quantitativen Kennzahlen ist der Zugriff auf qualitative Finanzdaten wie Nachrichten, Unternehmensmeldungen, Marktkommentare und Stimmungsanalysen entscheidend, um die Empfehlungen des Assistenzsystems mit kontextbasierten Informationen anzureichern.
-    Dabei werden unterschiedliche Technologien und Dienste zur automatisierten Erfassung und Integration dieser Daten in Betracht gezogen.
-
-    Neben Web-Scraping-Ansätzen mit Tools wie BeautifulSoup oder Scrapy stehen auch APIs wie die News-API, AlphaSense oder RavenPack zur Verfügung.
-    Darüber hinaus bieten manche Anbieter (z.B. Bloomberg oder Reuters) kostenpflichtige Schnittstellen für eine umfassendere Nachrichtenabdeckung.
-    Alle Technologien werden hinsichtlich Zugriffsmöglichkeiten, Integrationsaufwand, Kosten und rechtlicher Rahmenbedingungen verglichen, bevor im Anschluss eine finale Auswahl anhand einer Entscheidungsmatrix getroffen wird.
-
-    \subsubsection{Scraping von Yahoo Finance}
-
-      \todo[inline]{To-Do}
-
-    \subsubsection{REST via News-API}
-
-      \todo[inline]{To-Do}
-
-    \subsubsection{Auswertung}
-
-      \todo[inline]{To-Do}
-
-  \subsection{Auswahl zur Gestaltung des Frontends}
-
-    Die Gestaltung des Frontends ist von zentraler Bedeutung, da sie maßgeblich über die Benutzerfreundlichkeit und die Akzeptanz des Assistenzsystems entscheidet.
-    In dieser Arbeit werden insbesondere drei Technologien verglichen: webbasierte Frontends mit Flask, webbasierte Frontends mit Django und Desktop-Anwendungen mit Tkinter. Diese Auswahl orientiert sich an der Zielsetzung, ein möglichst breites Spektrum an Benutzeroberflächen zu evaluieren – von leichtgewichtigen Webanwendungen (Flask) über robuste Webframeworks mit integrierter Benutzerverwaltung und erweiterter Funktionalität (Django) bis hin zu lokalen, leichtgewichtigen Desktop-Anwendungen (Tkinter), die keine Internetverbindung erfordern.
-
-    Andere Technologien wie React oder Electron werden bewusst ausgeklammert, da sie einen stärkeren Fokus auf reine Webtechnologien legen oder zusätzliche Komplexität in der Architektur verursachen, die über das Ziel dieser Arbeit hinausgeht.
-    Die finale Entscheidung wird im Anschluss anhand einer Entscheidungsmatrix getroffen.
-
-    \todo[inline]{To-Do}
-
-    \subsubsection{Webbasiert mit Flask}
-
-      \todo[inline]{To-Do}
-
-      \global\def\VFlaskFlexibilität{4}
-      \global\def\VFlaskEinarbeitung{4}
-      \global\def\VFlaskAnpassbarkeit{4}
-      \global\def\VFlaskCommunity{4}
-      \global\def\VFlaskPerformance{3}
-      \global\def\VFlaskImplementierung{4}
-      \global\def\VFlaskWartung{3}
-
-    \subsubsection{Webbasiert mit Django}
-
-      \todo[inline]{To-Do}
-
-      \global\def\VDjangoFlexibilität{3}
-      \global\def\VDjangoEinarbeitung{3}
-      \global\def\VDjangoAnpassbarkeit{5}
-      \global\def\VDjangoCommunity{5}
-      \global\def\VDjangoPerformance{4}
-      \global\def\VDjangoImplementierung{3}
-      \global\def\VDjangoWartung{3}
-
-    \subsubsection{Desktop-Anwendung mit Tkinter}
-
-      \todo[inline]{To-Do}
-
-      \global\def\VTkinterFlexibilität{2}
-      \global\def\VTkinterEinarbeitung{4}
-      \global\def\VTkinterAnpassbarkeit{3}
-      \global\def\VTkinterCommunity{3}
-      \global\def\VTkinterPerformance{2}
-      \global\def\VTkinterImplementierung{3}
-      \global\def\VTkinterWartung{2}
-
-    \subsubsection{Auswertung}
-
-      \todo[inline]{To-Do}
-
-      \global\def\VGewichtFlexibilität{3}
-      \global\def\VGewichtEinarbeitung{3}
-      \global\def\VGewichtAnpassbarkeit{4}
-      \global\def\VGewichtCommunity{2}
-      \global\def\VGewichtPerformance{3}
-      \global\def\VGewichtImplementierung{3}
-      \global\def\VGewichtWartung{2}
-
-
-      \begin{table}[H]
-        \centering
-        \begin{spreadtab}
-          [
-          \STsavecell\VFlaskScore{c8}
-          \STsavecell\VDjangoScore{d8}
-          \STsavecell\VTkinterScore{e8}
-          ]{{tabular}{ |c|c||c|c|c| }}
-          \hline
-          @ Kriterium                 & @ Gewichtung            & @ Flask (Web)      & @ Django (Web)    & @ Tkinter (Desktop) \\
-          \hline
-          @ Flexibilität              & \VGewichtFlexibilität   & \VFlaskFlexibilität & \VDjangoFlexibilität & \VTkinterFlexibilität \\
-          @ Einarbeitungsaufwand      & \VGewichtEinarbeitung   & \VFlaskEinarbeitung & \VDjangoEinarbeitung & \VTkinterEinarbeitung \\
-          @ Anpassbarkeit             & \VGewichtAnpassbarkeit  & \VFlaskAnpassbarkeit & \VDjangoAnpassbarkeit & \VTkinterAnpassbarkeit \\
-          @ Community/Ökosystem       & \VGewichtCommunity      & \VFlaskCommunity    & \VDjangoCommunity    & \VTkinterCommunity    \\
-          @ Performance/Skalierbarkeit & \VGewichtPerformance    & \VFlaskPerformance  & \VDjangoPerformance  & \VTkinterPerformance  \\
-          @ Implementierungsaufwand   & \VGewichtImplementierung & \VFlaskImplementierung & \VDjangoImplementierung & \VTkinterImplementierung \\
-          @ Wartung & \VGewichtWartung & \VFlaskWartung & \VDjangoWartung & \VTkinterWartung \\
-          \hline\hline
-          @ Gesamtpunktzahl & sum(b2:[0,-1]) &
-          sumprod(b2:[-1,-1];c2:[0,-1]) &
-          sumprod(b2:[-2,-1];d2:[0,-1]) &
-          sumprod(b2:[-3,-1];e2:[0,-1]) \\
-          \hline
-        \end{spreadtab}
-        \caption{Nutzwertanalyse für die Auswahl zur Frontend-Gestaltung}
-        \label{tab:matrix_frontend}
-      \end{table}
-
 
 
 \section{Zusammenfassung}
