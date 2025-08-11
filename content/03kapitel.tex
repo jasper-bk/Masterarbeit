@@ -1,8 +1,6 @@
 
 \chapter{Vorgehen und Technologieauswahl}
 
-  \todo[inline]{To-Do: Evtl. Kapitel umbenennen. Fraglich wie gut der Titel zum Inhalt passt. Evtl bessere Alternative: Methodik und verwendete Technologien?}
-
   Um die identifizierten Forschungslücken – insbesondere das Erklärungsdefizit und die mangelnde Nutzerzentrierung bestehender Systeme – systematisch zu adressieren, kombiniert diese Arbeit den \textit{Design Science Research (DSR)}-Ansatz \autocite{hevner2004} mit modernen Konzepten der Softwarearchitektur.
   Der Fokus liegt dabei auf drei Kernaspekten: der iterativen Prototypenentwicklung zur schrittweisen Verfeinerung der Anforderungen, der Implementierung einer modularen Systemarchitektur für maximale Anpassbarkeit, und der Integration quantitativer wie qualitativer Evaluationsmethoden.
 
@@ -22,16 +20,14 @@
     In der nachfolgenden Abbildung Abbildung~\ref{fig:dsr} wird der Ablauf anschaulich zusammenfasst.
     \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{assets/pictures/extern/DSR_methodology.png}
+        \includegraphics[width=\textwidth]{assets/pictures/dsr_eigener_entwurf.jpg}
         \caption{Ablauf des Design Science Research (DSR)-Ansatz}
         \small{
         % (Basierend auf
-        (Quelle: \url{https://commons.wikimedia.org/wiki/File:DSR_methodology.png})
+        (Quelle: eigene Darstellung, orientiert an: \url{https://commons.wikimedia.org/wiki/File:DSR_methodology.png})
         }
         \label{fig:dsr}
     \end{figure}
-
-    \todo[inline]{To-Do: Evtl die Grafik noch auf Deutsch übersetzen.}
 
     Dieser Ansatz eignet sich besonders für die vorliegende Arbeit, da hier ein KI-gestütztes Assistenzsystems zur quantitativen Portfoliooptimierung entwickelt wird, um identifizierte Forschungslücken im diesem Bereich zu schließen.
     Konkret wird zunächst eine Problemidentifikation durchgeführt, in der bestehende Systeme (Robo-Advisor, MPT-Tools) und die aus Kapitel 2 abgeleiteten Anforderungen analysiert werden.
@@ -53,8 +49,7 @@
     Entsprechend den Vorschlägen von Peffers et al. werden die DSR-Aktivitäten typischerweise in die Schritte Problemidentifikation und -motivation, Zielformulierung, Konstruktion/Entwicklung, Demonstration (Nachweis der Nützlichkeit), Evaluation und Kommunikation unterteilt \autocite{peffers2007}.
 
     In der vorliegenden Arbeit wird der Schritt der Problemidentifikation durch die Analyse relevanter Finanzsysteme und identifizierter Forschungslücken umgesetzt.
-    In der Konstruktionsphase entsteht der modulare Prototyp, der durch wiederholte Feedbackschleifen mit Experten ständig verfeinert wird.
-    \todo[inline]{To-Do: Einbindung von Experten fehlt oder man nennt was anderes}
+    In der Konstruktionsphase entsteht der modulare Prototyp, der durch wiederholte Feedbackschleifen ständig verfeinert wird.
 
     Schließlich werden im Demonstrations- und Evaluationsschritt die definierten Metriken (Kapitel 5) herangezogen, um die Leistungsfähigkeit und den praktischen Nutzen des Artefakts zu überprüfen.
     Somit gehen alle geplanten Arbeitsschritte auf bewährte DSR-Methoden zurück und sind iterativ angelegt.
@@ -204,30 +199,21 @@
 
     \subsubsection{OpenAI}
 
-      % To-Do für diesen ganzen Abschnitt: gute Quellen suchen
-      \todo[inline]{To-Do: Mehr auf die aktuellen Modelle Bezug nehmen}
-
-      OpenAI bietet mit seinen GPT-Modellen einen der fortschrittlichsten und leistungsfähigsten generativen KI-Dienste am Markt. Die Modelle zeichnen sich durch eine exzellente Sprachqualität und breite Einsatzmöglichkeiten aus. Im Folgenden wird OpenAI anhand des Bewertungsschemas systematisch bewertet:
+      OpenAI bietet mit seinen aktuellen GPT- und o\,-Serien (z.\,B. GPT\,-5, GPT\,-5 mini/nano, GPT\,-4.1, GPT\,-4o/4o mini sowie die Reasoning-Modelle o3, o3\,-pro und o4\,-mini) einige der leistungsfähigsten generativen KI\,-Dienste mit starkem Fokus auf multimodale Eingaben, strukturierten Ausgaben und Agenten-Funktionalität.\autocite{openai-docs}
+      Im Folgenden wird OpenAI anhand des Bewertungsschemas systematisch bewertet:
 
       \begin{itemize}
-          \item \textbf{API (3 Punkte):} Die API von OpenAI ist hervorragend dokumentiert und bietet zahlreiche Endpunkte und Parameter, die eine flexible Integration und Nutzung ermöglichen. Außerdem existieren zahlreiche Bibliotheken (z.\,B. \texttt{openai-python}) und Beispiele, die den Einstieg erleichtern.
-
-          \item \textbf{Performance (3 Punkte):} Die Performance der OpenAI-API ist ausgezeichnet. Anfragen werden in der Regel sehr schnell verarbeitet, da OpenAI auf eine leistungsstarke, cloudbasierte Infrastruktur zurückgreift. Auch unter hoher Last bleibt die Antwortzeit stabil.
-
-          \item \textbf{Kosten (1 Punkt):} Die Nutzung der OpenAI-API ist kostenpflichtig und kann bei hoher Nutzungsintensität schnell teuer werden. Für umfangreiche Analysen oder kontinuierliche Anwendungen sind daher hohe Kosten einzuplanen.
-
-          \item \textbf{Anpassung (1 Punkt):} Bei OpenAI besteht keine Möglichkeit, eigene Modelle zu hosten oder tiefgreifende Anpassungen vorzunehmen. Anpassungen sind nur über Prompt Engineering oder das Fine-Tuning (das nicht für alle Modelle verfügbar ist) möglich, was die Flexibilität stark einschränkt.
-
-          \item \textbf{Datenschutz (1 Punkt):} Die Verarbeitung erfolgt in der Cloud, sodass die Daten an einen externen Dienstleister gesendet werden. Insbesondere im Finanzbereich kann dies datenschutzrechtliche Risiken bergen. Obwohl OpenAI Richtlinien zum Datenschutz befolgt, bleibt eine gewisse Unsicherheit.
-
-          \item \textbf{Support (3 Punkte):} OpenAI bietet einen professionellen Support mit verlässlichen Reaktionszeiten und umfangreicher Hilfestellung, insbesondere für zahlende Kunden. Dies erleichtert die Integration in produktive Anwendungen.
-
-          \item \textbf{Dokumentation (3 Punkte):} Die Dokumentation von OpenAI ist sehr umfangreich und wird kontinuierlich gepflegt. Neben API-Referenzen gibt es praxisnahe Beispiele und Best Practices, die eine schnelle Einarbeitung ermöglichen.
+        \item \textbf{API (3 Punkte):} Die \emph{Responses API} vereint Chat-Completions mit eingebauten Tools (u.\,a. Websuche, File Search, Computer Use), unterstützt Streaming, Function Calling und strikt validierte \emph{Structured Outputs}. Die Assistants API wird schrittweise in die Responses API überführt.\autocite{openai-docs}
+        \item \textbf{Performance (3 Punkte):} Für latenzkritische Anwendungen bietet OpenAI eine Realtime API (z.\,B. Voice-/Audio-Interaktion) sowie Enterprise-Optionen wie \emph{Priority Processing}, SLAs und Skalierungstarife.\autocite{openai-docs,openai-pricing-2025}
+        \item \textbf{Kosten (1 Punkt):} Die Preise variieren stark je nach Modellklasse; beispielhaft (Stand: 11.\,08.\,2025): GPT\,-4o ca.\ \$5/M Eingabetokens und \$20/M Ausgabetokens; GPT\,-4o mini ca.\ \$0{,}60/\$2{,}40; GPT\,-5 ca.\ \$1{,}25/\$10 pro Mio.\ Tokens (Input/Output). Für bestimmte Tools (z.\,B. Websuche) fallen zusätzlich Call-Gebühren an.\autocite{openai-pricing-2025}
+        \item \textbf{Anpassung (1 Punkt):} Feinabstimmung (\emph{Supervised Fine-Tuning}) ist für mehrere Modelle verfügbar (u.\,a.\ GPT\,-4o/4o mini); \emph{Reinforcement Fine-Tuning} ist derzeit auf o4\,-mini beschränkt. Self-Hosting ist nicht vorgesehen.\autocite{openai-docs}
+        \item \textbf{Datenschutz (1 Punkt):} Für Geschäftsangebote (API, ChatGPT Team/Enterprise/Edu) werden Eingaben/Ausgaben standardmäßig \emph{nicht} zum Training verwendet; Opt-in ist möglich. Ergänzend gibt es Datenresidenzoptionen (u.\,a. EU) inkl.\ Zero-Data-Retention für geeignete Endpunkte sowie DPA/SOC2/GDPR-Unterstützung.\autocite{openai-docs}
+        \item \textbf{Support (3 Punkte):} Umfangreiche Dokumentation und Business-Angebote mit SLAs/Support, Priorisierung und Kapazitätsbuchung erleichtern den produktiven Einsatz.\autocite{openai-pricing-2025,openai-docs}
+        \item \textbf{Dokumentation (3 Punkte):} Die Entwicklerdokumentation deckt Modelle, Migrationspfade (Responses API), Tools und Best Practices umfassend ab und wird laufend aktualisiert.\autocite{openai-docs}
       \end{itemize}
 
-      Zusammenfassend bietet OpenAI eine exzellente technische Grundlage und umfassenden Support, was insbesondere für produktive Anwendungen von Vorteil ist.
-      Die hohen Kosten und datenschutzrechtlichen Bedenken schränken jedoch die uneingeschränkte Nutzung – gerade im sensiblen Finanzkontext – ein.
-
+      Zusammenfassend bietet OpenAI eine exzellente technische Grundlage (insbesondere durch Responses API, strukturierte Ausgaben und Realtime) sowie starke Enterprise\,-Funktionen.
+      Höhere Kosten der Spitzenmodelle und die Cloudverarbeitung bleiben für sensible Finanzanwendungen zu prüfen; Datenresidenz und Standard-\emph{No-Training}-Politik mildern jedoch zentrale Risiken.\autocite{openai-docs}
 
       \global\def\VOpenAIAPI               {3}
       \global\def\VOpenAIPerformance       {3}
@@ -239,28 +225,18 @@
 
     \subsubsection{Claude}
 
-      \todo[inline]{To-Do: Mehr auf die aktuellen Modelle Bezug nehmen}
-
-      Claude von Anthropic ist ein auf Sicherheit und dialogorientierte Interaktionen optimiertes Large-Language-Model.
-      Im Vergleich zu anderen Anbietern legt Claude besonderen Wert auf ethische Grundsätze und eine hohe Nutzerzentrierung.
+      Anthropic bietet mit der aktuellen Claude\,-Familie (u.\,a.\ \emph{Opus~4{.}1}, \emph{Sonnet~4}, weiterhin \emph{Sonnet~3{.}7} und \emph{Haiku~3{.}5}) leistungsstarke Modelle mit 200k Kontext, optionalem \emph{Extended Thinking}, Multimodalität sowie Features wie \emph{Tool/Computer Use}, \emph{Citations}, Prompt Caching und Streaming.\autocite{anthropic-docs-2025}
       Die folgende Bewertung basiert auf dem festgelegten Schema:
 
       \begin{itemize}
-          \item \textbf{API (2 Punkte):} Claude bietet eine stabile und gut dokumentierte API. Allerdings ist die API noch nicht so umfassend etabliert wie die von OpenAI. Bibliotheken und Integrationen sind vorhanden, aber nicht so zahlreich wie bei OpenAI oder Google.
-
-          \item \textbf{Performance (3 Punkte):} Claude überzeugt durch eine sehr gute Performance, sowohl in der Antwortgeschwindigkeit als auch in der Qualität der generierten Antworten. Besonders für dialogbasierte Anwendungen liefert Claude stabile und zuverlässige Ergebnisse.
-
-          \item \textbf{Kosten (2 Punkte):} Die Preisgestaltung von Anthropic ist transparent, aber ebenfalls kostenpflichtig. Im Vergleich zu OpenAI sind die Kosten etwas geringer, insbesondere für kontinuierliche Nutzung oder größere Datenmengen.
-
-          \item \textbf{Anpassung (1 Punkt):} Wie bei OpenAI ist eine tiefgreifende Modellanpassung (z.\,B. Feintuning) nicht vorgesehen. Anpassungen sind vor allem über Prompts möglich, was die Flexibilität einschränkt.
-
-          \item \textbf{Datenschutz (2 Punkte):} Anthropic legt Wert auf verantwortungsvolle KI-Nutzung und Sicherheit, was im Finanzbereich relevant ist. Dennoch ist auch hier die Verarbeitung cloudbasiert, sodass personenbezogene oder sensible Daten an externe Server gesendet werden.
-
-          \item \textbf{Support (2 Punkte):} Claude bietet einen soliden Support, jedoch mit etwas eingeschränkter Verfügbarkeit im Vergleich zu den großen Anbietern wie OpenAI. Reaktionszeiten sind insgesamt gut, jedoch nicht immer so schnell wie bei OpenAI.
-
-          \item \textbf{Dokumentation (2 Punkte):} Die Dokumentation ist gut strukturiert und verständlich, allerdings (noch) nicht so umfangreich oder detailliert wie bei OpenAI. Für Entwickler mit Grundkenntnissen ist der Einstieg trotzdem einfach.
+        \item \textbf{API (2 Punkte):} Stabile \emph{Messages API} mit Streaming, Dateien, Tool Use (u.\,a.\ Websuche, Code, Bash, Computer Use), \emph{Citations} und MCP\,-Anbindung; Ökosystem kleiner als bei OpenAI.\autocite{anthropic-docs-2025}
+        \item \textbf{Performance (3 Punkte):} \emph{Opus~4{.}1} als Top\,-Modell für komplexes Reasoning und Agentenaufgaben; \emph{Sonnet~4} als Preis\,-/Leistungs\-Option; 200k Kontext über die Reihe.\autocite{anthropic-docs-2025}
+        \item \textbf{Kosten (2 Punkte):} Beispielsweise (Stand 11.\,08.\,2025): \emph{Opus~4{.}1} \$15/M Eingabe-Tokens, \$75/M Ausgabe-Tokens; \emph{Sonnet~4} \$3/\$15; Prompt Caching separat bepreist.\autocite{anthropic-pricing-2025}
+        \item \textbf{Anpassung (1 Punkt):} Self-Hosting nicht vorgesehen; Feinabstimmung nur eingeschränkt/verpartnert, primär Prompting und Tooling.
+        \item \textbf{Datenschutz (2 Punkte):} Cloudbasierte Verarbeitung mit Enterprise-Funktionen (Admin/Compliance); Regionale Verfügbarkeit auch via Partner-Clouds (z.\,B.\ Bedrock/Vertex).\autocite{anthropic-docs-2025}
+        \item \textbf{Support (2 Punkte):} Solider Business-Support und breite Verfügbarkeit über Partner; Community- und Entwicklerressourcen in den Docs.\autocite{anthropic-docs-2025}
+        \item \textbf{Dokumentation (2 Punkte):} Gut strukturierte, laufend gepflegte Docs (Modelle, Features, Pricing, Migrationspfade, Best Practices).\autocite{anthropic-docs-2025}
       \end{itemize}
-
 
       Insgesamt zeigt Claude eine sehr gute Performance und punktet insbesondere bei der Qualität der Antworten sowie im Hinblick auf Sicherheit und Ethik.
       Leichte Abstriche gibt es in der API-Dokumentation und der Anpassungsfähigkeit.
@@ -276,27 +252,19 @@
 
     \subsubsection{Gemini}
 
-      \todo[inline]{To-Do: Mehr auf die aktuellen Modelle Bezug nehmen}
-
-      Gemini – die generative KI-Plattform von Google, eingebettet in Google Cloud – stellt eine leistungsfähige und flexible Option für generative KI-Anwendungen dar.
-      Die Plattform ist vor allem für Unternehmen und professionelle Anwendungen interessant und bietet eine breite Palette an Integrationsmöglichkeiten.
+      Google bietet mit der aktuellen Gemini\,-Familie (v.\,a.\ \emph{Gemini~2{.}5 Pro}, \emph{2{.}5 Flash}, \emph{2{.}5 Flash-Lite} sowie \emph{2{.}0 Flash}, Live\,/Native Audio) leistungsfähige, multimodale Modelle mit langem Kontext (bis \(\sim\)1\,M Tokens), optionalem \emph{Thinking}, strukturierten Ausgaben (JSON), Function Calling, Code Execution, Grounding mit Google Search, Batch Mode und Context Caching.\autocite{google-gemini-docs-2025}
+      Die folgende Bewertung basiert auf dem festgelegten Schema:
 
       \begin{itemize}
-          \item \textbf{API (3 Punkte):} Gemini bietet eine ausgereifte und umfangreiche API, die gut dokumentiert und zuverlässig ist. Insbesondere die enge Verzahnung mit der Google-Cloud-Infrastruktur ermöglicht eine nahtlose Integration.
-
-          \item \textbf{Performance (3 Punkte):} Die aktuellen Gemini-Modelle liefern exzellente Ergebnisse. Sie erreichen in Benchmarks ein Niveau, das mit OpenAI- oder Claude-Modellen vergleichbar ist, und sind auch in praxisnahen Anwendungen äußerst leistungsfähig.
-
-          \item \textbf{Kosten (1 Punkt):} Die Nutzung von Gemini ist in der Regel kostenpflichtig und an Google-Cloud-Abonnements gebunden. Gerade bei intensiver Nutzung oder für kleinere Forschungsteams können die Kosten erheblich sein.
-
-          \item \textbf{Anpassung (2 Punkte):} Gemini bietet in Vertex AI gewisse Anpassungsmöglichkeiten, beispielsweise für das Finetuning. Eine vollständige lokale oder individuelle Anpassung bleibt jedoch eingeschränkt.
-
-          \item \textbf{Datenschutz (1 Punkt):} Der Betrieb in der Google-Cloud-Infrastruktur erfordert die Übertragung von Daten an Google. Auch wenn die Sicherheits- und Datenschutzstandards hoch sind, ist dies für sensible Finanzdaten nicht immer akzeptabel.
-
-          \item \textbf{Support (3 Punkte):} Google bietet professionellen Support und umfassende Hilfestellungen über sein Cloud-Ökosystem. Damit steht eine solide Basis für Entwickler- und Unternehmensprojekte bereit.
-
-          \item \textbf{Dokumentation (3 Punkte):} Die Dokumentation ist hervorragend und umfasst Tutorials, Referenzen und Best Practices. Dies erleichtert sowohl die Einarbeitung als auch den Betrieb.
-
+        \item \textbf{API (3 Punkte):} Ausgereifte \emph{Gemini API} (inkl.\ Live API) mit Streaming, Dateien, strukturierten Ausgaben, Tooling (Function Calling, Code Execution, Search Grounding) und Sicherheits-/Rate-Limit-Guides; nahtlose Integration in Google-Ökosysteme.\autocite{google-gemini-docs-2025}
+        \item \textbf{Performance (3 Punkte):} \emph{Gemini~2{.}5 Pro} wird als \enquote{most powerful thinking model} geführt und eignet sich für komplexes Reasoning/Coding; \emph{2{.}5 Flash} bietet sehr gutes Preis-Leistungs-Verhältnis; durchgängige Multimodalität und \(\sim\)1\,M Kontext.\autocite{google-gemini-docs-2025}
+        \item \textbf{Kosten (1 Punkt):} Beispielhaft (Stand: 11.\,08.\,2025): \emph{2{.}5 Pro} Input \$1{,}25/M Tokens (bis 200k), danach \$2{,}50/M; Output \$10/\$15; \emph{2{.}5 Flash} Input \$0{,}30 (Text/ Bild/ Video) u.\ \$1{,}00 (Audio), Output \$2{,}50; \emph{2{.}5 Flash-Lite} Input \$0{,}10 (Text/ Bild/ Video) u.\ \$0{,}30 (Audio), Output \$0{,}40. Live-/Grounding-Preise separat.\autocite{google-gemini-pricing-2025}
+        \item \textbf{Anpassung (2 Punkte):} Feinabstimmung/Tuning ist modellabhängig und begrenzt; starke Steuerung über strukturierte Ausgaben, System-/Tool-Prompts und Caching; Self-Hosting nicht vorgesehen.\autocite{google-gemini-docs-2025}
+        \item \textbf{Datenschutz (1 Punkt):} Cloudbasierte Verarbeitung; bezahlter Tier mit abweichender Datenbehandlung ggü.\ Free Tier laut Preisseite (Details abhängig vom Einsatzpfad).\autocite{google-gemini-pricing-2025}
+        \item \textbf{Support (3 Punkte):} Professionelles Umfeld mit umfangreichen Entwicklerressourcen (Docs, Release Notes, Community) und Enterprise-Integrationspfaden.\autocite{google-gemini-docs-2025}
+        \item \textbf{Dokumentation (3 Punkte):} Sehr gute, laufend gepflegte Entwicklerdokumentation (Modelle, Features, Limits, Tools, Safety, Migrations- und Best-Practice-Guides).\autocite{google-gemini-docs-2025}
       \end{itemize}
+
 
       Zusammenfassend ist Gemini eine hochleistungsfähige und gut integrierbare Lösung für den Einsatz von generativer KI.
       Der Datenschutz bleibt dabei ein kritischer Punkt – insbesondere für hochsensible Finanzanwendungen.
@@ -312,7 +280,9 @@
 
     \subsubsection{Auswertung}
 
-      \todo[inline]{To-Do: Einleiten}
+      Die folgende Nutzwertanalyse vergleicht die vier Anbieter \emph{OpenAI}, \emph{Ollama}, \emph{Claude (Anthropic)} und \emph{Gemini (Google)} entlang der Kriterien API, Performance, Kosten, Anpassungsfähigkeit, Datenschutz/Compliance, Community/Support und Dokumentation.
+      Die Gewichtungen spiegeln die Relevanz der Kriterien für den Zielkontext wider; die Einzelbewertungen je Anbieter basieren auf den jeweiligen Anbieterabschnitten.
+      Die Gesamtpunktzahl ergibt sich als gewichtete Summe — je höher, desto geeigneter für den betrachteten Einsatz.
 
       \begin{table}[H]
           \centering
@@ -346,26 +316,27 @@
           \label{tab:matrix_ki_provider}
       \end{table}
 
-      \todo[inline]{To-Do: ggf. Ergebnisse visualisieren}
+      Aus der Matrix lassen sich typische Trade-offs ableiten: Wenn API-Reife und Performance stark gewichtet werden, setzen sich OpenAI und Gemini meist ab; Claude schließt insbesondere bei komplexem Reasoning und sehr langen Kontexten auf. Priorisieren die Gewichtungen hingegen Kostenkontrolle und Anpassungsfähigkeit, profitiert Ollama durch Self-Hosting, Modellwahl und Datenhoheit, nimmt dafür aber Einschränkungen bei Enterprise-Ökosystem und Komfortfeatures in Kauf.
+      Bei strengen Compliance-Anforderungen überzeugt ein on-premises Pfad über Ollama; bei Cloud-Betrieb entscheiden regionale Bereitstellung, vertragliche Zusicherungen (z.\,B. keine Trainingsnutzung) sowie Zero-/Low-Data-Retention-Optionen der Anbieter.
 
-      \todo[inline]{To-Do: Entscheidungsmatrix auswerten und Kompromiss schreiben}
+    Statt einer finalen Anbieterfestlegung wird ein flexibler, anbieteragnostischer Ansatz gewählt.
+    Kern ist ein Plugin-System, das Modelle als eigenständige Pakete mit einer einheitlichen Schnittstelle kapselt, ein dynamisches Routing, das Anfragen anhand messbarer SLA-Kriterien wie Latenz, Kosten und Qualitätsmetriken verteilt, sowie ein Ensemble-Ansatz, der mehrere Modellausgaben zu einem gewichteten Konsens aggregiert, um Robustheit und Antwortqualität zu erhöhen \autocite{linardatos2021}.
+    Das folgende Snippet skizziert die Umsetzung des Ensemble-Routings im Backend.
 
-      Das System implementiert drei Schlüsselkonzepte für Modellflexibilität:
-      \begin{itemize}
-        \item \textbf{Plugin-System}: Modelle werden als Pakete gekapselt (Standard-API-Schnittstelle)
-        \item \textbf{Dynamic Routing}: Load-Balancer verteilt Anfragen basierend auf Modell-SLA (Latenz, Genauigkeit)
-        \item \textbf{Ensemble Learning}: Kombination von Modellausgaben durch gewichtete Konsensalgorithmen \autocite{linardatos2021}
-      \end{itemize}
+    \begin{lstlisting}[language=Python,caption={Modell-Routing im Backend}]
+    def get_ensemble_prediction(query):
+        models = ["deepseek-r1", "mixtral", "llama3"]
+        predictions = Parallel(n_jobs=3)(
+            delayed(model_api.predict)(query, model)
+            for model in models
+        )
+        return weighted_consensus(predictions)
+    \end{lstlisting}
 
-      \begin{lstlisting}[language=Python,caption={Modell-Routing im Backend}]
-      def get_ensemble_prediction(query):
-          models = ["deepseek-r1", "mixtral", "llama3"]
-          predictions = Parallel(n_jobs=3)(
-              delayed(model_api.predict)(query, model)
-              for model in models
-          )
-          return weighted_consensus(predictions)
-      \end{lstlisting}
+    \todo[inline]{To-Do: Noch zu prüfen, ob das wirklich bis in den Schluss übernommen wird. Ggf. wieder rausnehmen und nur skiziieren, dass das auch möglich sei}
+
+    Um die Entscheidung dauerhaft tragfähig zu halten, würden die Gewichtungen in einem produktiven Einsatz regelmäßig anhand operativer KPI (u.\,a.\ Kosten pro Aufgabe, First-Token-Latenz, Qualitätsbewertungen, Incident-Rate) überprüft und die Routing-Regeln über einen kontinuierlichen A/B-Evaluationspfad pro Use-Case angepasst.
+    So bleibt die Lösung widerstandsfähig gegenüber Preis- und Modellupdates, ohne einen Vendor-Lock-in zu erzeugen.
 
   \subsection{Auswahl zur Anbindung Finanzdaten}
 
