@@ -340,32 +340,34 @@
 
   \subsection{Auswahl zur Anbindung Finanzdaten}
 
-    Ein zentraler Bestandteil des Assistenzsystems ist die Anbindung von quantitativen Finanzdaten, um eine valide Grundlage für die Handlungsempfehlungen und deren Begründung zu schaffen.
-    Hierzu werden verschiedene Datenquellen und Schnittstellen betrachtet, die unter anderem Kursdaten, fundamentale Kennzahlen, historische Korrelationen und ökonomische Indikatoren bereitstellen können.
+    Ein zentraler Bestandteil des Assistenzsystems ist die Anbindung von \emph{quantitativen} \emph{und} \emph{qualitativen} Finanzdaten, um eine belastbare Grundlage für Handlungsempfehlungen und deren Begründung im LLM zu schaffen. Neben Kurszeitreihen, Fundamentalkennzahlen und ökonomischen Indikatoren werden hierfür auch textuelle Informationsquellen (z.\,B. Unternehmensnachrichten, Earnings-Call-Transkripte, Social-Sentiment) und daraus abgeleitete Merkmale (z.\,B. Relevanz‐Scores, Stimmungsindizes, Quellenvertrauen) integriert. Diese Daten werden für das LLM in ein einheitliches, maschinenlesbares Schema (z.\,B. JSON) überführt, das numerische Felder (Zeitstempel, Werte) und qualitative Felder (Kurzfassung, Sentiment, Quelle, Aktualität) kombiniert.
 
-    Dafür werden die APIs yfinance, Alpha Vantage und Finnhub untersucht.
-    Bei der Evaluation werden Faktoren wie Datenabdeckung, Aktualität, API-Zugänglichkeit und Kostenstruktur berücksichtigt.
-    Für die Auswahl eines geeigneten Werkzeugs zur Anbindung quantitativer Finanzdaten wurden sieben Bewertungskriterien definiert, die jeweils eine entscheidende Rolle für den erfolgreichen Einsatz im Rahmen des geplanten Assistenzsystems spielen:
+    Dafür werden die APIs \texttt{yfinance}, Alpha Vantage und Finnhub untersucht.
+    Bei der Evaluation werden Faktoren wie Datenabdeckung, Aktualität, API-Zugänglichkeit und Kostenstruktur berücksichtigt \autocite{AlphaVantageDocs2025,FinnhubDocs2025,yfinanceDocs}.
+    Für die Auswahl eines geeigneten Werkzeugs zur Anbindung von Finanzdaten wurden sieben Bewertungskriterien definiert, die jeweils eine entscheidende Rolle für den erfolgreichen Einsatz im geplanten Assistenzsystem spielen:
 
     \begin{itemize}
-      \item \textbf{Datenverfügbarkeit}: Dieses Kriterium bewertet, in welchem Umfang und in welcher Vielfalt die Finanzdaten über die Schnittstelle bereitgestellt werden. Da die Qualität und Abdeckung der Daten wesentlich für die Analyse und die daraus abgeleiteten Empfehlungen ist, hat dieses Kriterium eine hohe Priorität.
+      \item \textbf{Datenverfügbarkeit}: Bewertet Umfang und Vielfalt der bereitgestellten Daten (quantitativ: Kurs-/Fundamental-/Makro-Zeitreihen; qualitativ: Nachrichten, Transkripte, Sentiment). Hohe Priorität, da Datenqualität und -abdeckung die Ableitbarkeit verlässlicher Empfehlungen bestimmen.
 
-      \item \textbf{Stabilität der API}: Hier wird geprüft, wie zuverlässig und konsistent die API in der Praxis funktioniert, also beispielsweise hinsichtlich Ausfallsicherheit und Aktualität der Daten. Eine stabile Anbindung ist entscheidend, um Unterbrechungen im Betrieb des Assistenzsystems zu vermeiden.
+      \item \textbf{Stabilität der API}: Zuverlässigkeit, Latenz und Verfügbarkeit der Schnittstelle inkl. Robustheit gegenüber Schemaänderungen. Eine stabile Anbindung ist entscheidend, um Unterbrechungen im Betrieb des Assistenzsystems zu vermeiden.
 
-      \item \textbf{Benutzerfreundlichkeit}: Dieses Kriterium berücksichtigt die Bedienbarkeit und die Verständlichkeit der Schnittstelle, insbesondere für Entwickler:innen. Eine intuitive API erleichtert die Integration und spart Entwicklungsaufwand.
+      \item \textbf{Benutzerfreundlichkeit}: Bedienbarkeit und Verständlichkeit der Schnittstelle, SDKs/Clients und Response-Konsistenz (z.\,B. klare JSON-Schemas). Eine intuitive API erleichtert die Integration und spart Entwicklungsaufwand.
 
-      \item \textbf{Lizenzierung und rechtliche Aspekte}: Die Lizenzbedingungen (z.\,B. Open Source oder proprietär, Kostenpflichtigkeit) sowie rechtliche Rahmenbedingungen (z.\,B. Datenschutz, Nutzungslizenzen) sind von großer Bedeutung, um spätere Komplikationen zu vermeiden.
+      \item \textbf{Lizenzierung und rechtliche Aspekte}: Lizenzbedingungen (Open Source vs. proprietär, Nutzungseinschränkungen), Kosten sowie rechtliche Rahmenbedingungen (z.\,B. Datenlizenz, Datenschutz). Wichtig zur Sicherstellung eines rechts- und betriebssicheren Dauerbetriebs.
 
-      \item \textbf{Implementierungsaufwand}: Dieses Kriterium beurteilt, wie aufwendig und komplex die Einbindung der Schnittstelle in das bestehende System ist. Ein geringer Implementierungsaufwand beschleunigt die Entwicklung und erhöht die Robustheit.
+      \item \textbf{Implementierungsaufwand}: Aufwand/Komplexität der Einbindung in das bestehende System inkl. Authentifizierung, Rate Limiting und Monitoring.
 
-      \item \textbf{Erweiterbarkeit}: Hierbei geht es darum, wie flexibel sich die Schnittstelle in Zukunft an neue Anforderungen oder zusätzliche Funktionalitäten anpassen lässt. Eine gute Erweiterbarkeit gewährleistet die Zukunftsfähigkeit des Systems.
+      \item \textbf{Erweiterbarkeit}: Flexibilität für neue Anforderungen (zusätzliche Endpunkte/Regionen/Asset-Klassen, qualitative Signale, Metadaten).
 
-      \item \textbf{Dokumentation und Community-Support}: Eine umfassende, aktuelle Dokumentation und eine aktive Community sind wichtige Faktoren, um Integrationsprobleme schnell zu lösen und sich über Best Practices zu informieren.
+      \item \textbf{Dokumentation und Community-Support}: Qualität/Aktualität der Dokumentation, Beispiele, SDKs sowie die Aktivität der Community zur schnellen Problemlösung.
     \end{itemize}
 
     Die Kriterien werden in Abhängigkeit von ihrer Relevanz für das Projekt unterschiedlich stark gewichtet.
-    Insbesondere \textbf{Datenverfügbarkeit} (30\,\%) und \textbf{Stabilität} (20\,\%) haben den höchsten Stellenwert, da sie direkt den Kernnutzen und die Zuverlässigkeit des Assistenzsystems beeinflussen. \textbf{Lizenzierung} (15\,\%) ist ebenfalls hoch gewichtet, da rechtliche und finanzielle Aspekte für den dauerhaften Betrieb entscheidend sind.
-    \textbf{Implementierungsaufwand} und \textbf{Erweiterbarkeit} (jeweils 10\,\%) sind wichtig für die effiziente Umsetzung und zukünftige Anpassung. \textbf{Usability} (10\,\%) fließt ebenfalls ein, um eine einfache und schnelle Integration zu fördern. Schließlich ist \textbf{Dokumentation und Support} (5\,\%) wichtig, um auch bei Problemen oder neuen Anforderungen eine solide Basis zu haben.
+    Insbesondere \textbf{Datenverfügbarkeit} (30\,\%) und \textbf{Stabilität} (20\,\%) haben den höchsten Stellenwert, da sie direkt den Kernnutzen und die Zuverlässigkeit des Assistenzsystems beeinflussen.
+    \textbf{Lizenzierung} (15\,\%) ist ebenfalls hoch gewichtet, da rechtliche und finanzielle Aspekte für den dauerhaften Betrieb entscheidend sind.
+    \textbf{Implementierungsaufwand} und \textbf{Erweiterbarkeit} (jeweils 10\,\%) sind wichtig für die effiziente Umsetzung und zukünftige Anpassung.
+    \textbf{Usability} (10\,\%) fließt ebenfalls ein, um eine einfache und schnelle Integration zu fördern.
+    Schließlich ist \textbf{Dokumentation und Support} (5\,\%) wichtig, um auch bei Problemen oder neuen Anforderungen eine solide Basis zu haben.
 
     \global\def\VGewichtDatenquellen{30}
     \global\def\VGewichtStabilität{20}
@@ -392,54 +394,39 @@
             \VGewichtDokumentation/Dokumentation (\VGewichtDokumentation\%)
           }
         \end{tikzpicture}
-        \caption{Gewichtung der Kriterien zur Anbindung quantitativer Finanzdaten}
+        \caption{Gewichtung der Kriterien zur Anbindung quantitativer und qualitativer Finanzdaten}
         \small{(Quelle: eigene Darstellung)}
         \label{fig:gewichtung_quant_daten}
     \end{figure}
 
-    Um die Auswahl der geeigneten Datenquelle objektiv und nachvollziehbar zu gestalten, wird ein Punktesystem von 0 bis 3 Punkten verwendet.
-    Dabei gilt: 0 Punkte stehen für eine unzureichende oder unbrauchbare Ausprägung des Kriteriums, während 3 Punkte den bestmöglichen Wert darstellen.
+    Um die Auswahl der geeigneten Datenquelle objektiv und nachvollziehbar zu gestalten, wird ein Punktesystem von 0 bis 3 Punkten verwendet (0{=}unzureichend, 3{=}sehr gut).
 
     \begin{itemize}
-      \item \textbf{Daten:} 0 Punkte, wenn keine oder veraltete Daten vorhanden sind; 1 Punkt bei lückenhaften oder teilweise veralteten Daten; 2 Punkte bei weitgehend aktuellen, aber nicht perfekten Daten; 3 Punkte bei sehr aktuellen, vollständigen und hochwertigen Daten.
-
-      \item \textbf{Stabilität:} 0 Punkte bei häufigen Ausfällen oder massiven Problemen; 1 Punkt bei gelegentlichen, aber spürbaren Instabilitäten; 2 Punkte bei meist stabiler Funktion mit kleinen Einschränkungen; 3 Punkte bei durchgehend stabiler und zuverlässiger Funktion.
-
-      \item \textbf{Usability:} 0 Punkte, wenn kaum nutzbar oder sehr unübersichtlich; 1 Punkt bei rudimentärer Nutzbarkeit, aber großen Hürden; 2 Punkte bei guter Nutzbarkeit mit kleineren Schwächen; 3 Punkte bei intuitiver, komfortabler Bedienung und einfacher Integration.
-
-      \item \textbf{Lizenz:} 0 Punkte bei rechtlich unklarer oder problematischer Lizenz; 1 Punkt bei restriktiver oder schwieriger Lizenz; 2 Punkte bei überwiegend klarer und sinnvoller Lizenz; 3 Punkte bei sehr klarer, rechtssicherer und gut passender Lizenz (z.\,B. Open Source).
-
-      \item \textbf{Implementierungsaufwand:} 0 Punkte bei sehr großem Aufwand oder kaum umsetzbar; 1 Punkt bei hohem, aber realisierbarem Aufwand; 2 Punkte bei überschaubarem Aufwand; 3 Punkte bei sehr einfacher und schneller Umsetzung.
-
-      \item \textbf{Erweiterung:} 0 Punkte, wenn keine Erweiterungen möglich sind; 1 Punkt, wenn Erweiterungen nur mit erheblichem Aufwand; 2 Punkte, wenn Erweiterungen gut machbar sind, aber nicht ideal; 3 Punkte, wenn Erweiterungen sehr leicht und flexibel möglich sind.
-
-      \item \textbf{Dokumentation:} 0 Punkte, wenn kaum Dokumentation existiert; 1 Punkt bei sehr lückenhafter oder schwer verständlicher Doku; 2 Punkte bei guter, aber nicht perfekter Doku; 3 Punkte bei sehr guter, aktueller und klarer Dokumentation.
+      \item \textbf{Daten:} 0 Punkte, wenn keine oder veraltete Daten vorhanden sind; 1 Punkt bei lückenhaften oder teilweise veralteten Daten; 2 Punkte bei weitgehend aktuellen, aber nicht perfekten Daten; 3 Punkte bei sehr aktuellen, vollständigen und hochwertigen Daten (quantitativ \emph{und} qualitativ).
+      \item \textbf{Stabilität:} 0 Punkte bei häufigen Ausfällen; 1 Punkt bei spürbaren Instabilitäten; 2 Punkte bei meist stabiler Funktion; 3 Punkte bei durchgehend stabiler, zuverlässiger Funktion.
+      \item \textbf{Usability:} 0 Punkte kaum nutzbar; 1 Punkt rudimentär; 2 Punkte gut mit kleineren Schwächen; 3 Punkte sehr intuitiv mit konsistenter API.
+      \item \textbf{Lizenz:} 0 Punkte rechtlich problematisch; 1 Punkt restriktiv; 2 Punkte überwiegend klar; 3 Punkte sehr klar/rechtssicher (z.\,B.\ Open-Source oder eindeutig definierte Nutzungsrechte).
+      \item \textbf{Implementierungsaufwand:} 0 Punkte sehr hoch; 1 Punkt hoch; 2 Punkte überschaubar; 3 Punkte sehr einfach/schnell.
+      \item \textbf{Erweiterung:} 0 Punkte keine Erweiterungen; 1 Punkt nur mit erheblichem Aufwand; 2 Punkte gut machbar; 3 Punkte sehr leicht/flexibel (z.\,B.\ zusätzliche qualitative Signale).
+      \item \textbf{Dokumentation:} 0 Punkte kaum vorhanden; 1 Punkt lückenhaft; 2 Punkte gut; 3 Punkte sehr gut/aktuell mit Beispielen und SDKs.
     \end{itemize}
 
-    Abschließend erfolgt eine Bewertung mittels Entscheidungsmatrix, um die bestmögliche Anbindung für die quantitativen Datenbedürfnisse des Systems zu ermitteln.
+    Abschließend erfolgt eine Bewertung mittels Entscheidungsmatrix, um die bestmögliche Anbindung für die Datenbedürfnisse des Systems zu ermitteln.
 
     \subsubsection{Finnhub}
 
-    Finnhub ist eine umfassende Finanzdaten-API, die eine Vielzahl an Echtzeit- und historischen Marktdaten für Aktien, Devisen, Krypto-Währungen, Unternehmensdaten und Nachrichten anbietet.
-    Die API wird von Entwicklern, Unternehmen und Analysten genutzt, um Finanz- und Wirtschaftsdaten automatisiert abzurufen und in eigene Anwendungen zu integrieren.
-    Finnhub stellt dafür eine REST-basierte Schnittstelle sowie eine gut gepflegte Python-Bibliothek zur Verfügung.
+      Finnhub ist eine umfassende Finanzdaten-API mit Echtzeit- und historischen Marktdaten (Aktien, Devisen, Krypto), umfangreichen Fundamentals sowie qualitativen Inhalten wie Unterneh­mensnachrichten, News-Sentiment und Social-/Alternative-Data-Endpunkten \autocite{FinnhubDocs2025}.
+      Die API stellt REST-Endpunkte und offizielle Client-Bibliotheken bereit.
 
-    Die Bewertung erfolgt anhand der festgelegten Kriterien:
-
+      Die Bewertung erfolgt anhand der festgelegten Kriterien:
       \begin{itemize}
-        \item \textbf{Daten (2 Punkte):} Finnhub bietet eine sehr breite Abdeckung an Finanzdaten (Aktienkurse, Währungen, Wirtschaftsdaten, Nachrichten etc.), die auch recht aktuell sind. Allerdings können bestimmte Datensätze (z.\,B. Unternehmensdaten) kostenpflichtig sein oder weniger aktuell für kostenlose Accounts.
-
-        \item \textbf{Stabilität (3 Punkte):} Die API ist insgesamt stabil und gut gewartet. Kleinere Ausfälle oder Einschränkungen sind selten.
-
-        \item \textbf{Usability (3 Punkte):} Die API ist leicht zu nutzen, mit klaren Endpunkten und Beispielen. Die Integration in Python ist durch eigene Bibliotheken sehr einfach.
-
-        \item \textbf{Lizenz (2 Punkte).:} Finnhub hat eine klare Lizenzstruktur. Für private Zwecke oder kleine Projekte ist die kostenlose Nutzung sehr gut möglich, kommerzielle Nutzung bedarf eines API Keys mit klaren Bedingungen.
-
-        \item \textbf{Implementierungsaufwand (3 Punkte).:} Die Implementierung ist durch RESTful-Endpunkte und Beispielcode (Python-Client etc.) sehr leicht.
-
-        \item \textbf{Erweiterung (3 Punkte):} Erweiterungen sind gut möglich (z.\,B. Kombination mit anderen Datenquellen, Weiterverarbeitung). Finnhub selbst bietet eine wachsende Zahl an Endpunkten.
-
-        \item \textbf{Dokumentation (3 Punkte):} Die Dokumentation ist sehr gut strukturiert, aktuell und enthält viele Beispiele.
+        \item \textbf{Daten (2 Punkte):} Sehr breite Abdeckung über Asset-Klassen inkl. Nachrichten/Sentiment; einzelne Datensätze bzw. tiefe Historien sind planabhängig \autocite{FinnhubDocs2025}.
+        \item \textbf{Stabilität (3 Punkte):} In der Praxis als robust etabliert; produktionsreife Endpunkte mit konsistenten Schemas \autocite{FinnhubDocs2025}.
+        \item \textbf{Usability (3 Punkte):} Klare Endpunkte und Beispiele; Clients/SDKs erleichtern die Integration \autocite{FinnhubDocs2025}.
+        \item \textbf{Lizenz (2 Punkte):} Klare, kommerziell nutzbare Tarifstruktur; freie Kontingente mit Limits, erweiterte Nutzung kostenpflichtig \autocite{FinnhubDocs2025}.
+        \item \textbf{Implementierungsaufwand (3 Punkte):} Einfache REST-Integration mit API-Key und Beispielcode \autocite{FinnhubDocs2025}.
+        \item \textbf{Erweiterung (3 Punkte):} Viele Endpunkte inkl. qualitativer Signale (News-/Social-Sentiment) \autocite{FinnhubDocs2025}.
+        \item \textbf{Dokumentation (3 Punkte):} Umfangreiche, aktuelle Dokumentation mit Beispielen \autocite{FinnhubDocs2025}.
       \end{itemize}
 
       \global\def\VfinnhubDaten{2}
@@ -452,73 +439,61 @@
 
     \subsubsection{Alpha Vantage}
 
-      Alpha Vantage ist ein US-amerikanischer Anbieter von Finanzmarktdaten, der eine REST-API für den Abruf von historischen und aktuellen Kursdaten, technischen Indikatoren, Währungsdaten und mehr zur Verfügung stellt.
-      Der Service richtet sich besonders an Entwickler, Forscher und kleinere Unternehmen und bietet sowohl einen kostenlosen Zugang (mit Limitierungen) als auch kostenpflichtige Pläne für professionelle Anwendungen.
+      Alpha Vantage bietet eine REST-API für historische und aktuelle Kursdaten, technische Indikatoren, FX/Krypto, Fundamentals sowie einen Bereich \enquote{Alpha Intelligence} mit \emph{News \& Sentiments}.
+      Es existieren freie Kontingente (tarifabhängige Limits) und Premium-Pläne für höhere Last bzw. Echtzeit/15-Minuten-Daten. \autocite{AlphaVantageDocs2025}
 
-      Die folgende Bewertung basiert auf den zuvor definierten sieben Kriterien für quantitative Datenquellen:
+      Die Bewertung auf Basis der sieben Kriterien:
       \begin{itemize}
-          \item \textbf{Datenumfang:} 2 Punkte – Alpha Vantage deckt eine große Bandbreite an Aktien-, Währungs- und technischen Indikator-Daten ab, jedoch fehlen teilweise tiefere Fundamentaldaten und Echtzeitdaten in der Free-Version.
-
-          \item \textbf{Stabilität:} 2 Punkte – Die API ist grundsätzlich stabil, gelegentliche Downtimes oder langsame Antwortzeiten treten aber in der Free-Version vereinzelt auf.
-
-          \item \textbf{Usability:} 3 Punkte – Die API ist sehr gut strukturiert, klar dokumentiert und mit Beispielen ausgestattet. Es existieren zudem offizielle und inoffizielle Python-Bibliotheken für eine einfache Einbindung.
-
-          \item \textbf{Lizenzmodell:} 2 Punkte – Ein kostenloses Nutzungskontingent ist verfügbar (5 API Calls/Minute), professionelle Nutzung erfordert aber ein Upgrade.
-
-          \item \textbf{Implementierungsaufwand:} 3 Punkte – Dank zahlreicher Tutorials, Bibliotheken und JSON-Antworten ist die Integration einfach und schnell möglich.
-
-          \item \textbf{Erweiterbarkeit:} 1 Punkt – Alpha Vantage bietet nur vordefinierte Endpunkte ohne Möglichkeiten zur Abfrage eigener Metriken oder individuellen Kombinationslogiken.
-
-          \item \textbf{Dokumentation:} 3 Punkte – Sehr klar gegliedert, verständlich, mit Beispielen und Fehlerbeschreibungen.
+        \item \textbf{Datenumfang (2 Punkte):} Breite Abdeckung (Aktien/Indikatoren/FX/Krypto/Fundamentals); qualitative News\&Sentiment verfügbar \autocite{AlphaVantageDocs2025}.
+        \item \textbf{Stabilität (2 Punkte):} Grundsätzlich stabil; Durchsatz/Realtime abhängig vom gewählten Plan \autocite{AlphaVantageDocs2025}.
+        \item \textbf{Usability (3 Punkte):} Klar strukturierte Endpunkte mit Beispielen; breite Community/Wrapper \autocite{AlphaVantageDocs2025}.
+        \item \textbf{Lizenzmodell (2 Punkte):} Freie Nutzung mit Limits; erweiterte/Realtime-Nutzung über Premium \autocite{AlphaVantageDocs2025}.
+        \item \textbf{Implementierungsaufwand (3 Punkte):} Einfache JSON/CSV-Antworten, zahlreiche Tutorials/Libs \autocite{AlphaVantageDocs2025}.
+        \item \textbf{Erweiterbarkeit (1 Punkt):} Vordefinierte Endpunkte, begrenzte Möglichkeit für individuelle Metrikaggregation.
+        \item \textbf{Dokumentation (3 Punkte):} Umfangreiche, laufend aktualisierte Doku mit Codebeispielen \autocite{AlphaVantageDocs2025}.
       \end{itemize}
 
-      \global\def\ValphaVantageDaten{4}
-      \global\def\ValphaVantageStabilität{3}
-      \global\def\ValphaVantageUsability{4}
+      \global\def\ValphaVantageDaten{2}
+      \global\def\ValphaVantageStabilität{2}
+      \global\def\ValphaVantageUsability{3}
       \global\def\ValphaVantageLizenz{2}
       \global\def\ValphaVantageImplement{3}
-      \global\def\ValphaVantageErweiterung{3}
-      \global\def\ValphaVantageDokumentation{4}
+      \global\def\ValphaVantageErweiterung{1}
+      \global\def\ValphaVantageDokumentation{3}
 
     \subsubsection{yfinance} %%%%%%%%%%%%%%%%%%%% Bis hierhin gekommen. Hier weitermachen
 
-      Die Python-Bibliothek \texttt{yfinance} stellt eine inoffizielle Schnittstelle zur Verfügung, um auf Marktdaten von Yahoo Finance zuzugreifen.
-      Sie erlaubt den Abruf von historischen Kursen, Dividenden, Splits, Unternehmensinformationen und mehr – ganz ohne Registrierung oder API-Schlüssel.
-      Die Nutzung erfolgt dabei durch Web-Scraping-Mechanismen, was gewisse Einschränkungen bei Stabilität und Datenkonsistenz mit sich bringt.
-      Dennoch ist \texttt{yfinance} eine der meistverwendeten Bibliotheken für schnelle Finanzdatenanalysen in Python.
+      Die Python-Bibliothek \texttt{yfinance} stellt eine inoffizielle Schnittstelle zu Yahoo Finance bereit und erlaubt den Abruf von Kurs-Historien, Dividenden/Splits, Ticker-Metadaten und ausgewählten Fundamentaldaten ohne Registrierung \autocite{yfinanceDocs}.
+      Da \texttt{yfinance} auf den öffentlich zugänglichen Yahoo-Schnittstellen basiert, kann es bei Schema-/Seitenänderungen oder Rate-Limits zu Instabilitäten kommen.
 
-      Die Bewertung erfolgt anhand der etablierten sieben Kriterien:
-
+      Die Bewertung anhand der sieben Kriterien:
       \begin{itemize}
-          \item \textbf{Datenumfang:} 3 Punkte – \texttt{yfinance} bietet Zugang zu historischen Kursdaten, Intraday-Daten, Unternehmenskennzahlen, Dividenden, Splits, Ticker-Metadaten und mehr. Für viele Anwendungsfälle ist dies mehr als ausreichend.
-
-          \item \textbf{Stabilität:} 1 Punkt – Da der Datenabruf auf Web-Scraping basiert, ist die Schnittstelle anfällig für strukturelle Änderungen auf der Yahoo-Seite. Es kann gelegentlich zu Ausfällen oder fehlerhaften Abfragen kommen.
-
-          \item \textbf{Usability:} 3 Punkte – Die Bibliothek ist sehr einfach zu verwenden, mit klarer API-Struktur und guten Pandas-Integrationen. Ein typischer Datenabruf ist mit einer einzigen Codezeile möglich.
-
-          \item \textbf{Lizenzmodell:} 3 Punkte – \texttt{yfinance} ist vollständig Open Source und kostenlos nutzbar, ohne API-Key oder Nutzerkonto.
-
-          \item \textbf{Implementierungsaufwand:} 3 Punkte – Die Einbindung ist sehr einfach. Die Bibliothek lässt sich über \texttt{pip} installieren und ist direkt in Data-Science-Workflows integrierbar.
-
-          \item \textbf{Erweiterbarkeit:} 2 Punkte – Zwar basiert \texttt{yfinance} auf einer festen Datenstruktur von Yahoo Finance, dennoch lassen sich die Funktionen kombinieren und überarbeiten. Direkte Abfragen benutzerdefinierter Metriken sind jedoch nicht möglich.
-
-          \item \textbf{Dokumentation:} 2 Punkte – Eine offizielle Dokumentation ist vorhanden, allerdings nicht sehr ausführlich. Die Community bietet aber viele Beispiele, Tutorials und Support über GitHub und Stack Overflow.
+        \item \textbf{Datenumfang (3 Punkte):} Historische/Intraday-Kurse (eingeschränkt), Dividenden/Splits, einige Kennzahlen und News-Metadaten; für viele Analysen ausreichend \autocite{yfinanceDocs}.
+        \item \textbf{Stabilität (1 Punkt):} Anfällig für Änderungen/Rate-Limits der zugrundeliegenden Webschnittstellen; gelegentliche Ausfälle \autocite{yfinanceDocs}.
+        \item \textbf{Usability (3 Punkte):} Sehr einfache Nutzung, Pandas-Integration, kurze Abrufbeispiele \autocite{yfinanceDocs}.
+        \item \textbf{Lizenzmodell (3 Punkte):} Open Source (Apache-Lizenz) und kostenfrei nutzbar \autocite{yfinanceDocs}.
+        \item \textbf{Implementierungsaufwand (3 Punkte):} Schnelle Einbindung via \texttt{pip}, einfache Workflows \autocite{yfinanceDocs}.
+        \item \textbf{Erweiterbarkeit (2 Punkte):} Funktionen kombinierbar, jedoch an Yahoo-Datenmodell gebunden.
+        \item \textbf{Dokumentation (2 Punkte):} Offizielle Doku vorhanden; Community-Beispiele/Tutorials ergänzen \autocite{yfinanceDocs}.
       \end{itemize}
 
-      Diese Bewertung zeigt, dass \texttt{yfinance} besonders für schnelle, kostenfreie Datenanalysen mit Python sehr gut geeignet ist.
-      Die Schwächen liegen primär im Bereich Stabilität, was bei professionellen oder produktiven Anwendungen berücksichtigt werden muss.
+      Diese Bewertung zeigt, dass \texttt{yfinance} für schnelle, kostenfreie Analysen geeignet ist; Schwächen liegen primär bei Stabilität/Verlässlichkeit, was in produktiven Setups zu berücksichtigen ist.
 
-      \global\def\VyfinanceDaten{4}
-      \global\def\VyfinanceStabilität{4}
-      \global\def\VyfinanceUsability{5}
-      \global\def\VyfinanceLizenz{5}
-      \global\def\VyfinanceImplement{4}
-      \global\def\VyfinanceErweiterung{4}
-      \global\def\VyfinanceDokumentation{3}
+      \global\def\VyfinanceDaten{3}
+      \global\def\VyfinanceStabilität{1}
+      \global\def\VyfinanceUsability{3}
+      \global\def\VyfinanceLizenz{3}
+      \global\def\VyfinanceImplement{3}
+      \global\def\VyfinanceErweiterung{2}
+      \global\def\VyfinanceDokumentation{2}
 
     \subsubsection{Auswertung}
 
-      \todo[inline]{To-Do}
+      Die gewichtete Nutzwertanalyse (Tabelle~\ref{tab:matrix_quantfinanz}) ergibt folgende Gesamtpunktzahlen: \textbf{Finnhub 255}, \textbf{yfinance 245}, \textbf{Alpha Vantage 215} (jeweils aus den in Abschnitt~\ref{fig:gewichtung_quant_daten} definierten Gewichten und den Einzelbewertungen).
+      Damit ist \textbf{Finnhub} im Mittel die beste Wahl für eine robuste, skalierbare Anbindung, insbesondere wenn neben quantitativen Zeitreihen auch \emph{qualitative} Signale (News/Sentiment, alternative Daten) für LLM-Begründungen konsistent benötigt werden.
+      \textbf{yfinance} überzeugt durch sehr geringe Hürden (Open-Source, einfache Integration) und eignet sich für explorative Analysen oder prototypische Pipelines, ist jedoch hinsichtlich Stabilität/Langlebigkeit risikobehafteter.
+      \textbf{Alpha Vantage} bietet eine breite Abdeckung inkl.\ News \& Sentiment und ist gut dokumentiert; für hohe Durchsätze/geringe Latenzen sind jedoch typischerweise Premium-Pläne erforderlich.
+      Empfehlung: Für den produktiven Betrieb Finnhub als Primärquelle einsetzen; \texttt{yfinance} optional für schnelle Ad-hoc-Abfragen im Research; Alpha Vantage als alternative/ergänzende Quelle für bestimmte Datendomänen (z.\,B. technische Indikatoren oder FX/Krypto).
 
       \begin{table}[H]
         \centering
@@ -544,24 +519,26 @@
           @ Gesamtpunktzahl & sum(b2:[0,-1]) &
           sumprod(b2:[-1,-1];c2:[0,-1]) &
           sumprod(b2:[-2,-1];d2:[0,-1]) &
-          sumprod(b2:[-3,-1];e2:[0,-1])  \\
+          sumprod(b2:[-3,-1];e2:[0,-1]) \\
           \hline
         \end{spreadtab}
-        \caption{Nutzwertanalyse für die Auswahl zur Anbindung quantitativer Finanzdaten}
+        \caption{Nutzwertanalyse für die Auswahl zur Anbindung quantitativer und qualitativer Finanzdaten}
         \label{tab:matrix_quantfinanz}
       \end{table}
 
 
-\section{Zusammenfassung}
+\todo[inline]{Opt. To-Do: Zusammenfassung für dieses Kapitel schreiben?}
 
-  \todo[inline]{To-Do: komplett neu schreiben}
+%\section{Zusammenfassung} %
 
-  Die gewählte Methodik ermöglicht durch ihren modularen Aufbau:
-  \begin{itemize}
-    \item \textbf{Flexible Modellnutzung}: Austausch/Ergänzung von LLMs ohne Codeänderung
-    \item \textbf{Plausibilitätschecks}: Cross-Validation durch parallele Modellausführungen
-    \item \textbf{Zukunftssicherheit}: Einfache Integration kommender Modelle durch Flexibilität bei Modellauswahl
-  \end{itemize}
+%
+
+%  Die gewählte Methodik ermöglicht durch ihren modularen Aufbau:
+%  \begin{itemize}
+%    \item \textbf{Flexible Modellnutzung}: Austausch/Ergänzung von LLMs ohne Codeänderung
+%    \item \textbf{Plausibilitätschecks}: Cross-Validation durch parallele Modellausführungen
+%    \item \textbf{Zukunftssicherheit}: Einfache Integration kommender Modelle durch Flexibilität bei Modellauswahl
+%  \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\hspace{1.5cm}
