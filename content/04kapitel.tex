@@ -139,6 +139,8 @@
         Frontend und Backend sind nun durch eine stabile API vollständig entkoppelt (\textit{Commit: 211026820610ea62ab2e4eeb7d9ab3a2188ab6d5}).
     \end{enumerate}
 
+    \todo[inline]{To-Do: Stärker aggregrieren und überarbeiten zum Schluss}
+
   \section{Integration von Frameworks und Technologien}
 
     \todo[inline]{To-Do: Aufgreifen der Ergebnisse aus Kapitel 3 mit der Auswahl der jeweiligen Tools und daran anpassen}
@@ -152,7 +154,7 @@
 
       % To-Do für diesen ganzen Abschnitt: gute Quellen suchen
 
-      \texttt{LangChain}\footnote{\url{https://www.langchain.com/}} wird als zentrales Framework zur Modellorchestrierung innerhalb des Assistenzsystems eingesetzt.
+      \texttt{LangChain} wird als zentrales Framework zur Modellorchestrierung innerhalb des Assistenzsystems eingesetzt.
       Es handelt sich dabei um eine Open-Source-Bibliothek, die speziell für die Entwicklung von Anwendungen auf Basis großer Sprachmodelle (LLMs) konzipiert wurde.
       Das Besondere an LangChain ist seine Fähigkeit, verschiedene Komponenten eines LLM-Workflows—wie Prompts, Datenquellen, Werkzeuge, Speicher oder Agenten—modular zu verketten und dabei logisch zu koordinieren.
       Dies erlaubt eine flexible und wiederverwendbare Strukturierung komplexer Modellinteraktionen \autocite{chase2023langchain}.
@@ -211,20 +213,9 @@
 
       Durch den gezielten Einsatz dieser Technologien wird die Funktionalität des Assistenzsystems sinnvoll ergänzt, die Entwicklung beschleunigt und die Benutzerfreundlichkeit auf einem hohen Niveau sichergestellt.
 
-  \section{Abruf von Finanzdaten}
+  %\section{Abruf von Finanzdaten}
 
-      \subsection{Quantitative Finanzdaten}
-
-      \subsection{Qualitative Finanzdaten}
-
-        % auch was zu verworfenen Ansätzen schreiben
-          % was war die Idee
-          % Warum verworfen?
-          % Auch Alternativen beleuchten: Bester Ansatz ist vermutlich mit Modularität
-
-        % Normales Web-Scraping
-        % Web-Scraping mit RSS
-
+      \todo[inline]{Opt. To-Do: Ggf. section zu "Abruf von Finanzdaten" wieder einfügen }
 
   \section{Prompt-Engineering und Aufbau der Prompts}
 
@@ -249,7 +240,7 @@
       Der Prompt im \texttt{assess\_security}–Modul hat das Ziel, für eine einzelne Wertpapierposition eine quantitative Dringlichkeitseinschätzung sowie eine Verteilung der Kauf-/Verkaufs-/Halt-Empfehlung zu erzeugen.
       Der strukturierte Aufbau lautet:
 
-      \begin{lstlisting}[language=Python, caption={Asset-Bewertungsprompt}]
+      \begin{lstlisting}[language=Python, gobble=6, caption={Asset-Bewertungsprompt}]
       Analyze this investment:
 
       Quantitative data:
@@ -310,7 +301,7 @@
         Im Modul \texttt{evaluate\_portfolio\_summary} wird ein zusammenfassender Prompt verwendet, der auf der Gesamtheit der einzelnen Asset-Bewertungen aufsetzt und eine umfassende, narrative Gesamtübersicht über das Portfolio generiert.
         Ziel ist es, die vielfältigen Einzelbewertungen in einen verständlichen und handlungsorientierten Gesamtbericht zu überführen.
 
-        \begin{lstlisting}[language=Python, caption={Portfolio-Zusammenfassungsprompt}]
+        \begin{lstlisting}[language=Python, gobble=8, caption={Portfolio-Zusammenfassungsprompt}]
         Analyze this portfolio based on the following assets and their evaluations:
 
         <JSON mit allen Assets und ihren Einzelbewertungen>
@@ -342,16 +333,6 @@
           Dies unterstützt Portfolio-Manager und Analyst dabei, schnelle und fundierte Entscheidungen zu treffen.
 
         \end{itemize}
-
-
-    \subsection{Integration und Dokumentation}
-
-        Beide Prompts werden in der Python-Logik syntaktisch als \texttt{f-String} konfiguriert und inklusive der zugehörigen JSON-Daten an das LLM geschickt.
-        Die vollständige Prompt-Historie und die erhaltenen Antworten werden geloggt, um \emph{Reproduzierbarkeit} und \emph{Nachvollziehbarkeit} der Entscheidungen sicherzustellen \autocite{gunning2017explainable}.
-
-        % TODO: Details zur Prompt-Feinjustierung (Temperature, Max Tokens) ergänzen
-
-        \medskip
 
 
   \section{Dokumentation und Erläuterung der Hauptprogrammlogik}
@@ -437,7 +418,17 @@
 
   \section{Frontend}
 
-    % To-Do: Übergang zum Abschnitt darunter schreiben
+    Das \textit{Frontend} ist die sicht- und bedienbare Schnittstelle zwischen KI-Modell, Optimierungslogik und Nutzer.
+    Es ist nicht reine \enquote{Kosmetik}, sondern die Ebene, auf der numerische Ergebnisse, Nebenbedingungen und Trade-offs in klare, prüfbare und priorisierte Handlungsinformationen übersetzt werden.
+    Gerade im Kontext des Wertpapierhandels entscheidet eine gute Oberfläche darüber, ob Empfehlungen verstanden, kritisch hinterfragt und verantwortungsvoll in bestehende Entscheidungsprozesse integriert werden.
+
+    Für die in dieser Arbeit angestrebte \textit{Erklärbarkeit} übernimmt das Frontend eine doppelte Rolle:
+    Es zeigt nicht nur \enquote{Was} empfohlen wird (z.,B. Kaufen/Verkaufen/Halten), sondern macht auch \enquote{Warum} und \enquote{Wie dringlich} sichtbar.
+    Dies geschieht über eine bewusst gestaltete Informationshierarchie (Übersicht -> Detail > Begründung), konsistente visuelle Kodierungen (z.,B. Farbskalen und Unsicherheitsindikatoren) sowie natürlichsprachliche Erläuterungen, die Annahmen, Sensitivitäten und Zielkonflikte transparent machen.
+    Eine Black-Box-Wahrnehmung wird vermieden und eine gute Visualisierung schaffft \emph{Vertrauen} in die Systemausgaben.
+
+    Im Folgenden wird zunächst der konzeptionelle Entwurf der Benutzeroberfläche vorgestellt, der diese Prinzipien in Informationsarchitektur und Visualisierungsmuster überführt.
+    Anschließend wird die konkrete Implementierung beschrieben, mit der die Konzepte zu einer praxistauglichen, webbasierten Anwendung für die Portfolioanalyse und Handlungsunterstützung ausgearbeitet wurden.
 
     \subsection{Konzeptioneller Entwurf}
 
@@ -482,12 +473,36 @@
           \label{fig:frontend_live}
       \end{figure}
 
-    \begin{lstlisting}[language=Python, caption=API-Endpunkt zur Portfoliobewertung]
-      // Platzhalter
+    \begin{lstlisting}[language=Python, gobble=4, caption=API-Endpunkt zur Portfoliobewertung]
+    @app.route('/api/evaluate-full-portfolio')
+    def evaluate_full_portfolio():
+        global portfolio #should be replaced later with better practice
+
+        try:
+            portfolio = assistant.evaluate_portfolio(portfolio)
+            response = {"response" : "Portfolio has been sucessfully evaluated."}
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+
+        return jsonify(response)
+
+    @app.route('/api/evaluate-single-asset/<path:identifier>')
+    def evaluate_single_asset(identifier):
+        global portfolio #should be replaced later with better practice
+
+        try:
+            portfolio = assistant.evaluate_portfolio(portfolio, specific_assets=[identifier])
+            response = {"response" : f"{identifier} has been sucessfully evaluated."}
+
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+
+        return jsonify(response)
     \end{lstlisting}
 
-    \begin{lstlisting}[caption=Asynchrone API-Kommunikation im Frontend]
-      // Platzhalter
+    \begin{lstlisting}[language=JavaScript, gobble=4, caption=Asynchrone API-Kommunikation im Frontend]
+    const response = await fetch('/api/portfolio');
+    const data = await response.json();
     \end{lstlisting}
 
       Die Anwendung zeigt aggregierte Portfolioinformationen und erlaubt auf Einzelwertebene eine genaue Analyse mit erklärender Textausgabe, die durch das LLM generiert wird.
