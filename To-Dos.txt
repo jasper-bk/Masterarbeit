@@ -1,0 +1,62 @@
+Grobes To-Do aufteilung:
+- To-Dos abhaken
+- Text weitestgehend durchgehen auch mit AI, immer TExt einfügen und nach Feedback fragen. KI nimmt die Rolle des Prüfers ein und soll bewerten was fehlt und was genauer dargestellt werden muss
+
+
+To-Dos für erste Übergabe zu Kollegen:
+
+- Wesentliche To-Do-Notes abschließen und anschließend löschen          - die wichtigsten Sachen erledigt
+- Auswahl zu Frontend und ggf. auch zu Abruf qualitativer Finanzdaten (quantitativ dann streichen und nur Finanzdaten heißen lassen) streichen in Kapitel 3             - erledigt
+- Zusammenfassung (3.3) in Kapitel 3 schreiben                                                                                                                          - erstmal ausgeblendet
+
+- Grafik zur Systemarchitektur überarbeiten.                        - erledigt
+- Frontend wird nur mit gestrichelter Linie dargestellt             - überarbeitet, aber noch nicht gestrichelt dargestellt
+- Projektstruktur Darstellung fixen                                 - erledigt
+- Fußzeilen erstmal ausblenden und ggf später verwenden             - rausgenommen
+- Kapitel 4.4 Abruf zu Finanzdaten schreiben                        - erstmal rausgenommen
+
+- Kapitel 4.7. Einleitungstext zu Frontend schreiben.               - erledigt
+    - Warum überhaupt ein Frontend und in wiefern ist es relevant.
+    - Vorallem in Hinblick auf Erklärbarkeit (und Verständnis) eingehen, damit der Nutzer das gezeigte auch gut versteht
+
+- Code der API Endpunkte in Kapitel 4.7.2
+- Kapitel 4.10. Zusammenfassung (in etwas geschickteres umbenennen) und weiter schreiben                - erstmal ausgeblendet
+- Kapitel 5 komplett überarbeiten
+
+- je nach Änderungen auch nochmal Kapitel 6 und 7 anschauen
+
+
+---------------------------------------
+
+To-Dos im Projekt selbst:
+
+- Logging einbauen
+
+Kommentare ausblenden
+
+
+
+---------------------------------------
+
+
+
+
+
+Feinjustierende To-Dos (ganz zum Schluss):
+1. Dokument von oben nach unten durchgehen
+    Überprüfen, ob die Aussagen so passen oder ob sie grundsätzlich angepasst werden müssen.
+    Prüfen ob Aussagen dabei sind, die dringend belegt werden müssen. Verweis für Quelle suchen und als Kommentar hinten anfügen.
+
+    Zu triviale Aussagen oder unnötige Doppelungen streichen.
+
+    Nach zwei oder mehr Sätzen einen Absatz machen, wenn passend.
+    Für noch fehlende Features oder Strukturen im Code bereits die Wunschvorstellung erläutern, aber ein To-Do Note einbauen: \todo[inline]{To-Do: ...
+
+    - Alle Quellen untersuchen und überprüfen, ob: existierend, genutzt, vollständig, und richtige Angaben
+    - Anhang einbauen:
+        - Code, Notebooks, diverse Grafiken, Screenshots, Links, ...
+
+Nice to haves:
+- hrefs und Verweise im Dokument
+
+
