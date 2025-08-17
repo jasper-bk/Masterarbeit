@@ -6,6 +6,7 @@
 
 
 \chapter{Stand der Forschung}
+\label{chap:stand_der_forschung}
 
   % To-Do: Überschrift evalusieren
   % alternative Überschriften:
@@ -27,25 +28,22 @@
   und \textit{(3)} kommerziellen Anwendungen wie Robo-Advisorn, deren Limitationen in aktuellen Studien kritisch diskutiert werden \autocite{hecker2017}.
 
   Im Rahmen dieser Arbeit wird bzgl. der kommerziellen Anwendungen der Fokus auf Robo-Advisor gelegt, da sie weit verbreitet sind und die Defizite in der Erklärbarkeit besonders deutlich aufzeigen.
-  Es sei jedoch betont, dass das Ziel dieser Arbeit nicht darin besteht, einen weiteren Robo-Advisor zu entwickeln, sondern ein KI-basiertes Assistenzsystem zu schaffen, das Transparenz und nachvollziehbare Entscheidungsbegründungen in den Vordergrund stellt.
+  Es sei jedoch betont, dass das Ziel dieser Arbeit nicht darin besteht, einen weiteren Robo-Advisor zu entwickeln, sondern ein \acs{KI}-basiertes Assistenzsystem zu schaffen, das Transparenz und nachvollziehbare Entscheidungsbegründungen in den Vordergrund stellt.
   Jeder der genannten Forschungsstränge weist Defizite in der Erklärbarkeit auf, die das in dieser Arbeit entwickelte System gezielt adressiert.
 
 
   \subsection{Klassische Portfolio-Optimierung}
 
-    Die moderne Portfolio-Theorie (MPT), begründet von \textcite{markowitz1952}, ist ein grundlegendes Konzept der Finanzwissenschaft, das Anlegern hilft, ein optimales Verhältnis zwischen Risiko und Rendite zu erreichen.
-    Das zentrale Prinzip der MPT ist die Diversifikation, also die Streuung von Investitionen über verschiedene Werpapiere und Anlageklassen (z. B. Aktien, Anleihen, Rohstoffe), um das Gesamtrisiko des Portfolios zu reduzieren.
+    Die moderne Portfoliotheorie (\acs{MPT}), begründet von \textcite{markowitz1952}, ist ein grundlegendes Konzept der Finanzwissenschaft, das Anlegern hilft, ein optimales Verhältnis zwischen Risiko und Rendite zu erreichen.
+    Das zentrale Prinzip der \acs{MPT} ist die Diversifikation, also die Streuung von Investitionen über verschiedene Werpapiere und Anlageklassen (z. B. Aktien, Anleihen, Rohstoffe), um das Gesamtrisiko des Portfolios zu reduzieren.
     Die Idee dahinter ist, dass sich die Risiken einzelner Anlagen gegenseitig ausgleichen können, wenn sie nicht perfekt korreliert sind.
 
-    Der mathematische Kern der MPT ist die \textit{Mean-Variance-Optimierung}.
+    Der mathematische Kern der \acs{MPT} ist die \textit{Mean-Variance-Optimierung}.
     Dabei wird das Risiko eines Portfolios als die Varianz (Streuung) der erwarteten Renditen modelliert.
 
     Die Varianz misst, wie stark die Renditen um den Durchschnittswert schwanken können.
     Ein Portfolio mit geringerer Varianz gilt als weniger riskant, da die Renditen vorhersehbarer sind.
-
     Die Mean-Variance-Optimierung sucht nach der Kombination von Anlagen, die bei einem gegebenen Risikoniveau die höchste erwartete Rendite erzielt oder bei einer angestrebten Rendite das geringste Risiko aufweist.
-    Dieses Konzept basiert auf der Annahme, dass Renditen normalverteilt sind, also symmetrisch um einen Mittelwert schwanken.
-    Allerdings wurde diese Annahme in der Praxis oft kritisiert, da reale Finanzmärkte häufig \enquote{fette Verteilungsenden} (fat tails) und Schiefe aufweisen, was zu extremen Risiken führt, die die MPT nicht vollständig abbilden kann \autocite{favre2002}.
 
     Die Portfoliooptimierung nach Markowitz \autocite{markowitz1952} formalisiert das Spannungsfeld zwischen Rendite ($\mu$) und Risiko ($\sigma$) durch mathematische Optimierung.
     Für ein Portfolio aus $n$ Anlagen gilt:
@@ -61,74 +59,78 @@
       \item $\sigma_{ij} < 0$: Anlagen wirken als Hedge (Risikoreduktion)
     \end{itemize}
 
-    \todo[inline]{To-Do: Unterstützende Grafik oder Beispiele einbauen}
+    Das Konzept hinter \acs{MPT} basiert auf der Annahme, dass Renditen normalverteilt sind, also symmetrisch um einen Mittelwert schwanken.
+    Allerdings wurde diese Annahme in der Praxis oft kritisiert, da reale Finanzmärkte häufig \enquote{fette Verteilungsenden} (fat tails) und Schiefe aufweisen, was zu extremen Risiken führt, die die \acs{MPT} nicht vollständig abbilden kann \autocite{favre2002}.
+
+    \todo[inline]{Optionales To-Do: Unterstützende Grafik oder Beispiele einbauen}
 
     % To-Do: Grafik hier zu noch bauen
     % Bisherige Beispiele gefielen nicht oder waren nicht anschaulich genug
 
-
     Fat Tails (fette Verteilungsenden) beschreiben das Phänomen, dass extreme Ereignisse – wie starke Kursverluste oder -gewinne – in realen Finanzmärkten viel häufiger auftreten, als es die Normalverteilung vorhersagen würde.
     Während die Normalverteilung annimmt, dass die meisten Renditen nahe dem Durchschnitt liegen und extreme Abweichungen sehr selten sind, zeigen Finanzdaten oft eine höhere Wahrscheinlichkeit für solche Ausreißer.
-    Dies bedeutet, dass Risiken wie Marktcrashs oder plötzliche Boomphasen in der Realität häufiger vorkommen, als es die MPT modelliert \autocite{favre2002}.
+    Dies bedeutet, dass Risiken wie Marktcrashs oder plötzliche Boomphasen in der Realität häufiger vorkommen, als es die \acs{MPT} modelliert \autocite{favre2002}.
 
     Schiefe (Skewness) bezieht sich auf die Asymmetrie der Verteilung von Renditen.
     Eine symmetrische Verteilung, wie die Normalverteilung, hat eine Schiefe von null.
     In Finanzmärkten ist die Verteilung der Renditen jedoch oft schief: Entweder gibt es eine höhere Wahrscheinlichkeit für starke negative Abweichungen (linksschief) oder für starke positive Abweichungen (rechtsschief).
     Beispielsweise neigen Aktienmärkte dazu, linksschief zu sein, da extreme Verluste (z. B. während einer Finanzkrise) häufiger auftreten als extreme Gewinne \autocite{favre2002}.
 
-    Diese Asymmetrie wird von der MPT nicht berücksichtigt, obwohl sie erhebliche Auswirkungen auf das Risikomanagement hat.
-    Beide Phänomene – fat tails und Schiefe – führen dazu, dass die MPT die tatsächlichen Risiken von Portfolios unterschätzt.
+    Diese Asymmetrie wird von der \acs{MPT} nicht berücksichtigt, obwohl sie erhebliche Auswirkungen auf das Risikomanagement hat.
+    Beide Phänomene – fat tails und Schiefe – führen dazu, dass die \acs{MPT} die tatsächlichen Risiken von Portfolios unterschätzt.
     Dies kann insbesondere in Krisensituationen problematisch sein, wenn extreme Ereignisse eintreten, die das Modell nicht vorhersieht \autocite{favre2002}.
 
-    Dennoch hat die MPT die Grundlage für zahlreiche Anwendungen in der Finanzwelt geschaffen und bleibt ein zentraler Bezugspunkt für die Portfoliooptimierung.
-    Allerdings weist die MPT außerdem auch Schwächen in Bezug auf die Erklärbarkeit auf.
+    Dennoch hat die \acs{MPT} die Grundlage für zahlreiche Anwendungen in der Finanzwelt geschaffen und bleibt ein zentraler Bezugspunkt für die Portfoliooptimierung.
+    Allerdings weist die \acs{MPT} außerdem auch Schwächen in Bezug auf die Erklärbarkeit auf.
     Während sie mathematisch optimierte Portfolios liefert, bietet sie oft keine intuitiven Erklärungen dafür, warum bestimmte Anlagen ausgewählt wurden oder wie externe Faktoren wie Marktstimmung, politische Ereignisse oder regulatorische Änderungen berücksichtigt werden \autocite{demiguel2009}.
-    Diese Intransparenz kann dazu führen, dass Anleger die Empfehlungen der MPT nicht vollständig nachvollziehen können, was das Vertrauen in die Ergebnisse mindert \autocite{bendavid2021explainable}.
+    Diese Intransparenz kann dazu führen, dass Anleger die Empfehlungen der \acs{MPT} nicht vollständig nachvollziehen können, was das Vertrauen in die Ergebnisse mindert \autocite{bendavid2021explainable}.
 
-    Ein weiteres Problem der MPT ist ihre Abhängigkeit von historischen Daten und statischen Annahmen, wie der Normalverteilung von Renditen.
-    In der Praxis zeigen Finanzmärkte wie zuvor erläutert jedoch oft nicht-normales Verhalten, wie die bereits erläuterten fat tails (extreme Ereignisse) und Schiefe, die die MPT nicht ausreichend abbilden kann \autocite{favre2002}.
-    Zudem berücksichtigt die MPT nur quantitative Faktoren wie Rendite und Risiko, während qualitative Aspekte, wie ESG-Kriterien (Environmental, Social, Governance) oder subjektive Anlegerpräferenzen, unberücksichtigt bleiben \autocite{ban2018}.
+    Ein weiteres Problem der \acs{MPT} ist ihre Abhängigkeit von historischen Daten und statischen Annahmen, wie der Normalverteilung von Renditen.
+    In der Praxis zeigen Finanzmärkte wie zuvor erläutert jedoch oft nicht-normales Verhalten, wie die bereits erläuterten fat tails (extreme Ereignisse) und Schiefe, die die MPT \acs{MPT} ausreichend abbilden kann \autocite{favre2002}.
+    Zudem berücksichtigt die \acs{MPT} nur quantitative Faktoren wie Rendite und Risiko, während qualitative Aspekte, wie \acs{ESG}-Kriterien oder subjektive Anlegerpräferenzen, unberücksichtigt bleiben \autocite{ban2018}.
 
-    Diese Lücken adressiert die vorliegende Arbeit, indem sie die MPT um erklärbare KI-Methoden erweitert.
+    Diese Lücken adressiert die vorliegende Arbeit, indem sie die \acs{MPT} um erklärbare \acs{KI}-Methoden erweitert.
     Ziel ist es, nicht nur optimale Portfolios zu berechnen, sondern auch nachvollziehbare Begründungen für die Empfehlungen zu liefern.
-    Dabei werden sowohl quantitative Faktoren (z. B. Rendite-Risiko-Profil) als auch qualitative Aspekte (z. B. Marktstimmung, ESG-Risiken) integriert, um ein umfassendes und transparentes Entscheidungsunterstützungssystem zu schaffen \autocite{arrieta2019, lundberg2017}.
+    Dabei werden sowohl quantitative Faktoren (z. B. Rendite-Risiko-Profil) als auch qualitative Aspekte (z. B. Marktstimmung, \acs{ESG}-Risiken) integriert, um ein umfassendes und transparentes Entscheidungsunterstützungssystem zu schaffen \autocite{arrieta2019, lundberg2017}.
 
   \subsection{Moderne datengetriebene Ansätze}
 
     % noch zu schwammig und ungenau
     % mehr auf konkrete Anwendungen eingehen und wie diese funktionieren und was deren Zielsetzung ist
 
-    Moderne Ansätze der Portfoliooptimierung kombinieren klassische Modelle mit Techniken der Künstlichen Intelligenz (KI), um die wachsende Komplexität der Finanzmärkte besser zu adressieren.
+    Moderne Ansätze der Portfoliooptimierung kombinieren klassische Modelle mit Techniken der \acs{KI}, um die wachsende Komplexität der Finanzmärkte besser zu adressieren.
     Dabei geht es vor allem darum, flexibel auf sich verändernde Marktbedingungen zu reagieren, komplexe Muster in Finanzdaten zu erkennen und fundierte Empfehlungen für die Allokation von Kapital bereitzustellen.
 
-    Ein zentrales Beispiel für diese Entwicklung ist der Einsatz von tiefem Reinforcement Learning (DRL), wie es etwa in der Arbeit von \autocite{sood2023} dargestellt wird.
+    Ein zentrales Beispiel für diese Entwicklung ist der Einsatz von tiefem Reinforcement Learning (\acs{DRL}), wie es etwa in der Arbeit von \autocite{sood2023} dargestellt wird.
     Hier wird die Portfolioentscheidung als sequentieller Entscheidungsprozess modelliert, bei dem ein lernender Agent – trainiert auf historischen Daten – eine Gewichtung über verschiedene Anlageklassen vornimmt.
     Der Ansatz zeigt, dass ein solcher Agent durch Anpassung an Marktveränderungen konsistent eine bessere risikoadjustierte Rendite erzielt als klassische Strategien wie die Mean-Variance-Optimierung nach Markowitz.
 
-    Auch \autocite{orra2025} entwickeln ein DRL-basiertes System, das zunächst mit Hilfe statistischer Volatilitätsmodelle wie GARCH Anlageklassen vorselektiert, um anschließend innerhalb dieser Cluster individuell optimierte Portfolios für verschiedene Risikoprofile zu generieren.
+    Auch \autocite{orra2025} entwickeln ein \acs{DRL}-basiertes System, das zunächst mit Hilfe statistischer Volatilitätsmodelle vorselektiert, um anschließend innerhalb dieser Cluster individuell optimierte Portfolios für verschiedene Risikoprofile zu generieren.
     Die Autoren betonen, dass gerade diese Kombination aus datengetriebener Vorverarbeitung und adaptiver Entscheidungsfindung eine robuste und flexible Portfoliosteuerung erlaubt.
 
-    Neben der direkten Steuerung von Anlageentscheidungen kommen zunehmend auch Large Language Models (LLMs) zum Einsatz.
+    Neben der direkten Steuerung von Anlageentscheidungen kommen zunehmend auch \acs{LLM}s zum Einsatz.
     So demonstrieren \autocite{lu2023} und \autocite{ko2023}, dass generative Sprachmodelle wie ChatGPT in der Lage sind, verständliche, fundierte Portfolioempfehlungen zu generieren, die in Backtests mit realen Finanzdaten vergleichbare oder sogar bessere Ergebnisse als traditionelle Verfahren erzielen.
     Dabei nutzen die Modelle sowohl historische Kursdaten als auch natürlichsprachliche Informationen wie Nachrichten oder Unternehmensprofile.
     \todo[inline]{To-Do: Stärkeren Deep-Dive in die beiden Arbeiten}
 
-    Ein konkretes Beispiel für ein KI-basiertes Assistenzsystem ist \textit{GPTQuant} \autocite{yue2023}, das auf GPT-3 aufsetzt und über eine Chatbot-Oberfläche Anlagevorschläge macht, Codebeispiele für Backtests liefert und auf Wunsch Strategien automatisch analysiert.
+    Ein konkretes Beispiel für ein \acs{KI}-basiertes Assistenzsystem ist \textit{GPTQuant} \autocite{yue2023}, das auf GPT-3 aufsetzt und über eine Chatbot-Oberfläche Anlagevorschläge macht, Codebeispiele für Backtests liefert und auf Wunsch Strategien automatisch analysiert.
     Besonders relevant für die eigene Arbeit ist, dass viele dieser Systeme bereits Komponenten wie Nutzerinteraktion, Erklärbarkeit und automatische Entscheidungsfindung enthalten.
     Diese Punkte sind auch zentrale Bausteine des hier vorgestellten Assistenzsystems.
     Was jedoch oft fehlt, ist eine durchgängige Transparenz über die Entscheidungsschritte hinweg oder eine flexible Anpassbarkeit der Modelllogik an veränderte regulatorische oder individuelle Anforderungen.
     \todo[inline]{To-Do: Definitiv stärker in praktischer Arbeit adressieren}
 
     Ein weiterer Ansatzpunkt, von dem gelernt werden kann, sind Modelle zur datengetriebenen Informationsgewinnung.
-    So zeigen \autocite{vamvourellis2023}, dass mit Hilfe von LLMs Unternehmensdaten aus Finanzberichten so aufbereitet werden können, dass daraus semantisch fundierte Embeddings entstehen, mit denen sich Firmen mit ähnlichem Risiko-Rendite-Profil clustern lassen.
+    So zeigen \autocite{vamvourellis2023}, dass mit Hilfe von \acs{LLM}s Unternehmensdaten aus Finanzberichten so aufbereitet werden können, dass daraus semantisch fundierte Embeddings entstehen, mit denen sich Firmen mit ähnlichem Risiko-Rendite-Profil clustern lassen.
 
     Allerdings weisen \textcite{ban2018} auch auf ein zentrales Problem hin: Die Architekturen tief neuronaler Netze operieren als \textit{Blackboxes}.
     Das bedeutet, dass ihre Entscheidungsprozesse nicht transparent sind und keine formal validierbaren Begründungen für ihre Empfehlungen liefern.
     Dies stellt ein gravierendes Defizit dar, insbesondere im Hinblick auf regulatorische Compliance-Anforderungen.
-    \textcite{bendavid2021explainable} betonen in ihrer experimentellen Studie, dass die mangelnde Erklärbarkeit von ML-Modellen das Vertrauen von Anlegern und Aufsichtsbehörden erheblich beeinträchtigt.
-    Sie zeigen, dass Anleger eher bereit sind, KI-basierte Empfehlungen zu akzeptieren, wenn diese durch nachvollziehbare Argumente gestützt werden.
+    \textcite{bendavid2021explainable} betonen in ihrer experimentellen Studie, dass die mangelnde Erklärbarkeit von \acs{ML}-Modellen das Vertrauen von Anlegern und Aufsichtsbehörden erheblich beeinträchtigt.
+    Sie zeigen, dass Anleger eher bereit sind, \acs{KI}-basierte Empfehlungen zu akzeptieren, wenn diese durch nachvollziehbare Argumente gestützt werden.
 
   \subsection{Mögliche Erklärungsmetriken}
+
+    %To-Do? MiFID etc auch in das Abkürzungsverzeichnis aufnehmen?
 
     Regulatorische Rahmenwerke wie MiFID II (Markets in Financial Instruments Directive), PRIIPs (Packaged Retail and Insurance-based Investment Products Regulation) oder UCITS (Undertakings for Collective Investment in Transferable Securities) verlangen von Finanzdienstleistern, dass sie ihren Kunden transparente und verständliche Informationen über Anlageentscheidungen bereitstellen.
 
@@ -145,21 +147,21 @@
     KI-Systeme, die als Blackboxes operieren, erfüllen diese Anforderungen nicht, da sie keine Einsicht in ihre Entscheidungslogik bieten.
     Dies kann zu regulatorischen Herausforderungen führen, insbesondere wenn Aufsichtsbehörden die Einhaltung von Transparenzvorschriften überprüfen.
 
-    Die Erklärung von Entscheidungen großer Sprachmodelle (LLMs) ist eine besondere Herausforderung.
+    Die Erklärung von Entscheidungen großer Sprachmodelle (\acs{LLM}s) ist eine besondere Herausforderung.
     Es gibt verschiedene Methoden, um nachzuvollziehen, warum ein Modell eine bestimmte Antwort gegeben hat.
 
-    Für generative KI-Modelle (Large Language Models/LLMs) existieren spezifische Erklärbarkeitsherausforderungen.
-    Während SHAP (SHapley Additive exPlanations) und LIME (Local Interpretable Model-agnostic Explanations) ursprünglich für klassisches ML entwickelt wurden \autocite{lundberg2017}, adaptieren neuere Verfahren wie \textit{Integrated Gradients} (\textcite{sundararajan2017}) oder \textit{Attention Visualization} \autocite{abnar2020} diese Konzepte für Transformer-Architekturen.
-    Im Kontext LLM-basierter Systeme etabliert sich zudem die \textit{Chain-of-Thought-Erklärung} (CoT), die Entscheidungsprozesse durch schrittweise natürlichsprachige Begründungen expliziert \autocite{wei2022}.
+    Für generative KI-Modelle (Large Language Models/\acs{LLM}s) existieren spezifische Erklärbarkeitsherausforderungen.
+    Während \ac{SHAP} und \ac{LIME} ursprünglich für klassisches \acs{ML} entwickelt wurden \autocite{lundberg2017}, adaptieren neuere Verfahren wie \textit{Integrated Gradients} (\textcite{sundararajan2017}) oder \textit{Attention Visualization} \autocite{abnar2020} diese Konzepte für Transformer-Architekturen.
+    Im Kontext \acs{LLM}-basierter Systeme etabliert sich zudem die \ac{CoT}, die Entscheidungsprozesse durch schrittweise natürlichsprachige Begründungen expliziert \autocite{wei2022}.
     Im Folgenden werden diese wichtigen Verfahren vorgestellt und erklärt, wie sie funktionieren, was sie leisten können – und wo ihre Grenzen liegen sowie ihre Eignung zu Anwendbarkeit.
 
     \todo[inline]{Übergang zum nächsten Block gut genug?}
     % To-Do: Übergang zwischen oben und unten besser hinbekommen
 
-    \textit{SHAP (SHapley Additive Explanations)} basiert auf einer Idee aus der Spieltheorie.
+    \textit{\acs{SHAP}} basiert auf einer Idee aus der Spieltheorie.
     Dort wird berechnet, wie viel jeder einzelne Spieler zum Gesamterfolg beiträgt.
     Übertragen auf maschinelles Lernen bedeutet das: Man versucht herauszufinden, wie stark jedes einzelne Eingabemerkmal (zum Beispiel ein bestimmtes Wort) die Entscheidung des Modells beeinflusst hat.
-    Dazu vergleicht man, wie sich das Ergebnis verändert, wenn man einzelne Informationen weglässt oder hinzufügt\autocite{lundberg2017}.
+    Dazu vergleicht man, wie sich das Ergebnis verändert, wenn man einzelne Informationen weglässt oder hinzufügt \autocite{lundberg2017}.
 
     Die zugrundeliegende Formel lautet:
     \begin{equation}
@@ -168,32 +170,34 @@
 
     Hierbei bezeichnet \( \phi_i \) den Shapley-Wert für das Feature \( i \), \( F \) ist die Gesamtmenge aller Features, \( S \) ist eine Teilmenge von \( F \) ohne \( i \), und \( f \) ist die Modellvorhersage.
     Die genaue Berechnung ist aufwendig und erfordert viele Durchläufe mit unterschiedlichen Kombinationen von Eingaben.
-    SHAP ist sehr genau und liefert oft gute Ergebnisse – bei großen Sprachmodellen mit langen Texteingaben wird es aber schnell sehr rechenintensiv und schwer anzuwenden, weil die Bedeutung eines Wortes vom gesamten Kontext abhängt \autocite{lundberg2017}.
+    \acs{SHAP} ist sehr genau und liefert oft gute Ergebnisse – bei großen Sprachmodellen mit langen Texteingaben wird es aber schnell sehr rechenintensiv und schwer anzuwenden, weil die Bedeutung eines Wortes vom gesamten Kontext abhängt \autocite{lundberg2017}.
 
-    LIME hingegen approximiert das Verhalten eines komplexen Modells lokal durch ein einfacheres, interpretierbares Modell (z. B. ein lineares Modell) in der Nähe eines bestimmten Datenpunkts.
-    Es erzeugt in der Nähe einer konkreten Eingabe (zum Beispiel einer Frage an das Modell) viele leicht veränderte Versionen dieser Eingabe und schaut, wie sich das Modellverhalten verändert. Daraus wird ein einfaches Modell gebaut, das ungefähr erklärt, wie das komplexe große Modell an dieser Stelle arbeitet. LIME ist flexibel und kann mit vielen Modellen verwendet werden \autocite{lundberg2017}.
+    \acs{LIME} hingegen approximiert das Verhalten eines komplexen Modells lokal durch ein einfacheres, interpretierbares Modell (z. B. ein lineares Modell) in der Nähe eines bestimmten Datenpunkts.
+    Es erzeugt in der Nähe einer konkreten Eingabe (zum Beispiel einer Frage an das Modell) viele leicht veränderte Versionen dieser Eingabe und schaut, wie sich das Modellverhalten verändert. Daraus wird ein einfaches Modell gebaut, das ungefähr erklärt, wie das komplexe große Modell an dieser Stelle arbeitet. 
+    \acs{LIME} ist flexibel und kann mit vielen Modellen verwendet werden \autocite{lundberg2017}.
 
     Formal ergibt sich das Optimierungsproblem wie folgt:
     \begin{equation}
     \underset{g \in G}{\arg \min} \ \mathcal{L}(f, g, \pi_x) + \Omega(g)
     \end{equation}
 
-    LIME liefert intuitiv verständliche lokale Erklärungen und ist durch seine Modellagnostik vielseitig einsetzbar.
-    Dennoch ergeben sich gerade im Kontext großer Sprachmodelle erhebliche Herausforderungen: Die Struktur natürlicher Sprache wird durch zufällige Perturbation oft zerstört, was zu irrelevanten oder nicht interpretierbaren Resultaten führen kann. Zudem ist die Reproduzierbarkeit der Ergebnisse begrenzt, da das Verfahren stochastische Elemente enthält.
-    Sowohl LIME als auch SHAP sind jedoch primär für tabellarische Daten oder Modelle mit klar definierten Eingabefeatures konzipiert \autocite{lundberg2017}.
+    \acs{LIME} liefert intuitiv verständliche lokale Erklärungen und ist durch seine Modellagnostik vielseitig einsetzbar.
+    Dennoch ergeben sich gerade im Kontext großer Sprachmodelle erhebliche Herausforderungen: Die Struktur natürlicher Sprache wird durch zufällige Perturbation oft zerstört, was zu irrelevanten oder nicht interpretierbaren Resultaten führen kann. 
+    Zudem ist die Reproduzierbarkeit der Ergebnisse begrenzt, da das Verfahren stochastische Elemente enthält.
+    Sowohl \acs{LIME} als auch \acs{SHAP} sind jedoch primär für tabellarische Daten oder Modelle mit klar definierten Eingabefeatures konzipiert \autocite{lundberg2017}.
 
-    Für generative KI-Modelle, insbesondere Large Language Models (LLMs), existieren spezifische Erklärbarkeitsherausforderungen, die sich von denen klassischer Machine-Learning-Modelle unterscheiden.
-    Während Methoden wie SHAP (SHapley Additive exPlanations) und LIME (Local Interpretable Model-agnostic Explanations) ursprünglich für klassisches ML entwickelt wurden \autocite{lundberg2017}, sind sie für generative KI-Modelle nur bedingt geeignet.
+    Für generative KI-Modelle, insbesondere \acs{LLM}s, existieren spezifische Erklärbarkeitsherausforderungen, die sich von denen klassischer Machine-Learning-Modelle unterscheiden.
+    Während Methoden wie \acs{SHAP} und \acs{LIME} ursprünglich für klassisches \acs{ML} entwickelt wurden \autocite{lundberg2017}, sind sie für generative \acs{KI}-Modelle nur weniger geeignet.
 
     % To-Do: evtl hier oder doch an anderer Stelle eine unterstützende Grafik einbinden
 
-    Bei LLMs, die auf unstrukturierten Textdaten operieren und hochkomplexe, nicht-lineare Zusammenhänge modellieren, stoßen SHAP und LIME an ihre Grenzen.
-    Die Eingaben von LLMs sind oft Sequenzen von Tokens (Wörtern oder Teilwörtern), deren Beiträge zur Ausgabe nicht einfach auf einzelne Features reduziert werden können.
-    Zudem sind die Entscheidungsprozesse von LLMs aufgrund ihrer Architektur und ihrer enormen Parameterzahl schwer zu interpretieren \autocite{vaswani2017}.
+    Bei \acs{LLM}s, die auf unstrukturierten Textdaten operieren und hochkomplexe, nicht-lineare Zusammenhänge modellieren, stoßen \acs{SHAP} und \acs{LIME} an ihre Grenzen.
+    Die Eingaben von \acs{LLM}s sind oft Sequenzen von Tokens (Wörtern oder Teilwörtern), deren Beiträge zur Ausgabe nicht einfach auf einzelne Features reduziert werden können.
+    Zudem sind die Entscheidungsprozesse von \acs{LLM}s aufgrund ihrer Architektur und ihrer enormen Parameterzahl schwer zu interpretieren \autocite{vaswani2017}.
 
-    Die meisten aktuellen LLMs, wie GPT (Generative Pre-trained Transformer) \autocite{radford2018} und BERT (Bidirectional Encoder Representations from Transformers) \autocite{devlin2018}, basieren auf Transformer-Architekturen.
+    Die meisten aktuellen \acs{LLM}, wie \acs{GPT} (Generative Pre-trained Transformer) \autocite{radford2018} und \acs{BERT} (Bidirectional Encoder Representations from Transformers) \autocite{devlin2018}, basieren auf Transformer-Architekturen.
     Transformer nutzen Aufmerksamkeitsmechanismen (Attention), um die Beziehungen zwischen verschiedenen Teilen der Eingabesequenz zu modellieren \autocite{vaswani2017}.
-    Für solche Modelle wurden spezielle Erklärbarkeitsmethoden entwickelt, darunter Integrated Gradients, Attention Visualization und Chain-of-Thought-Erklärungen (CoT).
+    Für solche Modelle wurden spezielle Erklärbarkeitsmethoden entwickelt, darunter Integrated Gradients, Attention Visualization und \acs{CoT}-Erklärungen.
 
     \textit{Integrated Gradients} \autocite{sundararajan2017} ist ein Verfahren, das sich die inneren Rechenwege des Modells zunutze macht.
     Es berechnet, wie sich die Ausgabe des Modells verändert, wenn man langsam von einer neutralen Eingabe (zum Beispiel ein leerer Text) zur tatsächlichen Eingabe übergeht.
@@ -205,14 +209,14 @@
     \mathrm{IG}_i(x) = (x_i - x_i') \cdot \int_{\alpha=0}^{1} \frac{\partial f(x' + \alpha \cdot (x - x'))}{\partial x_i} \, d\alpha
     \end{equation}
 
-    Diese Methode eignet sich besonders für tiefe neuronale Netze, einschließlich Transformer wie sie in LLMs verwendet, da sie die kontinuierliche Natur der Eingabedaten berücksichtigt.
+    Diese Methode eignet sich besonders für tiefe neuronale Netze, einschließlich Transformer wie sie in \acs{LLM}s verwendet, da sie die kontinuierliche Natur der Eingabedaten berücksichtigt.
     Ein Nachteil ist jedoch, dass man eine geeignete neutrale Eingabe definieren muss – was bei Sprache nicht immer einfach ist.
 
     Zudem ist die Anwendung von Integrated Gradients auf große Sprachmodelle komplex, da die hohe Dimensionalität, Kontextabhängigkeit und nicht-linearen Beziehungen der Modelle die Attribution von Vorhersagen erschweren.
     Des weiteren können die Wahl des Basispunkts und der hohe Rechenaufwand zu variablen und schwer interpretierbaren Ergebnissen führen. \autocite{sundararajan2017, vaswani2017}.
 
     Attention Visualization \autocite{abnar2020} ist eine Methode, die speziell für Transformer-Modelle entwickelt wurde.
-    Es ist ein weiteres beliebtes Werkzeug, um zu verstehen, wie Transformer-Modelle wie GPT oder BERT arbeiten.
+    Es ist ein weiteres beliebtes Werkzeug, um zu verstehen, wie Transformer-Modelle wie \acs{GPT} oder \acs{BERT} arbeiten.
 
     Sie macht die Aufmerksamkeitsgewichte sichtbar, die der Transformer verwendet, um die Beziehungen zwischen verschiedenen Teilen der Eingabesequenz zu modellieren.
     Diese Modelle nutzen sogenannte Aufmerksamkeitsmechanismen (engl. Attention), um zu entscheiden, welche Wörter im Eingabetext besonders wichtig sind \autocite{abnar2020, vaswani2017}.
@@ -222,9 +226,9 @@
 
     Allerdings ist Vorsicht geboten: Nur weil das Modell \enquote{Aufmerksamkeit} auf ein bestimmtes Wort richtet, heißt das nicht unbedingt, dass dieses Wort entscheidend für die Antwort war.
     Attention-Gewichte sind nicht immer gleichbedeutend mit Bedeutung oder Ursache.
-    Dies bietet Einblicke in die Entscheidungsprozesse von LLMs, ist jedoch oft komplex und erfordert eine sorgfältige Interpretation \autocite{abnar2020, vaswani2017}.
+    Dies bietet Einblicke in die Entscheidungsprozesse von \acs{LLM}s, ist jedoch oft komplex und erfordert eine sorgfältige Interpretation \autocite{abnar2020, vaswani2017}.
 
-    Eine besonders interessante Methode speziell für Sprachmodelle ist die sogenannte \textit{Chain-of-Thought}-Erklärung (CoT).
+    Eine besonders interessante Methode speziell für Sprachmodelle ist die sogenannte \acs{CoT}-Erklärung.
     Dabei wird das Modell nicht nur gebeten, eine Antwort zu geben, sondern auch die Schritte dahin zu erklären – ähnlich wie ein Mensch, der seinen Denkprozess laut beschreibt \autocite{wei2022}.
     Ein einfaches Beispiel wäre:
 
@@ -237,18 +241,18 @@
     Solche Erklärungen sind besonders hilfreich, wenn man nachvollziehen möchte, wie das Modell \enquote{denkt} \autocite{wei2022}.
 
     Sie helfen auch dabei, bessere Ergebnisse zu erzielen – insbesondere bei komplexen Aufgaben.
-    CoT ist besonders nützlich für LLMs, die auf Textgenerierung spezialisiert sind, da es die inhärenten Fähigkeiten dieser Modelle nutzt, um Transparenz zu schaffen \autocite{wei2022}.
+    \acs{CoT} ist besonders nützlich für LLMs, die auf Textgenerierung spezialisiert sind, da es die inhärenten Fähigkeiten dieser Modelle nutzt, um Transparenz zu schaffen \autocite{wei2022}.
 
-    Außerdem setzt CoT voraus, dass das Modell in der Lage ist, kohärente und logische Zwischenschritte zu generieren, was nicht bei allen LLMs gegeben ist.
+    Außerdem setzt \acs{CoT} voraus, dass das Modell in der Lage ist, kohärente und logische Zwischenschritte zu generieren, was nicht bei allen \acs{LLM}s gegeben ist.
     Zudem ist rücksicht darauf zu nehmen, dass die Erklärungen stark davon abhängen, wie genau man die Aufgabe stellt.
     Kleine Änderungen in der Fragestellung können zu völlig anderen Erklärungsschritten führen.
     Außerdem sagen solche sprachlichen Erklärungen nichts darüber aus, wie das Modell intern rechnet – sie sind eher ein \enquote{erklärendes Sprachspiel} \autocite{wei2022}.
 
     In der Abgrenzung dieser Methoden wird deutlich, dass keine Technik universell über alle Anwendungskontexte hinweg überlegen ist.
-    SHAP und LIME bieten robuste und weit verbreitete Verfahren für strukturierte Daten, stoßen jedoch bei sequenziellen, kontextabhängigen Inputs wie bei LLMs an ihre Grenzen.
+    \acs{SHAP} und \acs{LIME} bieten robuste und weit verbreitete Verfahren für strukturierte Daten, stoßen jedoch bei sequenziellen, kontextabhängigen Inputs wie bei \acs{LLM}s an ihre Grenzen.
     Integrated Gradients nutzen die interne Struktur neuronaler Netze aus und liefern mathematisch fundierte Attributionen, die aber in der Praxis nur mit vertieftem Verständnis der Modellstruktur sinnvoll einsetzbar sind.
     Attention-Visualisierung ist hilfreich für ein erstes Verständnis von Informationsflüssen, liefert aber keine kausalen Attributionen.
-    Chain-of-Thought schließlich stellt eine stark nutzerzentrierte, linguistische Erklärweise dar, die insbesondere im interaktiven Kontext wertvoll ist, jedoch kein vollständiges Verständnis der internen Funktionsweise eines Modells erlaubt.
+    \acs{CoT} schließlich stellt eine stark nutzerzentrierte, linguistische Erklärweise dar, die insbesondere im interaktiven Kontext wertvoll ist, jedoch kein vollständiges Verständnis der internen Funktionsweise eines Modells erlaubt.
 
     \todo[inline]{To-Do: Noch erwähnen was es bishin zur tatsächlichen Anwendung findet und was nicht? Oder wird erst wieder bei Implementierung aufgegriffen?}
 
@@ -260,32 +264,32 @@
     Angesichts der wachsenden Bedeutung digitaler Finanzdienstleistungen in der privaten Vermögensverwaltung und der breiten Zugänglichkeit von automatisierten Anlagelösungen lohnt es sich, einen genaueren Blick auf kommerzielle Robo-Advisor zu werfen.
     Es gilt zu verstehen, wie diese Plattformen die theoretischen Grundlagen der Portfoliooptimierung für den Massenmarkt operationalisieren und dabei neue Chancen aber auch Risiken für Anleger schaffen sowie welche Defizite sie noch aufweisen.
 
-    Der kommerzielle Robo-Advisor-Markt wird maßgeblich von plattformzentrierten Software-as-a-Service (SaaS)-Lösungen geprägt, insbesondere durch Anbieter wie Betterment und Wealthfront in den USA.
+    Der kommerzielle Robo-Advisor-Markt wird maßgeblich von plattformzentrierten Software-as-a-Service (\acs{SaaS})-Lösungen geprägt, insbesondere durch Anbieter wie Betterment und Wealthfront in den USA.
     Diese Plattformen bieten automatisierte Anlageempfehlungen, die auf den individuellen Präferenzen und Risikoprofilen ihrer Nutzer basieren.
-    Dabei nutzen sie eine Kombination aus Exchange-Traded Funds (ETFs) und algorithmischen Strategien, um diversifizierte Portfolios zu erstellen und zu verwalten.
-    Die zugrunde liegenden Modelle orientieren sich an der Modernen Portfolio-Theorie (MPT), wobei die Komplexität der ursprünglichen Theorie reduziert wird, um sie für den Massenmarkt zugänglich zu machen \autocite{investopedia_wealthfront_betterment_2023}.
+    Dabei nutzen sie eine Kombination aus Exchange-Traded Funds (\acs{ETF}s) und algorithmischen Strategien, um diversifizierte Portfolios zu erstellen und zu verwalten.
+    Die zugrunde liegenden Modelle orientieren sich an der Modernen Portfolio-Theorie (\acs{MPT}), wobei die Komplexität der ursprünglichen Theorie reduziert wird, um sie für den Massenmarkt zugänglich zu machen \autocite{investopedia_wealthfront_betterment_2023}.
 
     Aus Kostensicht bieten Robo-Advisor-Plattformen grundsätzlich klare Vorteile: Sie erheben in der Regel niedrigere Gebühren als traditionelle Finanzberater (typischerweise zwischen 0,25\% und 0,50\% des verwalteten Vermögens) und ermöglichen es damit auch Anlegern mit kleineren Budgets, professionell gemanagte Portfolios zu nutzen \autocite{investopedia_wealthfront_betterment_2023}.
     Dies ist vor allem deshalb relevant, weil die Einstiegshürden im klassischen Wealth Management oft sehr hoch sind.
 
     Allerdings sind diese Kosten nicht zu unterschätzen.
-    Neben der Servicegebühr fallen zusätzliche Kosten für die zugrunde liegenden ETFs an, was die Gesamtkostenquote in die Höhe treiben kann \autocite{investopedia_wealthfront_betterment_2023}.
+    Neben der Servicegebühr fallen zusätzliche Kosten für die von den Anbietern ausgewählten \acs{ETF}s oder Fonds an, was die Gesamtkostenquote in die Höhe treiben kann \autocite{investopedia_wealthfront_betterment_2023}.
     Gerade über die Jahre wirken sich die prozentualen Gebühren stark aus – ein Aspekt, der von Anlegern oft übersehen wird.
 
     Zudem fehlen häufig individuelle Beratungsgespräche, die bei komplexen oder unklaren Lebenssituationen hilfreich sein können.
     Robo-Advisor stellen somit einen Mittelweg dar: Sie sind kostengünstiger und zugänglicher als viele traditionelle Angebote, können aber nicht alle Bedürfnisse abdecken.
 
-    Während die MPT eine kontinuierliche Optimierung von Portfolios basierend auf individuellen Risikopräferenzen und Marktbedingungen vorsieht, verwenden Robo-Advisor wie Betterment und Wealthfront standardisierte Risikoprofile und vordefinierte Anlagestrategien \autocite{investopedia_wealthfront_betterment_2023}.
+    Während die \acs{MPT} eine kontinuierliche Optimierung von Portfolios basierend auf individuellen Risikopräferenzen und Marktbedingungen vorsieht, verwenden Robo-Advisor wie Betterment und Wealthfront standardisierte Risikoprofile und vordefinierte Anlagestrategien \autocite{investopedia_wealthfront_betterment_2023}.
 
-    Dies führt zu einer Vereinfachung, die zwar benutzerfreundlich ist, aber die Flexibilität und Präzision der ursprünglichen MPT einschränkt \autocite{hecker2017}.
+    Dies führt zu einer Vereinfachung, die zwar benutzerfreundlich ist, aber die Flexibilität und Präzision der ursprünglichen \acs{MPT} einschränkt \autocite{hecker2017}.
     Im deutschen Markt finden sich ähnliche Robo-Advisor-Lösungen, die jedoch an die lokalen regulatorischen und marktspezifischen Anforderungen angepasst sind.
     Zu den bekanntesten Anbietern zählen Scalable Capital, VisualVest und Quirion.
-    Diese deutschen Robo-Advisor implementieren ebenfalls vereinfachte MPT-Varianten, ähnlich wie ihre US-amerikanischen Pendants, und stehen vor ähnlichen Herausforderungen in Bezug auf Transparenz und Individualisierung \autocite{hecker2017}.
+    Diese deutschen Robo-Advisor implementieren ebenfalls vereinfachte \acs{MPT}-Varianten, ähnlich wie ihre US-amerikanischen Pendants, und stehen vor ähnlichen Herausforderungen in Bezug auf Transparenz und Individualisierung \autocite{hecker2017}.
 
     Eine kritische Bestandsaufnahme durch \textcite{hecker2017} identifiziert systemische Defizite in diesen Plattformen:
     \begin{itemize}
     \item \textbf{Klassenbasierte Risikoprofile}: Robo-Advisor verwenden starre 3-5-Stufen-Schemata, um das Risikoprofil der Nutzer zu kategorisieren.
-    Diese Schemata unterteilen Anleger in grobe Kategorien wie „konservativ“, „moderat“ oder „aggressiv“, ohne kontinuierliche Präferenzabbildung zu ermöglichen.
+    Diese Schemata unterteilen Anleger in grobe Kategorien wie \enquote{konservativ}, \enquote{moderat} oder \enquote{aggressiv}, ohne kontinuierliche Präferenzabbildung zu ermöglichen.
     Dies bedeutet, dass die individuellen Risikotoleranzen und Anlageziele der Nutzer nicht präzise abgebildet werden, was zu suboptimalen Portfolioempfehlungen führen kann \autocite{hecker2017}.
 
     \item \textbf{Monolithische Rebalancing-Logik}: Die Portfolioanpassungen (Rebalancing) erfolgen oft nach intransparenten Schwellwertmodellen.
@@ -299,78 +303,95 @@
 
     Diese systemischen Defizite zeigen, dass kommerzielle Robo-Advisor trotz ihrer Benutzerfreundlichkeit und Zugänglichkeit erhebliche Einschränkungen aufweisen, insbesondere in Bezug auf Transparenz, Individualisierung und Flexibilität.
 
+    \todo[inline]{Alles über diesem Kommentar ist gut überarbeitet und nahezu rund. Rest des Kapitels bedarf u. U. noch mehr Liebe (roter Faden)}
+
 
 \section{Erklärbare KI in der Finanzdomäne} %%%%%%%%%%%%%% <- bis hierhin überarbeitet
 
-  Moderne Portfoliomodelle basieren auf zunehmend komplexen KI- und Machine-Learning-Ansätzen, deren Entscheidungswege für menschliche Anwender häufig undurchsichtig sind.
+  Moderne Portfoliomodelle basieren auf zunehmend komplexen \acs{KI}- und \acs{ML}-Ansätzen, deren Entscheidungswege für menschliche Anwender häufig undurchsichtig sind.
   In der stark regulierten Finanzbranche führt dies zu einem Spannungsfeld: Einerseits versprechen fortgeschrittene Modelle bessere Prognosen (z.\,B. für Kreditbewertungen oder Marktbewegungen), andererseits verlangen Aufsichtsbehörden und Nutzer nach hoher Nachvollziehbarkeit.
-  XAI-Methoden zielen darauf ab, diese Black-Box-Prozesse aufzubrechen und erklärbare Entscheidungsgrundlagen zu liefern.
-  Forschende betonen, dass XAI-Anwendungen gerade in regulierten Domänen unverzichtbar sind, um Transparenz zu gewährleisten und Vertrauen aufzubauen \autocite{Weber2024, Yeo2025}.
+  \acs{XAI}-Methoden zielen darauf ab, diese Black-Box-Prozesse aufzubrechen und erklärbare Entscheidungsgrundlagen zu liefern.
+  Forschende betonen, dass \acs{XAI}-Anwendungen gerade in regulierten Domänen unverzichtbar sind, um Transparenz zu gewährleisten und Vertrauen aufzubauen \autocite{Weber2024, Yeo2025}.
 
-  Typische Finanzanwendungen für XAI umfassen etwa Kreditwürdigkeitsprüfungen, Börsenprognosen oder Betrugserkennung.
+  Typische Finanzanwendungen für \acs{XAI} umfassen etwa Kreditwürdigkeitsprüfungen, Börsenprognosen oder Betrugserkennung.
   \autocite{Cerneviciene2024} zeigen, dass insbesondere Kreditmanagement, Aktienpreisvorhersage und Fraud Detection zu den häufig untersuchten Einsatzgebieten zählen.
-  Auch die Portfoliooptimierung ist ein prominentes Anwendungsfeld: Hier können XAI-Methoden Anlegern helfen, Investmentempfehlungen besser nachzuvollziehen und Risiken transparenter zu bewerten \autocite{Cerneviciene2024}.
+  Auch die Portfoliooptimierung ist ein prominentes Anwendungsfeld: Hier können \acs{XAI}-Methoden Anlegern helfen, Investmentempfehlungen besser nachzuvollziehen und Risiken transparenter zu bewerten \autocite{Cerneviciene2024}.
   Darüber hinaus unterstützen Erklärungen die ethische und rechtliche Prüfung von KI-Modellen – beispielsweise indem sie ermöglichen, systematische Verzerrungen zu erkennen oder regulatorische Vorgaben zu überprüfen.
-  Insgesamt stellen XAI-Methoden somit einen wichtigen Baustein dar, um die Akzeptanz und Nachvollziehbarkeit KI-gestützter Finanzentscheidungen zu erhöhen \autocite{Weber2024, Cerneviciene2024}.
+  Insgesamt stellen \acs{XAI}-Methoden somit einen wichtigen Baustein dar, um die Akzeptanz und Nachvollziehbarkeit \acs{KI}-gestützter Finanzentscheidungen zu erhöhen \autocite{Weber2024, Cerneviciene2024}.
 
   \subsection{Transparenzanforderungen bei Finanzentscheidungen}
 
-    Finanzentscheidungen unterliegen strengen Regulierungsvorgaben, die auch die Verwendung von KI-Systemen betreffen.
-    In Europa beispielsweise verpflichtete die Datenschutzgrundverordnung (DSGVO) bereits 2018 Unternehmen dazu, Betroffenen auf Nachfrage nachvollziehbare Erklärungen zu automatisierten Entscheidungen bereitzustellen (sog. \emph{Right to Explanation}) \autocite{Weber2024}.
-    Das jüngst in Vorbereitung befindliche EU-„Künstliche Intelligenz Gesetz“ (AI Act) kategorisiert Finanzanwendungen als „High-Risk-Systeme“ und sieht umfangreiche Transparenzpflichten vor \autocite{Weber2024}.
-    Auch nationale Regulierungsbehörden (z.\,B. die deutsche Bundesanstalt für Finanzdienstleistungsaufsicht, BaFin) fordern explizit eine lückenlose Dokumentation und Nachvollziehbarkeit von KI-basierten Entscheidungsverfahren \autocite{Weber2024}. In den USA brachte der Financial Transparency Act (2021) ähnliche Vorgaben: KI-Systeme müssen offenlegen, welche Faktoren zu einer Entscheidung geführt haben, um Manipulationen oder Diskriminierungen zu verhindern \autocite{Weber2024}.
+    Finanzentscheidungen unterliegen strengen Regulierungsvorgaben, die auch die Verwendung von \acs{KI}-Systemen betreffen.
+    In Europa beispielsweise verpflichtete die Datenschutzgrundverordnung (\acs{DSGVO}) bereits 2018 Unternehmen dazu, Betroffenen auf Nachfrage nachvollziehbare Erklärungen zu automatisierten Entscheidungen bereitzustellen (sog. \emph{Right to Explanation}) \autocite{Weber2024}.
+    Das jüngst in Vorbereitung befindliche \acs{EU}-\enquote{Künstliche Intelligenz Gesetz} (AI Act) kategorisiert Finanzanwendungen als \enquote{High-Risk-Systeme} und sieht umfangreiche Transparenzpflichten vor \autocite{Weber2024}.
+    Auch nationale Regulierungsbehörden (z.\,B. die deutsche Bundesanstalt für Finanzdienstleistungsaufsicht, BaFin) fordern explizit eine lückenlose Dokumentation und Nachvollziehbarkeit von KI-basierten Entscheidungsverfahren \autocite{Weber2024}. 
+    In den USA brachte der Financial Transparency Act (2021) ähnliche Vorgaben: \acs{KI}-Systeme müssen offenlegen, welche Faktoren zu einer Entscheidung geführt haben, um Manipulationen oder Diskriminierungen zu verhindern \autocite{Weber2024}.
 
     Für Anleger und Entscheidungsträger schaffen solche Vorgaben einen zusätzlichen Druck: Nutzer erwarten nicht nur akkurate Vorhersagen, sondern auch verständliche Begründungen.
     Forschende argumentieren, dass nur so das notwendige Vertrauen in automatisierte Portfoliosysteme gewährleistet werden kann \autocite{Weber2024}.
     Gleichzeitig verdeutlichen Regulierungsberichte, dass fehlende Transparenz hohe Haftungsrisiken birgt.
-    XAI wird daher als Schlüsselfaktor gesehen, um die rechtlichen und ethischen Anforderungen im Finanzwesen einzuhalten und zugleich den Anwendern ein besseres Verständnis der Modelle zu vermitteln \autocite{Weber2024}.
+    \acs{XAI} wird daher als Schlüsselfaktor gesehen, um die rechtlichen und ethischen Anforderungen im Finanzwesen einzuhalten und zugleich den Anwendern ein besseres Verständnis der Modelle zu vermitteln \autocite{Weber2024}.
+
+    \todo[inline]{To-Do: Bogen zurückspannen zu GenAI, LLM und dafür Schlüsse oder Bedeutung daraus hier ziehen}
 
   \subsection{Symbolische Ansätze zur Erhöhung der Transparenz}
 
     Traditionell wurden Finanzentscheidungen oft auf regelbasierten oder symbolischen Modellen aufgebaut (etwa Scoring-Modelle mit festen Gewichtungen oder Entscheidungsbäumen).
-    Solche weißen Boxen sind von Natur aus gut interpretierbar. Neuere Ansätze im Bereich „neuro-symbolischer KI“ versuchen, die Stärken neuronaler Netze mit symbolischer Repräsentation zu verbinden: Während das neuronale Netz Daten generalisiert, übernimmt das symbolische System die explizite Wissensrepräsentation.
+    Solche weißen Boxen sind von Natur aus gut interpretierbar. 
+    Neuere Ansätze im Bereich \enquote{neuro-symbolischer KI} versuchen, die Stärken neuronaler Netze mit symbolischer Repräsentation zu verbinden: 
+    Während das neuronale Netz Daten generalisiert, übernimmt das symbolische System die explizite Wissensrepräsentation.
     \autocite{Yeo2025} heben hervor, dass symbolisches Schließen genau das erlaubt, was Nutzer wünschen – nämlich \emph{menschlich verständliche Erklärungen} des Entscheidungsprozesses, wodurch die Transparenz signifikant steigt.
-    Ein Vorteil ist, dass einmal definiertes Fachwissen dauerhaft in einer Wissensbasis gespeichert werden kann, was das „Wissen vergessen“ der Netze verhindert und klare Audit-Trails schafft \autocite{Yeo2025}.
+    Ein Vorteil ist, dass einmal definiertes Fachwissen dauerhaft in einer Wissensbasis gespeichert werden kann, was das \enquote{Wissen vergessen} der Netze verhindert und klare Audit-Trails schafft \autocite{Yeo2025}.
 
     Allerdings ist die Entwicklung domänenspezifischer symbolischer Modelle aufwändig.
     Die Erstellung vollständiger Wissensbasen für Finanzprozesse, die alle Eventualitäten eines Portfolios abbilden, erfordert beträchtlichen Aufwand und Expertenwissen \autocite{Yeo2025}.
-    Deshalb werden symbolische Methoden oft in Teilbereichen eingesetzt oder hybrid mit ML kombiniert.
-    So können beispielsweise Entscheidungsbäume oder if-then-Regelsätze zur anfänglichen Strukturierung genutzt und anschließend durch ML-Module ergänzt werden.
+    Deshalb werden symbolische Methoden oft in Teilbereichen eingesetzt oder hybrid mit \acs{ML} kombiniert.
+    So können beispielsweise Entscheidungsbäume oder if-then-Regelsätze zur anfänglichen Strukturierung genutzt und anschließend durch \acs{ML}-Module ergänzt werden.
     Insgesamt zeigen solche symbolischen und hybriden Verfahren ein hohes Potenzial, die Erklärbarkeit zu erhöhen, indem sie Klarheit in die Modelllogik bringen \autocite{Yeo2025}.
+
+    \todo[inline]{To-Do: Bogen zurückspannen zu GenAI, LLM und dafür Schlüsse daraus hier ziehen. Ansonsten kann diese subsection weg}
 
 \section{Menschzentrierte Erklärbarkeit und Interaktion}
 
   Die allein technische Betrachtung von Erklärbarkeit reicht nicht aus, wenn Menschen mit den Systemen interagieren sollen.
-  Human-Centered XAI bedeutet, die Erklärungen an den kognitiven und emotionalen Bedürfnissen der Nutzer auszurichten. \autocite{Liao2022} betonen, dass der Erfolg von XAI-Anwendungen letztlich über das Nutzererlebnis definiert wird, nicht nur über technische Leistungsmaße.
-  Das Ziel ist, Anwender zu \emph{empowern}: Erklärungen sollen Nutzer befähigen, bessere Entscheidungen zu treffen und das System kritisch zu hinterfragen, statt nur als Black-Box akzeptiert zu werden.
-  Die neu entstehende Forschungsgemeinschaft für Human-Centered XAI verknüpft dabei Perspektiven aus Kognitionswissenschaft, HCI-Design und Soziologie, um Erklärungsstrategien zu entwickeln, die sich an realen Arbeitsabläufen und mentalen Modellen von Nutzern orientieren \autocite{Liao2022}.
+  Human-Centered \acs{XAI} bedeutet, die Erklärungen an den kognitiven und emotionalen Bedürfnissen der Nutzer auszurichten. 
+  \autocite{Liao2022} betonen, dass der Erfolg von \acs{XAI}-Anwendungen letztlich über das Nutzererlebnis definiert wird, nicht nur über technische Leistungsmaße.
+  Das Ziel ist, Anwender zu \enquote{empowern}: Erklärungen sollen Nutzer befähigen, bessere Entscheidungen zu treffen und das System kritisch zu hinterfragen, statt nur als Black-Box akzeptiert zu werden.
+  Die neu entstehende Forschungsgemeinschaft für Human-Centered \acs{XAI} verknüpft dabei Perspektiven aus Kognitionswissenschaft, HCI-Design und Soziologie, um Erklärungsstrategien zu entwickeln, die sich an realen Arbeitsabläufen und mentalen Modellen von Nutzern orientieren \autocite{Liao2022}.
 
-  Dabei gilt es zu berücksichtigen, dass Erklärungen ein \emph{interaktiver Kommunikationsprozess} sind.
+  Dabei gilt es zu berücksichtigen, dass Erklärungen ein interaktiver Kommunikationsprozess sind.
   \autocite{Kopecka2020} fassen Miller (2019) dahingehend zusammen: Während ein KI-Agent die Ursachen für seine Entscheidung kognitiv ermittelt, muss er diese Wissenserzeugung anschließend in einem sozialen Austausch dem Nutzer vermitteln.
   Das heißt: Erklärungen sind keine bloßen Produkte, sondern Dialoge, in denen sowohl Explainer (System) als auch Explainee (Nutzer) aktiv involviert sind.
   Für die Finanzwelt bedeutet das, dass ein Erklärungsmodul auch Nachfragen, Gegenbeispiele oder Rückversicherungen unterstützen sollte, um die menschliche Logik zu adressieren.
 
-  Gleichzeitig zeigen nutzerorientierte Studien, dass viele bestehende XAI-Methoden in der Praxis noch zu selten evaluiert werden. \autocite{Rong2022} finden in einer Übersicht, dass vergleichsweise wenige Arbeiten empirische Nutzerstudien durchführen; oft fehlen Einblicke aus kognitiven oder soziotechnischen Analysen ganz.
-  Aus humanistischer Sicht wird gefordert, dass Erklärungen intuitiv, verständlich und aufgabenspezifisch sind – etwa als Grafiken, Beispiele oder kontrafaktische Szenarien, die das Vertrauen der Anwender stärken.
-  Insgesamt legt die Human-Centered-Forschung nahe, dass XAI-Systeme nicht nur korrekte, sondern vor allem \emph{menschlich verständliche} Erklärungen erzeugen müssen \autocite{Liao2022, Rong2022}.
+  Gleichzeitig zeigen nutzerorientierte Studien, dass viele bestehende \acs{XAI}-Methoden in der Praxis noch zu selten evaluiert werden. 
+  \autocite{Rong2022} finden in einer Übersicht, dass vergleichsweise wenige Arbeiten empirische Nutzerstudien durchführen; oft fehlen Einblicke aus kognitiven oder soziotechnischen Analysen ganz.
+  Es wird gefordert, dass Erklärungen intuitiv, verständlich und aufgabenspezifisch sind – etwa als Grafiken, Beispiele oder kontrafaktische Szenarien, die das Vertrauen der Anwender stärken.
+  Insgesamt legt die Human-Centered-Forschung nahe, dass \acs{XAI}-Systeme nicht nur korrekte, sondern vor allem menschlich verständliche Erklärungen erzeugen müssen \autocite{Liao2022, Rong2022}.
+
+  \todo[inline]{To-Do: Hier schon mal auf Frontend und Präsentation hinleiten. Mit Verweise oder Vorwort...}
 
 \section{Evaluation und Trade-offs}
 
-  Ein zentrales Thema der XAI-Literatur ist der Zielkonflikt zwischen komplexen, performanten Modellen und deren Erklärbarkeit.
-  Black-Box-Modelle wie tiefe neuronale Netze erzielen oft eine höhere Prognosegüte als einfache Verfahren – insbesondere bei unstrukturierten Daten. \autocite{Liao2022} fassen diesen Unterschied als „performance-interpretability tradeoff“ zusammen.
-  Allerdings betonen sie, dass dieser Trade-off nicht universell ist: Bei gut strukturierten Daten können auch interpretierbare Modelle ähnliche Genauigkeiten erreichen.
-  Die aktuelle Forschung schlägt zunehmend Brücken, etwa durch transparente Modelle wie GA²Ms oder CoFrNet \autocite{Liao2022}.
+  Ein zentrales Thema der \acs{XAI}-Literatur ist der Zielkonflikt zwischen komplexen, performanten Modellen und deren Erklärbarkeit.
+  Black-Box-Modelle wie tiefe neuronale Netze erzielen oft eine höhere Prognosegüte als einfache Verfahren – insbesondere bei unstrukturierten Daten. 
+  \autocite{Liao2022} fassen diesen Unterschied als \enquote{performance-interpretability tradeoff} zusammen.
+  Allerdings betonen sie, dass dieser Trade-off nicht universell ist: Bei gut strukturierten Daten können auch interpretierbare Modelle ähnliche Genauigkeiten erreichen.  \autocite{Liao2022}.
 
-  Ein weiteres Schlüsselthema ist die Evaluation der erzeugten Erklärungen. \autocite{Kadir2023} zeigen, dass nur ein Bruchteil der XAI-Literatur formale Metriken definiert hat.
-  Die gängigen Verfahren reichen von objektiven Metriken (Treue, Stabilität) bis hin zu subjektiven Nutzerstudien. Letztere gewinnen an Bedeutung, wie \autocite{Rong2022} dokumentieren.
-  Ein standardisiertes Evaluationsschema fehlt jedoch bislang – was die Vergleichbarkeit der Verfahren erschwert. Die Literatur fordert daher, XAI systematischer zu evaluieren und Benchmarks zu etablieren \autocite{Kadir2023, Rong2022}.
+  Ein weiteres Schlüsselthema ist die Evaluation der erzeugten Erklärungen. 
+  \autocite{Kadir2023} zeigen, dass nur ein Bruchteil der \acs{XAI}-Literatur formale Metriken definiert hat.
+  Die gängigen Verfahren reichen von objektiven Metriken (Treue, Stabilität) bis hin zu subjektiven Nutzerstudien. 
+  Letztere gewinnen an Bedeutung, wie \autocite{Rong2022} dokumentieren.
 
-  % Bis hierhin überarbeitet und angepasst. Zweite Meinung erforderlich
-  % Nachstehenden Teil noch mal nachpfelgen um neue Inhalte auch richtig abzudecken.
+  Ein standardisiertes Evaluationsschema fehlt jedoch bislang – was die Vergleichbarkeit der Verfahren erschwert. 
+  Die Literatur fordert daher, \acs{XAI} systematischer zu evaluieren und Benchmarks zu etablieren \autocite{Kadir2023, Rong2022}.
+
+  \todo[inline]{To-Do: Wichtig genug oder kann diese section womöglich einfach weg?}
 
 \section{Brücke zu den Forschungsfragen}
 
-    Die in dieser Arbeit adressierten Forschungsfragen zielen darauf ab, zentrale Defizite bestehender Systeme im Wertpapierhandel zu überwinden, insbesondere in Bezug auf Transparenz, Individualisierung und Erklärbarkeit von Anlageempfehlungen. Bestehende Systeme bieten oft keine nachvollziehbaren Handlungsempfehlungen, vernachlässigen individuelle Anlegerprofile und liefern unzureichende Begründungen für automatisierte Entscheidungen – ein Umstand, der die Nutzerakzeptanz und regulatorische Compliance gleichermaßen gefährdet \autocite{Weber2024, Liao2022}.
+    Die in dieser Arbeit adressierten Forschungsfragen zielen darauf ab, zentrale Defizite bestehender Systeme im Wertpapierhandel zu überwinden, insbesondere in Bezug auf Transparenz, Individualisierung und Erklärbarkeit von Anlageempfehlungen. 
+    Bestehende Systeme bieten oft keine nachvollziehbaren Handlungsempfehlungen, vernachlässigen individuelle Anlegerprofile und liefern unzureichende Begründungen für automatisierte Entscheidungen – ein Umstand, der die Nutzerakzeptanz und regulatorische Compliance gleichermaßen gefährdet \autocite{Weber2024, Liao2022}.
 
     Die erste Forschungsfrage untersucht, wie ein KI-basiertes Assistenzsystem entwickelt werden kann, das für jedes Wertpapier im Depot quantifizierbare Handlungsempfehlungen (Kaufen/Verkaufen/Halten in Prozent) mit transparenten, nutzerverständlichen Begründungen generiert.
     Dieses Ziel erfordert die Integration von Methoden der erklärbaren KI (XAI), die es ermöglichen, Entscheidungsprozesse maschineller Modelle transparent zu machen.
@@ -379,16 +400,14 @@
 
     Die zweite Forschungsfrage adressiert die Systemebene: Inwieweit kann ein solches System eine übergeordnete Risiko-Rendite-Bewertung des gesamten Portfolios liefern und daraus konkrete Rebalancing-Strategien ableiten, die den individuellen Anlagezielen und Risikopräferenzen des Nutzers entsprechen?
     Um diese Frage zu beantworten, müssen moderne datengetriebene Optimierungsverfahren mit klassischen Methoden der Portfoliotheorie (z.\,B. Mean-Variance-Optimierung) kombiniert werden.
-    Besonders geeignet erscheinen hier \textit{Distributionally Robust Optimization}-Ansätze, die Unsicherheiten in den Eingabedaten modellieren und robuste Handlungsempfehlungen ableiten können \autocite{ban2018}.
     Gleichzeitig ist es notwendig, Nutzerpräferenzen – etwa in Bezug auf Nachhaltigkeit, Risikobereitschaft oder Anlagedauer – als weiche Nebenbedingungen oder Zielrestriktionen in die Modellierung zu integrieren.
 
-    Diese Forschungsfragen positionieren sich im Spannungsfeld zwischen technischer Komplexität und menschlicher Interpretierbarkeit: Einerseits müssen hochgradig adaptive Algorithmen entwickelt werden, die präzise Empfehlungen erzeugen; andererseits darf dabei die Transparenz gegenüber dem Nutzer nicht verloren gehen.
-    Der Einsatz von XAI ist hier nicht optional, sondern konstitutiv für die Funktionsweise des Systems – insbesondere in einer Domäne, die regulatorisch als \enquote{High Risk} klassifiziert ist \autocite{Weber2024}.
+    Diese Forschungsfragen positionieren sich im Spannungsfeld zwischen technischer Komplexität und menschlicher Interpretierbarkeit: 
+    Einerseits müssen hochgradig adaptive Algorithmen entwickelt werden, die präzise Empfehlungen erzeugen; andererseits darf dabei die Transparenz gegenüber dem Nutzer nicht verloren gehen.
+    Der Einsatz von \acs{XAI} ist hier nicht optional, sondern konstitutiv für die Funktionsweise des Systems – insbesondere in einer Domäne, die regulatorisch als \enquote{High Risk} klassifiziert ist \autocite{Weber2024}.
 
-    Der gewählte \textit{Design Science Research} (DSR)-Ansatz bietet ein methodisches Gerüst, um diese Herausforderungen systematisch anzugehen.
-    \textcite{hevner2004} beschreiben DSR als einen iterativen Prozess, der sowohl das Gestalten (Design) als auch das Evaluieren von artefaktbasierten Lösungen umfasst. In der vorliegenden Arbeit wird dieser Ansatz durch mehrstufige Entwicklungszyklen operationalisiert: Zunächst werden prototypische Systemmodule entwickelt (z.\,B. Empfehlungsgenerierung, Erk
-
-
+    Der gewählte \textit{Design Science Research} (\acs{DSR})-Ansatz bietet ein methodisches Gerüst, um diese Herausforderungen systematisch anzugehen.
+    \textcite{hevner2004} beschreiben \acs{DSR} als einen iterativen Prozess, der sowohl das Gestalten (Design) als auch das Evaluieren von artefaktbasierten Lösungen umfasst.
 
 \section{Offene Herausforderungen}
 
@@ -400,28 +419,31 @@
     Ein zentrales Problem ist die begrenzte Erklärbarkeit komplexer KI-Modelle, insbesondere von tiefen neuronalen Netzen und Transformer-Architekturen.
     Während Methoden wie \textit{Integrated Gradients} \autocite{sundararajan2017} und \textit{Attention Visualization} \autocite{abnar2020} Fortschritte bei der Interpretation von Modellentscheidungen bieten, sind ihre Erklärungen oft technisch und für Endnutzer schwer verständlich.
 
-    Chain-of-Thought-Erklärungen (CoT) \autocite{wei2022} bieten zwar natürlichsprachige Begründungen, sind jedoch auf die Fähigkeiten des zugrunde liegenden KI-Modells beschränkt und können inkonsistente oder unvollständige Erklärungen liefern.
+    Chain-of-Thought-Erklärungen (\acs{CoT}) \autocite{wei2022} bieten zwar natürlichsprachige Begründungen, sind jedoch auf die Fähigkeiten des zugrunde liegenden KI-Modells beschränkt und können inkonsistente oder unvollständige Erklärungen liefern.
     Es besteht daher ein Bedarf an intuitiveren und nutzerfreundlicheren Erklärungsmethoden, die sowohl für Fachleute als auch für Laien verständlich sind.
+
+    \todo[inline]{To-Do: Auch hier Brück zu den oberen Sektionen schlagen, um das dort vorgestellte auszuwerten}
 
   \subsection{Integration qualitativer und quantitativer Faktoren}
 
-    Ein weiteres Problem ist die Integration qualitativer Faktoren, wie ESG-Kriterien (Environmental, Social, Governance) oder Marktstimmung, in quantitative Optimierungsmodelle.
-    Während klassische Portfoliooptimierungsansätze wie die moderne Portfolio-Theorie (MPT) \autocite{markowitz1952} primär auf quantitativen Daten basieren, spielen qualitative Faktoren eine zunehmend wichtige Rolle in der Anlageentscheidung.
+    Ein weiteres Problem ist die Integration qualitativer Faktoren, wie \acs{ESG}-Kriterien (Environmental, Social, Governance) oder Marktstimmung, in quantitative Optimierungsmodelle.
+    Während klassische Portfoliooptimierungsansätze wie die moderne Portfolio-Theorie (\acs{MPT}) \autocite{markowitz1952} primär auf quantitativen Daten basieren, spielen qualitative Faktoren eine zunehmend wichtige Rolle in der Anlageentscheidung.
 
     Die Herausforderung besteht darin, diese Faktoren in eine einheitliche Bewertungsmethode zu integrieren, die sowohl präzise als auch erklärbar ist.
-    Ansätze wie die Nutzung von Natural Language Processing (NLP) zur Analyse von Nachrichten und Social Media \autocite{ban2018} zeigen Potenzial, sind jedoch noch nicht ausreichend ausgereift, um zuverlässige und transparente Ergebnisse zu liefern.
 
   \subsection{Regulatorische und ethische Anforderungen}
 
     Die Einhaltung regulatorischer Anforderungen, wie sie beispielsweise durch die MiFID II (Markets in Financial Instruments Directive) vorgegeben werden, stellt eine weitere Herausforderung dar.
-    KI-Systeme müssen nicht nur transparente und nachvollziehbare Entscheidungen treffen, sondern auch sicherstellen, dass ihre Empfehlungen den gesetzlichen Vorgaben entsprechen.
+    \acs{KI}-Systeme müssen nicht nur transparente und nachvollziehbare Entscheidungen treffen, sondern auch sicherstellen, dass ihre Empfehlungen den gesetzlichen Vorgaben entsprechen.
 
-    Zudem gibt es ethische Bedenken hinsichtlich der Fairness und Diskriminierungsfreiheit von KI-Modellen, insbesondere wenn personenbezogene Daten in die Entscheidungsfindung einfließen \autocite{bendavid2021explainable}.
-    Die Entwicklung von KI-Systemen, die sowohl regulatorische als auch ethische Anforderungen erfüllen, bleibt ein offenes Forschungsfeld.
+    Zudem gibt es ethische Bedenken hinsichtlich der Fairness und Diskriminierungsfreiheit von \acs{KI}-Modellen, insbesondere wenn personenbezogene Daten in die Entscheidungsfindung einfließen \autocite{bendavid2021explainable}.
+    Die Entwicklung von \acs{KI}-Systemen, die sowohl regulatorische als auch ethische Anforderungen erfüllen, bleibt ein offenes Forschungsfeld.
+
+    \todo[inline]{To-Do: Beschreiben, dass die Details für dieses Thema Out-of-Scrope der Arbeit sind und die Richtlinien nicht im Detail betrachtet werden}
 
   \subsection{Datenqualität und -verfügbarkeit}
 
-    Die Qualität und Verfügbarkeit von Daten sind entscheidend für die Leistungsfähigkeit von KI-Modellen.
+    Die Qualität und Verfügbarkeit von Daten sind entscheidend für die Leistungsfähigkeit von \acs{KI}-Modellen.
     Finanzdaten sind oft verrauscht, unvollständig oder unterliegen zeitlichen Verzögerungen, was die Genauigkeit von Prognosen und Empfehlungen beeinträchtigt \autocite{demiguel2009}.
 
     Zudem sind viele relevante Datenquellen, wie Nachrichten oder Social Media, unstrukturiert und erfordern aufwendige Vorverarbeitung.
@@ -429,41 +451,46 @@
 
   \subsection{Skalierbarkeit und Recheneffizienz}
 
-    Schließlich stellt die Skalierbarkeit und Recheneffizienz von KI-Modellen eine praktische Herausforderung dar.
-    Die Optimierung großer Portfolios mit komplexen KI-Modellen erfordert erhebliche Rechenressourcen, insbesondere wenn Echtzeit-Analysen durchgeführt werden sollen \autocite{ban2018}.
+    Schließlich stellt die Skalierbarkeit und Recheneffizienz von \acs{KI}-Modellen eine praktische Herausforderung dar.
+    Die Optimierung großer Portfolios mit komplexen \acs{KI}-Modellen erfordert erhebliche Rechenressourcen, insbesondere wenn Echtzeit-Analysen durchgeführt werden sollen \autocite{ban2018}.
 
     Effiziente Algorithmen und Hardwarebeschleuniger (z. B. GPUs) können hier Abhilfe schaffen, sind jedoch oft mit hohen Kosten verbunden.
     Die Entwicklung skalierbarer und kosteneffizienter Lösungen bleibt daher ein wichtiges Forschungsziel.
 
+    \todo[inline]{To-Do: Darauf eingehen, dass die Lösung hier relativ einfach ist, wenn man man auf Online-Modelle setzt}
+
 \section{Cross-industrielle Vergleiche}
 
-  Die Übertragbarkeit von Methoden der generativen KI, insbesondere von Large Language Models (LLMs), zwischen verschiedenen Branchen ist ein zunehmend relevanter Forschungsbereich.
-  \textcite{hecker2017} diskutieren, wie Techniken aus der Medizin-KI, die auf der Analyse von unstrukturierten Textdaten basieren, auf die Finanzbranche übertragen werden können.
-  Beispielsweise können LLMs, die in der Medizin zur Extraktion von Informationen aus klinischen Berichten oder Forschungsartikeln eingesetzt werden, auch zur Analyse von Finanzberichten, Nachrichtenartikeln oder Social-Media-Daten adaptiert werden.
-  Dies zeigt das Potenzial von LLMs, domänenspezifische Textdaten zu verarbeiten und wertvolle Erkenntnisse zu generieren.
+  \todo[inline]{To-Do: Diese ganze Section wirkt noch chaotisch. Definitiv nochmal von Grund auf überarbeiten}
 
-  Ähnlich zeigt \textcite{linardatos2021} in ihrer Übersichtsarbeit, dass viele Erklärbarkeitsmethoden für generative KI-Modelle domänenübergreifend anwendbar sind.
-  Methoden wie Chain-of-Thought-Erklärungen (CoT) \autocite{wei2022}, die ursprünglich für die Textgenerierung entwickelt wurden, können auch in der Finanzbranche eingesetzt werden, um die Entscheidungsprozesse von KI-Systemen transparenter zu machen.
-  CoT ermöglicht es LLMs, schrittweise natürlichsprachige Begründungen für ihre Empfehlungen zu generieren, was sowohl in der Medizin als auch in der Finanzbranche von Nutzen ist.
+  Die Übertragbarkeit von Methoden der generativen \acs{KI}, insbesondere von \acs{LLM}s, zwischen verschiedenen Branchen ist ein zunehmend relevanter Forschungsbereich.
+  \textcite{hecker2017} diskutieren, wie Techniken aus der Medizin-\acs{KI}, die auf der Analyse von unstrukturierten Textdaten basieren, auf die Finanzbranche übertragen werden können.
+  Beispielsweise können \acs{LLM}s, die in der Medizin zur Extraktion von Informationen aus klinischen Berichten oder Forschungsartikeln eingesetzt werden, auch zur Analyse von Finanzberichten, Nachrichtenartikeln oder Social-Media-Daten adaptiert werden.
+  Dies zeigt das Potenzial von \acs{LLM}s, domänenspezifische Textdaten zu verarbeiten und wertvolle Erkenntnisse zu generieren.
 
-  Ein weiteres Beispiel ist die Anwendung von LLMs in der Rechtsprechung und deren Übertragung auf die Finanzbranche.
-  LLMs, die zur Analyse von juristischen Texten und zur Generierung von Vertragsentwürfen eingesetzt werden, können auch zur Auswertung von regulatorischen Dokumenten oder zur Erstellung von Compliance-Berichten in der Finanzbranche adaptiert werden \autocite{vaswani2017}.
-  Dies unterstreicht die Flexibilität von LLMs, branchenspezifische Textdaten zu verarbeiten und komplexe Aufgaben zu automatisieren.
+  Ähnlich zeigt \textcite{linardatos2021} in ihrer Übersichtsarbeit, dass viele Erklärbarkeitsmethoden für generative \acs{KI}-Modelle domänenübergreifend anwendbar sind.
+  Methoden wie \acs{CoT}-Erklärungen \autocite{wei2022}, die ursprünglich für die Textgenerierung entwickelt wurden, können auch in der Finanzbranche eingesetzt werden, um die Entscheidungsprozesse von KI-Systemen transparenter zu machen.
+  \acs{CoT} ermöglicht es \acs{LLM}s, schrittweise natürlichsprachige Begründungen für ihre Empfehlungen zu generieren, was sowohl in der Medizin als auch in der Finanzbranche von Nutzen ist.
 
-  Trotz dieser vielversprechenden Ansätze gibt es Herausforderungen bei der domänenübergreifenden Übertragung von LLMs.
+  Ein weiteres Beispiel ist die Anwendung von \acs{LLM}s in der Rechtsprechung und deren Übertragung auf die Finanzbranche.
+  \acs{LLM}s, die zur Analyse von juristischen Texten und zur Generierung von Vertragsentwürfen eingesetzt werden, können auch zur Auswertung von regulatorischen Dokumenten oder zur Erstellung von Compliance-Berichten in der Finanzbranche adaptiert werden \autocite{vaswani2017}.
+  Dies unterstreicht die Flexibilität von \acs{LLM}s, branchenspezifische Textdaten zu verarbeiten und komplexe Aufgaben zu automatisieren.
+
+  Trotz dieser vielversprechenden Ansätze gibt es Herausforderungen bei der domänenübergreifenden Übertragung von \acs{LLM}s.
   Branchenspezifische Anforderungen, wie die Einhaltung regulatorischer Vorgaben in der Finanzbranche oder die hohe Genauigkeitsanforderungen in der Medizin, erfordern oft eine Anpassung der Modelle an den jeweiligen Kontext \autocite{bendavid2021explainable}.
 
-  Zudem können Unterschiede in der Datenqualität und -verfügbarkeit die Übertragbarkeit von LLMs einschränken.
+  Zudem können Unterschiede in der Datenqualität und -verfügbarkeit die Übertragbarkeit von \acs{LLM}s einschränken.
   Finanzdaten sind oft verrauscht und unstrukturiert, während medizinische Daten strengen Datenschutzbestimmungen unterliegen \autocite{demiguel2009}.
 
-  Ein tiefergehender Vergleich mit anderen datenintensiven Branchen zeigt, dass der Einsatz von Large Language Models (LLMs) in der Finanzbranche ähnliche strukturelle Herausforderungen aufweist wie in der Medizin oder dem Rechtswesen, jedoch auch einige branchenspezifische Besonderheiten birgt.
+  Ein tiefergehender Vergleich mit anderen datenintensiven Branchen zeigt, dass der Einsatz von \acs{LLM}s in der Finanzbranche ähnliche strukturelle Herausforderungen aufweist wie in der Medizin oder dem Rechtswesen, jedoch auch einige branchenspezifische Besonderheiten birgt.
 
-  In der Medizin wurde etwa mit Modellen wie \textit{BioGPT} oder \textit{Med-PaLM} demonstriert, dass LLMs in der Lage sind, komplexe, fachspezifische Inhalte mit hoher Präzision zu verarbeiten und erklärbar darzustellen \autocite{singhal2022large,luo2022biogpt}.
+  In der Medizin wurde etwa mit Modellen wie \textit{BioGPT} oder \textit{Med-PaLM} demonstriert, dass \acs{LLM}s in der Lage sind, komplexe, fachspezifische Inhalte mit hoher Präzision zu verarbeiten und erklärbar darzustellen \autocite{singhal2022large,luo2022biogpt}.
   Diese Fähigkeiten lassen sich auch auf finanzielle Inhalte übertragen, z.\,B. bei der semantischen Analyse von Ad-hoc-Mitteilungen, Finanzanalysen oder regulatorischen Texten.
   Entscheidend ist hierbei, dass die Modelle nicht nur syntaktisch korrekt, sondern auch inhaltlich verlässlich und nachvollziehbar argumentieren.
 
   Im Finanzbereich ist mit \textit{BloombergGPT} ein Meilenstein gelungen, der gezielt auf Daten aus der Branche trainiert wurde.
-  Das Modell wurde auf mehr als 700 Milliarden Token aus Wirtschaftsnachrichten, Firmenberichten, Analystenkommentaren und internen Daten trainiert und übertrifft generische Modelle signifikant in Finanzbenchmarks \autocite{wu2023}. Es zeigt, dass branchenspezifisches Pretraining eine zentrale Voraussetzung für hohe Performance und Relevanz in der jeweiligen Domäne ist.
+  Das Modell wurde auf mehr als 700 Milliarden Token aus Wirtschaftsnachrichten, Firmenberichten, Analystenkommentaren und internen Daten trainiert und übertrifft generische Modelle signifikant in Finanzbenchmarks \autocite{wu2023}. 
+  Es zeigt, dass branchenspezifisches Pretraining eine zentrale Voraussetzung für hohe Performance und Relevanz in der jeweiligen Domäne ist.
 
   Zudem existieren mit \textit{FinGPT} Open-Source-Initiativen, die darauf abzielen, domänenspezifische Modellentwicklung demokratischer zu gestalten, indem sie transparente Datenpipelines und Finetuning-Prozesse für den Finanzbereich anbieten \autocite{yang2023fingpt}.
   Dadurch entsteht ein wachsendes Ökosystem, das den Transfer von LLM-Technologien aus anderen Branchen erleichtert.
@@ -472,7 +499,7 @@
   Während in der Medizin standardisierte Datenformate (wie ICD-10, HL7) und strukturierte Repositories (z.\,B. MIMIC-III) weit verbreitet sind, dominieren im Finanzwesen semi-strukturierte oder unstrukturierte Formate wie PDFs, HTML-Tables oder Textauszüge aus Earnings Calls \autocite{hassani2024}.
   Diese Unterschiede erhöhen die Komplexität bei der Datenverarbeitung erheblich und erfordern zusätzliche Vorverarbeitung oder spezialisierte Retrieval-Systeme.
 
-  Zusammenfassend lässt sich feststellen, dass der Cross-Industry-Transfer von LLMs in den Finanzbereich nicht nur möglich, sondern bereits in der Praxis erfolgreich demonstriert wurde.
+  Zusammenfassend lässt sich feststellen, dass der Cross-Industry-Transfer von \acs{LLM}s in den Finanzbereich nicht nur möglich, sondern bereits in der Praxis erfolgreich demonstriert wurde.
   Durch die Adaption bewährter Ansätze aus anderen Bereichen können neue Perspektiven und Methoden für die Finanzbranche erschlossen werden.
   Gleichzeitig verdeutlichen die branchenspezifischen Anforderungen, dass ein reiner \enquote{Plug-and-Play}-Ansatz nicht ausreicht.
   Erfolgreiche Implementierungen setzen auf maßgeschneiderte Datenstrategien, erklärbare Modellarchitekturen und eine tiefe Integration regulatorischer Rahmenbedingungen.
@@ -481,26 +508,26 @@
 \section{Zusammenfassung und Forschungslücken}
 
   Das Kapitel hat den aktuellen Kenntnisstand, die Herausforderungen und Potenziale von KI-basierten Assistenzsystemen im Wertpapierhandel untersucht, mit einem besonderen Fokus auf Transparenz, Erklärbarkeit und Nutzerzentrierung.
-  Es wurde gezeigt, dass bestehende Systeme, wie Robo-Advisor und klassische Portfoliooptimierungsansätze, erhebliche Defizite aufweisen.
+  Es wurde gezeigt, dass bestehende Systeme, wie Robo-Advisor und klassische Portfoliooptimierungsansätze, Defizite aufweisen, die mit dem in der Arbeit entwickelteten Assistenzsystems überbrückt oder weitestgehend abgeschwächt werden.
 
-  Diese umfassen die mangelnde Erklärbarkeit von Entscheidungen, die unzureichende Integration qualitativer Faktoren (z. B. ESG-Kriterien, Marktstimmung) und die begrenzte Flexibilität bei der Abbildung individueller Anlegerpräferenzen \autocite{hecker2017, demiguel2009}.
-  Darüber hinaus wurde die Bedeutung von erklärbarer KI (XAI) für die Finanzbranche hervorgehoben.
+  Diese umfassen die mangelnde Erklärbarkeit von Entscheidungen, die unzureichende Integration qualitativer Faktoren (z. B. \acs{ESG}-Kriterien, Marktstimmung) und die begrenzte Flexibilität bei der Abbildung individueller Anlegerpräferenzen \autocite{hecker2017, demiguel2009}.
+  Darüber hinaus wurde die Bedeutung von erklärbarer KI (\acs{XAI}) für die Finanzbranche hervorgehoben.
 
-  Methoden wie Integrated Gradients \autocite{sundararajan2017}, Attention Visualization \autocite{abnar2020} und Chain-of-Thought-Erklärungen (CoT) \autocite{wei2022} bieten vielversprechende Ansätze, um die Transparenz von KI-Systemen zu erhöhen.
+  Methoden wie Integrated Gradients \autocite{sundararajan2017}, Attention Visualization \autocite{abnar2020} und Chain-of-Thought-Erklärungen (\acs{CoT}) \autocite{wei2022} bieten vielversprechende Ansätze, um die Transparenz von KI-Systemen zu erhöhen.
   Allerdings bleiben technische und praktische Herausforderungen bestehen, insbesondere bei der Anwendung dieser Methoden auf komplexe Finanzdaten und die Integration in nutzerfreundliche Systeme.
 
   Die identifizierten Forschungslücken lassen sich wie folgt zusammenfassen:
 
   \begin{itemize}
   \item \textbf{Erklärungsdefizit}: Bestehende Systeme liefern oft keine nachvollziehbaren Begründungen für ihre Empfehlungen, was das Vertrauen der Nutzer und die regulatorische Compliance beeinträchtigt \autocite{bendavid2021explainable}.
-  \item \textbf{Integration qualitativer und quantitativer Faktoren}: Es fehlen robuste Methoden, um qualitative Faktoren wie ESG-Kriterien oder Marktstimmung in quantitative Optimierungsmodelle zu integrieren \autocite{ban2018}.
-  \item \textbf{Nutzerzentrierte Transparenz}: Die Erklärungen von KI-Systemen sind oft zu technisch und nicht auf die Bedürfnisse von Endnutzern zugeschnitten \autocite{linardatos2021}.
-  \item \textbf{Skalierbarkeit und Recheneffizienz}: Die Anwendung von komplexen KI-Modellen in Echtzeit erfordert erhebliche Rechenressourcen, was die praktische Umsetzung erschwert \autocite{demiguel2009}.
+  \item \textbf{Integration qualitativer und quantitativer Faktoren}: Es fehlen robuste Methoden, um qualitative Faktoren wie \acs{ESG}-Kriterien oder Marktstimmung in quantitative Optimierungsmodelle zu integrieren \autocite{ban2018}.
+  \item \textbf{Nutzerzentrierte Transparenz}: Die Erklärungen von \acs{KI}-Systemen sind oft zu technisch und nicht auf die Bedürfnisse von Endnutzern zugeschnitten \autocite{linardatos2021}.
+  \item \textbf{Skalierbarkeit und Recheneffizienz}: Die Anwendung von komplexen \acs{KI}-Modellen in Echtzeit erfordert erhebliche Rechenressourcen, was die praktische Umsetzung erschwert \autocite{demiguel2009}.
   \end{itemize}
 
-  Diese Forschungslücken bilden die Grundlage für die Entwicklung des in dieser Arbeit vorgestellten KI-basierten Assistenzsystems.
+  Diese Forschungslücken bilden die Grundlage für die Entwicklung des in dieser Arbeit vorgestellten \acs{KI}-basierten Assistenzsystems.
   Das System zielt darauf ab, diese Lücken zu schließen, indem es transparente, erklärbare und nutzerzentrierte Handlungsempfehlungen generiert, die sowohl quantitative als auch qualitative Faktoren berücksichtigen.
-  Durch die Kombination moderner KI-Methoden mit klassischen Portfoliooptimierungsansätzen soll ein Paradigmenwechsel von der Blackbox zum transparenten Berater erreicht werden.
+  Durch die Kombination moderner \acs{KI}-Methoden mit klassischen Portfoliooptimierungsansätzen wird ein Paradigmenwechsel von der Blackbox zum transparenten Berater erreicht.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%

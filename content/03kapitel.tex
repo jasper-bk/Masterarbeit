@@ -1,65 +1,66 @@
 
 \chapter{Vorgehen und Technologieauswahl}
+\label{chap:vorgehen}
 
-  Um die identifizierten Forschungslücken – insbesondere das Erklärungsdefizit und die mangelnde Nutzerzentrierung bestehender Systeme – systematisch zu adressieren, kombiniert diese Arbeit den \textit{Design Science Research (DSR)}-Ansatz \autocite{hevner2004} mit modernen Konzepten der Softwarearchitektur.
+  Um die identifizierten Forschungslücken – insbesondere das Erklärungsdefizit und die mangelnde Nutzerzentrierung bestehender Systeme – systematisch zu adressieren, kombiniert diese Arbeit den \textit{Design Science Research (\acs{DSR})}-Ansatz \autocite{hevner2004} mit modernen Konzepten der Softwarearchitektur.
   Der Fokus liegt dabei auf drei Kernaspekten: der iterativen Prototypenentwicklung zur schrittweisen Verfeinerung der Anforderungen, der Implementierung einer modularen Systemarchitektur für maximale Anpassbarkeit, und der Integration quantitativer wie qualitativer Evaluationsmethoden.
 
-  Nach einer detaillierten Darstellung des DSR-Rahmens mit seinen Designzyklen wird die technische Umsetzung erläutert, einschließlich der Auswahl geeigneter KI-Modelle, der Integration heterogener Datenquellen und der nutzerzentrierten Gestaltung der Erklärungsmechanismen.
+  Nach einer detaillierten Darstellung des \acs{DSR}-Rahmens mit seinen Designzyklen wird die technische Umsetzung erläutert, einschließlich der Auswahl geeigneter \acs{KI}-Modelle, der Integration heterogener Datenquellen und der nutzerzentrierten Gestaltung der Erklärungsmechanismen.
   Den Abschluss bildet die Vorstellung eines mehrstufigen Evaluationskonzepts, das die Performance und weitere Metriken evaluiert.
   Diese strukturierte Vorgehensweise gewährleistet, dass das entwickelte Assistenzsystem nicht nur theoretisch fundiert, sondern auch praktisch robust und zukunftssicher ist.
 
-\section{Design Science Research (DSR)-Ansatz}
+\section{Design Science Research (\acs{DSR})-Ansatz}
 
-    Der Design Science Research-Ansatz (DSR) verfolgt als forschungsleitendes Paradigma primär das Ziel, durch die Entwicklung neuartiger Artefakte praxisrelevante Probleme zu lösen.
-    Im Unterschied zur verhaltenswissenschaftlichen Forschung, die auf Erklärungs- oder Prognosetheorien abzielt, steht bei DSR die Konstruktion nützlicher IT-Artefakte im Vordergrund, die die Grenzen menschlicher und organisatorischer Fähigkeiten erweitern können \autocite{hevner2004}.
+    Der Design Science Research-Ansatz (\acs{DSR}) verfolgt als forschungsleitendes Paradigma primär das Ziel, durch die Entwicklung neuartiger Artefakte praxisrelevante Probleme zu lösen.
+    Im Unterschied zur verhaltenswissenschaftlichen Forschung, die auf Erklärungs- oder Prognosetheorien abzielt, steht bei \acs{DSR} die Konstruktion nützlicher IT-Artefakte im Vordergrund, die die Grenzen menschlicher und organisatorischer Fähigkeiten erweitern können \autocite{hevner2004}.
 
     Im Design-Science-Paradigma wird Wissen über einen Problemraum gerade durch das Bauen und Anwenden des Artefakts gewonnen \autocite{hevner2004}.
-    Ein DSR-Vorgehen ist somit ein prinzipieller Problemlösungsprozess, in dem \enquote{zweckgerichtete Artefakte} für spezifische Problem-domänen entwickelt werden müssen, um darin einen praktischen Nutzen zu stiften.
+    Ein \acs{DSR}-Vorgehen ist somit ein prinzipieller Problemlösungsprozess, in dem \enquote{zweckgerichtete Artefakte} für spezifische Problem-domänen entwickelt werden müssen, um darin einen praktischen Nutzen zu stiften.
     Dabei sind Innovation und eine gründliche Evaluation des Artefakts zentrale Anforderungen \autocite{hevner2004}.
 
     In der nachfolgenden Abbildung Abbildung~\ref{fig:dsr} wird der Ablauf anschaulich zusammenfasst.
     \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{assets/pictures/dsr_eigener_entwurf.jpg}
-        \caption{Ablauf des Design Science Research (DSR)-Ansatz}
+        \caption{Ablauf des Design Science Research (\acs{DSR})-Ansatz}
         \small{
         % (Basierend auf
-        (Quelle: eigene Darstellung, orientiert an: \url{https://commons.wikimedia.org/wiki/File:DSR_methodology.png})
+        (Quelle: eigene Darstellung, orientiert an: \url{https://commons.wikimedia.org/wiki/File:\acs{DSR}_methodology.png})
         }
         \label{fig:dsr}
     \end{figure}
 
-    Dieser Ansatz eignet sich besonders für die vorliegende Arbeit, da hier ein KI-gestütztes Assistenzsystems zur quantitativen Portfoliooptimierung entwickelt wird, um identifizierte Forschungslücken im diesem Bereich zu schließen.
-    Konkret wird zunächst eine Problemidentifikation durchgeführt, in der bestehende Systeme (Robo-Advisor, MPT-Tools) und die aus Kapitel 2 abgeleiteten Anforderungen analysiert werden.
+    Dieser Ansatz eignet sich besonders für die vorliegende Arbeit, da hier ein \acs{KI}-gestütztes Assistenzsystems zur quantitativen Portfoliooptimierung entwickelt wird, um identifizierte Forschungslücken im diesem Bereich zu schließen.
+    Konkret wird zunächst eine Problemidentifikation durchgeführt, in der bestehende Systeme (Robo-Advisor, \acs{MPT}-Tools) und die aus Kapitel 2 abgeleiteten Anforderungen analysiert werden.
 
     Anschließend folgt die Design- und Entwicklungsphase, in der ein artefaktspezifischer Prototyp unter iterativem Vorgehen erstellt wird.
-    Dabei steuern Rückkopplungen mit Finanzexperten die sukzessive Verfeinerung des Moduls, was dem in der DSR-Literatur beschriebenen suchenden Entwicklungsprozess entspricht.
+    Dabei steuern Rückkopplungen mit Finanzexperten die sukzessive Verfeinerung des Moduls, was dem in der \acs{DSR}-Literatur beschriebenen suchenden Entwicklungsprozess entspricht.
 
     Die abschließende Evaluationsphase validiert das Artefakt anhand definierter Nutzermetriken (Kapitel 5) und sichert so die praktische Relevanz und Wirksamkeit der Lösung.
-    Insofern entspricht die methodische Vorgehensweise dem typischen DSR-Zyklus, bei dem Problemfindung, Konstruktion und Untersuchung des Artefakts eng verzahnt sind.
+    Insofern entspricht die methodische Vorgehensweise dem typischen \acs{DSR}-Zyklus, bei dem Problemfindung, Konstruktion und Untersuchung des Artefakts eng verzahnt sind.
     \todo[inline]{To-Do: href zu Kapiteln hinzufügen}
 
     Theoretisch wird das Design-Science-Vorgehen häufig als ein Zusammenspiel mehrerer Zyklen beschrieben.
     Hevner (2007) unterscheidet beispielsweise einen Relevanz-Zyklus, der Anforderungen aus dem Anwendungsumfeld in die Forschung einspeist, einen Rigor- oder auch Forschungs-Zyklus, der bewährte Theorien und Methoden einbindet, sowie einen mittleren Design-Zyklus, der die eigentliche Konstruktion und Evaluierung des Artefakts umfasst \autocite{hevner2007}.
 
     Der Relevanz-Zyklus stellt sicher, dass reale Problemstellungen berücksichtigt werden, der Rigor-Zyklus verankert das Vorgehen in der bestehenden Forschungsliteratur und der zentrale Design-Zyklus widmet sich der konkreten Umsetzung und Prüfung der Lösung \autocite{hevner2007}.
-    Diese Struktur verdeutlicht, dass DSR sowohl theoriegeleitet als auch anwendungsorientiert ist.
+    Diese Struktur verdeutlicht, dass \acs{DSR} sowohl theoriegeleitet als auch anwendungsorientiert ist.
 
-    Die in dieser Arbeit angewandten Phasen lassen sich an klassischen DSR-Modellen ablesen.
-    Entsprechend den Vorschlägen von Peffers et al. werden die DSR-Aktivitäten typischerweise in die Schritte Problemidentifikation und -motivation, Zielformulierung, Konstruktion/Entwicklung, Demonstration (Nachweis der Nützlichkeit), Evaluation und Kommunikation unterteilt \autocite{peffers2007}.
+    Die in dieser Arbeit angewandten Phasen lassen sich an klassischen \acs{DSR}-Modellen ablesen.
+    Entsprechend den Vorschlägen von Peffers et al. werden die \acs{DSR}-Aktivitäten typischerweise in die Schritte Problemidentifikation und -motivation, Zielformulierung, Konstruktion/Entwicklung, Demonstration (Nachweis der Nützlichkeit), Evaluation und Kommunikation unterteilt \autocite{peffers2007}.
 
     In der vorliegenden Arbeit wird der Schritt der Problemidentifikation durch die Analyse relevanter Finanzsysteme und identifizierter Forschungslücken umgesetzt.
     In der Konstruktionsphase entsteht der modulare Prototyp, der durch wiederholte Feedbackschleifen ständig verfeinert wird.
 
     Schließlich werden im Demonstrations- und Evaluationsschritt die definierten Metriken (Kapitel 5) herangezogen, um die Leistungsfähigkeit und den praktischen Nutzen des Artefakts zu überprüfen.
-    Somit gehen alle geplanten Arbeitsschritte auf bewährte DSR-Methoden zurück und sind iterativ angelegt.
+    Somit gehen alle geplanten Arbeitsschritte auf bewährte \acs{DSR}-Methoden zurück und sind iterativ angelegt.
 
-    Wesentliche methodische Prinzipien des DSR sind dabei die enge Verknüpfung von Theorie und Praxis sowie die Fokussierung auf innovative Beiträge (Artefakte) und deren Qualität.
+    Wesentliche methodische Prinzipien des \acs{DSR} sind dabei die enge Verknüpfung von Theorie und Praxis sowie die Fokussierung auf innovative Beiträge (Artefakte) und deren Qualität.
     Hevner et al. fordern, dass Design-Science-Artefakte sowohl neuartig (Guideline 4) als auch zweckgerichtet sein müssen und in ihrem Nutzen gründlich evaluiert werden \autocite{hevner2004}.
 
     Dies entspricht dem Vorgehen, wonach das entwickelte Finanzwerkzeug konkrete Verbesserungen gegenüber bestehenden Lösungen bieten soll und systematisch anhand festgelegter Kriterien bewertet wird.
-    Der gesamte Forschungsprozess ist iterativ gestaltet: Erkenntnisse aus jeder Entwicklungs- und Testphase fließen in die Weiterentwicklung des Artefakts ein, was den konstruktiv-forschenden Charakter von DSR unterstreicht.
-    Durch diese methodische Verankerung im DSR-Ansatz wird sichergestellt, dass die Arbeit nicht nur ein funktionierendes System erstellt, sondern auch wissenschaftlich relevante Erkenntnisse über den Lösungsprozess und das Design generiert \autocite{march1995}\autocite{hevner2004}.
+    Der gesamte Forschungsprozess ist iterativ gestaltet: Erkenntnisse aus jeder Entwicklungs- und Testphase fließen in die Weiterentwicklung des Artefakts ein, was den konstruktiv-forschenden Charakter von \acs{DSR} unterstreicht.
+    Durch diese methodische Verankerung im \acs{DSR}-Ansatz wird sichergestellt, dass die Arbeit nicht nur ein funktionierendes System erstellt, sondern auch wissenschaftlich relevante Erkenntnisse über den Lösungsprozess und das Design generiert \autocite{march1995}\autocite{hevner2004}.
 
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -83,23 +84,23 @@
     Python hat sich in der wissenschaftlichen und datengetriebenen Softwareentwicklung als De-facto-Standard etabliert und bietet ein nahezu konkurrenzloses Ökosystem an spezialisierten Bibliotheken für numerische Berechnungen (wie \texttt{numpy}, \texttt{pandas}, \texttt{scipy}), Datenvisualisierung (\texttt{matplotlib}, \texttt{seaborn}) sowie Machine Learning und künstliche Intelligenz (\texttt{scikit-learn}, \texttt{transformers}, \texttt{tensorflow}, \texttt{pytorch}).
 
     Diese Vielfalt an Tools erlaubt eine vollständige Implementierung sämtlicher Arbeitspakete – von der Datenaggregation und -vorverarbeitung bis hin zur Modellierung und Visualisierung – ohne auf hybride oder gar mehrsprachige Ansätze zurückgreifen zu müssen.
-    Gerade im Bereich Explainable AI (XAI) und Finanzdatenanalyse sind zahlreiche erprobte Python-Bibliotheken verfügbar, die sowohl für den experimentellen Prototypenbau als auch für robuste Anwendungen geeignet sind.
+    Gerade im Bereich Explainable AI (\acs{XAI}) und Finanzdatenanalyse sind zahlreiche erprobte Python-Bibliotheken verfügbar, die sowohl für den experimentellen Prototypenbau als auch für robuste Anwendungen geeignet sind.
     Darüber hinaus ist Python aufgrund seiner klaren Syntax und breiten Community-Unterstützung besonders für interaktive Entwicklungsumgebungen wie Jupyter-Lab prädestiniert, was iterative Evaluationsschritte erleichtert.
     Insofern erübrigt sich eine vergleichende Analyse anderer Programmiersprachen: Python deckt sämtliche funktionalen und methodischen Anforderungen ab und bietet darüber hinaus eine zukunftssichere Basis für Erweiterungen und Anpassungen.
 
   \subsection{Auswahl zur Anbindung der künstlichen Intelligenz}
 
-    Für die Implementierung der generativen KI-Komponente des Assistenzsystems wird zunächst ein umfassender Überblick über relevante KI-Provider erstellt.
+    Für die Implementierung der generativen \acs{KI}-Komponente des Assistenzsystems wird zunächst ein umfassender Überblick über relevante \acs{KI}-Provider erstellt.
     Neben der quelloffenen Plattform Ollama werden marktführende proprietäre Anbieter wie OpenAI, Claude und Gemini (Google) verglichen. Dadurch wird ein breites Spektrum abgedeckt, das sowohl Open-Source-Lösungen als auch kommerzielle Dienste umfasst.
     Diese Vielfalt ermöglicht es, die unterschiedlichen funktionalen Möglichkeiten, Preismodelle sowie Vor- und Nachteile hinsichtlich technischer und organisatorischer Aspekte systematisch zu bewerten.
 
-    Die Bewertung der Anbieter erfolgt anhand von sieben sorgfältig gewählten Kriterien: \textit{API}, \textit{Performance}, \textit{Kosten}, \textit{Anpassung}, \textit{Datenschutz}, \textit{Support} und \textit{Dokumentation}.
+    Die Bewertung der Anbieter erfolgt anhand von sieben sorgfältig gewählten Kriterien: \textit{\acs{API}}, \textit{Performance}, \textit{Kosten}, \textit{Anpassung}, \textit{Datenschutz}, \textit{Support} und \textit{Dokumentation}.
     Diese Kriterien wurden ausgewählt, weil sie einen ganzheitlichen und praxisnahen Vergleich der Lösungen ermöglichen.
 
     Die Hintergründe für die Auswahl der Kriterien ist nachfolgends ausgestellt:
     \begin{itemize}
-      \item \textbf{API:} Eine leistungsfähige und gut dokumentierte Programmierschnittstelle ist entscheidend für die Integration in das bestehende System und die Flexibilität künftiger Erweiterungen.
-      \item \textbf{Performance:} Hierbei wird die tatsächliche Leistungsfähigkeit der generativen KI-Modelle betrachtet, da diese maßgeblich für die Qualität der Analyse- und Beratungsergebnisse verantwortlich ist.
+      \item \textbf{\acs{API}:} Eine leistungsfähige und gut dokumentierte Programmierschnittstelle ist entscheidend für die Integration in das bestehende System und die Flexibilität künftiger Erweiterungen.
+      \item \textbf{Performance:} Hierbei wird die tatsächliche Leistungsfähigkeit der generativen \acs{KI}-Modelle betrachtet, da diese maßgeblich für die Qualität der Analyse- und Beratungsergebnisse verantwortlich ist.
       \item \textbf{Kosten:} Die Betriebskosten spielen insbesondere für die nachhaltige Nutzung und Skalierbarkeit eine zentrale Rolle. Aufgrund ihrer direkten Auswirkung auf das Geschäftsmodell und Budget wird diesem Kriterium ein besonders hohes Gewicht beigemessen.
       \item \textbf{Anpassung:} Die Möglichkeit, die Modelle individuell anzupassen oder zu erweitern (z.\,B. Finetuning), ist entscheidend, um die generativen Fähigkeiten optimal auf die Anforderungen im Finanzkontext zuzuschneiden.
       \item \textbf{Datenschutz:} Da im Finanzkontext sensible Daten verarbeitet werden, ist der Schutz dieser Informationen von höchster Bedeutung. Anbieter, die keine datenschutzkonforme Nutzung gewährleisten, scheiden faktisch aus.
@@ -121,33 +122,11 @@
     \global\def\VGewichtSupport          {10}
     \global\def\VGewichtDokumentation    {5}
 
-    \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}
-          \pie[
-            text=legend,
-            radius=3,
-            color={blue!50!cyan, red!50!orange, green!60!lime, yellow!85!orange, magenta!60, cyan!70!blue, gray!60}
-          ]{
-            \VGewichtKosten /Kosten (\VGewichtKosten \%),
-            \VGewichtPerformance/Performance (\VGewichtPerformance\%),
-            \VGewichtDatenschutz/Datenschutz (\VGewichtDatenschutz\%),
-            \VGewichtAnpassung /Anpassung (\VGewichtAnpassung \%),
-            \VGewichtAPI/API (\VGewichtAPI\%),
-            \VGewichtSupport/Support (\VGewichtSupport\%),
-            \VGewichtDokumentation/Dokumentation (\VGewichtDokumentation\%)
-          }
-        \end{tikzpicture}
-        \caption{Gewichtung der Kriterien zur Anbindung der künstlichen Intelligenz}
-        \small{(Quelle: eigene Darstellung)}
-        \label{fig:gewichtung_ai}
-    \end{figure}
-
     Diese ausgewogene und nachvollziehbare Gewichtung bildet die Basis für die folgende Entscheidungsmatrix.
     In dieser werden alle betrachteten Anbieter anhand des Punktesystems (0–3 Punkte pro Kriterium) bewertet, um eine fundierte Auswahl oder einen geeigneten Kompromiss für die finale Integration zu ermöglichen.
 
     \begin{itemize}
-        \item \textbf{API:} 0 Punkte bei nicht vorhandener oder kaum nutzbarer API, 1 Punkt bei schlechter Dokumentation oder schwieriger Integration, 2 Punkte bei gut dokumentierter und stabiler API mit kleineren Einschränkungen, 3 Punkte bei sehr gut dokumentierter, einfach zu integrierender und vielseitig nutzbarer API.
+        \item \textbf{\acs{API}:} 0 Punkte bei nicht vorhandener oder kaum nutzbarer \acs{API}, 1 Punkt bei schlechter Dokumentation oder schwieriger Integration, 2 Punkte bei gut dokumentierter und stabiler \acs{API} mit kleineren Einschränkungen, 3 Punkte bei sehr gut dokumentierter, einfach zu integrierender und vielseitig nutzbarer \acs{API}.
 
         \item \textbf{Performance:} 0 Punkte bei sehr langsamen oder fehleranfälligen Antworten, 1 Punkt bei langsamer Performance oder gelegentlichen Ausfällen, 2 Punkte bei guter, meist stabiler Performance, 3 Punkte bei sehr schneller und zuverlässiger Performance, auch unter hoher Last.
 
@@ -171,7 +150,7 @@
 
       Im Folgenden wird Ollama anhand des definierten Bewertungsschemas detailliert bewertet:
       \begin{itemize}
-          \item \textbf{API (2 Punkte):} Ollama bietet eine REST-basierte API, die gut dokumentiert ist und eine einfache Integration in bestehende Systeme ermöglicht. Im Vergleich zu proprietären Lösungen wie OpenAI oder Claude fehlen jedoch einige erweiterte Features, was eine perfekte Bewertung verhindert.
+          \item \textbf{\acs{API} (2 Punkte):} Ollama bietet eine \acs{REST}-basierte \acs{API}, die gut dokumentiert ist und eine einfache Integration in bestehende Systeme ermöglicht. Im Vergleich zu proprietären Lösungen wie OpenAI oder Claude fehlen jedoch einige erweiterte Features, was eine perfekte Bewertung verhindert.
 
           \item \textbf{Performance (2 Punkte):} Die Performance von Ollama hängt stark von der lokalen Hardware ab. Auf leistungsfähiger Hardware können Anfragen zügig bearbeitet werden. Auf schwächeren Systemen sind jedoch Verzögerungen oder Stabilitätsprobleme möglich. Daher erhält Ollama hier eine solide Bewertung, aber keinen Spitzenwert.
 
@@ -199,20 +178,20 @@
 
     \subsubsection{OpenAI}
 
-      OpenAI bietet mit seinen aktuellen GPT- und o\,-Serien (z.\,B. GPT\,-5, GPT\,-5 mini/nano, GPT\,-4.1, GPT\,-4o/4o mini sowie die Reasoning-Modelle o3, o3\,-pro und o4\,-mini) einige der leistungsfähigsten generativen KI\,-Dienste mit starkem Fokus auf multimodale Eingaben, strukturierten Ausgaben und Agenten-Funktionalität.\autocite{openai-docs}
+      OpenAI bietet mit seinen aktuellen GPT- und o\,-Serien (z.\,B. GPT\,-5, GPT\,-5 mini/nano, GPT\,-4.1, GPT\,-4o/4o mini sowie die Reasoning-Modelle o3, o3\,-pro und o4\,-mini) einige der leistungsfähigsten generativen \acs{KI}\,-Dienste mit starkem Fokus auf multimodale Eingaben, strukturierten Ausgaben und Agenten-Funktionalität.\autocite{openai-docs}
       Im Folgenden wird OpenAI anhand des Bewertungsschemas systematisch bewertet:
 
       \begin{itemize}
-        \item \textbf{API (3 Punkte):} Die \emph{Responses API} vereint Chat-Completions mit eingebauten Tools (u.\,a. Websuche, File Search, Computer Use), unterstützt Streaming, Function Calling und strikt validierte \emph{Structured Outputs}. Die Assistants API wird schrittweise in die Responses API überführt.\autocite{openai-docs}
-        \item \textbf{Performance (3 Punkte):} Für latenzkritische Anwendungen bietet OpenAI eine Realtime API (z.\,B. Voice-/Audio-Interaktion) sowie Enterprise-Optionen wie \emph{Priority Processing}, SLAs und Skalierungstarife.\autocite{openai-docs,openai-pricing-2025}
+        \item \textbf{\acs{API} (3 Punkte):} Die \emph{Responses \acs{API}} vereint Chat-Completions mit eingebauten Tools (u.\,a. Websuche, File Search, Computer Use), unterstützt Streaming, Function Calling und strikt validierte \emph{Structured Outputs}. Die Assistants \acs{API} wird schrittweise in die Responses \acs{API} überführt.\autocite{openai-docs}
+        \item \textbf{Performance (3 Punkte):} Für latenzkritische Anwendungen bietet OpenAI eine Realtime \acs{API} (z.\,B. Voice-/Audio-Interaktion) sowie Enterprise-Optionen wie \emph{Priority Processing}, SLAs und Skalierungstarife.\autocite{openai-docs,openai-pricing-2025}
         \item \textbf{Kosten (1 Punkt):} Die Preise variieren stark je nach Modellklasse; beispielhaft (Stand: 11.\,08.\,2025): GPT\,-4o ca.\ \$5/M Eingabetokens und \$20/M Ausgabetokens; GPT\,-4o mini ca.\ \$0{,}60/\$2{,}40; GPT\,-5 ca.\ \$1{,}25/\$10 pro Mio.\ Tokens (Input/Output). Für bestimmte Tools (z.\,B. Websuche) fallen zusätzlich Call-Gebühren an.\autocite{openai-pricing-2025}
         \item \textbf{Anpassung (1 Punkt):} Feinabstimmung (\emph{Supervised Fine-Tuning}) ist für mehrere Modelle verfügbar (u.\,a.\ GPT\,-4o/4o mini); \emph{Reinforcement Fine-Tuning} ist derzeit auf o4\,-mini beschränkt. Self-Hosting ist nicht vorgesehen.\autocite{openai-docs}
-        \item \textbf{Datenschutz (1 Punkt):} Für Geschäftsangebote (API, ChatGPT Team/Enterprise/Edu) werden Eingaben/Ausgaben standardmäßig \emph{nicht} zum Training verwendet; Opt-in ist möglich. Ergänzend gibt es Datenresidenzoptionen (u.\,a. EU) inkl.\ Zero-Data-Retention für geeignete Endpunkte sowie DPA/SOC2/GDPR-Unterstützung.\autocite{openai-docs}
+        \item \textbf{Datenschutz (1 Punkt):} Für Geschäftsangebote (\acs{API}, ChatGPT Team/Enterprise/Edu) werden Eingaben/Ausgaben standardmäßig \emph{nicht} zum Training verwendet; Opt-in ist möglich. Ergänzend gibt es Datenresidenzoptionen (u.\,a. EU) inkl.\ Zero-Data-Retention für geeignete Endpunkte sowie DPA/SOC2/GDPR-Unterstützung.\autocite{openai-docs}
         \item \textbf{Support (3 Punkte):} Umfangreiche Dokumentation und Business-Angebote mit SLAs/Support, Priorisierung und Kapazitätsbuchung erleichtern den produktiven Einsatz.\autocite{openai-pricing-2025,openai-docs}
-        \item \textbf{Dokumentation (3 Punkte):} Die Entwicklerdokumentation deckt Modelle, Migrationspfade (Responses API), Tools und Best Practices umfassend ab und wird laufend aktualisiert.\autocite{openai-docs}
+        \item \textbf{Dokumentation (3 Punkte):} Die Entwicklerdokumentation deckt Modelle, Migrationspfade (Responses \acs{API}), Tools und Best Practices umfassend ab und wird laufend aktualisiert.\autocite{openai-docs}
       \end{itemize}
 
-      Zusammenfassend bietet OpenAI eine exzellente technische Grundlage (insbesondere durch Responses API, strukturierte Ausgaben und Realtime) sowie starke Enterprise\,-Funktionen.
+      Zusammenfassend bietet OpenAI eine exzellente technische Grundlage (insbesondere durch Responses \acs{API}, strukturierte Ausgaben und Realtime) sowie starke Enterprise\,-Funktionen.
       Höhere Kosten der Spitzenmodelle und die Cloudverarbeitung bleiben für sensible Finanzanwendungen zu prüfen; Datenresidenz und Standard-\emph{No-Training}-Politik mildern jedoch zentrale Risiken.\autocite{openai-docs}
 
       \global\def\VOpenAIAPI               {3}
@@ -229,7 +208,7 @@
       Die folgende Bewertung basiert auf dem festgelegten Schema:
 
       \begin{itemize}
-        \item \textbf{API (2 Punkte):} Stabile \emph{Messages API} mit Streaming, Dateien, Tool Use (u.\,a.\ Websuche, Code, Bash, Computer Use), \emph{Citations} und MCP\,-Anbindung; Ökosystem kleiner als bei OpenAI.\autocite{anthropic-docs-2025}
+        \item \textbf{\acs{API} (2 Punkte):} Stabile \emph{Messages \acs{API}} mit Streaming, Dateien, Tool Use (u.\,a.\ Websuche, Code, Bash, Computer Use), \emph{Citations} und MCP\,-Anbindung; Ökosystem kleiner als bei OpenAI.\autocite{anthropic-docs-2025}
         \item \textbf{Performance (3 Punkte):} \emph{Opus~4{.}1} als Top\,-Modell für komplexes Reasoning und Agentenaufgaben; \emph{Sonnet~4} als Preis\,-/Leistungs\-Option; 200k Kontext über die Reihe.\autocite{anthropic-docs-2025}
         \item \textbf{Kosten (2 Punkte):} Beispielsweise (Stand 11.\,08.\,2025): \emph{Opus~4{.}1} \$15/M Eingabe-Tokens, \$75/M Ausgabe-Tokens; \emph{Sonnet~4} \$3/\$15; Prompt Caching separat bepreist.\autocite{anthropic-pricing-2025}
         \item \textbf{Anpassung (1 Punkt):} Self-Hosting nicht vorgesehen; Feinabstimmung nur eingeschränkt/verpartnert, primär Prompting und Tooling.
@@ -239,7 +218,7 @@
       \end{itemize}
 
       Insgesamt zeigt Claude eine sehr gute Performance und punktet insbesondere bei der Qualität der Antworten sowie im Hinblick auf Sicherheit und Ethik.
-      Leichte Abstriche gibt es in der API-Dokumentation und der Anpassungsfähigkeit.
+      Leichte Abstriche gibt es in der \acs{API}-Dokumentation und der Anpassungsfähigkeit.
 
       % Claude
       \global\def\VClaudeAPI               {2}
@@ -256,7 +235,7 @@
       Die folgende Bewertung basiert auf dem festgelegten Schema:
 
       \begin{itemize}
-        \item \textbf{API (3 Punkte):} Ausgereifte \emph{Gemini API} (inkl.\ Live API) mit Streaming, Dateien, strukturierten Ausgaben, Tooling (Function Calling, Code Execution, Search Grounding) und Sicherheits-/Rate-Limit-Guides; nahtlose Integration in Google-Ökosysteme.\autocite{google-gemini-docs-2025}
+        \item \textbf{\acs{API} (3 Punkte):} Ausgereifte \emph{Gemini \acs{API}} (inkl.\ Live \acs{API}) mit Streaming, Dateien, strukturierten Ausgaben, Tooling (Function Calling, Code Execution, Search Grounding) und Sicherheits-/Rate-Limit-Guides; nahtlose Integration in Google-Ökosysteme.\autocite{google-gemini-docs-2025}
         \item \textbf{Performance (3 Punkte):} \emph{Gemini~2{.}5 Pro} wird als \enquote{most powerful thinking model} geführt und eignet sich für komplexes Reasoning/Coding; \emph{2{.}5 Flash} bietet sehr gutes Preis-Leistungs-Verhältnis; durchgängige Multimodalität und \(\sim\)1\,M Kontext.\autocite{google-gemini-docs-2025}
         \item \textbf{Kosten (1 Punkt):} Beispielhaft (Stand: 11.\,08.\,2025): \emph{2{.}5 Pro} Input \$1{,}25/M Tokens (bis 200k), danach \$2{,}50/M; Output \$10/\$15; \emph{2{.}5 Flash} Input \$0{,}30 (Text/ Bild/ Video) u.\ \$1{,}00 (Audio), Output \$2{,}50; \emph{2{.}5 Flash-Lite} Input \$0{,}10 (Text/ Bild/ Video) u.\ \$0{,}30 (Audio), Output \$0{,}40. Live-/Grounding-Preise separat.\autocite{google-gemini-pricing-2025}
         \item \textbf{Anpassung (2 Punkte):} Feinabstimmung/Tuning ist modellabhängig und begrenzt; starke Steuerung über strukturierte Ausgaben, System-/Tool-Prompts und Caching; Self-Hosting nicht vorgesehen.\autocite{google-gemini-docs-2025}
@@ -266,7 +245,7 @@
       \end{itemize}
 
 
-      Zusammenfassend ist Gemini eine hochleistungsfähige und gut integrierbare Lösung für den Einsatz von generativer KI.
+      Zusammenfassend ist Gemini eine hochleistungsfähige und gut integrierbare Lösung für den Einsatz von generativer \acs{KI}.
       Der Datenschutz bleibt dabei ein kritischer Punkt – insbesondere für hochsensible Finanzanwendungen.
 
       % Alternative (Platzhalter)
@@ -280,7 +259,7 @@
 
     \subsubsection{Auswertung}
 
-      Die folgende Nutzwertanalyse vergleicht die vier Anbieter \emph{OpenAI}, \emph{Ollama}, \emph{Claude (Anthropic)} und \emph{Gemini (Google)} entlang der Kriterien API, Performance, Kosten, Anpassungsfähigkeit, Datenschutz/Compliance, Community/Support und Dokumentation.
+      Die folgende Nutzwertanalyse vergleicht die vier Anbieter \emph{OpenAI}, \emph{Ollama}, \emph{Claude (Anthropic)} und \emph{Gemini (Google)} entlang der Kriterien \acs{API}, Performance, Kosten, Anpassungsfähigkeit, Datenschutz/Compliance, Community/Support und Dokumentation.
       Die Gewichtungen spiegeln die Relevanz der Kriterien für den Zielkontext wider; die Einzelbewertungen je Anbieter basieren auf den jeweiligen Anbieterabschnitten.
       Die Gesamtpunktzahl ergibt sich als gewichtete Summe — je höher, desto geeigneter für den betrachteten Einsatz.
 
@@ -316,7 +295,7 @@
           \label{tab:matrix_ki_provider}
       \end{table}
 
-      Aus der Matrix lassen sich typische Trade-offs ableiten: Wenn API-Reife und Performance stark gewichtet werden, setzen sich OpenAI und Gemini meist ab; Claude schließt insbesondere bei komplexem Reasoning und sehr langen Kontexten auf. Priorisieren die Gewichtungen hingegen Kostenkontrolle und Anpassungsfähigkeit, profitiert Ollama durch Self-Hosting, Modellwahl und Datenhoheit, nimmt dafür aber Einschränkungen bei Enterprise-Ökosystem und Komfortfeatures in Kauf.
+      Aus der Matrix lassen sich typische Trade-offs ableiten: Wenn \acs{API}-Reife und Performance stark gewichtet werden, setzen sich OpenAI und Gemini meist ab; Claude schließt insbesondere bei komplexem Reasoning und sehr langen Kontexten auf. Priorisieren die Gewichtungen hingegen Kostenkontrolle und Anpassungsfähigkeit, profitiert Ollama durch Self-Hosting, Modellwahl und Datenhoheit, nimmt dafür aber Einschränkungen bei Enterprise-Ökosystem und Komfortfeatures in Kauf.
       Bei strengen Compliance-Anforderungen überzeugt ein on-premises Pfad über Ollama; bei Cloud-Betrieb entscheiden regionale Bereitstellung, vertragliche Zusicherungen (z.\,B. keine Trainingsnutzung) sowie Zero-/Low-Data-Retention-Optionen der Anbieter.
 
     Statt einer finalen Anbieterfestlegung wird ein flexibler, anbieteragnostischer Ansatz gewählt.
@@ -342,16 +321,16 @@
 
     Ein zentraler Bestandteil des Assistenzsystems ist die Anbindung von \emph{quantitativen} \emph{und} \emph{qualitativen} Finanzdaten, um eine belastbare Grundlage für Handlungsempfehlungen und deren Begründung im LLM zu schaffen. Neben Kurszeitreihen, Fundamentalkennzahlen und ökonomischen Indikatoren werden hierfür auch textuelle Informationsquellen (z.\,B. Unternehmensnachrichten, Earnings-Call-Transkripte, Social-Sentiment) und daraus abgeleitete Merkmale (z.\,B. Relevanz‐Scores, Stimmungsindizes, Quellenvertrauen) integriert. Diese Daten werden für das LLM in ein einheitliches, maschinenlesbares Schema (z.\,B. JSON) überführt, das numerische Felder (Zeitstempel, Werte) und qualitative Felder (Kurzfassung, Sentiment, Quelle, Aktualität) kombiniert.
 
-    Dafür werden die APIs \texttt{yfinance}, Alpha Vantage und Finnhub untersucht.
-    Bei der Evaluation werden Faktoren wie Datenabdeckung, Aktualität, API-Zugänglichkeit und Kostenstruktur berücksichtigt \autocite{AlphaVantageDocs2025,FinnhubDocs2025,yfinanceDocs}.
+    Dafür werden die \acs{API}s \texttt{yfinance}, Alpha Vantage und Finnhub untersucht.
+    Bei der Evaluation werden Faktoren wie Datenabdeckung, Aktualität, \acs{API}-Zugänglichkeit und Kostenstruktur berücksichtigt \autocite{AlphaVantageDocs2025,FinnhubDocs2025,yfinanceDocs}.
     Für die Auswahl eines geeigneten Werkzeugs zur Anbindung von Finanzdaten wurden sieben Bewertungskriterien definiert, die jeweils eine entscheidende Rolle für den erfolgreichen Einsatz im geplanten Assistenzsystem spielen:
 
     \begin{itemize}
       \item \textbf{Datenverfügbarkeit}: Bewertet Umfang und Vielfalt der bereitgestellten Daten (quantitativ: Kurs-/Fundamental-/Makro-Zeitreihen; qualitativ: Nachrichten, Transkripte, Sentiment). Hohe Priorität, da Datenqualität und -abdeckung die Ableitbarkeit verlässlicher Empfehlungen bestimmen.
 
-      \item \textbf{Stabilität der API}: Zuverlässigkeit, Latenz und Verfügbarkeit der Schnittstelle inkl. Robustheit gegenüber Schemaänderungen. Eine stabile Anbindung ist entscheidend, um Unterbrechungen im Betrieb des Assistenzsystems zu vermeiden.
+      \item \textbf{Stabilität der \acs{API}}: Zuverlässigkeit, Latenz und Verfügbarkeit der Schnittstelle inkl. Robustheit gegenüber Schemaänderungen. Eine stabile Anbindung ist entscheidend, um Unterbrechungen im Betrieb des Assistenzsystems zu vermeiden.
 
-      \item \textbf{Benutzerfreundlichkeit}: Bedienbarkeit und Verständlichkeit der Schnittstelle, SDKs/Clients und Response-Konsistenz (z.\,B. klare JSON-Schemas). Eine intuitive API erleichtert die Integration und spart Entwicklungsaufwand.
+      \item \textbf{Benutzerfreundlichkeit}: Bedienbarkeit und Verständlichkeit der Schnittstelle, SDKs/Clients und Response-Konsistenz (z.\,B. klare JSON-Schemas). Eine intuitive \acs{API} erleichtert die Integration und spart Entwicklungsaufwand.
 
       \item \textbf{Lizenzierung und rechtliche Aspekte}: Lizenzbedingungen (Open Source vs. proprietär, Nutzungseinschränkungen), Kosten sowie rechtliche Rahmenbedingungen (z.\,B. Datenlizenz, Datenschutz). Wichtig zur Sicherstellung eines rechts- und betriebssicheren Dauerbetriebs.
 
@@ -377,34 +356,13 @@
     \global\def\VGewichtErweiterung{10}
     \global\def\VGewichtDokumentation{5}
 
-    \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}
-          \pie[
-            text=legend,
-            radius=3,
-            color={blue!50!cyan, red!50!orange, green!60!lime, yellow!85!orange, magenta!60, cyan!70!blue, gray!60}
-          ]{
-            \VGewichtDatenquellen /Datenverfügbarkeit (\VGewichtDatenquellen \%),
-            \VGewichtStabilität/Stabilität (\VGewichtStabilität\%),
-            \VGewichtLizenz /Lizenzierung (\VGewichtLizenz \%),
-            \VGewichtUsability/Benutzerfreundlichkeit (\VGewichtUsability\%),
-            \VGewichtImplementierung/Implementierungsaufwand (\VGewichtImplementierung\%),
-            \VGewichtErweiterung/Implementierungsaufwand (\VGewichtErweiterung\%),
-            \VGewichtDokumentation/Dokumentation (\VGewichtDokumentation\%)
-          }
-        \end{tikzpicture}
-        \caption{Gewichtung der Kriterien zur Anbindung quantitativer und qualitativer Finanzdaten}
-        \small{(Quelle: eigene Darstellung)}
-        \label{fig:gewichtung_quant_daten}
-    \end{figure}
 
     Um die Auswahl der geeigneten Datenquelle objektiv und nachvollziehbar zu gestalten, wird ein Punktesystem von 0 bis 3 Punkten verwendet (0{=}unzureichend, 3{=}sehr gut).
 
     \begin{itemize}
       \item \textbf{Daten:} 0 Punkte, wenn keine oder veraltete Daten vorhanden sind; 1 Punkt bei lückenhaften oder teilweise veralteten Daten; 2 Punkte bei weitgehend aktuellen, aber nicht perfekten Daten; 3 Punkte bei sehr aktuellen, vollständigen und hochwertigen Daten (quantitativ \emph{und} qualitativ).
       \item \textbf{Stabilität:} 0 Punkte bei häufigen Ausfällen; 1 Punkt bei spürbaren Instabilitäten; 2 Punkte bei meist stabiler Funktion; 3 Punkte bei durchgehend stabiler, zuverlässiger Funktion.
-      \item \textbf{Usability:} 0 Punkte kaum nutzbar; 1 Punkt rudimentär; 2 Punkte gut mit kleineren Schwächen; 3 Punkte sehr intuitiv mit konsistenter API.
+      \item \textbf{Usability:} 0 Punkte kaum nutzbar; 1 Punkt rudimentär; 2 Punkte gut mit kleineren Schwächen; 3 Punkte sehr intuitiv mit konsistenter \acs{API}.
       \item \textbf{Lizenz:} 0 Punkte rechtlich problematisch; 1 Punkt restriktiv; 2 Punkte überwiegend klar; 3 Punkte sehr klar/rechtssicher (z.\,B.\ Open-Source oder eindeutig definierte Nutzungsrechte).
       \item \textbf{Implementierungsaufwand:} 0 Punkte sehr hoch; 1 Punkt hoch; 2 Punkte überschaubar; 3 Punkte sehr einfach/schnell.
       \item \textbf{Erweiterung:} 0 Punkte keine Erweiterungen; 1 Punkt nur mit erheblichem Aufwand; 2 Punkte gut machbar; 3 Punkte sehr leicht/flexibel (z.\,B.\ zusätzliche qualitative Signale).
@@ -415,8 +373,8 @@
 
     \subsubsection{Finnhub}
 
-      Finnhub ist eine umfassende Finanzdaten-API mit Echtzeit- und historischen Marktdaten (Aktien, Devisen, Krypto), umfangreichen Fundamentals sowie qualitativen Inhalten wie Unterneh­mensnachrichten, News-Sentiment und Social-/Alternative-Data-Endpunkten \autocite{FinnhubDocs2025}.
-      Die API stellt REST-Endpunkte und offizielle Client-Bibliotheken bereit.
+      Finnhub ist eine umfassende Finanzdaten-\acs{API} mit Echtzeit- und historischen Marktdaten (Aktien, Devisen, Krypto), umfangreichen Fundamentals sowie qualitativen Inhalten wie Unterneh­mensnachrichten, News-Sentiment und Social-/Alternative-Data-Endpunkten \autocite{FinnhubDocs2025}.
+      Die \acs{API} stellt \acs{REST}-Endpunkte und offizielle Client-Bibliotheken bereit.
 
       Die Bewertung erfolgt anhand der festgelegten Kriterien:
       \begin{itemize}
@@ -424,7 +382,7 @@
         \item \textbf{Stabilität (3 Punkte):} In der Praxis als robust etabliert; produktionsreife Endpunkte mit konsistenten Schemas \autocite{FinnhubDocs2025}.
         \item \textbf{Usability (3 Punkte):} Klare Endpunkte und Beispiele; Clients/SDKs erleichtern die Integration \autocite{FinnhubDocs2025}.
         \item \textbf{Lizenz (2 Punkte):} Klare, kommerziell nutzbare Tarifstruktur; freie Kontingente mit Limits, erweiterte Nutzung kostenpflichtig \autocite{FinnhubDocs2025}.
-        \item \textbf{Implementierungsaufwand (3 Punkte):} Einfache REST-Integration mit API-Key und Beispielcode \autocite{FinnhubDocs2025}.
+        \item \textbf{Implementierungsaufwand (3 Punkte):} Einfache \acs{REST}-Integration mit \acs{API}-Key und Beispielcode \autocite{FinnhubDocs2025}.
         \item \textbf{Erweiterung (3 Punkte):} Viele Endpunkte inkl. qualitativer Signale (News-/Social-Sentiment) \autocite{FinnhubDocs2025}.
         \item \textbf{Dokumentation (3 Punkte):} Umfangreiche, aktuelle Dokumentation mit Beispielen \autocite{FinnhubDocs2025}.
       \end{itemize}
@@ -439,7 +397,7 @@
 
     \subsubsection{Alpha Vantage}
 
-      Alpha Vantage bietet eine REST-API für historische und aktuelle Kursdaten, technische Indikatoren, FX/Krypto, Fundamentals sowie einen Bereich \enquote{Alpha Intelligence} mit \emph{News \& Sentiments}.
+      Alpha Vantage bietet eine \acs{REST}-\acs{API} für historische und aktuelle Kursdaten, technische Indikatoren, FX/Krypto, Fundamentals sowie einen Bereich \enquote{Alpha Intelligence} mit \emph{News \& Sentiments}.
       Es existieren freie Kontingente (tarifabhängige Limits) und Premium-Pläne für höhere Last bzw. Echtzeit/15-Minuten-Daten. \autocite{AlphaVantageDocs2025}
 
       Die Bewertung auf Basis der sieben Kriterien:
@@ -548,7 +506,7 @@
 \begin{comment}
 \textbf{To-Dos:}
 \begin{itemize}
-  \item Detaillierte Beschreibung des DSR-Ansatzes mit Design-Zyklen
+  \item Detaillierte Beschreibung des \acs{DSR}-Ansatzes mit Design-Zyklen
   \item Nachvollziehbare Begründung der Modellauswahl (z. B, DeepSeek R1) und anderen technischen Gegebenheiten (z. B. Flask, Bootstrap etc)
   \item Nachvollziehbare Begründung des Prozesses, Aufbaus und Konzepts
   \begin{itemize}

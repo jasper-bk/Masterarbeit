@@ -3,53 +3,52 @@
 Die fortschreitende Digitalisierung und der Einsatz künstlicher Intelligenz haben die Finanzbranche grundlegend verändert.
 Während traditionelle Anlageberatung auf persönlichen Gesprächen und manuellen Analysen basierte, übernehmen heute zunehmend algorithmische Systeme die Portfoliooptimierung und Anlageempfehlungen.
 Diese Entwicklung verspricht objektivere Entscheidungen, schnellere Reaktionszeiten auf Marktveränderungen und eine kosteneffiziente Betreuung auch kleinerer Anlagesummen.
-Gleichzeitig entstehen jedoch neue Herausforderungen: Die Komplexität der eingesetzten KI-Modelle macht es für Anleger schwer nachzuvollziehen, wie Investitionsentscheidungen zustande kommen.
+Gleichzeitig entstehen jedoch neue Herausforderungen: Die Komplexität der eingesetzten \acs{KI}-Modelle macht es für Anleger schwer nachzuvollziehen, wie Investitionsentscheidungen zustande kommen.
 Diese Intransparenz kann das Vertrauen in automatisierte Beratungssysteme untergraben und deren Akzeptanz limitieren.
 
-Die vorliegende Arbeit widmet sich dieser Problematik und untersucht, wie KI-gestützte Portfoliooptimierung transparenter und nachvollziehbarer gestaltet werden kann, ohne dabei die Vorteile automatisierter Datenverarbeitung und -analyse zu verlieren.
+Die vorliegende Arbeit widmet sich dieser Problematik und untersucht, wie \acs{KI}-gestützte Portfoliooptimierung transparenter und nachvollziehbarer gestaltet werden kann sowie zeitgleich auf die individuellen Anlagerpräferenzen Rücksicht nehmen kann, ohne dabei die Vorteile automatisierter Datenverarbeitung und -analyse zu verlieren.
 
 \section{Motivation}
 
 Der Wertpapierhandel steht im Spannungsfeld zwischen zunehmender Datenkomplexität und dem Bedürfnis von Anlegern nach nachvollziehbaren Entscheidungen.
-Während moderne Robo-Advisors und KI-Tools quantitative Empfehlungen generieren, agieren sie oft als \textbf{Blackbox}:
-Sie liefern Kauf-/Verkaufssignale, ohne die zugrundeliegende Logik offenzulegen – etwa warum eine Aktie zu 70\% verkauft werden soll, obwohl fundamentale Kennzahlen stabil erscheinen, oder wie politische Risiken die Portfolio-Strategie beeinflussen.
+Während moderne Robo-Advisors und \acs{KI}-Tools quantitative Empfehlungen generieren, agieren sie oft als Blackbox:
+Sie liefern Kauf-/Verkaufssignale, ohne die zugrundeliegende Logik offenzulegen – etwa warum eine Aktie zu 70\% verkauft werden soll, obwohl z. B. fundamentale Kennzahlen stabil erscheinen, oder wie politische Risiken die Portfolio-Strategie beeinflussen.
 Diese Intransparenz führt zu mangelndem Vertrauen und limitiert die praktische Nutzbarkeit, wie Fallstudien zu Fehleinschätzungen bei Marktvolatilität zeigen.
 \autocite{CFAInstitute2020Trust}.
 
-Ein Beispiel für die Folgen intransparenter Entscheidungsprozesse ist das Verhalten vieler Anleger während Phasen wirtschaftlicher Unsicherheit, etwa bei Inflationsängsten oder bevorstehenden Rezessionen.
-In solchen Zeiten reagieren automatisierte Handelssysteme häufig mit Verkaufsbefehlen auf sinkende Kurse, ohne die zugrunde liegenden wirtschaftlichen Zusammenhänge zu erläutern.
+Ein Beispiel für die Folgen intransparenter und nicht auf den Anleger zugeschnittenen Entscheidungsprozesse ist das Verhalten vieler Anleger während Phasen wirtschaftlicher Unsicherheit, etwa bei Inflationsängsten oder bevorstehenden Rezessionen.
+In solchen Zeiten reagieren automatisierte Handelssysteme häufig mit Verkaufsbefehlen auf sinkende Kurse, ohne die zugrunde liegenden wirtschaftlichen Zusammenhänge zu erläutern und dabei auch die Anlagerpräferenzen ausreichend zu berücksichtigen.
 Dies kann dazu führen, dass Anleger überhastet Positionen in zyklischen Branchen wie der Automobilindustrie oder dem Tourismussektor auflösen, obwohl solche Sektoren typischerweise in späteren Konjunkturphasen wieder an Wert gewinnen.
 Ohne transparente Informationen über makroökonomische Zyklen und deren Einfluss auf bestimmte Branchen besteht die Gefahr, dass Anleger in Panik handeln und dadurch potenzielle Erholungen verpassen.
-Ein System, das diese wirtschaftlichen Zusammenhänge verständlich macht, könnte helfen, fundiertere und langfristig orientierte Entscheidungen zu treffen. \autocite{schnorpfeil2025inflation}
-\todo[inline]{To-Do: Dieser Abschnitt Bedarf ggf. noch mehr Anpassung (abhängig von Ergebnis der Arbeit)}
+Ein System, das Zusammenhänge besser verständlich macht, indem auf Anlagerpräferenzen individuell eingegangen wird und konkret Fragen beantworten kann, wird dabei helfen besser fundiertere und langfristig orientierte Entscheidungen zu treffen. \autocite{schnorpfeil2025inflation}
 
-Die vorliegende Arbeit adressiert drei zentrale Forschungslücken im Bereich KI-gestützter Portfoliooptimierung.
+Die vorliegende Arbeit adressiert drei zentrale Forschungslücken im Bereich \acs{KI}-gestützter Portfoliooptimierung.
 Erstens besteht ein Erklärungsdefizit existierender Systeme, die prozentuale Handlungsempfehlungen (z.B. \enquote{Verkauf: 60\%}) ohne kontextspezifische Begründung liefern.
-Kritische Faktoren wie sinkende Cashflow-Margen (Gewinnspanne nach Cashflow) oder ESG-Risiken (Umwelt-, Sozial- und Governance-Risiken) werden dabei häufig nicht transparent gemacht \autocite{demiguel2009}.
+Kritische Faktoren wie sinkende Cashflow-Margen (Gewinnspanne nach Cashflow), \acs{ESG}-Risiken (Umwelt-, Sozial- und Governance-Risiken) oder anderweitige Faktoren werden dabei häufig nicht ausreichend transparent gemacht \autocite{demiguel2009}.
 Zweitens zeigt sich ein Portfolio-Dilemma durch die mangelnde risikoadaptive Integration von Einzelanalysen in die Gesamtstrategie.
-So werden dynamische Korrelationen zwischen Assetklassen – etwa die Entkopplung von Tech-Aktien und Rohstoffen während geopolitischer Krisen – in aktuellen Robo-Advisor-Lösungen nicht ausreichend berücksichtigt \autocite{ban2018}.
-Drittens unterstreicht der Verbraucherzentrale Bundesverband die Transparenzforderung: Studien zeigen, dass das Vertrauen in KI-Anwendungen wie Robo-Advisor direkt mit der Nachvollziehbarkeit ihrer Entscheidungslogik korreliert \autocite{vzbv2018}.
+So werden u. a. dynamische Korrelationen zwischen Assetklassen – etwa die Entkopplung von Tech-Aktien und Rohstoffen während geopolitischer Krisen – in aktuellen Robo-Advisor-Lösungen nicht ausreichend berücksichtigt \autocite{ban2018}.
+Drittens unterstreicht der Verbraucherzentrale Bundesverband die Transparenzforderung: Studien zeigen, dass das Vertrauen in \acs{KI}-Anwendungen wie Robo-Advisor direkt mit der Nachvollziehbarkeit ihrer Entscheidungslogik korreliert \autocite{vzbv2018}.
 
 \section{Ziele der Forschung}
 
-Ziel der Arbeit ist die Entwicklung eines KI-Assistenzsystems, das drei Kernfunktionen vereint: (1) Generierung prozentualer Handlungsempfehlungen (Kaufen/Verkaufen/Halten) für einzelne Wertpapiere, (2) natürlichsprachige Begründungen dieser Empfehlungen durch Integration quantitativer Kennzahlen (z.B. \enquote{-15\% Chip-Nachfrage YoY (Jahr-auf-Jahr)} und qualitativer Faktoren (z.B. politische Lieferkettenrisiken), sowie (3) Ableitung risikoadaptiver Gesamtstrategien, die Korrelationsmuster zwischen Anlageklassen und individuelle Anlageziele systematisch verbinden.
+Ziel der Arbeit ist die Entwicklung eines \acs{KI}-Assistenzsystems, das drei Kernfunktionen vereint: (1) Generierung prozentualer Handlungsempfehlungen (Kaufen/Verkaufen/Halten) für einzelne Wertpapiere, (2) natürlichsprachige Begründungen dieser Empfehlungen durch Integration quantitativer Kennzahlen (z.B. \enquote{-15\% Chip-Nachfrage \acs{YoY} (Veränderung zum Vorjahr)} und qualitativer Faktoren (z.B. politische Lieferkettenrisiken), sowie (3) Ableitung risikoadaptiver Gesamtstrategien, die Korrelationsmuster zwischen Anlageklassen und individuelle Anlageziele systematisch verbinden.
 
 Als Leitfaden dienen zwei Forschungsfragen:
 \begin{enumerate}
-    \item Wie kann ein KI-basiertes Assistenzsystem entwickelt werden, das für jedes Wertpapier im Depot quantifizierbare Handlungsempfehlungen (Kaufen/Verkaufen/Halten in Prozent) mit transparenten Begründungen generiert?
+    \item Wie kann ein \acs{KI}-basiertes Assistenzsystem entwickelt werden, das für jedes Wertpapier im Depot quantifizierbare Handlungsempfehlungen (Kaufen/Verkaufen/Halten in Prozent) mit transparenten Begründungen generiert?
     \item Inwieweit kann das System eine übergeordnete Risiko-Rendite-Bewertung des gesamten Portfolios liefern und konkrete Rebalancing-Strategien ableiten, die den individuellen Anlagezielen des Nutzers entsprechen?
 \end{enumerate}
 
 Die Arbeit fokussiert sich bewusst auf Transparenz durch Erklärbarkeit statt Prognosegenauigkeit.
-Das System dient als Entscheidungsunterstützung – nicht als autonomer Trader – und kombiniert strukturierte Daten (Fundamentalkennzahlen, historische Korrelationen) mit unstrukturierten Quellen (Nachrichten, Social-Media-Trends).
+Das System dient als Entscheidungsunterstützung – nicht als autonomer Trader – und kombiniert strukturierte Daten (Fundamentalkennzahlen, historische Korrelationen) mit unstrukturierten Informationen (Nachrichten, Anlagerpräferenzen, benutzerdefinierten Eingaben).
 %Methodisch werden adaptierte XAI-Verfahren (Explainable AI) eingesetzt, etwa Feature-Attribution zur Identifikation entscheidungsrelevanter Cluster wie \enquote{Politische Risiken} aus Gesetzesänderungen und Führungswechseln.
 
 \section{Bedeutung der Forschung}
 
-Der praktische Beitrag liegt in drei Anwendungsdimensionen: Investoren können (1) KI-Empfehlungen durch nachvollziehbare Argumente validieren (z.B. Nachfrage von 70\% Verkaufsempfehlungen trotz positiver Quartalszahlen), (2) Portfolio-Risiken durch interaktive Visualisierungen von Korrelationsmatrizen und Stress-Tests aktiv steuern, sowie (3) Anlagestrategien durch \enquote{Was-wäre-wenn}-Szenarien explorieren.
+Der praktische Beitrag liegt in drei Anwendungsdimensionen: Investoren können (1) \acs{KI}-Empfehlungen durch nachvollziehbare Argumente validieren (z.B. Nachfrage von 70\% Verkaufsempfehlungen trotz positiver Quartalszahlen), (2) Portfolio-Risiken durch interaktive Visualisierungen und natürlichsprachige Erklärungen aktiv steuern, sowie (3) Anlagestrategien durch \enquote{Was-wäre-wenn}-Szenarien explorieren.
 Dies ermöglicht einen Paradigmenwechsel von Blackbox-Modellen hin zu transparenten, dialogfähigen Beratungssystemen.
 
-Darüber hinaus leistet die Arbeit einen Beitrag zur Erforschung generativer KI-Modelle im Finanzkontext, insbesondere zur Integration von Large Language Models (LLMs) ohne das Risiko inkonsistenter oder missverständlicher Antworten, die die Entscheidungsqualität der Anleger gefährden könnten.
+Darüber hinaus leistet die Arbeit einen Beitrag zur Erforschung generativer \acs{KI}-Modelle im Finanzkontext, insbesondere zur Integration von Large Language Models (\acs{LLM}s) ohne das Risiko inkonsistenter oder missverständlicher Antworten, die die Entscheidungsqualität der Anleger gefährden könnten.
 Eine besondere Herausforderung besteht darin, dass LLMs zwar in der Lage sind, plausible Erklärungen und Begründungen zu generieren, diese jedoch nicht immer konsistent oder faktisch korrekt sind.
 Gerade im sensiblen Bereich der Finanzmärkte kann eine inkonsistente Begründung – z.B. unterschiedliche Einschätzungen zum Kauf- oder Verkaufszeitpunkt derselben Aktie bei identischen Eingaben – erhebliche Risiken bergen.
 
@@ -62,53 +61,52 @@ Gerade im sensiblen Bereich der Finanzmärkte kann eine inkonsistente Begründun
 % To-Do: evtl noch überall hrefs in die jeweiligen Kapitel hinzufügen und ggf. dick gedruckt
 
 Um diese Forschungsfragen zu beantworten und das Ziel der Arbeit zu erreichen wird in der Arbeit wie folgt vorgegangen:
-Zunächst werden die theoretischen Grundlagen und der Stand der Technik analysiert, um das bestehende Forschungsfeld einzuordnen.
-Darauf aufbauend wird im Kapitel \enquote{Methodik} erläutert, wie die identifizierten Forschungslücken – insbesondere das Erklärungsdefizit und die mangelnde Nutzerzentrierung bestehender Systeme – durch eine Kombination aus dem \textit{Design Science Research (DSR)}-Ansatz und modernen Konzepten der Softwarearchitektur adressiert werden.
-Anschließend folgt die Konzeption und Implementierung des Assistenzsystems, dessen Kernfunktionen und technische Architektur vorgestellt werden.
-Im Anschluss wird das System einer umfassenden Evaluation unterzogen, deren Methoden und Ergebnisse in den darauffolgenden Kapiteln detailliert erläutert werden.
+Zunächst werden die theoretischen Grundlagen und der Stand der Technik in Kapitel \ref{chap:stand_der_forschung} analysiert, um das bestehende Forschungsfeld einzuordnen.
+Darauf aufbauend wird im Kapitel \ref{chap:vorgehen} erläutert, wie die identifizierten Forschungslücken – insbesondere das Erklärungsdefizit und die mangelnde Nutzerzentrierung bestehender Systeme – durch eine Kombination aus dem \textit{Design Science Research (\acs{DSR})}-Ansatz und modernen Konzepten der Softwarearchitektur adressiert werden.
+Anschließend folgt die Konzeption und Implementierung des Assistenzsystems in Kapitel \ref{chap:implementierung}, dessen Kernfunktionen und technische Architektur vorgestellt werden.
+Im Anschluss wird das System einer umfassenden Evaluation in Kapitel \ref{chap:evaluation} unterzogen, deren Methoden und Ergebnisse in den darauffolgenden Kapiteln detailliert erläutert werden.
+Und zuguterletzt werden die Ergebnisse der Arbeit in Kapitel \ref{chap:diskussion} diskutiert und in Kapitel \ref{chap:fazit} wird einmal alles zusammengefasst sowie ein Ausblick auf die Weiterentwicklung gegeben.
 Im Folgenden wird dabei noch einmal auf die einzelnen Kapitel im Detail eingegangen.
 
 % Bzgl. Abschnitt Stand der Forschung
 
-Das Kapitel \enquote{Stand der Forschung} untersucht die Entwicklung und den aktuellen Forschungsstand von Portfoliooptimierungssystemen und deren Verbindung zu erklärbarer KI (XAI).
+Das Kapitel \textbf{\nameref{chap:stand_der_forschung}} untersucht die Entwicklung und den aktuellen Forschungsstand von Portfoliooptimierungssystemen und deren Verbindung zu erklärbarer KI (\acs{XAI}).
 Dabei werden drei Hauptforschungsstränge identifiziert: klassische Portfolio-Theorie, datengetriebene Optimierungsansätze (wie Reinforcement Learning) und kommerzielle Robo-Advisor-Anwendungen.
 Trotz Fortschritten bleibt die Erklärbarkeit von Entscheidungen ein zentrales Defizit.
 Regulatorische Anforderungen wie MiFID II oder der AI Act fordern zunehmend transparente Entscheidungsgrundlagen.
 
-In der Finanzdomäne stehen XAI-Methoden vor besonderen Herausforderungen: Komplexe KI-Modelle wie tiefe neuronale Netze und Transformer sind schwer interpretierbar, auch wenn Ansätze wie Integrated Gradients oder Attention Visualization Fortschritte bieten.
+In der Finanzdomäne stehen \acs{XAI}-Methoden vor besonderen Herausforderungen: Komplexe \acs{KI}-Modelle wie tiefe neuronale Netze und Transformer sind schwer interpretierbar, auch wenn Ansätze wie Integrated Gradients oder Attention Visualization Fortschritte bieten.
 Symbolische und neuro-symbolische Verfahren versprechen hier neue Lösungsansätze, um menschlich verständliche Erklärungen zu ermöglichen.
 
-Zudem wird die Relevanz von Human-Centered XAI betont, das sich stärker an den Bedürfnissen und mentalen Modellen der Nutzer orientiert, anstatt rein technische Erklärungen zu liefern.
-Dabei spielt auch die Integration qualitativer Faktoren (z. B. ESG-Kriterien, Marktstimmung) in quantitative Modelle eine Rolle – eine Aufgabe, die bisher noch nicht zufriedenstellend gelöst ist.
+Zudem wird die Relevanz von Human-Centered \acs{XAI} betont, das sich stärker an den Bedürfnissen und mentalen Modellen der Nutzer orientiert, anstatt rein technische Erklärungen zu liefern.
+Dabei spielt auch die Integration qualitativer Faktoren (z. B. \acs{ESG}-Kriterien, Marktstimmung) in quantitative Modelle eine Rolle – eine Aufgabe, die bisher noch nicht zufriedenstellend gelöst ist.
 
 Abschließend identifiziert das Kapitel mehrere Forschungslücken: mangelnde Erklärbarkeit aktueller Systeme, fehlende Integration qualitativer Faktoren, unzureichende Nutzerzentrierung, Herausforderungen bei der Skalierbarkeit sowie regulatorische und ethische Hürden.
 Diese Lücken motivieren die in der Arbeit entwickelte Systemarchitektur, die auf eine Kombination aus datengetriebenen Methoden, erklärbarer KI und nutzerzentrierter Gestaltung setzt.
 
-% Bzgl. Methodik
+% Bzgl. Vorgehen
 
-Das Kapitel \enquote{Vorgehen und Methodik} verankert die Arbeit im Design-Science-Research (DSR) und begründet die gewählte Vorgehensweise sowie die Technologieauswahl zur Schließung der identifizierten Forschungslücken (Erklärungsdefizit, mangelnde Nutzerzentrierung).
+Das Kapitel \textbf{\nameref{chap:vorgehen}} verankert die Arbeit im Design-Science-Research (\acs{DSR})) und begründet die gewählte Vorgehensweise sowie die Technologieauswahl zur Schließung der identifizierten Forschungslücken (Erklärungsdefizit, mangelnde Nutzerzentrierung).
 Es beschreibt die iterative Prototypenentwicklung, die modulare Systemarchitektur und die Kombination quantitativer wie qualitativer Evaluationsverfahren.
-Methodisch werden der DSR-Rahmen mit Relevanz-, Rigor- und Design-Zyklus sowie die konkreten Phasen von der Problemidentifikation über die Konstruktion/Entwicklung bis zur Evaluation erläutert.
-Auf technischer Ebene legt das Kapitel zentrale Komponenten und Schnittstellen fest (Python/Flask-Backend, austauschbare LLM-Schicht via Ollama/OpenAI, Finanzdaten über yfinance, Orchestrierung mit LangChain) und begründet deren Auswahl im Hinblick auf Austauschbarkeit und Reproduzierbarkeit.
+Methodisch werden der \acs{DSR}-Rahmen mit Relevanz-, Rigor- und Design-Zyklus sowie die konkreten Phasen von der Problemidentifikation über die Konstruktion/Entwicklung bis zur Evaluation erläutert.
+Auf technischer Ebene legt das Kapitel zentrale Komponenten und Schnittstellen fest (Programmiersprache, austauschbare \acs{LLM}-Schicht via Ollama/OpenAI, Finanzdaten über yfinance, Orchestrierung mit LangChain) und begründet deren Auswahl im Hinblick auf Austauschbarkeit und Reproduzierbarkeit.
 Abschließend skizziert es ein mehrstufiges Evaluationskonzept mit Backtests und Leistungsmetriken als Brücke zu den nachfolgenden Architektur- und Evaluationskapiteln.
 
 % Bzgl. Systemarchitektur und Implementierung
 
-Das Kapitel \enquote{Systemarchitektur und Implementierung} beschreibt die modulare Client-Server-Architektur des Assistenzsystems, die klar getrennte Zuständigkeiten und austauschbare Komponenten vorsieht: ein Flask-Backend mit REST/HTTP-Schnittstellen und JSON-Strukturen orchestriert LLM-Aufrufe (lokal via Ollama bzw. Online-Modelle) und den Datenzugriff über \texttt{yfinance}, während ein leichtgewichtiges HTML/Bootstrap/JS-Frontend per asynchronen API-Calls die Ergebnisse präsentiert.
+Das Kapitel \textbf{\nameref{chap:implementierung}} beschreibt die modulare Client-Server-Architektur des Assistenzsystems, die klar getrennte Zuständigkeiten und austauschbare Komponenten vorsieht: ein Flask-Backend mit \acs{REST}/\acs{HTTP}-Schnittstellen und JSON-Strukturen orchestriert \acs{LLM}-Aufrufe (lokal via Ollama bzw. Online-Modelle) und den Datenzugriff über \texttt{yfinance}, während ein leichtgewichtiges \acs{HTML}/Bootstrap/\acs{JS}-Frontend per asynchronen \acs{API}-Calls die Ergebnisse präsentiert.
 Es erläutert Projektstruktur, Hauptkomponenten und deren Zusammenspiel und zeichnet die iterative Entwicklung vom frühen Konsolen-Backend bis zur entkoppelten Web-App anhand konkreter Meilensteine und Commits nach.
-Für die Modellorchestrierung und die konsistente, maschinenlesbare Ausgabe werden LangChain sowie gezielt gestaltete Prompts mit JSON-Extraktion eingesetzt.
+Für die Modellorchestrierung und die konsistente, maschinenlesbare Ausgabe werden LangChain sowie gezielt gestaltete Prompts mit \acs{JSON}-Extraktion eingesetzt.
 Zudem dokumentiert das Kapitel die eingesetzten Frameworks/Tools und den reproduzierbaren Arbeitsmodus in Jupyter-Lab für explorative Tests, Auswertungen und transparente Ergebnisdarstellung.
-Abschließend adressiert es technische Herausforderungen wie LLM-Latenzen und Schnittstellendefinitionen und begründet die Designentscheidungen im Hinblick auf Erweiterbarkeit, Wartbarkeit und Austauschbarkeit.
+Abschließend adressiert es technische Herausforderungen wie \acs{LLM}-Latenzen und Schnittstellendefinitionen und begründet die Designentscheidungen im Hinblick auf Erweiterbarkeit, Wartbarkeit und Austauschbarkeit.
 
-% Bzgl Abschnitt Evaluation (nochmal überarbeiten)
+% Bzgl Abschnitt Evaluation
 
-\todo[inline]{To-Do: Besser einleiten. Aber dann nach den die anderen Abschnitte besser geschrieben sind.}
-
-Darüber hinaus wird im Rahmen dieser Arbeit im Kapitel \enquote{Evaluation} untersucht, wie sich generative KI-Modelle – insbesondere Large Language Models (LLMs) – in den Finanzkontext integrieren lassen, ohne dass dabei das Risiko inkonsistenter oder missverständlicher Antworten die Entscheidungsqualität der Anleger gefährdet.
-Eine besondere Herausforderung besteht darin, dass LLMs zwar in der Lage sind, plausible Erklärungen und Begründungen zu generieren, diese jedoch nicht immer konsistent oder faktisch korrekt sind.
+An das vorherige Kapitel anschließend erfolgt das Kapitel \textbf{\nameref{chap:evaluation}} untersucht, wie erfolgreich sich generative \acs{KI}-Modelle in den Wertpapierkontext integrieren lassen, ohne dass dabei das Risiko inkonsistenter oder missverständlicher Antworten die Entscheidungsqualität der Anleger gefährdet.
+Eine besondere Herausforderung besteht darin, dass \acs{LLM}s zwar in der Lage sind, plausible Erklärungen und Begründungen zu generieren, diese jedoch nicht immer konsistent oder faktisch korrekt sind.
 Gerade im sensiblen Bereich der Finanzmärkte kann eine inkonsistente Begründung – z.B. unterschiedliche Einschätzungen zum Kauf- oder Verkaufszeitpunkt derselben Aktie bei identischen Eingaben – erhebliche Risiken bergen.
 Deshalb wird eine zweistufige Evaluationsstrategie verfolgt: Zunächst werden die gängigen Evaluationsverfahren selbst einer kritischen Betrachtung unterzogen, um ihre Eignung im Finanzkontext zu prüfen.
-Anschließend werden diese Verfahren systematisch auf das entwickelte Assistenzsystem angewendet.
+Anschließend wird überprüft welche dieser Verfahren eine zielführende Anwendung auf das entwickelte Assistenzsystem ermöglicht.
 Ziel ist es, nicht nur die Qualität der generierten Handlungsempfehlungen zu bewerten, sondern auch die Konsistenz und Robustheit der Entscheidungsbegründungen sicherzustellen.
 
 Ein weiterer Aspekt ist der Vergleich mit etablierten Analystenmeinungen.
@@ -118,10 +116,14 @@ Dabei wird bewusst berücksichtigt, dass Analysten auch von subjektiven Einschä
 Gleichzeitig eröffnet dieser Vergleich ein Fenster zur Validierung der grundsätzlichen Funktionsweise des Systems: Stimmen Richtung und Trend der Handlungsempfehlung grundsätzlich überein, deutet das auf eine solide Modellierung hin.
 Abweichungen können wiederum genutzt werden, um potenzielle Verbesserungen in Prompt-Gestaltung und Modell-Parametrierung zu identifizieren.
 
+%Bzgl. Diskussion
+
+\todo[inline]{To-Do: Detailzusammenfassung für Kapitel Diskussion noch zu erledigen}
+
 % Bzgl. Fazit
 
-Das Kapitel \enquote{Fazit und Ausblick} bündelt die zentralen Ergebnisse entlang der eingangs formulierten Forschungsfragen, ordnet den wissenschaftlichen und praktischen Beitrag des entwickelten Artefakts ein und verdichtet die wichtigsten Erkenntnisse der Arbeit.
-Es reflektiert kritisch die Grenzen und Validitätsbedrohungen (u. a. Datenbasis, LLM-Stochastik, Evaluationsdesign) und leitet daraus Implikationen für Interpretation und Einsatz ab.
+Das Kapitel \textbf{\nameref{chap:fazit}} bündelt die zentralen Ergebnisse entlang der eingangs formulierten Forschungsfragen, ordnet den wissenschaftlichen und praktischen Beitrag des entwickelten Artefakts ein und verdichtet die wichtigsten Erkenntnisse der Arbeit.
+Es reflektiert kritisch die Grenzen und Validitätsbedrohungen (u. a. Datenbasis, \acs{LLM}-Stochastik, Evaluationsdesign) und leitet daraus Implikationen für Interpretation und Einsatz ab.
 Darauf aufbauend skizziert das Kapitel priorisierte Entwicklungslinien für Technik, Daten und Evaluation und formuliert konkrete Schritte für einen praxisnahen Transfer.
 Den Abschluss bildet eine kurze Schlussbemerkung, die den Nutzen der Arbeit pointiert zusammenfasst und den Ausblick rahmt.
 
