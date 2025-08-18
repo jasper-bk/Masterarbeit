@@ -3,7 +3,7 @@
 \label{chap:vorgehen}
 
   Um die identifizierten Forschungslücken – insbesondere das Erklärungsdefizit und die mangelnde Nutzerzentrierung bestehender Systeme – systematisch zu adressieren, kombiniert diese Arbeit den \textit{Design Science Research (\acs{DSR})}-Ansatz \autocite{hevner2004} mit modernen Konzepten der Softwarearchitektur.
-  Der Fokus liegt dabei auf drei Kernaspekten: der iterativen Prototypenentwicklung zur schrittweisen Verfeinerung der Anforderungen, der Implementierung einer modularen Systemarchitektur für maximale Anpassbarkeit, und der Integration quantitativer wie qualitativer Evaluationsmethoden.
+  Der Fokus liegt dabei auf drei Kernaspekten: der iterativen Prototypenentwicklung zur schrittweisen Verfeinerung der Anforderungen, der Implementierung einer modularen Systemarchitektur für maximale Anpassbarkeit und der Integration quantitativer wie qualitativer Evaluationsmethoden.
 
   Nach einer detaillierten Darstellung des \acs{DSR}-Rahmens mit seinen Designzyklen wird die technische Umsetzung erläutert, einschließlich der Auswahl geeigneter \acs{KI}-Modelle, der Integration heterogener Datenquellen und der nutzerzentrierten Gestaltung der Erklärungsmechanismen.
   Den Abschluss bildet die Vorstellung eines mehrstufigen Evaluationskonzepts, das die Performance und weitere Metriken evaluiert.
@@ -31,14 +31,13 @@
     \end{figure}
 
     Dieser Ansatz eignet sich besonders für die vorliegende Arbeit, da hier ein \acs{KI}-gestütztes Assistenzsystems zur quantitativen Portfoliooptimierung entwickelt wird, um identifizierte Forschungslücken im diesem Bereich zu schließen.
-    Konkret wird zunächst eine Problemidentifikation durchgeführt, in der bestehende Systeme (Robo-Advisor, \acs{MPT}-Tools) und die aus Kapitel 2 abgeleiteten Anforderungen analysiert werden.
+    Konkret wird zunächst eine Problemidentifikation durchgeführt, in der bestehende Systeme (Robo-Advisor, \acs{MPT}-Tools) und die aus Kapitel \ref{chap:stand_der_forschung} abgeleiteten Anforderungen analysiert werden.
 
-    Anschließend folgt die Design- und Entwicklungsphase, in der ein artefaktspezifischer Prototyp unter iterativem Vorgehen erstellt wird.
+    Anschließend folgt die Design- und Entwicklungsphase (Kapitel \ref{chap:implementierung}), in der ein artefaktspezifischer Prototyp unter iterativem Vorgehen erstellt wird.
     Dabei steuern Rückkopplungen mit Finanzexperten die sukzessive Verfeinerung des Moduls, was dem in der \acs{DSR}-Literatur beschriebenen suchenden Entwicklungsprozess entspricht.
 
-    Die abschließende Evaluationsphase validiert das Artefakt anhand definierter Nutzermetriken (Kapitel 5) und sichert so die praktische Relevanz und Wirksamkeit der Lösung.
+    Die abschließende Evaluationsphase validiert das Artefakt anhand definierter Nutzermetriken (Kapitel \ref{chap:evaluation}) und sichert so die praktische Relevanz und Wirksamkeit der Lösung.
     Insofern entspricht die methodische Vorgehensweise dem typischen \acs{DSR}-Zyklus, bei dem Problemfindung, Konstruktion und Untersuchung des Artefakts eng verzahnt sind.
-    \todo[inline]{To-Do: href zu Kapiteln hinzufügen}
 
     Theoretisch wird das Design-Science-Vorgehen häufig als ein Zusammenspiel mehrerer Zyklen beschrieben.
     Hevner (2007) unterscheidet beispielsweise einen Relevanz-Zyklus, der Anforderungen aus dem Anwendungsumfeld in die Forschung einspeist, einen Rigor- oder auch Forschungs-Zyklus, der bewährte Theorien und Methoden einbindet, sowie einen mittleren Design-Zyklus, der die eigentliche Konstruktion und Evaluierung des Artefakts umfasst \autocite{hevner2007}.
@@ -52,7 +51,7 @@
     In der vorliegenden Arbeit wird der Schritt der Problemidentifikation durch die Analyse relevanter Finanzsysteme und identifizierter Forschungslücken umgesetzt.
     In der Konstruktionsphase entsteht der modulare Prototyp, der durch wiederholte Feedbackschleifen ständig verfeinert wird.
 
-    Schließlich werden im Demonstrations- und Evaluationsschritt die definierten Metriken (Kapitel 5) herangezogen, um die Leistungsfähigkeit und den praktischen Nutzen des Artefakts zu überprüfen.
+    Schließlich werden im Demonstrations- und Evaluationsschritt die definierten Metriken (Kapitel \ref{chap:evaluation}) herangezogen, um die Leistungsfähigkeit und den praktischen Nutzen des Artefakts zu überprüfen.
     Somit gehen alle geplanten Arbeitsschritte auf bewährte \acs{DSR}-Methoden zurück und sind iterativ angelegt.
 
     Wesentliche methodische Prinzipien des \acs{DSR} sind dabei die enge Verknüpfung von Theorie und Praxis sowie die Fokussierung auf innovative Beiträge (Artefakte) und deren Qualität.
@@ -67,23 +66,22 @@
   % Achtung! Ab hier gilt es vieles zu überarbeiten! %
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Technologieauswahl} %nicht mehr als 10 Seiten für Technologieauswahl. Weniger Dimensionen. % Evtl qual. und quant. zusammen legen
+\section{Technologieauswahl} % nicht mehr als 10 Seiten für Technologieauswahl. Weniger Dimensionen. % Evtl qual. und quant. zusammen legen
 
     Die Entwicklung eines transparenten und dialogfähigen Assistenzsystems für die Portfolio-Optimierung erfordert eine präzise Auswahl geeigneter Technologien in allen relevanten Bereichen.
     Dieser Abschnitt stellt daher die betrachteten Optionen vor und bewertet sie anhand einer Entscheidungsmatrix, die die für die jeweiligen Kriterien der verschiedenen Bereiche berücksichtigt.
-    \todo[inline]{To-Do: Kriterien müssen vernünftig begründet werden zu Beginn der jeweiligen Bereiche}
 
-    Konkret werden Technologien für die folgenden fünf Kernbereiche beleuchtet: die Programmlogik (Programmiersprache und Frameworks), die Anbindung der künstlichen Intelligenz, die Integration quantitativer Finanzdaten, die Anbindung qualitativer Finanzdaten sowie die Gestaltung des Frontends.
+    Konkret werden Technologien für die folgenden drei Kernbereiche beleuchtet: die Programmlogik (Programmiersprache und Frameworks), die Anbindung der künstlichen Intelligenz und die Integration von Finanzdaten.
     Dabei wird nicht nur der jeweils technisch beste Ansatz identifiziert, sondern auch diskutiert, wo Kompromisse erforderlich sind, um eine optimale Balance zwischen Innovationskraft, Komplexität und langfristiger Praxistauglichkeit zu erzielen.
 
-    \todo[inline]{To-Do: Klären ob subsubsection Okay sind, oder ob man das besser auslässt oder zumindest aus dem Inhaltsverzeichnis streicht}
+    \todo[inline]{To-Do: Klären ob subsubsection Okay sind, oder ob man das besser auslässt oder zumindest aus dem Inhaltsverzeichnis sowie Nummerierung streicht}
 
   \subsection{Auswahl der Programmiersprache}
 
     Für die technische Umsetzung dieser Arbeit wird direkt und ohne Vergleich Python als Programmiersprache festgelegt.
     Python hat sich in der wissenschaftlichen und datengetriebenen Softwareentwicklung als De-facto-Standard etabliert und bietet ein nahezu konkurrenzloses Ökosystem an spezialisierten Bibliotheken für numerische Berechnungen (wie \texttt{numpy}, \texttt{pandas}, \texttt{scipy}), Datenvisualisierung (\texttt{matplotlib}, \texttt{seaborn}) sowie Machine Learning und künstliche Intelligenz (\texttt{scikit-learn}, \texttt{transformers}, \texttt{tensorflow}, \texttt{pytorch}).
 
-    Diese Vielfalt an Tools erlaubt eine vollständige Implementierung sämtlicher Arbeitspakete – von der Datenaggregation und -vorverarbeitung bis hin zur Modellierung und Visualisierung – ohne auf hybride oder gar mehrsprachige Ansätze zurückgreifen zu müssen.
+    Diese Vielfalt an Tools erlaubt eine vollständige Implementierung der Kernlogik -- von der Datenaggregation und -vorverarbeitung bis hin zur Modellierung und Visualisierung -- ohne auf hybride oder gar mehrsprachige Ansätze zurückgreifen zu müssen.
     Gerade im Bereich Explainable AI (\acs{XAI}) und Finanzdatenanalyse sind zahlreiche erprobte Python-Bibliotheken verfügbar, die sowohl für den experimentellen Prototypenbau als auch für robuste Anwendungen geeignet sind.
     Darüber hinaus ist Python aufgrund seiner klaren Syntax und breiten Community-Unterstützung besonders für interaktive Entwicklungsumgebungen wie Jupyter-Lab prädestiniert, was iterative Evaluationsschritte erleichtert.
     Insofern erübrigt sich eine vergleichende Analyse anderer Programmiersprachen: Python deckt sämtliche funktionalen und methodischen Anforderungen ab und bietet darüber hinaus eine zukunftssichere Basis für Erweiterungen und Anpassungen.
@@ -91,7 +89,8 @@
   \subsection{Auswahl zur Anbindung der künstlichen Intelligenz}
 
     Für die Implementierung der generativen \acs{KI}-Komponente des Assistenzsystems wird zunächst ein umfassender Überblick über relevante \acs{KI}-Provider erstellt.
-    Neben der quelloffenen Plattform Ollama werden marktführende proprietäre Anbieter wie OpenAI, Claude und Gemini (Google) verglichen. Dadurch wird ein breites Spektrum abgedeckt, das sowohl Open-Source-Lösungen als auch kommerzielle Dienste umfasst.
+    Neben der quelloffenen Plattform Ollama werden marktführende proprietäre Anbieter wie OpenAI, Claude und Gemini (Google) verglichen.
+    Dadurch wird ein breites Spektrum abgedeckt, das sowohl Open-Source-Lösungen als auch kommerzielle Dienste umfasst.
     Diese Vielfalt ermöglicht es, die unterschiedlichen funktionalen Möglichkeiten, Preismodelle sowie Vor- und Nachteile hinsichtlich technischer und organisatorischer Aspekte systematisch zu bewerten.
 
     Die Bewertung der Anbieter erfolgt anhand von sieben sorgfältig gewählten Kriterien: \textit{\acs{API}}, \textit{Performance}, \textit{Kosten}, \textit{Anpassung}, \textit{Datenschutz}, \textit{Support} und \textit{Dokumentation}.
@@ -319,7 +318,8 @@
 
   \subsection{Auswahl zur Anbindung Finanzdaten}
 
-    Ein zentraler Bestandteil des Assistenzsystems ist die Anbindung von \emph{quantitativen} \emph{und} \emph{qualitativen} Finanzdaten, um eine belastbare Grundlage für Handlungsempfehlungen und deren Begründung im LLM zu schaffen. Neben Kurszeitreihen, Fundamentalkennzahlen und ökonomischen Indikatoren werden hierfür auch textuelle Informationsquellen (z.\,B. Unternehmensnachrichten, Earnings-Call-Transkripte, Social-Sentiment) und daraus abgeleitete Merkmale (z.\,B. Relevanz‐Scores, Stimmungsindizes, Quellenvertrauen) integriert. Diese Daten werden für das LLM in ein einheitliches, maschinenlesbares Schema (z.\,B. JSON) überführt, das numerische Felder (Zeitstempel, Werte) und qualitative Felder (Kurzfassung, Sentiment, Quelle, Aktualität) kombiniert.
+    Ein zentraler Bestandteil des Assistenzsystems ist die Anbindung von \emph{quantitativen} \emph{und} \emph{qualitativen} Finanzdaten, um eine belastbare Grundlage für Handlungsempfehlungen und deren Begründung im \acs{LLM} zu schaffen. Neben Kurszeitreihen, Fundamentalkennzahlen und ökonomischen Indikatoren werden hierfür auch textuelle Informationsquellen (z.\,B. Unternehmensnachrichten, Earnings-Call-Transkripte, Social-Sentiment) und daraus abgeleitete Merkmale (z.\,B. Relevanz‐Scores, Stimmungsindizes, Quellenvertrauen) integriert.
+    Diese Daten werden für das \acs{LLM} in ein einheitliches, maschinenlesbares Schema (z.\,B. \acs{JSON}) überführt, das numerische Felder (Zeitstempel, Werte) und qualitative Felder (Kurzfassung, Sentiment, Quelle, Aktualität) kombiniert.
 
     Dafür werden die \acs{API}s \texttt{yfinance}, Alpha Vantage und Finnhub untersucht.
     Bei der Evaluation werden Faktoren wie Datenabdeckung, Aktualität, \acs{API}-Zugänglichkeit und Kostenstruktur berücksichtigt \autocite{AlphaVantageDocs2025,FinnhubDocs2025,yfinanceDocs}.

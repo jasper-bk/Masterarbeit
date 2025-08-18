@@ -5,12 +5,12 @@
   % Achtung! Entwurf %
   %%%%%%%%%%%%%%%%%%%%
 
-  Ziel dieser Evaluation ist es, die Leistungsfähigkeit und Nutzbarkeit des entwickelten KI-basierten Assistenzsystems mit transparenter Entscheidungsbegründung zur quantitativen Portfoliooptimierung systematisch zu untersuchen.
+  Ziel dieser Evaluation ist es, die Leistungsfähigkeit und Nutzbarkeit des entwickelten \acs{KI}-basierten Assistenzsystems mit transparenter Entscheidungsbegründung zur quantitativen Portfoliooptimierung systematisch zu untersuchen.
   Dazu werden verschiedene quantitative und qualitative Bewertungsverfahren diskutiert und auf das konkrete System übertragen.
 
   \section{Auswahl der Evaluationsverfahren}
 
-    Bevor die Leistungsfähigkeit und Nutzbarkeit des entwickelten KI-basierten Assistenzsystems umfassend bewertet werden kann, ist es zunächst notwendig, die verschiedenen potenziellen Evaluationsverfahren selbst systematisch zu prüfen und einzuordnen.
+    Bevor die Leistungsfähigkeit und Nutzbarkeit des entwickelten \acs{KI}-basierten Assistenzsystems umfassend bewertet werden kann, ist es zunächst notwendig, die verschiedenen potenziellen Evaluationsverfahren selbst systematisch zu prüfen und einzuordnen.
     Dabei geht es darum, eine fundierte Auswahl der Methoden zu treffen, die am besten geeignet sind, um sowohl die quantitativen als auch die qualitativen Aspekte des Systems zu erfassen.
 
     Zunächst wird diskutiert, welche quantitativen Metriken und Verfahren sich eignen, um die Portfolioperformance und die Robustheit der Systemvorschläge zu bewerten.
@@ -33,13 +33,13 @@
 
     \subsection{Allgemeine Prompt-Response-Auswertung}
 
-      Ein wichtiger Bestandteil der Evaluation des entwickelten KI-basierten Assistenzsystems ist die Analyse der generierten Antworten auf verschiedene aber auch gleiche Prompts.
+      Ein wichtiger Bestandteil der Evaluation des entwickelten \acs{KI}-basierten Assistenzsystems ist die Analyse der generierten Antworten auf verschiedene aber auch gleiche Prompts.
       Hierbei wird insbesondere die Konsistenz der Systemantworten untersucht.
       Dabei wird überprüft, ob das System bei gleichen oder sehr ähnlichen Prompts in Bezug auf die Handlungsempfehlungen – \textit{buy}, \textit{hold} und \textit{sell} – stabile und nachvollziehbare Einschätzungen liefert oder ob sich bei wiederholter Abfrage größere Unterschiede ergeben.
       Diese Konsistenzprüfung ist wesentlich, um sicherzustellen, dass das System nicht durch Zufall oder unstetige interne Gewichtungen widersprüchliche Empfehlungen ausspricht.
 
       Ein weiterer wichtiger Aspekt dieser Auswertung ist der Vergleich von Antworten verschiedener Modelle.
-      Hierzu werden die Resultate des Assistenzsystems mit denen von Referenzmodellen oder verschiedenen Versionen des eingesetzten LLMs verglichen.
+      Hierzu werden die Resultate des Assistenzsystems mit denen von Referenzmodellen oder verschiedenen Versionen des eingesetzten \acs{LLM}s verglichen.
       Ziel ist es, zu analysieren, inwieweit die Modelle übereinstimmen oder voneinander abweichen, und zu verstehen, welche Faktoren zu diesen Abweichungen führen.
       Dabei wird insbesondere darauf geachtet, ob Unterschiede in den Modellen zu abweichenden Risikoeinschätzungen oder unterschiedlichen Priorisierungen von Einflussfaktoren führen.
 
@@ -86,7 +86,7 @@
             Übliche Gesamtdauer: 2018–2023, alternativ fokussierte Phasen wie der COVID‑Crash (März–Mai 2020) oder die Zinswende im Herbst 2022.
           \item \textbf{Definition einer Benchmark:}
             Beispiele: MSCI World (ETF \texttt{URTH}) oder S\&P 500 (ETF \texttt{SPY}).
-          \item \textbf{Anwendung der KI-Empfehlungen:}
+          \item \textbf{Anwendung der \acs{KI}-Empfehlungen:}
             Die Entscheidungen (\texttt{buy}/\texttt{sell}/\texttt{hold}) werden in festgelegten Intervallen (z.\,B. wöchentliche Rebalancings oder stichprobenhafte Rolling Windows) auf das Portfolio übertragen.
           \item \textbf{Aufzeichnung und Vergleich:}
             Portfolio- und Benchmark-Returns werden als Zeitreihen dokumentiert.
@@ -105,7 +105,7 @@
 
         \subsubsection{Abwägung und Machbarkeit}
 
-          Ein vollständiges tägliches Backtesting über den gesamten Mehrjahreszeitraum ist aufgrund der pro–Evaluation mehrminütigen Laufzeiten des LLM-basierten Systems kaum praktikabel.
+          Ein vollständiges tägliches Backtesting über den gesamten Mehrjahreszeitraum ist aufgrund der pro–Evaluation mehrminütigen Laufzeiten des \acs{LLM}-basierten Systems kaum praktikabel.
           Stattdessen empfiehlt sich:
 
           \begin{itemize}
@@ -122,7 +122,7 @@
             \item Parametrisierung der Perioden und Intervalle.
             \item Schleife über definierte Fenster bzw. Zeitabschnitte:
               \begin{itemize}
-                \item Aufruf der Portfolio-Evaluation (LLM-basiert).
+                \item Aufruf der Portfolio-Evaluation (\acs{LLM}-basiert).
                 \item Berechnung der Kennzahlen (Sharpe, Volatilität, Drawdown, VaR, ES, Hit Rate).
                 \item Speicherung der Ergebnisse in einer Tabelle.
               \end{itemize}
@@ -135,7 +135,7 @@
     \subsection{Statistische Signifikanzprüfung}
     \label{sec:stat-significance}
 
-      Zur Absicherung, dass beobachtete Performanceunterschiede zwischen dem KI-gestützten Portfolio und einer Benchmark (z.\,B. MSCI World Index) nicht zufällig sind, wird auf Verfahren der statistischen Inferenz zurückgegriffen.
+      Zur Absicherung, dass beobachtete Performanceunterschiede zwischen dem \acs{KI}-gestützten Portfolio und einer Benchmark (z.\,B. MSCI World Index) nicht zufällig sind, wird auf Verfahren der statistischen Inferenz zurückgegriffen.
       Ziel ist es, robuste Aussagen darüber treffen zu können, ob eine bessere (oder schlechtere) Performance auf tatsächliche systematische Effekte oder bloßen Zufall zurückzuführen ist.
 
       \subsection*{Mögliche Verfahren}
@@ -156,7 +156,7 @@
 
         \begin{enumerate}
           \item \textbf{Datenvorbereitung:}
-          Für jedes getestete Zeitfenster werden die täglichen oder wöchentlichen Renditen des KI-basierten Portfolios sowie der Benchmark gespeichert.
+          Für jedes getestete Zeitfenster werden die täglichen oder wöchentlichen Renditen des \acs{KI}-basierten Portfolios sowie der Benchmark gespeichert.
           Die Differenzzeitreihe dient als Grundlage der statistischen Tests.
 
           \item \textbf{Normalitätsprüfung (optional):}
@@ -209,7 +209,7 @@
         \begin{itemize}
           \item \textbf{Fidelity / Faithfulness:}
           Diese Metrik bewertet, ob die Erklärung tatsächlich auf den relevanten Informationen basiert, die für die Modellentscheidung verantwortlich waren, also eine hohe \emph{Erklärungstreue} aufweist.
-          In der Praxis ist dies bei generativen LLMs nur indirekt messbar.
+          In der Praxis ist dies bei generativen \acs{LLM}s nur indirekt messbar.
           Ein möglicher Ansatz besteht darin, durch sogenannte \textit{input occlusion}- oder \textit{counterfactual prompting}-Techniken zu prüfen, ob Änderungen an den erklärten Faktoren zu konsistenten Änderungen in der Entscheidung führen.
           Alternativ kann ein nachgeschalteter Klassifikator trainiert werden, der nur auf Basis der Erklärung das Modellverhalten approximiert – je besser dies gelingt, desto höher die Fidelity.
 
@@ -226,12 +226,12 @@
 
       \subsubsection{Benutzerstudien}
 
-        Da erklärbare KI stets auch auf das subjektive Verständnis der Nutzer zielt, ist eine empirische Bewertung durch menschliche Rückmeldung unverzichtbar.
+        Da erklärbare \acs{KI} stets auch auf das subjektive Verständnis der Nutzer zielt, ist eine empirische Bewertung durch menschliche Rückmeldung unverzichtbar.
 
         \begin{itemize}
           \item \textbf{Methodisches Vorgehen:}
           Die Nutzerstudie basiert auf dem von \textcite{hoffman2018metrics} entwickelten Bewertungsrahmen.
-          Die Teilnehmenden erhalten eine Reihe von KI-Empfehlungen mitsamt den zugehörigen Begründungstexten und werden gebeten, diese anhand folgender Kriterien zu bewerten:
+          Die Teilnehmenden erhalten eine Reihe von \acs{KI}-Empfehlungen mitsamt den zugehörigen Begründungstexten und werden gebeten, diese anhand folgender Kriterien zu bewerten:
           \begin{itemize}
             \item Verständlichkeit (clarity)
             \item Nützlichkeit für die Entscheidung
@@ -266,7 +266,7 @@
 
       \begin{itemize}
         \item \textbf{Overfitting im Backtest}: Historische Daten könnten speziell auf Trainingsdaten abgestimmte Entscheidungen begünstigen.
-        \item \textbf{Probabilistische Natur der LLM-Antworten}: Auch bei gleichen Prompts können unterschiedliche Antworten erzeugt werden.
+        \item \textbf{Probabilistische Natur der \acs{LLM}-Antworten}: Auch bei gleichen Prompts können unterschiedliche Antworten erzeugt werden.
         \item \textbf{Stichprobengröße der Nutzerstudien}: Zu kleine Testgruppen limitieren die Generalisierbarkeit.
         \item \textbf{Datenqualität und Survivorship Bias}: Achtung bei historischen Kursdaten, die Überlebende von Insolvenzen bevorzugen.
       \end{itemize}
@@ -300,7 +300,7 @@
       \begin{figure}[H]
           \centering
           \includegraphics[width=\textwidth]{assets/platzhalter.png}
-          \caption{Modulare Systemarchitektur des KI-Assistenzsystems in vereinfachter Form}
+          \caption{Modulare Systemarchitektur des \acs{KI}-Assistenzsystems in vereinfachter Form}
           \small{(Quelle: eigene Darstellung)}
           \label{fig:prompt_response_auswertung}
       \end{figure}
@@ -314,7 +314,7 @@
       \begin{figure}[H]
           \centering
           \includegraphics[width=\textwidth]{assets/platzhalter.png}
-          \caption{Modulare Systemarchitektur des KI-Assistenzsystems in vereinfachter Form}
+          \caption{Modulare Systemarchitektur des \acs{KI}-Assistenzsystems in vereinfachter Form}
           \small{(Quelle: eigene Darstellung)}
           \label{fig:vergleich_mit_analysten}
       \end{figure}

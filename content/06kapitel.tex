@@ -38,9 +38,9 @@
     Besonders hervorzuheben ist die flexible Architektur, welche sowohl eine webbasierte Nutzung über Frameworks wie Flask oder Django als auch eine Desktop-Variante mittels Tkinter ermöglicht.
     Diese Vielseitigkeit erlaubt es, das System an verschiedene Nutzungsszenarien und technische Umgebungen anzupassen, ohne den Kern der Funktionalität verändern zu müssen.
 
-    Ein zentraler Bestandteil der Nutzbarkeit liegt in der Kombination von quantitativen sowie qualitative Finanzdaten und generativen KI-Komponenten.
+    Ein zentraler Bestandteil der Nutzbarkeit liegt in der Kombination von quantitativen sowie qualitative Finanzdaten und generativen \acs{KI}-Komponenten.
     Die Anbindung von Datenquellen wie \textit{*yfinance*}, \textit{*Alpha Vantage*} oder \textit{*Finnhub*} ermöglicht die automatisierte Beschaffung von Kursverläufen, Fundamentaldaten und weiteren relevanten Finanzinformationen.
-    Darauf aufbauend kann die KI beispielsweise Marktberichte generieren, komplexe Sachverhalte in einfacher Sprache erklären oder Handlungsempfehlungen formulieren.
+    Darauf aufbauend kann die \acs{KI} beispielsweise Marktberichte generieren, komplexe Sachverhalte in einfacher Sprache erklären oder Handlungsempfehlungen formulieren.
 
     % To-Do: Auch Erklärbarkeit mehr hervorheben
     Transparenz in der Datenverarbeitung ist ein entscheidender Faktor für die Nutzbarkeit.
@@ -49,7 +49,7 @@
     Dies hat direkte Auswirkungen auf die Akzeptanz des Systems, da Finanzinstitutionen und professionelle Anwender oft hohe Transparenzanforderungen haben.
 
     Die Modellauswahl zwischen lokalen und Cloud-basierten Ansätzen beeinflusst die Anwendungsfälle maßgeblich.
-    Lokale Modelle bieten volle Kontrolle, hohe Datenschutzstandards durch die Vermeidung der Übertragung sensibler Daten ins Internet und Unabhängigkeit von Anbieter-APIs.
+    Lokale Modelle bieten volle Kontrolle, hohe Datenschutzstandards durch die Vermeidung der Übertragung sensibler Daten ins Internet und Unabhängigkeit von Anbieter-\acs{API}s.
     Diese Eigenschaften machen sie besonders für Finanzinstitutionen attraktiv, die strengen Compliance-Vorgaben unterliegen.
     Jedoch sind lokale Modelle in einfachen Setups bedeutend langsamer und ressourcenintensiver bzw. weniger Effizienz, was ihre Einsatzmöglichkeiten bei zeitkritischen Analysen einschränken kann.
     Cloud-Modelle wie OpenAI oder Claude hingegen sind leistungsfähiger, verfügen über größere Trainingsdatenmengen und liefern schnelle Antworten.
@@ -59,7 +59,7 @@
     Lokale Modelle können bei entsprechender Hardware, insbesondere mit GPU-Beschleunigung, durchaus eingeschränkt konkurrenzfähige Leistung bieten.
     Allerdings benötigen sie initial längere Ladezeiten für das Modell und haben Limitierungen bei der Verarbeitung großer Kontextlängen, was bei umfangreichen Portfolioanalysen problematisch werden kann.
     Cloud-Modelle liefern Ergebnisse oft innerhalb von Sekundenbruchteilen und können große Datenmengen effizient verarbeiten.
-    Jedoch können API-Rate-Limits bei kostenlosen Zugängen oder Netzwerkprobleme zu unvorhersehbaren Verzögerungen führen, was die Zuverlässigkeit in produktiven Umgebungen beeinträchtigen kann.
+    Jedoch können \acs{API}-Rate-Limits bei kostenlosen Zugängen oder Netzwerkprobleme zu unvorhersehbaren Verzögerungen führen, was die Zuverlässigkeit in produktiven Umgebungen beeinträchtigen kann.
 
     Die potenziellen Anwendungsfälle sind vielfältig.
     Privatanleger können das System nutzen, um Anlageentscheidungen durch datenbasierte Analysen zu unterstützen.
@@ -67,11 +67,11 @@
     Weitere Einsatzmöglichkeiten umfassen die Erstellung von Portfolioanalysen, die Identifikation von Markttrends sowie die Erklärung einzelner Finanzkennzahlen.
 
     Die Nutzbarkeit ist jedoch abhängig von externen Faktoren.
-    Hierzu zählen insbesondere die Verfügbarkeit und Stabilität der angebundenen APIs, mögliche Request-Limits bei den verschiedenen Lizenzmodellen sowie die Kosten bei der Skalierung auf größere Datenmengen oder komplexere Analyseaufgaben.
+    Hierzu zählen insbesondere die Verfügbarkeit und Stabilität der angebundenen \acs{API}s, mögliche Request-Limits bei den verschiedenen Lizenzmodellen sowie die Kosten bei der Skalierung auf größere Datenmengen oder komplexere Analyseaufgaben.
     Auch Datenschutz- und Compliance-Anforderungen können die Einsatzmöglichkeiten beeinflussen, wobei die Wahl zwischen lokalen und Cloud-Modellen hier eine zentrale Rolle spielt.
 
     Insgesamt zeigt sich, dass das Assistenzsystem in einem breiten Spektrum von Anwendungsfällen einsetzbar ist, solange die externen Rahmenbedingungen sowie die spezifischen Anforderungen an Transparenz, Datenschutz und Geschwindigkeit berücksichtigt werden.
-    Dies unterstreicht das Potenzial der Kombination aus strukturierten Finanzdaten und generativer künstlicher Intelligenz für praxisnahe, automatisierte Auswertungs- und Entscheidungshilfen, wobei die bewusste Auswahl der KI-Infrastruktur entscheidend für den Erfolg in verschiedenen Anwendungsdomänen ist.
+    Dies unterstreicht das Potenzial der Kombination aus strukturierten Finanzdaten und generativer künstlicher Intelligenz für praxisnahe, automatisierte Auswertungs- und Entscheidungshilfen, wobei die bewusste Auswahl der \acs{KI}-Infrastruktur entscheidend für den Erfolg in verschiedenen Anwendungsdomänen ist.
 
   \section{Bedingungen}
 
@@ -79,34 +79,34 @@
     Diese umfassen sowohl technische als auch organisatorische Aspekte.
 
     Technische Bedingungen bilden das Fundament für den Betrieb des Systems.
-    Eine stabile Internetverbindung ist für API-Anfragen an externe Datenanbieter und KI-Services unerlässlich.
-    Zusätzlich erfordert das System die ordnungsgemäße Konfiguration der API-Schlüssel für die genutzten Datenanbieter wie Alpha Vantage, Finnhub oder andere Finanzdienstleister.
+    Eine stabile Internetverbindung ist für \acs{API}-Anfragen an externe Datenanbieter und \acs{KI}-Services unerlässlich.
+    Zusätzlich erfordert das System die ordnungsgemäße Konfiguration der \acs{API}-Schlüssel für die genutzten Datenanbieter wie Alpha Vantage, Finnhub oder andere Finanzdienstleister.
 
     Lizenz- und Kostenbedingungen haben direkten Einfluss auf die Nutzungsintensität und -breite des Systems.
-    Viele der verwendeten APIs weisen in ihren kostenlosen Versionen Limitierungen auf, etwa eine maximale Anzahl von Requests pro Minute oder pro Tag.
+    Viele der verwendeten \acs{API}s weisen in ihren kostenlosen Versionen Limitierungen auf, etwa eine maximale Anzahl von Requests pro Minute oder pro Tag.
     Für höhere Abfragevolumen oder erweiterte Datensätze sind kostenpflichtige Abonnements notwendig, was die Betriebskosten erheblich steigern kann.
     Diese Kostenstruktur muss bei der Planung von Anwendungsszenarien berücksichtigt werden.
 
-    Datenschutz- und Compliance-Bedingungen gewinnen besonders bei der Anbindung externer KI-Services wie OpenAI, Claude oder Gemini an Bedeutung.
-    Es muss geprüft werden, ob die Datenverarbeitung DSGVO-konform erfolgt und ob sensible Finanzinformationen in die Cloud übertragen werden dürfen.
+    Datenschutz- und Compliance-Bedingungen gewinnen besonders bei der Anbindung externer \acs{KI}-Services wie OpenAI, Claude oder Gemini an Bedeutung.
+    Es muss geprüft werden, ob die Datenverarbeitung \acs{DSGVO}-konform erfolgt und ob sensible Finanzinformationen in die Cloud übertragen werden dürfen.
     Finanzinstitutionen unterliegen oft strengen Regulierungen, die die Nutzung cloud-basierter Services einschränken oder zusätzliche Sicherheitsmaßnahmen erfordern können.
 
     Transparenz- und Erklärbarkeitsanforderungen stellen besondere Bedingungen an das System.
-    Die verwendeten generativen KI-Modelle müssen in der Lage sein, ihre Entscheidungsfindung nachvollziehbar zu dokumentieren, insbesondere bei Anlageempfehlungen oder Risikobeurteilungen.
+    Die verwendeten generativen \acs{KI}-Modelle müssen in der Lage sein, ihre Entscheidungsfindung nachvollziehbar zu dokumentieren, insbesondere bei Anlageempfehlungen oder Risikobeurteilungen.
     Dies erfordert nicht nur entsprechende Prompt-Engineering-Techniken, sondern auch die Auswahl von Modellen, die ausreichende Erklärungsfähigkeiten besitzen.
     Bei kritischen Finanzentscheidungen müssen die zugrundeliegenden Datenquellen, Berechnungsmethoden und Annahmen für den Nutzer transparent darstellbar sein.
 
     Geschwindigkeitsanforderungen variieren je nach Anwendungsfall und beeinflussen die Systemarchitektur maßgeblich.
-    Für zeitkritische Analysen wie Intraday-Trading müssen Antwortzeiten im Sekundenbereich liegen, was schnelle APIs und effiziente Datenverarbeitung voraussetzt.
+    Für zeitkritische Analysen wie Intraday-Trading müssen Antwortzeiten im Sekundenbereich liegen, was schnelle \acs{API}s und effiziente Datenverarbeitung voraussetzt.
     Bei umfassenden Portfolioanalysen können längere Verarbeitungszeiten akzeptabel sein, jedoch sollten auch hier Benutzererwartungen bezüglich der Responsivität erfüllt werden.
-    Die Wahl zwischen lokalen und cloud-basierten KI-Modellen hat hier direkten Einfluss auf die erreichbare Performance.
+    Die Wahl zwischen lokalen und cloud-basierten \acs{KI}-Modellen hat hier direkten Einfluss auf die erreichbare Performance.
 
     Abhängigkeiten zu Anbieterplattformen schaffen potenzielle Risiken für die Systemstabilität.
-    Änderungen in der API-Struktur, Preismodellen oder Verfügbarkeit der Services können die Nutzbarkeit unmittelbar beeinflussen.
+    Änderungen in der \acs{API}-Struktur, Preismodellen oder Verfügbarkeit der Services können die Nutzbarkeit unmittelbar beeinflussen.
     Dies erfordert eine kontinuierliche Überwachung der verwendeten Dienste und gegebenenfalls die Implementierung von Fallback-Lösungen oder alternativen Datenquellen.
 
     Entwicklungs- und Deployment-Bedingungen hängen von der gewählten Systemarchitektur ab. Für die webbasierte Variante muss ein Webserver bereitstehen, der entweder lokal oder in einer gehosteten Umgebung betrieben werden kann.
-    Die Desktop-Variante erfordert die Kompatibilität der GUI-Bibliothek mit der Zielplattform sowie ausreichende lokale Systemressourcen.
+    Die Desktop-Variante erfordert die Kompatibilität der \acs{GUI}-Bibliothek mit der Zielplattform sowie ausreichende lokale Systemressourcen.
 
     Skalierungsbedinungen werden durch Datenmenge und Analysekomplexität bestimmt.
     Bei größeren Projekten oder institutionellen Anwendungen steigen die Anforderungen an Rechenleistung, Arbeitsspeicher und Netzwerkbandbreite erheblich.
@@ -124,10 +124,10 @@
     Ein weiterer Vorteil liegt in der \textbf{Integration heterogener Datenquellen}.
     Die Kombination aus strukturierten und unstrukturierten Informationen erlaubt eine ganzheitliche Bewertung von Wertpapieren, die sowohl fundamentale als auch kontextabhängige Marktfaktoren berücksichtigt.
     Dies erhöht die Relevanz der Handlungsempfehlungen und bietet Anlegern ein umfassenderes Bild der aktuellen Lage.
-    Die \textbf{modulare Architektur} des Systems ermöglicht es, einzelne Komponenten wie Datenquellen oder KI-Modelle auszutauschen, ohne das Gesamtsystem neu entwickeln zu müssen, was die langfristige Wartung und Anpassbarkeit erleichtert.
+    Die \textbf{modulare Architektur} des Systems ermöglicht es, einzelne Komponenten wie Datenquellen oder \acs{KI}-Modelle auszutauschen, ohne das Gesamtsystem neu entwickeln zu müssen, was die langfristige Wartung und Anpassbarkeit erleichtert.
 
     %Hervorzuheben ist zudem die gezielte Nutzung von \textbf{Explainable-AI-Methoden} (XAI) wie Feature-Attribution, Integrated Gradients oder Chain-of-Thought-Erklärungen.
-    %Diese Verfahren machen auch komplexe Modellentscheidungen für den Anwender verständlich, was insbesondere bei qualitativ hochwertigen, aber erklärungsbedürftigen LLM-gestützten Bewertungen von Vorteil ist.
+    %Diese Verfahren machen auch komplexe Modellentscheidungen für den Anwender verständlich, was insbesondere bei qualitativ hochwertigen, aber erklärungsbedürftigen \acs{LLM}-gestützten Bewertungen von Vorteil ist.
 
     Trotz dieser Stärken bestehen wesentliche Herausforderungen.
     Eine davon ist die \textbf{Qualität, Konsistenz und Aktualität der Daten}.
@@ -144,21 +144,21 @@
     Cloud-Modelle hingegen bieten in der Regel eine höhere Verarbeitungsgeschwindigkeit, bringen jedoch potenzielle Datenschutzrisiken sowie eine Abhängigkeit vom Provider mit sich.
 
     Die \textbf{Kostenstruktur} stellt ebenfalls einen nicht zu vernachlässigenden Faktor dar.
-    API-Zugriffe auf leistungsfähige KI-Modelle und kommerzielle Finanzdatenquellen können schnell zu signifikanten Betriebskosten führen, die je nach Anwendungsszenario optimiert werden müssen.
+    \acs{API}-Zugriffe auf leistungsfähige \acs{KI}-Modelle und kommerzielle Finanzdatenquellen können schnell zu signifikanten Betriebskosten führen, die je nach Anwendungsszenario optimiert werden müssen.
 
-    Nicht zuletzt ist die \textbf{Einhaltung regulatorischer Anforderungen} wie der DSGVO oder branchenspezifischer Finanzmarktregulierungen eine fortlaufende Aufgabe, die technische wie organisatorische Maßnahmen erfordert.
-    Auch die \textbf{Akzeptanz bei den Endnutzern} darf nicht unterschätzt werden: Selbst bei hoher Transparenz und Erklärbarkeit kann es anfängliche Vorbehalte geben, insbesondere bei Anlegern mit begrenzter Erfahrung im Umgang mit KI-gestützten Systemen.
+    Nicht zuletzt ist die \textbf{Einhaltung regulatorischer Anforderungen} wie der \acs{DSGVO} oder branchenspezifischer Finanzmarktregulierungen eine fortlaufende Aufgabe, die technische wie organisatorische Maßnahmen erfordert.
+    Auch die \textbf{Akzeptanz bei den Endnutzern} darf nicht unterschätzt werden: Selbst bei hoher Transparenz und Erklärbarkeit kann es anfängliche Vorbehalte geben, insbesondere bei Anlegern mit begrenzter Erfahrung im Umgang mit \acs{KI}-gestützten Systemen.
 
     Insgesamt bietet das Assistenzsystem erhebliche Mehrwerte durch Transparenz, Datenvielfalt und Erklärbarkeit, muss jedoch technische, regulatorische und nutzerbezogene Herausforderungen fortlaufend adressieren, um sein volles Potenzial zu entfalten.
 
 
   \section{Evaluationsmöglichkeiten}
 
-    Die Leistungsfähigkeit und Verlässlichkeit des entwickelten KI-basierten Assistenzsystems kann nur durch eine kontinuierliche und systematische Evaluation langfristig sichergestellt werden.
+    Die Leistungsfähigkeit und Verlässlichkeit des entwickelten \acs{KI}-basierten Assistenzsystems kann nur durch eine kontinuierliche und systematische Evaluation langfristig sichergestellt werden.
     Dabei ist es entscheidend, nicht nur zukünftige Evaluationsstrategien zu skizzieren, sondern auch die in dieser Arbeit bereits durchgeführte Evaluation kritisch einzuordnen und daraus Verbesserungsmöglichkeiten abzuleiten.
 
     Die bestehende Evaluation in dieser Arbeit umfasste sowohl quantitative als auch qualitative Verfahren.
-    Quantitativ wurden unter anderem die Konsistenz der generierten Handlungsempfehlungen bei identischen Prompts untersucht, die Ergebnisse verschiedener Modelle (z.\,B. lokale und Cloud-basierte LLMs) miteinander verglichen sowie einfache Portfolio-Performance-Metriken herangezogen.
+    Quantitativ wurden unter anderem die Konsistenz der generierten Handlungsempfehlungen bei identischen Prompts untersucht, die Ergebnisse verschiedener Modelle (z.\,B. lokale und Cloud-basierte \acs{LLM}s) miteinander verglichen sowie einfache Portfolio-Performance-Metriken herangezogen.
     Qualitativ erfolgte eine Bewertung der Erklärungen im Hinblick auf Verständlichkeit und Transparenz.
     Diese Vorgehensweise ermöglichte bereits wertvolle Einblicke, etwa dass Cloud-Modelle wie GPT-4 eine höhere Konsistenz aufweisen, während lokal ausgeführte Modelle Vorteile bei Datenschutz und Kosten bieten.
     Allerdings zeigte sich, dass die Evaluationsbasis – bedingt durch begrenzte Datenzeiträume und eine relativ kleine Zahl an Testfällen – noch nicht ausreicht, um eine abschließende Aussage zur Robustheit in allen Marktsituationen zu treffen.
