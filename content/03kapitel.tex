@@ -294,22 +294,23 @@
           \label{tab:matrix_ki_provider}
       \end{table}
 
-      Aus der Matrix lassen sich typische Trade-offs ableiten: Wenn \acs{API}-Reife und Performance stark gewichtet werden, setzen sich OpenAI und Gemini meist ab; Claude schließt insbesondere bei komplexem Reasoning und sehr langen Kontexten auf. Priorisieren die Gewichtungen hingegen Kostenkontrolle und Anpassungsfähigkeit, profitiert Ollama durch Self-Hosting, Modellwahl und Datenhoheit, nimmt dafür aber Einschränkungen bei Enterprise-Ökosystem und Komfortfeatures in Kauf.
+      Aus der Matrix lassen sich typische Trade-offs ableiten: Wenn \acs{API}-Reife und Performance stark gewichtet werden, setzen sich OpenAI und Gemini meist ab; Claude schließt insbesondere bei komplexem Reasoning und sehr langen Kontexten auf.
+      Priorisieren die Gewichtungen hingegen Kostenkontrolle und Anpassungsfähigkeit, profitiert Ollama durch Self-Hosting, Modellwahl und Datenhoheit, nimmt dafür aber Einschränkungen bei Enterprise-Ökosystem und Komfortfeatures in Kauf.
       Bei strengen Compliance-Anforderungen überzeugt ein on-premises Pfad über Ollama; bei Cloud-Betrieb entscheiden regionale Bereitstellung, vertragliche Zusicherungen (z.\,B. keine Trainingsnutzung) sowie Zero-/Low-Data-Retention-Optionen der Anbieter.
 
-    Statt einer finalen Anbieterfestlegung wird ein flexibler, anbieteragnostischer Ansatz gewählt.
-    Kern ist ein Plugin-System, das Modelle als eigenständige Pakete mit einer einheitlichen Schnittstelle kapselt, ein dynamisches Routing, das Anfragen anhand messbarer SLA-Kriterien wie Latenz, Kosten und Qualitätsmetriken verteilt, sowie ein Ensemble-Ansatz, der mehrere Modellausgaben zu einem gewichteten Konsens aggregiert, um Robustheit und Antwortqualität zu erhöhen \autocite{linardatos2021}.
-    Das folgende Snippet skizziert die Umsetzung des Ensemble-Routings im Backend.
+      Statt einer finalen Anbieterfestlegung wird ein flexibler, anbieterunabhängiger Ansatz gewählt.
+      Kern ist ein Plugin-System, das Modelle als eigenständige Pakete mit einer einheitlichen Schnittstelle kapselt, ein dynamisches Routing, das Anfragen anhand messbarer SLA-Kriterien wie Latenz, Kosten und Qualitätsmetriken verteilt, sowie ein Ensemble-Ansatz, der mehrere Modellausgaben zu einem gewichteten Konsens aggregiert, um Robustheit und Antwortqualität zu erhöhen \autocite{linardatos2021}.
+      Das folgende Snippet skizziert die Umsetzung des Ensemble-Routings im Backend.
 
-    \begin{lstlisting}[language=Python,caption={Modell-Routing im Backend}]
-    def get_ensemble_prediction(query):
-        models = ["deepseek-r1", "mixtral", "llama3"]
-        predictions = Parallel(n_jobs=3)(
-            delayed(model_api.predict)(query, model)
-            for model in models
-        )
-        return weighted_consensus(predictions)
-    \end{lstlisting}
+      \begin{lstlisting}[language=Python,caption={Modell-Routing im Backend}]
+      def get_ensemble_prediction(query):
+          models = ["deepseek-r1", "mixtral", "llama3"]
+          predictions = Parallel(n_jobs=3)(
+              delayed(model_api.predict)(query, model)
+              for model in models
+          )
+          return weighted_consensus(predictions)
+      \end{lstlisting}
 
     \todo[inline]{To-Do: Noch zu prüfen, ob das wirklich bis in den Schluss übernommen wird. Ggf. wieder rausnehmen und nur skiziieren, dass das auch möglich sei}
 
@@ -448,10 +449,10 @@
     \subsubsection{Auswertung}
 
       Die gewichtete Nutzwertanalyse (Tabelle~\ref{tab:matrix_quantfinanz}) ergibt folgende Gesamtpunktzahlen: \textbf{Finnhub 255}, \textbf{yfinance 245}, \textbf{Alpha Vantage 215} (jeweils aus den in Abschnitt~\ref{fig:gewichtung_quant_daten} definierten Gewichten und den Einzelbewertungen).
-      Damit ist \textbf{Finnhub} im Mittel die beste Wahl für eine robuste, skalierbare Anbindung, insbesondere wenn neben quantitativen Zeitreihen auch \emph{qualitative} Signale (News/Sentiment, alternative Daten) für LLM-Begründungen konsistent benötigt werden.
+      Damit ist \textbf{Finnhub} im Mittel die beste Wahl für eine robuste, skalierbare Anbindung, insbesondere wenn neben quantitativen Zeitreihen auch \emph{qualitative} Signale (News/Sentiment, alternative Daten) für \acs{LLM}-Begründungen konsistent benötigt werden.
       \textbf{yfinance} überzeugt durch sehr geringe Hürden (Open-Source, einfache Integration) und eignet sich für explorative Analysen oder prototypische Pipelines, ist jedoch hinsichtlich Stabilität/Langlebigkeit risikobehafteter.
       \textbf{Alpha Vantage} bietet eine breite Abdeckung inkl.\ News \& Sentiment und ist gut dokumentiert; für hohe Durchsätze/geringe Latenzen sind jedoch typischerweise Premium-Pläne erforderlich.
-      Empfehlung: Für den produktiven Betrieb Finnhub als Primärquelle einsetzen; \texttt{yfinance} optional für schnelle Ad-hoc-Abfragen im Research; Alpha Vantage als alternative/ergänzende Quelle für bestimmte Datendomänen (z.\,B. technische Indikatoren oder FX/Krypto).
+      Empfehlung: Für den produktiven Betrieb Finnhub als Primärquelle einsetzen; \texttt{yfinance} als Fallback, da ohne jeglichen API-Schlüssel funktional oder für schnelle Ad-hoc-Abfragen im Research; Alpha Vantage entfällt und wird keine Verwendung finden.
 
       \begin{table}[H]
         \centering

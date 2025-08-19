@@ -24,9 +24,21 @@
         \label{fig:systemarchitektur}
     \end{figure}
 
+    Der orange Teil der Abbildung~\ref{fig:systemarchitektur} ist das Kernstück.
+    Es handelt sich dabei um das gesamte Backend, welches die Brücke zwischen \acs{LLM}-Provider, Finanzdaten und dem Anwender herstellt.
+
+    Neben dem Brückenschlag, bewerkstelligt das Backend auch sämtliche Logik.
+    Abfragen der Daten, Kennzahlberechnungen, Prompt-Templates, Parsen der Antworten, Fehler-Handling, \acs{API}-Schnittstellen und das Bereistellen des Frontends für den Browser werden im Backend gehandhabt.
+    Dabei sind die Bereistellung der \acs{REST}-\acs{API} und des Frontends separat in einem eigenen Modul.
+
+    Damit ist das Logik-Modul auch unabhängig einsetzbar und kann in einem beliebigen Pythonskript importiert und genutzt werden.
+    Dies wird im späteren Abschnitt \ref{sec:jupyter-lab} auch gemacht um die Evaluation durchzuführen.
+
+    \todo[inline, color=red]{To-Do: Code finalisieren und dann alles in diesem Kapitel nochmal überarbeiten. Bevor ich es zum X-ten mal tun muss}
+
     \subsection{Projektstruktur}
 
-      Das entwickelte Portfolio AI Assistant System folgt einer modularen und klar strukturierten Architektur, welche sowohl die Entwicklung als auch die Wartung des Systems erleichtert.
+      Das KI-gestützte Portfolioassistenzsystemprojekt folgt einer modularen und klar strukturierten Architektur, welche sowohl die Entwicklung als auch die Wartung des Systems erleichtert.
       Die Projektorganisation ist in Abbildung \ref{fig:project_structure} dargestellt und gliedert sich in mehrere funktionale Bereiche.
 
       % Bash: find . -type f -not -path "./.git/*" -not -path "./portfolio-env/*" -not -path "./env/*" -not -path "./__pycache__/*" -not -path "./.pytest_cache/*" -not -path "./.mypy_cache/*" -not -path "./node_modules/*" -not -path "./.vscode/*" -not -path "./.idea/*" -not -name "*.pyc" -not -name "*.pyo" -not -name "*.pyd" -not -name ".DS_Store" -not -name "Thumbs.db" -not -name "*.log" | sort
@@ -520,6 +532,7 @@
       Eine schlechte oder intransparente Visualisierung kann zu \textit{automation bias} oder kompletter Ablehnung der Empfehlung führen.
 
   \section{Jupyter-Lab Notebook}
+  \label{sec:jupyter-lab}
 
     Ein zentrales Element der Systemarchitektur stellt die Evaluation und Testbarkeit des entwickelten \acs{KI}-gestützten Portfolioassistenzsystems dar.
     Um dies effizient und transparent zu realisieren, kommt in dieser Arbeit \textit{Jupyter-Lab} zum Einsatz.
