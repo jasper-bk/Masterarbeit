@@ -9,6 +9,7 @@
   Dazu werden verschiedene quantitative und qualitative Bewertungsverfahren diskutiert und auf das konkrete System übertragen.
 
   \section{Auswahl der Evaluationsverfahren}
+  \label{sec:auswahl_evaluation}
 
     Bevor die Leistungsfähigkeit und Nutzbarkeit des entwickelten \acs{KI}-basierten Assistenzsystems umfassend bewertet werden kann, ist es zunächst notwendig, die verschiedenen potenziellen Evaluationsverfahren selbst systematisch zu prüfen und einzuordnen.
     Dabei geht es darum, eine fundierte Auswahl der Methoden zu treffen, die am besten geeignet sind, um sowohl die quantitativen als auch die qualitativen Aspekte des Systems zu erfassen.
@@ -24,11 +25,9 @@
 
       Im Zentrum der Evaluation stehen die folgenden Zielgrößen:
       \begin{itemize}
-        \item \textbf{Allgemeine Prompt-Response-Auswertung:} Konsistenzprüfung der generierten Empfehlungen (buy, hold, sell) sowie Analyse der Unterschiede zwischen Modellen und der Einflussnahme von Prompt-Formulierungen.
-        \item \textbf{Rendite und Risiko:} Messung der finanziellen Performance mittels Kennzahlen wie Sharpe Ratio, maximale Drawdown und kumulierte Rendite.
-        \item \textbf{Statistische Signifikanz:} Überprüfung, ob die beobachteten Performanceunterschiede gegenüber einer Benchmark (z.\,B. Marktindex) nicht zufällig sind.
-        \item \textbf{Erklärbarkeitsqualität:} Bewertung der Qualität und Verständlichkeit der generierten Entscheidungsbegründungen.
-        \item \textbf{Nutzerakzeptanz:} Subjektive Einschätzung durch potenzielle Nutzer hinsichtlich Vertrauen und Nachvollziehbarkeit.
+        \item \textbf{Allgemeine Prompt-Response-Auswertung:} Konsistenzprüfung der generierten Empfehlungen (buy, hold, sell) sowie Analyse der Unterschiede zwischen Modellen.
+        \item \textbf{Statistische Signifikanz:} Überprüfung, ob die beobachteten Performanceunterschiede gegenüber Analystenempfehlungen nicht zufällig oder komplett abwegig sind.
+        \item \dots
       \end{itemize}
 
     \subsection{Allgemeine Prompt-Response-Auswertung}
@@ -66,6 +65,8 @@
       Diese werden jedoch in dieser Evaluierung noch ausgeklammert, um einen neutralen Vergleich mit den Analystenbewertungen zu ermöglichen.
 
       % To-Do: Noch genauer auf das Vorgehen selbst eingehen: Wie umsetzen
+
+      \todo[inline, color=red]{To-Do: Ab hier nochmal alles grundsätzlich überdenken, was geht und was nicht. Ggf. Grenzen aufzeigen und zeigen was defintiv geht}
 
 
     \subsection{Quantitative Performance-Metriken}
@@ -284,32 +285,65 @@
     % Evtl. Teile aus Kapitel 4 hier einbringen oder immer wieder auf Ausschnitte darauf verweisen. Definitiv anspruchsvoller Spagat
 
     Die Durchführung der Evaluation erfolgt innerhalb einer interaktiven Jupyter-Lab-Umgebung, die es ermöglicht, direkt auf die in Python implementierten Klassen des Assistenzsystems zuzugreifen und gezielte Tests sowie Analysen durchzuführen.
-    Dabei werden die zuvor beschriebenen Evaluationsverfahren aus der Sektion \enquote{Auswahl der Evaluationsverfahren} systematisch umgesetzt, um die Leistungsfähigkeit, Konsistenz und Transparenz des Assistenzsystems umfassend zu überprüfen. %To-Do: Ref hinzufügen
+    Dabei werden die zuvor beschriebenen Evaluationsverfahren aus der Sektion \textbf{\nameref{sec:auswahl_evaluation}} systematisch umgesetzt, um die Leistungsfähigkeit, Konsistenz und Transparenz des Assistenzsystems umfassend zu überprüfen.
 
-    Das Vorgehen sieht vor, dass zunächst vorbereitete Prompts und Testszenarien in Jupyter-Lab ausgeführt werden, um sowohl quantitative als auch qualitative Bewertungskriterien zu erheben.
-    Im weiteren Verlauf werden die verschiedenen Modelle und deren Antworten miteinander verglichen sowie mit den externen Benchmarks, wie z. B. Analystenmeinungen, abgeglichen.
-    Dabei bleibt die interaktive Auswertung flexibel, sodass auch während der Evaluation noch gezielt Anpassungen vorgenommen und neue Testszenarien entwickelt werden können.
+    Für die hier dargestellte Auswertung wurde die Evaluation mit dem lokalen Modell \emph{Qwen3 14B} über \emph{Ollama} durchgeführt.
+    Die Wahl fiel auf Qwen3 von Alibaba mit 30 Milliarden (30b) Parametern, da viele der aktuellen \acs{LLM}-Benchmarks die höchste Leistungsfähigkeit und Wettbewerbsfähigkeit gegenüber anderen Open-Source-Modellen zeigen und dieses bereits in der vergleichsweise kleinen Variante sehr gut abschneidet \autocite{artificialanalysis2025}. % To-Do: Mehr als ein Benchmark zitieren
+    Zum Vergleich wurde zusätzlich eine identische Ausführung mit anderen Modellen (wie u. a. OpenAIs GPT-o4) durchgeführt, deren Ergebnisse im Anhang zu finden sind.
 
+    \todo[inline, color=yellow]{To-Do: Hier ggf. beschreiben, dass der Versuchsaufbau innerhalb des Texts mit Qwen3 14b gezeigt wird, aber im Anhang auch Ergebnisse mit OpenAI ...}
+
+    Das Vorgehen sieht vor, dass zunächst vorbereitete Testszenarien in Jupyter-Lab ausgeführt werden, um messbare Bewertungskriterien zu erheben.
     Durch diese Herangehensweise wird sichergestellt, dass die Ergebnisse direkt aus dem realen Anwendungskontext gewonnen werden und gleichzeitig eine hohe Transparenz und Nachvollziehbarkeit der Analysen gewährleistet ist.
 
 
-    \subsection{Allgemeine Prompt-Response-Auswertung}
+    \subsection{Allgemeine Konsistenzprüfung}
 
-      % To-Do: Ausfüllen und Grafik ersetzen
+      Um die Aussagekraft der Portfoliobewertung zu erhöhen, wurde ein Versuchsaufbau gewählt, der gezielt auf Wiederholungen setzt und damit die Stabilität der Ergebnisse sichtbar macht.
+      Ziel des Aufbaus ist es, die Verlässlichkeit und Robustheit der Portfoliobewertung zu prüfen.
+      Durch die mehrfachen Wiederholungen mit identischem Wertpapier, lässt sich erkennen, ob die Resultate stabil um einen konsistenten Wert schwanken oder ob einzelne Metriken stark variieren.
+      Auf diese Weise wird nicht nur ein einmaliges Ergebnis betrachtet, sondern ein belastbares Bild über Mittelwerte und typische Abweichungen gewonnen, das für eine fundierte Bewertung des Portfolios unabdingbar ist.
+
+      Der Versuchsaufbau wiederholt die Portfoliobewertung in einer kompakten Schleife von zehn Läufen, um Stabilität und Schwankungsbreite der Ergebnisse systematisch zu erfassen.
+      In jedem Durchlauf wird das Portfolio vom KI-Assistenzsystem bewertet und das vollständige Ergebnis abgelegt.
+      Die Wahl von zehn Iterationen bietet einen pragmatischen Kompromiss zwischen statistischer Aussagekraft und Rechenzeit: Sie ist hinreichend groß, um Ausreißer zu identifizieren und Mittelwerte sowie Abweichungsmaße stabil zu schätzen, ohne den Ablauf unnötig zu belasten.
+      Das zugrunde liegende Portfolio umfasst vier Wertpapiere aus unterschiedlichen Branchen und Ländern; diese Heterogenität erhöht die Generalisierbarkeit der Beobachtungen, da Muster nicht auf ein einzelnes Asset oder Marktsegment beschränkt bleiben.
+      Im Anschluss werden die Ergebnisse  aggregiert (u.\,a. Mittelwerte, mittlere absolute Abweichungen, maximale Abweichungen sowie ein MAPE‐basiertes Near‐Miss‐Maß), wodurch ein robustes Bild aus zentraler Tendenz und Streuung entsteht. Die konsolidierten Resultate werden in der Abbildung \ref{fig:prompt_response_auswertung} dargestellt.
 
       \begin{figure}[H]
           \centering
-          \includegraphics[width=\textwidth]{assets/platzhalter.png}
-          \caption{Modulare Systemarchitektur des \acs{KI}-Assistenzsystems in vereinfachter Form}
+          \includegraphics[width=\textwidth]{assets/pictures/evaluation/llm_konsistenz_qwen3_14b.png}
+          \caption{Vergleich der numerischen Ausgaben zwischen den selben Prompts bei 10 Iterationen für verschiedene Wertpapiere mit lokalem LLM-Modell Qwen3 (30b)}
           \small{(Quelle: eigene Darstellung)}
           \label{fig:prompt_response_auswertung}
       \end{figure}
 
+      \todo[inline, color=yellow]{To-Do: Zweite oder sogar dritte Grafik mit anderem Modell im Anhang platzieren und hier darauf verweisen}
+
+      Die Visualisierung zeigt je Metrik einen horizontalen, gruppierten Balken pro Asset.
+      Der durchgezogene Teil entspricht der exakten Übereinstimmung \(C\) (Anteil der Läufe, die genau den Mehrheitswert erreichen).
+      Die gestrichelte Verlängerung bildet \enquote{near-miss}-Treffer ab und beruht auf der mittleren prozentualen Abweichung (MAPE) der Nichttreffer relativ zum Mehrheitswert: Kleine MAPE bedeutet hohe Nähe und führt zu einer längeren gestrichelten Verlängerung, große MAPE zu einer kurzen oder keiner Verlängerung.
+      Formal wird aus der MAPE ein Gewicht \(w = 1 - \min(1,\text{MAPE}/100)\) abgeleitet und die effektive Übereinstimmung als \(A = C + (100 - C)\,w\) (auf 100\,\% begrenzt) dargestellt; für \(M \approx 0\) wird SMAPE als robuster Fallback genutzt.
+
+      Zu besseren Einordnung ein Beispiel der Berechnung:
+      Vier Durchläufe ergeben: 50, 50, 50, 40. \\
+      Drei von vier sind exakt 50. Damit sind 75 \% exakt identisch.
+      Der eine Ausreißer mit dem Wert 40 liegt 10 von 50 weg.
+      Also hat eine Abweichung von 20\% bzw. ist mit 80\% \enquote{fast richtig}.
+      Von den vorherig fehlenden 25\% werden 80\% \enquote{gerettet}.
+      Also werden 80\% von 25 (=20) auf die 75 addiert.
+      Was in 95\%iger \enquote{near-miss} Übereinstimmung resultiert.
+
+      Zusätzlich werden die mittlere absolute Abweichung (MAD) und die maximale Abweichung (Max D) zur Einordnung der Streuung ausgewiesen.
+      Die Darstellung ist so gewählt, weil sie sowohl harte Treffer (durchgezogen) als auch nahe Treffer (gestrichelt) in einem einzigen, leicht lesbaren Balken vereint und dabei durch die relative Skalierung mittels (S)MAPE zwischen Metriken und Assets vergleichbar bleibt.
+
+      Insgesamt lässt sich erkennen, dass obwohl die Modellausgaben nicht deterministisch sind, die Ergebnisse sehr konsistent sind und Abweichungen nur geringfügig vorhanden sind.
+      Damit ist der KI-Assistenzsystem in dieser Hinsicht bereits als sicher zu bewerten.
 
 
     \subsection{Vergleich mit Analystenempfehlungen}
 
-      % To-Do: Ausfüllen und Grafik ersetzen
+      % To-Do: Selbe Darstellung wie bei der Konsistenzprüfung wählen, aber dann mit dem Mittelwert aller Responses
 
       \begin{figure}[H]
           \centering
@@ -318,6 +352,9 @@
           \small{(Quelle: eigene Darstellung)}
           \label{fig:vergleich_mit_analysten}
       \end{figure}
+
+
+    % To-Do: noch mindestens eine qualitative Auswertung irgendwie vornehmen
 
 
     \subsection{Zusammenfassung}
