@@ -1,3 +1,27 @@
+To-Dos für Übergabe an Mark:
+
+Abtsract
+- Den Chat in der Arbeit einbinden bzw beschreiben (an passenden Stellen)
+- Im Dokument die sichtbaren To-Dos abarbeiten
+- Kapitel 4 (Implementierung) nochmal durchgehen und auf den aktuellen Stand bringen
+    - vor allem:
+        * Projektstruktur Abbildung
+        * die Komponentenübersicht (nur Langchain jetzt). Evtl vorher noch eine anfängliche Implementierung beschreiben
+    - Entwicklungsverlauf ebenfalls ausbessern oder aggregieren
+    - Prompts updaten
+    - UML und Prozess-Diagramm updaten
+    - Frontend-Screenshot updaten und den Chat auch zeigen
+- Kapitel 5 (Evaluation)
+    - Vergleich zu Analystenempfehlungen fertig stellen
+    - vernünftiges qualitatives Bewertungssystem einbinden
+    - Rest rausschmeißen
+- Rest durchlesen
+- fertig
+
+
+---------------------------------------
+
+
 Grobes To-Do aufteilung:
 - To-Dos abhaken
 - Text weitestgehend durchgehen auch mit AI, immer TExt einfügen und nach Feedback fragen. KI nimmt die Rolle des Prüfers ein und soll bewerten was fehlt und was genauer dargestellt werden muss

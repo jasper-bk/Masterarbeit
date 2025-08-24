@@ -8,17 +8,21 @@
 
     \todo[inline]{Sperrvermerk und Erklärung auch ins Dokument? To-Do: Nochmal nachlesen oder klären}
 
-    Die Arbeit entwickelt ein KI-basiertes Assistenzsystem zur quantitativen Portfoliooptimierung, das prozentuale Handlungsempfehlungen für Einzelwerte mit transparenten, natürlichsprachlichen Begründungen verknüpft und zu einer risikoadaptiven Portfoliosicht einschließlich Rebalancing-Implikationen aggregiert.
+    Die Arbeit entwickelt ein KI-basiertes Assistenzsystem zur quantitativen Portfoliooptimierung, das prozentuale Handlungsempfehlungen für Einzelwerte mit transparenten, natürlichsprachlichen Begründungen verknüpft und zu einer risikoadaptiven Portfoliosicht einschließlich Rebalancing-Implikationen aggregiert sowie zudem einen interaktiven Chat zum Stellen von Fragen bietet.
     Daraus leiten sich zwei Forschungsfragen zur konstruktiven Realisierung eines solchen Systems sowie zu seiner Fähigkeit ab, eine übergeordnete Risiko-Rendite-Bewertung auf Portfolioebene bereitzustellen.
 
-    Methodisch folgt die Arbeit einem Design-Science-Research-Ansatz und realisiert einen modularen Prototypen mit klaren HTTP/JSON-Schnittstellen: Python/Flask als Backend, eine austauschbare LLM-Schicht (lokal via Ollama, optional per API zu externen Anbietern), \texttt{yfinance} als zentrale Kursdatenquelle, LangChain zur Orchestrierung sowie ein leichtgewichtiges Web-Frontend (HTML/Bootstrap/JS).
+    Methodisch folgt die Arbeit einem Design-Science-Research-Ansatz und realisiert einen modularen Prototypen mit klaren Schnittstellen: 
+    Python/Flask als Backend, eine austauschbare LLM-Schicht (lokal via Ollama, optional per API zu externen Anbietern), Finnhub und \texttt{yfinance} als zentrale Kurs- und Finanzdatenquelle, LangChain zur Orchestrierung sowie ein leichtgewichtiges Web-Frontend (Bootstrap/jQuery).
     Die klare Projektstruktur und Entkopplung der Komponenten unterstützen Erweiterbarkeit, Austauschbarkeit und Reproduzierbarkeit.
 
-    Die Evaluation ist als ressourcensensitives Backtesting über repräsentative Marktphasen angelegt und kombiniert finanzielle Performancekennzahlen (u.\,a. Sharpe Ratio, Volatilität, maximaler Drawdown, VaR/ES) mit statistischen Absicherungen (t-/Wilcoxon-Tests, Bootstrap) sowie XAI- und Nutzerstudien-Bausteinen.
-    Damit wird ein Evaluationsraster bereitgestellt, das Transparenz- und Leistungsaspekte integriert und für zukünftige Auswertungen operationalisiert.
+    Die systematische Prüfung und Einordnung verschiedener Evaluationsverfahren steht im Vordergrund, um eine fundierte Auswahl für die Leistungsbewertung des KI-basierten Assistenzsystems zu treffen. 
+    Dabei werden quantitative Metriken zur Portfolioperformance und Robustheit mit qualitativen Verfahren zur Transparenz und Akzeptanz der Handlungsempfehlungen kombiniert. 
+    Ziel ist ein Vorgehen, das Zielkonflikte zwischen quantitativen und qualitativen Kriterien berücksichtigt.
 
-    Die wesentlichen Limitationen betreffen die probabilistische Natur großer Sprachmodelle und deren Prompt-Sensitivität, potenzielle Datenqualitäts- und Abdeckungsgrenzen sowie Rechenkosten, die die Tiefe der Tests begrenzen und die externe Validität einschränken.
-    Praktisch adressiert der Prototyp Transparenz-, Dokumentations- und Governance-Anforderungen und schafft eine belastbare Grundlage für vertiefte Evaluationen, funktionsseitige Erweiterungen und anwendungsnahe Pilotierungen.
+    Wesentliche Einschränkungen ergeben sich aus den gewählten Datenquellen, der Modell- und Promptkonfiguration sowie den abgebildeten Marktphasen. 
+    Methodische Grenzen, wie die probabilistische Natur großer Sprachmodelle und dateninduzierte Verzerrungen, begrenzen die Übertragbarkeit der Ergebnisse. 
+    Der Prototyp adressiert Nachvollziehbarkeit und Replizierbarkeit durch klare Schnittstellen und transparente Auswertung, wobei unabhängige Validierung in realen Anwendungsszenarien wünschenswert bleibt.
+    Das Projekt etabliert dennoch ein konsistentes Vorgehensmodell und demonstriert erfolgreich die prototypische Realisierbarkeit von erklärungsorientierter Entscheidungsassistenz, was eine belastbare Grundlage für vertiefte Evaluation und anwendungsnahe Skalierung schafft.
 \end{abstract}
 
 

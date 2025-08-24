@@ -78,14 +78,9 @@ toc=bibliography,	% Literaturverzeichnis im Inhaltsverzeichnis darstellen
 \usepackage{fontawesome}
 \usepackage{dirtree}
 \usepackage{spreadtab}
-\usepackage{pgf-pie}
-\usepackage{pgfplots}
-\usepackage{pgfplotstable}
 
-\pgfplotsset{compat=1.18}
+%\usepackage{showframe} % Seitenränder anzeigen, zum Testen % Entfernen vor Abgabe
 
-%Inkludiert Paragraph Nummerierung unter /subsubsection
-\setcounter{secnumdepth}{4}
 
 %\includecomment{comment} % Kommentare ein und Ausblenden
 
@@ -108,9 +103,26 @@ toc=bibliography,	% Literaturverzeichnis im Inhaltsverzeichnis darstellen
 
 \usepackage[backend=biber, style=apa, pagetracker, ibidtracker=constrict, apamaxprtauth=20 ]{biblatex}
 
-%Enable IBAN on APA style
+%Enable ISBN on APA style
 \usepackage{xpatch}
 \xpretobibmacro{doi+url}{\printfield{isbn}}{}{}
+
+\usepackage{fancyhdr}
+
+\fancypagestyle{fancy}{%
+  \fancyhf{}%
+  \fancyfoot[C]{\thepage}%
+  \renewcommand{\headrulewidth}{0pt}% Line at the header invisible
+  \renewcommand{\footrulewidth}{0.4pt}% Line at the footer visible
+}
+
+% Redefine the plain page style (used on chapter starting pages) to match the fancy style
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[C]{\thepage}%
+  \renewcommand{\headrulewidth}{0pt}% Line at the header invisible
+  \renewcommand{\footrulewidth}{0.4pt}% Line at the footer visible
+}
 
 \addbibresource{bibliographie.bib}
 
@@ -213,20 +225,14 @@ toc=bibliography,	% Literaturverzeichnis im Inhaltsverzeichnis darstellen
 % Inhaltsverzeichnis
 \begin{spacing}{1.1}
     \begingroup
-
-        % auskommentieren für Seitenzahlen unter Inhaltsverzeichnis
-        \renewcommand*{\chapterpagestyle}{empty}
-        \pagestyle{empty}
-
-        \setcounter{tocdepth}{3}
-        %für die Anzeige von Unterkapiteln im Inhaltsverzeichnis
-        %\setcounter{tocdepth}{2}
-
+        \setcounter{tocdepth}{2} % Tiefe des Inhaltsverzeichnisses (1=Kapitel, 2=Unterkapitel, 3=Unterunterkapitel)
         \tableofcontents
         \clearpage
     \endgroup
 \end{spacing}
 \newpage
+
+\pagestyle{fancy}
 
 % Abkürzungsverzeichnis
 \cleardoublepage
@@ -249,7 +255,7 @@ toc=bibliography,	% Literaturverzeichnis im Inhaltsverzeichnis darstellen
 
 % Allgemeine To-Dos bzgl. Dokument:
 % Chapter in einzelne .tex Files auslagern
-% Seitenzahl fehlt auf manchen Seiten
+% Seitenzahl fehlt im Inhaltsverzeichnis oder sollte möglicherweise dort komplett entfernt werden
 
                                             % Aktueller Stand (2025-05-21)
 % Gesamtziel: min. 80 Seiten

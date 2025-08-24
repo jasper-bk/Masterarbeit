@@ -32,9 +32,9 @@
 
     \subsection{Allgemeine Prompt-Response-Auswertung}
 
-      Ein wichtiger Bestandteil der Evaluation des entwickelten \acs{KI}-basierten Assistenzsystems ist die Analyse der generierten Antworten auf verschiedene aber auch gleiche Prompts.
-      Hierbei wird insbesondere die Konsistenz der Systemantworten untersucht.
-      Dabei wird überprüft, ob das System bei gleichen oder sehr ähnlichen Prompts in Bezug auf die Handlungsempfehlungen – \textit{buy}, \textit{hold} und \textit{sell} – stabile und nachvollziehbare Einschätzungen liefert oder ob sich bei wiederholter Abfrage größere Unterschiede ergeben.
+      Ein wichtiger Bestandteil der Evaluation des entwickelten \acs{KI}-basierten Assistenzsystems ist die Analyse der generierten Antworten auf auf gleiche Parameter.
+      Hierbei wird insbesondere die Konsistenz der Systemantworten untersucht, da LLM-Antworten nicht deterministisch sind.
+      Dabei wird überprüft, ob das System bei gleichen oder sehr ähnlichen Prompts in Bezug auf die Handlungsempfehlungen – u. a. \textit{buy}, \textit{hold} und \textit{sell} – stabile und nachvollziehbare Einschätzungen liefert oder ob sich bei wiederholter Abfrage größere Unterschiede ergeben.
       Diese Konsistenzprüfung ist wesentlich, um sicherzustellen, dass das System nicht durch Zufall oder unstetige interne Gewichtungen widersprüchliche Empfehlungen ausspricht.
 
       Ein weiterer wichtiger Aspekt dieser Auswertung ist der Vergleich von Antworten verschiedener Modelle.
@@ -298,6 +298,7 @@
 
 
     \subsection{Allgemeine Konsistenzprüfung}
+      \label{sec:konsistenz_doing}
 
       Um die Aussagekraft der Portfoliobewertung zu erhöhen, wurde ein Versuchsaufbau gewählt, der gezielt auf Wiederholungen setzt und damit die Stabilität der Ergebnisse sichtbar macht.
       Ziel des Aufbaus ist es, die Verlässlichkeit und Robustheit der Portfoliobewertung zu prüfen.
@@ -312,7 +313,7 @@
 
       \begin{figure}[H]
           \centering
-          \includegraphics[width=\textwidth]{assets/pictures/evaluation/llm_konsistenz_qwen3_14b.png}
+          \includegraphics[width=\textwidth]{assets/pictures/evaluation/llm_konsistenz_qwen3_30b.png}
           \caption{Vergleich der numerischen Ausgaben zwischen den selben Prompts bei 10 Iterationen für verschiedene Wertpapiere mit lokalem LLM-Modell Qwen3 (30b)}
           \small{(Quelle: eigene Darstellung)}
           \label{fig:prompt_response_auswertung}
@@ -320,30 +321,42 @@
 
       \todo[inline, color=yellow]{To-Do: Zweite oder sogar dritte Grafik mit anderem Modell im Anhang platzieren und hier darauf verweisen}
 
-      Die Visualisierung zeigt je Metrik einen horizontalen, gruppierten Balken pro Asset.
+      Die Visualisierung zeigt je Metrik einen horizontalen Balken pro Asset.
       Der durchgezogene Teil entspricht der exakten Übereinstimmung \(C\) (Anteil der Läufe, die genau den Mehrheitswert erreichen).
-      Die gestrichelte Verlängerung bildet \enquote{near-miss}-Treffer ab und beruht auf der mittleren prozentualen Abweichung (MAPE) der Nichttreffer relativ zum Mehrheitswert: Kleine MAPE bedeutet hohe Nähe und führt zu einer längeren gestrichelten Verlängerung, große MAPE zu einer kurzen oder keiner Verlängerung.
+      Die gestrichelte Verlängerung bildet nahe Treffer ab und beruht auf der mittleren prozentualen Abweichung (MAPE) der Nichttreffer relativ zum Mehrheitswert: Kleine MAPE bedeutet hohe Nähe und führt zu einer längeren gestrichelten Verlängerung, große MAPE zu einer kurzen oder keiner Verlängerung.
       Formal wird aus der MAPE ein Gewicht \(w = 1 - \min(1,\text{MAPE}/100)\) abgeleitet und die effektive Übereinstimmung als \(A = C + (100 - C)\,w\) (auf 100\,\% begrenzt) dargestellt; für \(M \approx 0\) wird SMAPE als robuster Fallback genutzt.
 
       Zu besseren Einordnung ein Beispiel der Berechnung:
-      Vier Durchläufe ergeben: 50, 50, 50, 40. \\
+      Angenommen vier Bewertungsdurchläufe ergeben folgende Werte für eine Metrik: 50, 50, 50, 40. \\
       Drei von vier sind exakt 50. Damit sind 75 \% exakt identisch.
-      Der eine Ausreißer mit dem Wert 40 liegt 10 von 50 weg.
-      Also hat eine Abweichung von 20\% bzw. ist mit 80\% \enquote{fast richtig}.
+      Der eine Ausreißer mit dem Wert 40 liegt mit 10 von 50 weg.
+      Damit dieser eine Wert eine Abweichung von 20\% bzw. ist mit 80\% \enquote{fast richtig}.
       Von den vorherig fehlenden 25\% werden 80\% \enquote{gerettet}.
       Also werden 80\% von 25 (=20) auf die 75 addiert.
       Was in 95\%iger \enquote{near-miss} Übereinstimmung resultiert.
 
-      Zusätzlich werden die mittlere absolute Abweichung (MAD) und die maximale Abweichung (Max D) zur Einordnung der Streuung ausgewiesen.
+      Neben der Übereinstimmung werden auch die mittlere absolute Abweichung (MAD) und die maximale Abweichung (Max D) zur Einordnung der Streuung ausgewiesen, um sich ein besseres Bild machen zu können wie groß vorhandene Abweichungen denn sind.
       Die Darstellung ist so gewählt, weil sie sowohl harte Treffer (durchgezogen) als auch nahe Treffer (gestrichelt) in einem einzigen, leicht lesbaren Balken vereint und dabei durch die relative Skalierung mittels (S)MAPE zwischen Metriken und Assets vergleichbar bleibt.
 
       Insgesamt lässt sich erkennen, dass obwohl die Modellausgaben nicht deterministisch sind, die Ergebnisse sehr konsistent sind und Abweichungen nur geringfügig vorhanden sind.
-      Damit ist der KI-Assistenzsystem in dieser Hinsicht bereits als sicher zu bewerten.
-
+      Damit ist der KI-Assistenzsystem in dieser Hinsicht als sicher zu bewerten.
+      % Evtl auch angeben, dass die Ensemble Respone an dieser Stelle das Risiko weiter senkt.
 
     \subsection{Vergleich mit Analystenempfehlungen}
 
-      % To-Do: Selbe Darstellung wie bei der Konsistenzprüfung wählen, aber dann mit dem Mittelwert aller Responses
+      Im vorangegangen Abschnitt \ref{sec:konsistenz_doing} haben wir die Konsistenz bzw. Übereinstimmung zwischen gleichen Eingaben untersucht, um festzustellen wie verlässlich das Modell mit seiner Aussage ist.
+      In diesem Abschnitt wird die Qualität der generierten Handlungsempfehlungen durch einen Vergleich mit etablierten Analystenratings bewertet.
+      Ziel ist es zu überprüfen, ob die Empfehlungen des \acs{KI}-Assistenzsystems zumindest in ihrer grundsätzlichen Tendenz mit den Einschätzungen von Finanzanalysten übereinstimmen.
+      Dabei ist zu betonen, dass Analystenmeinungen selbst nicht immer objektiv oder \enquote{wahr} sind, da sie auf subjektiven Einschätzungen und individuellen Strategien basieren können.
+      Ein Konsens zwischen Analysten und dem Assistenzsystem kann daher eher als Indikator für die Plausibilität der generierten Handlungsempfehlungen gewertet werden.
+      Ein signifikanter Unterschied zu den Analystenmeinungen könnte wiederum darauf hinweisen, dass das System andere, möglicherweise innovative Perspektiven einnimmt, oder dass die zugrunde liegenden Modelle oder Daten angepasst werden müssen.
+      Es wird auch berücksichtigt, dass spätere Nutzerpräferenzen, wie Risikoneigung oder Investmenthorizont, das Bewertungsergebnis beeinflussen werden.
+      Diese werden jedoch in dieser Evaluierung noch ausgeklammert, um einen neutralen Vergleich mit den Analystenbewertungen zu ermöglichen.
+
+      Für den Vergleich wird nicht eine Respone oder gleich mehre Responses mit den Analystenratings verglichen, sondern es werden die Durchschnittswerte der Metriken aus Abschnitt \ref{sec:konsistenz_doing} genutzt.
+      Diese werden dann den Analystenratings gegenübergestellt.
+
+      Die Abbildung \ref{fig:vergleich_mit_analysten} zeigt die Ergebnisse des Vergleichs zwischen den generierten Handlungsempfehlungen des \acs{KI}-Assistenzsystems und den Konsens-Analystenratings für die vier verschiedenen Wertpapiere von zuvor in ähnlicher Darstellung.
 
       \begin{figure}[H]
           \centering
@@ -352,6 +365,10 @@
           \small{(Quelle: eigene Darstellung)}
           \label{fig:vergleich_mit_analysten}
       \end{figure}
+
+      Da ein Durschnittswert mit dem Analystenrating verglichen wird, wird hier direkt der MAPE-Wert als Abweichung genutzt und zudem wird der absolute Wert ausgegeben.
+
+      %TODO: Grafik mit echten Werten ergänzen
 
 
     % To-Do: noch mindestens eine qualitative Auswertung irgendwie vornehmen
