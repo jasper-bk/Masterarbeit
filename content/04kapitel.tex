@@ -18,7 +18,7 @@
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{assets/pictures/vereinfachte_systemarchitektur.png}
+        \includegraphics[width=\textwidth]{assets/pictures/vereinfachte_systemarchitektur.jpg}
         \caption{Modulare Systemarchitektur des \acs{KI}-Assistenzsystems in vereinfachter Form}
         \small{(Quelle: eigene Darstellung)}
         \label{fig:systemarchitektur}
@@ -29,7 +29,7 @@
 
     Neben dem Brückenschlag, bewerkstelligt das Backend auch sämtliche Logik.
     Abfragen der Daten, Kennzahlberechnungen, Prompt-Templates, Parsen der Antworten, Fehler-Handling, \acs{API}-Schnittstellen und das Bereistellen des Frontends für den Browser werden im Backend gehandhabt.
-    Dabei sind die Bereistellung der \acs{REST}-\acs{API} und des Frontends separat in einem eigenen Modul.
+    Dabei sind die Bereistellung der \acs{HTTP}-\acs{API} und des Frontends separat in einem eigenen Modul.
 
     Damit ist das Logik-Modul auch unabhängig einsetzbar und kann in einem beliebigen Pythonskript importiert und genutzt werden.
     Dies wird im späteren Abschnitt \ref{sec:jupyter-lab} auch gemacht um die Evaluation durchzuführen.
@@ -41,15 +41,13 @@
       Das KI-gestützte Portfolioassistenzsystemprojekt folgt einer modularen und klar strukturierten Architektur, welche sowohl die Entwicklung als auch die Wartung des Systems erleichtert.
       Die Projektorganisation ist in Abbildung \ref{fig:project_structure} dargestellt und gliedert sich in mehrere funktionale Bereiche.
 
-      % Bash: find . -type f -not -path "./.git/*" -not -path "./portfolio-env/*" -not -path "./env/*" -not -path "./__pycache__/*" -not -path "./.pytest_cache/*" -not -path "./.mypy_cache/*" -not -path "./node_modules/*" -not -path "./.vscode/*" -not -path "./.idea/*" -not -name "*.pyc" -not -name "*.pyo" -not -name "*.pyd" -not -name ".DS_Store" -not -name "Thumbs.db" -not -name "*.log" | sort
+      % Bash: find . -type f -not -path "./.git/*" -not -path "./.venv/*" -not -path "./env/*" -not -path "./__pycache__/*" -not -path "./.pytest_cache/*" -not -path "./.mypy_cache/*" -not -path "./node_modules/*" -not -path "./.vscode/*" -not -path "./.idea/*" -not -name "*.pyc" -not -name "*.pyo" -not -name "*.pyd" -not -name ".DS_Store" -not -name "Thumbs.db" -not -name "*.log" | sort
       \begin{figure}[H]
         \dirtree{%
             .1 portfolio-ai-assistant/.
             .2 evaluation/.
-            .3 evaluation.ipynb.
-            .2 test\_data/.
-            .3 sample\_portfolio.json.
-            .3 sample\_portfolio\_2\_default.json.
+            .3 consistency.ipynb.
+            .3 analyst\_comparision.ipynb.
             .2 webpage/.
             .3 static/.
             .4 api.js.
@@ -60,13 +58,11 @@
             .4 index.html.
             .2 .env.
             .2 .gitignore.
-            .2 llm.py.
             .2 main.py.
             .2 portfolio\_ai.py.
+            .2 portfolio\_chat.py.
             .2 requirements.txt.
-            .2 scraping.py.
             .2 server.py.
-            .2 To-Dos.txt.
         }
         \caption{Projektstruktur des Portfolio AI Assistant Systems}
         \small{(Quelle: eigene Darstellung)}
@@ -75,8 +71,8 @@
       \todo[inline]{To-Do: Zum Schluss nochmal aktualisieren.}
 
       Das Hauptverzeichnis enthält die zentralen Python-Module, welche die Kernfunktionalitäten des Systems implementieren.
-      Hierzu gehören die Portfolio-Analyse-Engine, die \acs{LLM}-Integration sowie die Server-Komponenten für die Webschnittstelle.
-      Der \texttt{evaluation}-Ordner beherbergt Jupyter-Notebooks für analytische Auswertungen und Systemtests, während der \texttt{test\_data}-Bereich Beispiel-Portfolios für Entwicklungs- und Demonstrationszwecke bereitstellt.
+      Hierzu gehören die Portfolio-AI-Klasse, die Portfolio-AI-Chat-Klasse sowie die Server-Komponenten für die Webschnittstelle.
+      Der \texttt{evaluation}-Ordner beherbergt Jupyter-Notebooks für analytische Auswertungen und Systemtests.
       Die Webkomponenten sind im \texttt{webpage}-Verzeichnis organisiert, welches sowohl die Frontend-Logik als auch die Benutzeroberfläche umfasst.
       Diese klare Trennung zwischen Backend-Logik und Frontend-Präsentation ermöglicht eine unabhängige Entwicklung und Wartung beider Systemteile.
       Konfigurationsdateien und Projektmetadaten sind auf der obersten Ebene positioniert, um eine zentrale Verwaltung der Systemeinstellungen und Abhängigkeiten zu gewährleisten.
@@ -87,115 +83,109 @@
       Die Systemarchitektur besteht aus den folgenden Hauptkomponenten:
 
       \begin{itemize}
-          \item \textbf{Backend (Flask-Server):} Das Backend ist in \texttt{Python} realisiert und stellt RESTful-Endpunkte für das Frontend bereit.
-          Es orchestriert die Kommunikation mit dem \acs{LLM} (Large Language Model), führt die Datenanalyse durch und verwaltet Persistenzstrukturen in \acs{JSON}-Format.
-          Hierzu wird das \texttt{Flask}-Framework verwendet.
+          \item \textbf{Server-Backend (Flask-Server):} Das Server-Backend ist in Python mit dem \texttt{Flask}-Framework realisiert und stellt HTTP-Endpunkte für das Frontend bereit.
+          Es stellt die Webseite bereit und stellt das Bindeglied zwischen Hauptlogik und Frontend dar.
 
-          \item \textbf{\acs{KI}-Logik (\acs{LLM}-Modul):} Die Analyse der Portfolios erfolgt durch Integration von \acs{LLM}s, initial lokal mit \texttt{Ollama} um den On-Device-Ansatz zu verfolgen, später ergänzt durch eine API-Schnittstelle zur Anbindung von größeren und schnelleren Modellen von OpenAI.
-          Die Auswahl des \acs{LLM}-Anbieters ist modular über das \texttt{llm.py}-Modul steuerbar.
+          \item \textbf{\acs{KI}-Logik (\acs{LLM}-Modul):} Die Analyse der Portfolios erfolgt durch Integration von \acs{LLM}s.
+          Die Auswahl des \acs{LLM}-Anbieters ist modular und wird in der \texttt{portfolio\_ai.py}-Modul abgebildet.
           Die Entscheidungsbegründungen werden extrahiert, strukturiert und transparent in das Portfolio eingebettet.
 
-          \item \textbf{Finanzdaten-Backend:} Für die zeitnahe Beschaffung historischer und aktueller Finanzdaten wird das Python-Modul \texttt{yfinance} eingesetzt.
-          Es dient als zentrale Datenquelle für Kursinformationen.
+          \item \textbf{Finanzdaten-Backend:} Für die zeitnahe Beschaffung historischer und aktueller Finanzdaten werden das Python-Modul \texttt{finnhub} und \texttt{yfinance} eingesetzt.
+          Beide dienen als zentrale Datenquelle für Kursinformationen, aber sind jedoch austauschbar und selbstständig.
 
-          \item \textbf{Frontend:} Das Frontend basiert auf einfachem \texttt{HTML} mit \texttt{Bootstrap} und \texttt{JavaScript}, welches über Flask bereitgestellt wird und mit dynamischen Elementen zur die Visualisierung und Präsentation der Handlungsempfehlungen zugängerlicher macht.
+          \item \textbf{Frontend:} Das Frontend basiert auf einfachem \texttt{HTML} mit \texttt{Bootstrap} und \texttt{JavaScript}, welches über das Server-Backend mit Flask bereitgestellt wird und mit dynamischen Elementen zur die Visualisierung und Präsentation der Handlungsempfehlungen zugängerlicher macht.
           Die \acs{GUI} verwendet asynchrone API-Aufrufe zur Aktualisierung der dargestellten Inhalte in Echtzeit.
 
-          \item \textbf{LangChain:} Neben den direkten Aufrufen der \acs{LLM} über die API Richtung Ollama oder Online-Anbietern ist die Integration von \texttt{LangChain} zur feineren Modellsteuerung und Verkettung von \acs{LLM}-Aufrufen implementiert.
-          Etwa für multi-step Reasoning über Zeit.
+        \item \textbf{LangChain:} Sämtliche \acs{LLM}-Interaktionen erfolgen ausschließlich über \texttt{LangChain}. Direkte API-Aufrufe wurden anfänglich verwendet, wurden aber wegen zunehmender Komplexität vollständig verworfen.
+        \texttt{LangChain} übernimmt die Orchestrierung von Chat-Flows inklusive Gesprächshistorie (\emph{Memory}), Retrieval-Augmented Generation (\acs{RAG}) mit Dokumentretrieval, strukturierter Ausgabe (Parser/Schema), Tool-/Agentenaufrufen sowie mehrstufigem Reasoning.
+        Dies ermöglicht konsistente Prompts, wiederverwendbare Chains und eine klare Trennung zwischen Modell, Datenzugriff und Anwendung.
+
       \end{itemize}
 
       Alle Komponenten kommunizieren über klar definierte Schnittstellen.
-      Dazu werden \acs{JSON}-basierte Datenstrukturen über HTTP-Endpunkte genutzt.
-      Dies ermöglicht die spätere Substitution einzelner Module (z. B. andere Frontends oder \acs{LLM}-Anbieter).
+      Frontend und Backend kommunizieren im \acs{JSON} Format über eine \acs{HTTP}-API.
+      Dies ermöglicht die spätere Substitution einzelner Module (z. B. andere Frontends).
 
   \section{Entwicklungsverlauf und iterative Verbesserung}
 
-    Die Entwicklung des Systems erfolgte in iterativen Schritten, beginnend mit einem simplen Konsolen-Backend, welches sukzessive erweitert wurde.
-    Der Fortschritt lässt sich grob in folgende Meilensteine unterteilen:
+    Die Entwicklung erfolgte inkrementell in klar abgegrenzten Phasen.
+    Ausgehend von einem Minimal-Backend wurden Portfoliologik und strukturierte Ausgaben etabliert, ein entkoppeltes Web-Frontend mit asynchroner API aufgebaut, das Datenmodell samt Persistenz und Logging gefestigt, eine Evaluationsumgebung in Jupyter eingerichtet und zuletzt die Konversationslogik ergänzt.
+    Sämtliche \acs{LLM}-Interaktionen laufen inzwischen ausschließlich über \texttt{LangChain} (Chats mit Historie, strukturierte Ausgaben, optionales Retrieval); direkte API-Aufrufe wurden vollständig abgelöst.
 
+    \textbf{Meilensteine (aggregiert)}
     \begin{enumerate}
-        \item \textbf{Initiale Projektstrukturierung:} In der ersten Phase wurde ein minimales Backend eingerichtet, bestehend aus den Dateien \texttt{server.py}, \texttt{llm.py} und \texttt{main.py} (\textit{Commit: 3d6d728e51d4cef01ebf949b339af8a066a257f1}).
-        Ziel war es, eine funktionale Basis für spätere Erweiterungen zu schaffen.
-
-        \item \textbf{Entkopplung und Modularisierung des \acs{LLM}-Moduls:} Die Datei \texttt{llm.py} wurde zunächst stark vereinfacht, um den Fokus auf den Aufbau eines separaten Moduls zur Portfoliobewertung in \texttt{portfolio\_ai.py} zu legen (\textit{Commit: ba1e79dc545d4020ab6fbddbbc50528a52225824}).
-        Erste Dummy-Funktionen wurden eingeführt.
-
-        \item \textbf{Extraktion von Modellantworten und \acs{JSON}-Verarbeitung:} Das System wurde um die Fähigkeit erweitert, strukturierte \acs{JSON}-Antworten aus den generierten Texten der \acs{LLM}s zu extrahieren und weiterzuverarbeiten (\textit{Commit: 0c6299b410299bd581bdf9514a59e734790e7c78}).
-
-        \item \textbf{Einbindung qualitativer Bewertungsdaten:} Erste Analysemethoden für Aktienportfolios wurden implementiert.
-        Qualitative Merkmale wurden in die Bewertung einbezogen (\textit{Commit: 936e1a482756c678843262be903d3df8d5b0c06c}).
-
-        \item \textbf{Erste Visualisierungsideen im HTML-Frontend:} Ein erster Entwurf des \acs{GUI} wurde eingebettet in die \texttt{server.py}-Datei umgesetzt. Die Ergebnisse der \acs{KI}-Auswertung wurden rudimentär im Browser dargestellt (\textit{Commit: c5431d4e539bfa59349464e7fab9fddf0bb10fd3}).
-
-        \item \textbf{Trennung von Frontend-Komponenten:} HTML, CSS und JavaScript wurden in separate Dateien ausgelagert, wodurch die Wartbarkeit verbessert und der Weg für komplexere \acs{GUI}-Funktionalität geebnet wurde (\textit{Commit: fa7e330adcc6a7ad3024d4465e94a55e5bd17f8a}).
-
-        \item \textbf{Erweiterung der Benutzeroberfläche:} Es wurden Tabs für einzelne Aktienpositionen, modale Dialoge zur Konfiguration und Refresh-Buttons zur Aktualisierung des Portfolios implementiert (\textit{Commit: 1e3e01b2c22cd937d19ce55e32aee2f17de9dfbf}, \textit{7d7efd8d3dcfd9fba1b3c0d41c7a308fbe397479}).
-
-        \item \textbf{Integration der API-Kommunikation:} Eine asynchrone Kommunikation zwischen Frontend und Backend wurde realisiert.
-        Die JavaScript-Klasse in \texttt{api.js} übernahm dabei die zentrale Steuerung der Interaktion mit der Python-API (\textit{Commit: 0b68f880eacbdaa2cf4632a342aa8b5f206b4b76}).
-
-        \item \textbf{Verbesserung der Portfoliostruktur:} Eine strukturierte \acs{JSON}-Repräsentation des Portfolios wurde entworfen und eingeführt, um konsistente Datenhaltung für Bewertungen und Visualisierungen sicherzustellen (\textit{Commit: 347734ed2d1f22f025b44cd2488a721c942d78c0}).
-
-        \item \textbf{Erweiterte Testdaten und dynamisches \acs{GUI}-Binding:} Die Oberfläche wurde mit dynamischen DOM-Manipulationen angereichert, z.\,B. zur Anzeige von Aktieninformationen, Dringlichkeitskennzahlen und historischen Vergleichsdaten.
-        Dazu wurden auch exemplarische Testdaten angepasst (\textit{Commits: 7ee3eb6c1b765e3894c49664f5f8a811930ad9c7}, \textit{5e37f00105c9ec69edc2822423829f8235f34193}).
-
-        \item \textbf{Persistenz und Rückschreibelogik:} Die Portfoliobewertungen wurden gespeichert, um wiederholte Analysen zu ermöglichen.
-        Persistenz wurde durch Aktualisierung der \acs{JSON}-Daten sichergestellt (\textit{Commit: 5e37f00105c9ec69edc2822423829f8235f34193}).
-
-        \item \textbf{Fehlerbehandlung und Logging:} Zur besseren Nachvollziehbarkeit wurden umfassende Logging-Funktionen implementiert.
-        Fehler beim Parsen von Antworten und bei Latenzen wurden protokolliert (\textit{Commit: 804fc3024699cac968c26f286f9c78fbb06014dc}).
-
-        \item \textbf{Mehrfachmodell-Unterstützung für \acs{LLM}s:} Neben Ollama wurde ein schnellerer Online-\acs{LLM} integriert, um Antwortzeiten zu optimieren und die Auswahl geeigneter Modelle zu erleichtern (\textit{Commit: 734bf0010b3bf6cb9cceac52373d726fa23d6534}).
-
-        \item \textbf{Finale \acs{GUI}-Optimierungen:} Die Interaktion wurde verfeinert durch Refresh-Buttons, Identifier für einzelne Elemente und erweiterte Tab-Logik.
-        Frontend und Backend sind nun durch eine stabile API vollständig entkoppelt (\textit{Commit: 211026820610ea62ab2e4eeb7d9ab3a2188ab6d5}).
+      \item \textbf{Bootstrap und Basis-Server:} Minimales Backend als lauffähige Grundlage. \emph{(repr.\ Commit: 3d6d728)}
+      \item \textbf{Portfoliologik \& strukturierte Outputs:} Auslagerung nach \texttt{portfolio\_ai.py}, Extraktion strukturierter \acs{JSON}-Antworten, erste qualitative Merkmale. \emph{(ba1e79d, 0c6299b, 936e1a4)}
+      \item \textbf{Web-UI \& API-Entkopplung:} Trennung von HTML/CSS/JS, asynchrone API, Tabs/Ansichten, Dringlichkeits- und Aggregatlogiken. \emph{(c5431d4, fa7e330, 0b68f88, 7e1d335)}
+      \item \textbf{Datenmodell, Persistenz \& Monitoring:} Neues Portfolio-\acs{JSON}, Ergebnis-Persistenz, Parser/Logging, Refresh-/Settings-Flows, temporär Mehrfach-Modelle zur Latenzbeobachtung. \emph{(347734e, 5e37f00, 804fc30, 734bf00, 2110268)}
+      \item \textbf{Evaluationsinfrastruktur:} Jupyter-Lab eingeführt, Konsistenz-Notebook und Code-Restrukturierung für reproduzierbare Auswertungen. \emph{(29f2516, c338095)}
+      \item \textbf{Konversation \& UI-Feinschliff:} Chat im Backend, UI-Tuning und Abhängigkeitskonsolidierung. \emph{(795fec0, 785a421)}
     \end{enumerate}
 
-    \todo[inline]{To-Do: Stärker aggregrieren und überarbeiten zum Schluss}
+
+    \begin{table}[H]
+      \begin{center}
+      \renewcommand{\arraystretch}{1.12}
+      \begin{tabular}{@{}lp{9.4cm}@{}}
+      \toprule
+      \textbf{Phase} & \textbf{Schwerpunkte / repr.\ Commits} \\
+      \midrule
+      Bootstrap & Basis-Setup \emph{(3d6d728)} \\
+      Portfoliologik & Auslagerung, JSON-Parsing, qualitative Merkmale \emph{(ba1e79d, 0c6299b, 936e1a4)} \\
+      Web-UI & UI-Trennung, Async-API, Tabs, Aggregation \emph{(c5431d4, fa7e330, 0b68f88, 7e1d335)} \\
+      Daten/Persistenz & Neues Schema, Persistenz, Logging, Latenz-Checks \emph{(347734e, 5e37f00, 804fc30, 734bf00, 2110268)} \\
+      Evaluation & Jupyter-Lab, Konsistenz-Notebook, Refactor \emph{(29f2516, c338095)} \\
+      Konversation & Chat-Backend, UI-Tuning \emph{(795fec0, 785a421)} \\
+      \bottomrule
+      \end{tabular}
+      \end{center}
+        \caption{Kompaktübersicht (repräsentative Commits)}
+        \label{tab:kompaktübersicht}
+    \end{table}
 
   \section{Integration von Frameworks und Technologien}
 
-    \todo[inline]{To-Do: Aufgreifen der Ergebnisse aus Kapitel 3 mit der Auswahl der jeweiligen Tools und daran anpassen}
-    \todo[inline]{To-Do: Muss ggf. auch noch nach oben verschoben werden}
-
     Die Umsetzung des Systems basiert auf einer Kombination moderner Web- und \acs{KI}-Frameworks.
-    Dabei kamen sowohl klassische Webtechnologien als auch spezialisierte Werkzeuge zur Modellintegration und Datenverarbeitung zum Einsatz.
-    Im Folgenden werden zentrale Technologien mit besonderem Einfluss auf Architektur und Funktionsweise näher erläutert.
+    Dabei kommen sowohl klassische Webtechnologien als auch spezialisierte Werkzeuge zur Modellintegration und Datenverarbeitung zum Einsatz.
+
+    In Kapitel \ref{chap:vorgehen} wurden bereits die Kerntechnologien untersucht und ausgewählt.
+    Fazit der Auswahl ist ein weitestgehend modularerer bzw. flexibler Ansatz.
+    Die \acs{LLM}-Provider werden flexibel austauschbar sein und für die Finanzdaten werden sowohl Finnhub als auch \texttt{yfinance herangezogen}.
+
+    Im Folgenden werden weitere zentrale Technologien mit besonderem Einfluss auf Architektur und Funktionsweise näher erläutert.
+    Dabei wird sichtbar wie sich diese Technologien einbringen und die bereits untersuchten Technologien verknüpfen.
 
     \subsection{LangChain}
 
       % To-Do für diesen ganzen Abschnitt: gute Quellen suchen
 
       \texttt{LangChain} wird als zentrales Framework zur Modellorchestrierung innerhalb des Assistenzsystems eingesetzt.
-      Es handelt sich dabei um eine Open-Source-Bibliothek, die speziell für die Entwicklung von Anwendungen auf Basis großer Sprachmodelle (\acs{LLM}s) konzipiert wurde.
-      Das Besondere an LangChain ist seine Fähigkeit, verschiedene Komponenten eines \acs{LLM}-Workflows—wie Prompts, Datenquellen, Werkzeuge, Speicher oder Agenten—modular zu verketten und dabei logisch zu koordinieren.
-      Dies erlaubt eine flexible und wiederverwendbare Strukturierung komplexer Modellinteraktionen \autocite{chase2023langchain}.
+      Es handelt sich dabei um eine Open-Source-Bibliothek, die speziell für die Entwicklung von Anwendungen auf Basis großer Sprachmodelle (\acs{LLM}s) konzipiert wurde und agiert als Bindeglied zwischen den verschiedenen \acs{LLM}-Providern.
+      Das Besondere an LangChain ist nicht nur seine Fähigkeit mit verschiedenen Providern und Modellen zu arbeiten sondern auch  verschiedene Komponenten eines \acs{LLM}-Workflows—wie Prompts, Datenquellen, Werkzeuge, Speicher oder Agenten—modular zu verketten und dabei logisch zu koordinieren.
+      Dies erlaubt eine flexible und wiederverwendbare Strukturierung komplexer Modellinteraktionen. \autocite{chase2023langchain}
 
       In der vorliegenden Anwendung wird LangChain insbesondere zur Steuerung mehrstufiger Prompt-Logik und zur Integration erklärbarer Entscheidungsbegründungen verwendet.
       Die strukturierte Verarbeitung der Ausgabeformate, etwa in \acs{JSON}, konnte durch den Einsatz spezialisierter Output-Parser von LangChain elegant realisiert werden.
       Ebenso erleichtert das Framework die Nutzung externer Wissensquellen oder Zwischenergebnisse im Dialogverlauf, was insbesondere für erklärungsorientierte Systeme von Vorteil ist.
 
-      Die Integration in das bestehende Python-Backend erfolgte reibungslos, da LangChain nativ in Python geschrieben ist und eine Vielzahl von Schnittstellen zu gängigen Modellen wie OpenAI, HuggingFace oder lokal ausgeführten \acs{LLM}s via \texttt{Ollama} unterstützt.
-      Überdies konnte LangChain nahtlos mit bereits vorhandenen Komponenten, etwa zur Bewertung von Portfolios oder zur Entscheidungslogik, verbunden werden.
+      Die Integration in das bestehende Python-Backend erfolgt reibungslos, da LangChain nativ in Python geschrieben ist und eine Vielzahl von Schnittstellen zu gängigen Modellen wie OpenAI, HuggingFace oder lokal ausgeführten \acs{LLM}s via \texttt{Ollama} unterstützt.
+      Überdies konnte LangChain nahtlos mit bereits vorhandenen Komponenten -- etwa zur Bewertung von Portfolios oder zur Entscheidungslogik -- verbunden werden.
 
       Im Vergleich zu Alternativen wie \texttt{Haystack} oder \texttt{LlamaIndex} (ehemals GPT Index) bietet LangChain eine größere Bandbreite an Agentenfunktionen und Werkzeuge zur Ablaufsteuerung.
-      Während Haystack vor allem für Suchanwendungen mit Vektordatenbanken optimiert ist und LlamaIndex sich auf das Retrieval-augmented Generation (RAG) fokussiert, ist LangChain universeller einsetzbar.
+      Während Haystack vor allem für Suchanwendungen mit Vektordatenbanken optimiert ist und LlamaIndex sich auf das \acs{RAG} fokussiert, ist LangChain universeller einsetzbar. \autocite{heyamit_llamaindex_vs_langchain_vs_haystack_2025}
       Die Entscheidung zugunsten von LangChain fiel letztlich aufgrund seiner hohen Community-Aktivität, umfassenden Dokumentation und der bereits verfügbaren Werkzeuge für strukturierte Ausgabeformate sowie XAI-nahe Anwendungen.
 
-    \subsection{yfinance}
+    \subsection{Pydantic zur Validierung von LLM-Ausgaben}
 
-      % To-Do für diesen ganzen Abschnitt: gute Quellen suchen
+      Ein wesentlicher Bestandteil der Systemintegration stellt die zuverlässige Validierung und Strukturierung der durch \acs{LLM}s generierten Daten dar.
+      Da \acs{LLM}s trotz gezielter Promptgestaltung häufig unstrukturierte oder fehlerhafte Antworten liefern können, wird im vorliegenden System \textit{Pydantic} eingesetzt.
+      Pydantic ist ein in Python weit verbreitetes Framework zur Definition von Datenmodellen, die eine strikte Typisierung und Validierung von Eingaben ermöglichen \autocite{pydantic_docs}.
+      Auf diese Weise lassen sich sowohl einfache Typen (\texttt{int}, \texttt{float}, \texttt{str}) als auch komplexe Strukturen konsistent prüfen und bei Abweichungen automatisch aussagekräftige Fehlermeldungen erzeugen.
 
-      Für die automatisierte Abfrage von historischen und aktuellen Kursdaten kommt die Python-Bibliothek \texttt{yfinance} zum Einsatz.
-      Diese greift auf Daten von Yahoo Finance zu und bietet eine einfache API zur Analyse von Aktienkursverläufen, Dividenden und Handelsvolumen.
-      Die Verwendung historischer Kursdaten erlaubt Rückschlüsse auf Volatilität, Trends und technische Indikatoren – zentrale Größen für die Entscheidungsbegründung im Assistenzsystem \autocite{fama1970efficient}.
-
-      Die Installation von \texttt{yfinance} erfolgt unkompliziert über den Python-Paketmanager.
-      Die Bibliothek ermöglicht es, Daten für einzelne oder mehrere Ticker gleichzeitig abzurufen und bietet Funktionen zur Anpassung des Zeitraums, der Intervallgröße (z.\,B. täglich, wöchentlich) sowie zur Einbindung von Dividenden- und Splitevents.
-
-      Darüber hinaus bietet \texttt{yfinance} Zugriff auf umfassende Metadaten, wie Unternehmensinformationen, Analystenbewertungen und Bilanzzahlen, welche weitere Analysemöglichkeiten eröffnen.
-      Die Nutzung von \texttt{yfinance} stellt somit eine zentrale Komponente zur datenbasierten Entscheidungsunterstützung in unserem Assistenzsystem dar.
+      Im Anwendungsfall dieser Arbeit dient Pydantic insbesondere zur Validierung der \acs{LLM}-Ausgaben bei der Bewertung einzelner Wertpapiere sowie bei der Erstellung von Portfolio-Zusammenfassungen.
+      So wird beispielsweise sichergestellt, dass die Wahrscheinlichkeiten für \enquote{Buy}, \enquote{Sell} und \enquote{Hold} ganzzahlige Werte im Bereich von 0 bis 100 darstellen und sich in der Summe auf 100 \% belaufen.
+      Darüber hinaus erzwingt Pydantic eine einheitliche Struktur der Rückgabedaten, sodass diese ohne zusätzliche Überprüfung in das Evaluations- und Visualisierungssystem übernommen werden können.
+      Durch die Integration von Pydantic wird folglich die Robustheit der Datenpipeline erhöht, was in der Literatur als wesentliche Stärke des Frameworks hervorgehoben wird \autocite{pydantic_docs}.
 
 
     \subsection{Sonstige Technologien}
@@ -205,21 +195,21 @@
       Ergänzend zu den oben genannten Kerntechnologien kamen weitere etablierte Frameworks und Tools zum Einsatz, die entscheidend zur Realisierung und Nutzerfreundlichkeit des Assistenzsystems beitrugen.
 
       \begin{itemize}
-          \item \texttt{Flask} – Dieses minimalistische und dennoch leistungsstarke Webframework in Python diente als Grundlage für die Bereitstellung von RESTful APIs.
+          \item \texttt{Flask} – Dieses minimalistische und dennoch leistungsstarke Webframework in Python diente als Grundlage für die Bereitstellung von der HTTP APIs.
           Durch seine einfache Struktur und Erweiterbarkeit ermöglicht Flask eine schnelle Entwicklung von Webanwendungen und Backend-Diensten.
           Im Rahmen des Assistenzsystems wird Flask eingesetzt, um Anfragen an die Datenbank und externe APIs zu koordinieren, die Ergebnisse zu verarbeiten und sie in einem standardisierten \acs{JSON}-Format für die Frontend-Komponenten bereitzustellen.
           Die modulare Architektur von Flask erleichtert zudem die Integration zusätzlicher Middleware und Authentifizierungsmechanismen, was die Sicherheit und Skalierbarkeit des Systems unterstützt.
 
           \item \texttt{Bootstrap} – Als eines der populärsten CSS-Frameworks wird Bootstrap verwendet, um eine moderne, optisch ansprechende und zugleich responsive Benutzeroberfläche zu gestalten.
-          Bootstrap bietet ein umfangreiches Set an vorgefertigten Komponenten wie Buttons, Navigationsleisten, Formularen und Grid-Systemen, die eine konsistente Darstellung auf unterschiedlichen Endgeräten und Bildschirmgrößen gewährleisten.
+          Bootstrap bietet ein umfangreiches Set an vorgefertigten Komponenten wie Buttons, Navigationsleisten, Formularen und Grid-Systemen, die eine konsistente Darstellung auf unterschiedlichen Endgeräten und Bildschirmgrößen gewährleisten. \autocite{bootstrap_front_end_framework_2025}
           Im Assistenzsystem wird Bootstrap eingesetzt, um die Usability zu verbessern, indem komplexe Layouts mit minimalem Aufwand realisiert werden und die Anwendung gleichzeitig auf Desktop, Tablets und Smartphones gleichermaßen gut nutzbar ist.
-           Zudem unterstützt Bootstrap die schnelle Anpassung des Designs durch einfaches Überschreiben von Variablen und Klassen.
+          Zudem unterstützt Bootstrap die schnelle Anpassung des Designs durch einfaches Überschreiben von Variablen und Klassen.
 
-          \item \texttt{JavaScript} – JavaScript fungiert als zentrale Programmiersprache für die Implementierung von Interaktivität im Browser.
-          Innerhalb des Assistenzsystems wird JavaScript verwendet, um dynamische Inhalte zu laden und die Benutzererfahrung zu verbessern.
+          \item \texttt{JavaScript und jQuery} – JavaScript und jQuery fungieren als zentrale Programmiersprache für die Implementierung von Interaktivität im Browser.
+          Innerhalb des Assistenzsystems wird JavaScript verwendet, um dynamische Inhalte zu laden und die Webseite interaktiv zu machen.
           Dies umfasst beispielsweise das asynchrone Nachladen von Aktienanalysen und Kursdaten mittels asynchroner Requests, wodurch Seitenaktualisierungen ohne komplettes Neuladen ermöglicht werden.
           Zusätzlich sorgen clientseitige DOM-Manipulationen für reaktive Benutzeroberflächen, beispielsweise das Anzeigen von Diagrammen, das Hervorheben relevanter Datenpunkte und die Umsetzung von Filtern und Sortierfunktionen.
-          Die Kombination mit Bibliotheken wie \texttt{jQuery} erleichert die Entwicklung zusätzlich.
+          Die Kombination mit der beliebten Bibliotheken \texttt{jQuery} erleichert die Entwicklung zusätzlich.
 
           % To-Do: Später noch mehr Technologien einführen: Podman, Podman-Compose, ...
       \end{itemize}
@@ -234,13 +224,13 @@
 
     Zur Steuerung der Large Language Models (\acs{LLM}s) werden gezielt formulierte Prompts eingesetzt, die einerseits die relevanten Datenstrukturen übergeben und andererseits die gewünschten Ausgaben in maschinenlesbarer Form erzwingen.
 
-
     Prompts sind dabei im Wesentlichen präzise formulierte Eingabetexte, die dem Modell als Anleitung dienen.
     Sie definieren den Kontext, die Aufgabenstellung und die Art der gewünschten Antwort.
     Da \acs{LLM}s keine explizite Programmierung im klassischen Sinne verwenden, ist die Qualität und Struktur der Prompts entscheidend für die Qualität der generierten Ergebnisse.
 
     Das sogenannte Prompt-Engineering beschäftigt sich mit der systematischen Gestaltung und Optimierung dieser Eingabetexte, um die Modelle möglichst effizient und zielgerichtet zu steuern.
     Dabei wird beispielsweise festgelegt, welche Informationen das Modell berücksichtigen soll, in welchem Format die Antwort erwartet wird und welche Einschränkungen oder Bedingungen gelten.
+    % Quelle?
 
     Der Einsatz von Prompts ermöglicht es, komplexe Aufgaben flexibel zu lösen, ohne dass das Modell selbst verändert werden muss.
     Durch gezieltes Prompt-Engineering wird somit die Leistungsfähigkeit von \acs{LLM}s maximiert und die Integration in verschiedenste Anwendungsfälle, wie die Verarbeitung von Finanzdaten oder die Unterstützung bei Entscheidungsprozessen, erleichtert.
@@ -254,26 +244,25 @@
       Der strukturierte Aufbau lautet:
 
       \begin{lstlisting}[language=Python, gobble=6, caption={Asset-Bewertungsprompt}]
-      Analyze this investment:
-
-      Quantitative data:
-      <JSON mit Kennzahlen wie Kurs, Volatilitaet, Dividenden>
-
-      Qualitative data:
-      <Texteingabe mit Analystenkommentar>
-
-      Portfolio context:
-      <JSON mit Portfolio-Merkmalen wie Risikoprofil, Gesamtvolumen>
-
-      Provide JSON with:
-      {
-        "urgency_to_act": <int (percent: 0 - 100)>,
-        "buy": <int (percent: 0 - 100)>,
-        "sell": <int (percent: 0 - 100)>,
-        "hold": <int (percent: 0 - 100)>,
-        "rationale": "<text>"
-      }
-      Ensure buy + sell + hold == 100
+      self._security_prompt = ChatPromptTemplate.from_messages(
+          [
+              ("system",
+                "You are a disciplined equity analyst. "
+                "Return strictly the requested JSON schema. Numbers are integers [0..100]."),
+              ("human",
+                "You may receive any subset of the following sections. "
+                "If a section is missing or empty, treat it as 'unknown'.\n\n"
+                "Ticker: {ticker}\n\n"
+                "Quantitative data (JSON, may be partial):\n{quantitative_json}\n\n"
+                "Qualitative data (free text, may be partial):\n{qualitative_text}\n\n"
+                "Portfolio context (JSON, may be partial, can be empty if user doesn't own the asset):\n"
+                "{portfolio_context_json}\n\n"
+                "Output as JSON with the schema:\n{json_schema}\n"
+                "Constraints:\n"
+                "- Ensure buy + sell + hold == 100 (+/- 1 allowed)\n"
+                "- Keep rationale concise but specific\n"),
+          ]
+      )
       \end{lstlisting}
 
       Der Prompt ist so gestaltet, dass er mehrere wichtige Prinzipien des Prompt-Engineerings berücksichtigt, um eine präzise, kontextbewusste und maschinenlesbare Antwort zu generieren:
@@ -283,13 +272,12 @@
       \begin{itemize}
         \item \textbf{Klar getrennte Informationsblöcke:} Die Unterteilung in \emph{Quantitative data}, \emph{Qualitative data} und \emph{Portfolio context} schafft eine strukturierte Informationsbasis.
         Dies hilft dem \acs{LLM}, die unterschiedlichen Datenarten gezielt zu interpretieren, da numerische Kennzahlen andere Analyseverfahren erfordern als textuelle Kommentare.
-        Die explizite Benennung der Abschnitte reduziert Unklarheiten und verbessert die Relevanz der generierten Antwort.
+        Die explizite Benennung der Abschnitte reduziert Unklarheiten und verbessert die Relevanz der generierten Antwort. \autocite{promtingguide}
 
-        \item \textbf{Verwendung von \acs{JSON} als Eingabeformat:} Durch die Einbettung der quantitativen Daten und Portfolio-Merkmale in \acs{JSON} wird ein standardisiertes, gut interpretierbares Datenformat verwendet.
-        Dies unterstützt die Konsistenz der Eingabedaten und ermöglicht dem Modell, komplexe verschachtelte Strukturen effizient zu erfassen und zu verarbeiten.
+        \item \textbf{Verwendung von \acs{JSON} als Ausgabemodus:} Die explizite Aufforderung zur Ausgabe in einem JSON-Schema stellt sicher, dass die Antwort maschinenlesbar, validierbar und direkt weiterverarbeitbar ist. JSON-Schema ermöglicht klare Strukturvorgaben und zuverlässige Integration in Tools. \autocite{promtingguide}
 
         \item \textbf{Explizite Anweisung zur Ausgabe:} Die Aufforderung, eine \acs{JSON}-Antwort mit klar definierten Feldern zu liefern, ist entscheidend für die automatisierte Weiterverarbeitung.
-        Das Modell wird gezielt instruiert, nicht nur Text zu generieren, sondern strukturierte Daten zurückzugeben, die direkt vom Backend interpretiert werden können nach dem das \acs{JSON} über Regex aus der Antwort extrahiert und geprüft wird.
+        Das Modell wird gezielt instruiert, nicht nur Text zu generieren, sondern strukturierte Daten zurückzugeben, die direkt vom Backend interpretiert werden können nach dem das \acs{JSON} über Regex aus der Antwort extrahiert und geprüft wird. \autocite{promtingguide}
 
         \item \textbf{Numerische Wahrscheinlichkeitsverteilungen:} Die Felder \texttt{buy}, \texttt{sell} und \texttt{hold} sind als prozentuale Anteile definiert, die zusammen 100 ergeben müssen.
         Dies gewährleistet eine konsistente und vollständige Allokationsempfehlung, die als gewichteter Entscheidungsoutput interpretiert werden kann.
@@ -300,9 +288,9 @@
         \item \textbf{Erklärung der Empfehlung (Rationale):} Das Textfeld \texttt{rationale} bietet eine qualitative Begründung, die Transparenz schafft und Vertrauen in die automatisierten Entscheidungen fördert.
         Es ermöglicht zudem eine nachvollziehbare Dokumentation der Entscheidungsfindung.
 
-        \item \textbf{Separation of Concerns:} Die klare Trennung von Daten, Kontext und Ausgabe stellt sicher, dass das Modell die Eingabe in logisch abgegrenzten Einheiten verarbeitet, was die Genauigkeit und Reproduzierbarkeit der Ergebnisse verbessert.
+        \item \textbf{Separation of Concerns:} Die klare Trennung von Daten, Kontext und Ausgabe stellt sicher, dass das Modell die Eingabe in logisch abgegrenzten Einheiten verarbeitet, was die Genauigkeit und Reproduzierbarkeit der Ergebnisse verbessert. \autocite{promtingguide}
 
-        \item \textbf{Eindeutige Formatierung und Anweisungen:} Die Verwendung von Groß-/Kleinschreibung, strukturiertem Text und klaren Instruktionen minimiert Missverständnisse und erleichtert dem Modell, die Aufgabe korrekt zu erfassen.
+        \item \textbf{Eindeutige Formatierung und Rollenbeschreibung:} Das \enquote{system}-Segment definiert das Verhalten (\enquote{disciplined equity analyst}), klare Anweisungen und strukturierter Stil reduzieren Missverständnisse und lenken das Modell gezielt. Rollenbeschreibung ist ein etabliertes Mittel zur Steuerung des Modellausgabeverhaltens. \autocite{promtingguide}
 
       \end{itemize}
 
@@ -315,38 +303,52 @@
         Ziel ist es, die vielfältigen Einzelbewertungen in einen verständlichen und handlungsorientierten Gesamtbericht zu überführen.
 
         \begin{lstlisting}[language=Python, gobble=8, caption={Portfolio-Zusammenfassungsprompt}]
-        Analyze this portfolio based on the following assets and their evaluations:
-
-        <JSON mit allen Assets und ihren Einzelbewertungen>
-
-        Provide a summary JSON with:
-        {
-          "market_summary": "<text>",
-          "current_opportunities": "<text>",
-          "current_risks": "<text>",
-          "other": "<text>",
-          "explanation_evaluation": "<longer explanation>"
-        }
+        self._portfolio_prompt = ChatPromptTemplate.from_messages(
+            [
+                ("system", "You are a portfolio strategist. Return strictly the requested JSON schema."),
+                ("human",
+                 "Analyze this portfolio. You will receive a JSON object with assets and their evaluations. "
+                 "It may be partial.\n\n"
+                 "Portfolio assets JSON:\n{assets_json}\n\n"
+                 "Output as JSON with the schema:\n{json_schema}\n"),
+            ]
+        )
         \end{lstlisting}
 
 
-        \begin{itemize}
-          \item \textbf{Aggregation von validierten Einzelaussagen:} Indem bereits bewertete Assets mit ihren jeweiligen quantitativen und qualitativen Einschätzungen in Form eines strukturierten \acs{JSON} übergeben werden, muss das \acs{LLM} keine Basisanalyse der Rohdaten vornehmen.
-          Dies steigert die Effizienz und Genauigkeit, da das Modell auf konsolidierten, validierten Informationen aufbaut und sich auf die Synthese fokussiert.
+        Die Analyse basiert nicht mehr auf Rohdaten, sondern auf bereits vorvalidierten Einzelbewertungen.
+        Indem die quantitativen Dringlichkeitseinschätzungen, die Kauf-/Verkaufs-/Halte-Wahrscheinlichkeiten sowie die qualitativen Begründungen in einem standardisierten JSON-Format aggregiert übergeben werden, wird das Sprachmodell von der erneuten Dateninterpretation entlastet.
+        Stattdessen kann es seine Kapazitäten auf die Synthese der konsolidierten Informationen und deren Einordnung in den Gesamtportfoliokontext konzentrieren.
+        Dieses Vorgehen steigert nicht nur die Effizienz, sondern verbessert zugleich die Konsistenz und Genauigkeit der resultierenden Gesamtanalyse, da mögliche Inkonsistenzen bereits vor der Zusammenfassung erkannt und korrigiert werden können \autocite{promtingguide}.
 
-          \item \textbf{Klare modulare Abschnittsgliederung:} Die Aufteilung in die Teilbereiche \emph{Market Summary}, \emph{Current Opportunities}, \emph{Current Risks} und \emph{Other} unterstützt die kognitive Verarbeitung, indem sie die Informationen thematisch ordnet.
-          Diese Strukturierung orientiert sich an anerkannten Designprinzipien für Berichterstattung und Nutzerführung, wodurch die Lesbarkeit und Verständlichkeit deutlich verbessert wird. % To-Do: Quelle
+        Außerdem verfolgt der Prompt das Ziel, die Interpretierbarkeit und Handlungsrelevanz der Ergebnisse zu erhöhen.
+        Die Vielzahl heterogener Einzelbewertungen wird in eine narrative Gesamtdarstellung überführt, die es ermöglicht, komplexe Informationen schnell zu erfassen und daraus fundierte Entscheidungen abzuleiten.
+        Die Kombination aus strukturierter Datengrundlage und erzählerischer Synthese trägt somit maßgeblich dazu bei, dass das Assistenzsystem nicht nur präzise, sondern auch praktisch verwertbare Entscheidungsunterstützung bereitstellt.
 
-          \item \textbf{Narrative Erläuterungen:} Das Feld \texttt{explanation\_evaluation} ermöglicht eine ausführliche, narrative Darstellung der Bewertungslogik und der Zusammenhänge zwischen den einzelnen Asset-Analysen.
-          Diese Transparenz trägt dazu bei, das Vertrauen der Nutzer in die automatisierten Einschätzungen zu stärken und komplexe Entscheidungen nachvollziehbar zu machen.
+      \subsubsection{Chat-Prompt}
 
-          \item \textbf{Flexible Erweiterbarkeit:} Das zusätzliche Feld \texttt{other} bietet Raum für ergänzende Informationen, etwa besondere Hinweise, temporäre Marktphänomene oder kontextuelle Anmerkungen, die nicht direkt in die Hauptkategorien passen, aber für die Gesamtbewertung relevant sind.
+        \todo[inline]{To-Do: Text einfügen und beschreiben }
 
-          \item \textbf{Förderung von Interpretierbarkeit und Handlungsrelevanz:} Durch die narrative Zusammenfassung werden die oft komplexen Einzelbewertungen in eine verständliche, handlungsorientierte Form gebracht.
-          Dies unterstützt Portfolio-Manager und Analyst dabei, schnelle und fundierte Entscheidungen zu treffen.
 
-        \end{itemize}
+        \begin{lstlisting}[language=Python, gobble=8, caption={Chat-Prompt}]
+        self._prompt = ChatPromptTemplate.from_messages(
+            [
+                ("system",
+                 "You are a disciplined investment assistant. "
+                 "Use the provided portfolio context and retrieved snippets if available. "
+                 "Be concise, do not hallucinate figures absent from context. "
+                 "If information is missing, say so and propose a next step.\n\n"
+                 "PORTFOLIO CONTEXT (may be truncated):\n{portfolio_context}\n\n"
+                 "RETRIEVED SNIPPETS (if any):\n{retrieved}\n"),
+                MessagesPlaceholder(variable_name="history"),
+                ("human", "{input}")
+            ]
+        )
+        \end{lstlisting}
 
+  %%%%%%%%%%%%%%%%%%%%%%%%%%
+  % Bis hierhin überarbeitet
+  %%%%%%%%%%%%%%%%%%%%%%%%%%
 
   \section{Dokumentation und Erläuterung der Hauptprogrammlogik}
 
