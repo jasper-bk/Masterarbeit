@@ -1,0 +1,92 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam linetype ortho
+skinparam classFontSize 12
+
+class Asset {
+  - ticker: str
+  - name: Optional[str]
+  - trades: List[Dict]
+  - evaluation_results: Dict
+  - ...
+  --
+  + add_trade(quantity: float, price: float, date_str: str)
+  + clear_trades()
+  + total_quantity(): float
+  + total_cost(): float
+  + average_buy_in(): Optional[float]
+  + holding_days(asof: date): Optional[int]
+  + current_yield(current_price: float): Optional[float]
+  + set_evaluation_results(results: Dict)
+  + to_dict(): Dict
+  + from_dict(ticker: str, data: Dict): Asset
+  - ...
+}
+
+class Portfolio {
+  - portfolio_name: str
+  - investor_goals: str
+  - assets: Dict[str, Asset]
+  - portfolio_evaluation_results: Dict
+  - ...
+  --
+  + add_asset(ticker: str, name: str): Asset
+  + remove_asset(ticker: str): bool
+  + add_trade(ticker, quantity, price, date_str)
+  + clear_asset_trades(ticker)
+  + tickers(): List[str]
+  + to_dict(): Dict
+  + to_json_str(indent=2): str
+  + save_to_file(path: str)
+  + load_from_file(path: str): Portfolio
+  - ...
+}
+
+class SecurityAssessment {
+  + urgency_to_act: int
+  + buy: int
+  + sell: int
+  + hold: int
+  + potential_upside: int
+  + potential_downside: int
+  + rationale: str
+  - ...
+  --
+  + validate_sum()
+  - ...
+}
+
+class PortfolioSummary {
+  + market_summary: str
+  + current_opportunities: str
+  + current_risks: str
+  + other: str
+  + explanation_evaluation: str
+  - ...
+}
+
+class PortfolioAIAssistant {
+  - provider: str
+  - model: str
+  - finance_provider: str
+  - temperature: float
+  - chat: Any
+  - ...
+  --
+  + new_portfolio(name: str, investor_goals: str): Portfolio
+  + generate_response(prompt: str): str
+  + get_quantitative_data(identifier: str): Dict
+  + get_qualitative_data(identifier: str): (str, str)
+  + assess_security(security_data: Dict, portfolio_attributes: Dict): Dict
+  + evaluate_portfolio_summary(portfolio_dict: Dict): Dict
+  + evaluate_portfolio(portfolio, specific_assets=None): Dict
+  - ...
+}
+
+Portfolio "1" o-- "*" Asset
+PortfolioAIAssistant "1" ..> "1" Portfolio
+PortfolioAIAssistant "1" ..> SecurityAssessment
+PortfolioAIAssistant "1" ..> PortfolioSummary
+
+@enduml

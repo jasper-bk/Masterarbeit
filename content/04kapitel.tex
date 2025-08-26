@@ -241,9 +241,9 @@
     \label{sec:prompt-asset}
 
       Der Prompt im \texttt{assess\_security}–Modul hat das Ziel, für eine einzelne Wertpapierposition eine quantitative Dringlichkeitseinschätzung sowie eine Verteilung der Kauf-/Verkaufs-/Halt-Empfehlung zu erzeugen.
-      Der strukturierte Aufbau lautet:
+      Der strukturierte Aufbau des Prompts ist in Code-Ausschnitt \ref{lst:asset-prompt} zu betrachten.
 
-      \begin{lstlisting}[language=Python, gobble=6, caption={Asset-Bewertungsprompt}]
+      \begin{lstlisting}[language=Python, gobble=6, caption={Asset-Bewertungsprompt}, label=lst:asset-prompt]
       self._security_prompt = ChatPromptTemplate.from_messages(
           [
               ("system",
@@ -301,8 +301,9 @@
 
         Im Modul \texttt{evaluate\_portfolio\_summary} wird ein zusammenfassender Prompt verwendet, der auf der Gesamtheit der einzelnen Asset-Bewertungen aufsetzt und eine umfassende, narrative Gesamtübersicht über das Portfolio generiert.
         Ziel ist es, die vielfältigen Einzelbewertungen in einen verständlichen und handlungsorientierten Gesamtbericht zu überführen.
+        Der Prompt ist im nachfolgenden Code-Ausschnitt \ref{lst:summary-prompt} dargestellt.
 
-        \begin{lstlisting}[language=Python, gobble=8, caption={Portfolio-Zusammenfassungsprompt}]
+        \begin{lstlisting}[language=Python, gobble=8, caption={Portfolio-Zusammenfassungsprompt}, , label=lst:summary-prompt]
         self._portfolio_prompt = ChatPromptTemplate.from_messages(
             [
                 ("system", "You are a portfolio strategist. Return strictly the requested JSON schema."),
@@ -327,10 +328,11 @@
 
       \subsubsection{Chat-Prompt}
 
-        \todo[inline]{To-Do: Text einfügen und beschreiben }
+        Der Chat-Prompt bildet die Grundlage für das interaktive Dialogmodul des Systems.
+        Im Gegensatz zu den zuvor beschriebenen Bewertungs- und Zusammenfassungsprompts zielt er nicht auf eine einmalige strukturierte Ausgabe, sondern auf eine kontinuierliche Interaktion mit dem Benutzer ab.
+        Der Prompt ist im nachfolgenden Code-Ausschnitt \ref{lst:chat-prompt} dargestellt.
 
-
-        \begin{lstlisting}[language=Python, gobble=8, caption={Chat-Prompt}]
+        \begin{lstlisting}[language=Python, gobble=8, caption={Chat-Prompt}, label=lst:chat-prompt]
         self._prompt = ChatPromptTemplate.from_messages(
             [
                 ("system",
@@ -346,90 +348,129 @@
         )
         \end{lstlisting}
 
-  %%%%%%%%%%%%%%%%%%%%%%%%%%
-  % Bis hierhin überarbeitet
-  %%%%%%%%%%%%%%%%%%%%%%%%%%
+        Der Prompt definiert dabei eine klare Rollenbeschreibung: Das Modell agiert als \emph{disciplined investment assistant}, das heißt als zurückhaltender, faktenorientierter Assistent, der ausschließlich auf Basis der vorliegenden Informationen antwortet.
+        Besonderes Augenmerk liegt auf der Vorgabe, keine eigenständig erfundenen oder nicht belegten Fakten in die Konversation einzubringen (\emph{„do not hallucinate figures absent from context“}).
+        Stattdessen ist das Modell angewiesen, bei fehlenden Informationen transparent auf diese Lücken hinzuweisen und sinnvolle nächste Schritte vorzuschlagen.
+        Dadurch wird die Interaktion robuster, nachvollziehbarer und vertrauenswürdiger \autocite{promtingguide}.
+
+        Ein weiterer zentraler Aspekt ist die explizite Integration von Kontextinformationen in die Konversation.
+        Der Prompt bindet sowohl das \emph{Portfolio Context} als auch optionale \emph{Retrieved Snippets} ein, die aus externen Quellen wie Research-Berichten oder Datenbanken stammen können.
+        Auf diese Weise wird \acs{RAG} eingesetzt, bei der das Modell sein Wissen dynamisch mit relevanten Inhalten aus dem Unternehmens- oder Marktumfeld anreichern kann \autocite{promtingguide}.
+
+        Darüber hinaus wird durch das Platzhalterobjekt \texttt{MessagesPlaceholder} sichergestellt, dass die gesamte bisherige Chat-Historie in die nächste Antwort einbezogen wird.
+        Dies ermöglicht kohärente, kontextbewusste Gespräche über mehrere Interaktionen hinweg und unterstützt den Aufbau einer kontinuierlichen Beratungssituation.
+
 
   \section{Dokumentation und Erläuterung der Hauptprogrammlogik}
 
-    Die Architektur des Systems folgt einem modularen Ansatz, der sowohl die Skalierbarkeit als auch die Wartbarkeit des Codes gewährleistet.
+    Die Architektur des Systems folgt einem modularen Ansatz, der sowohl die Erweiterbarkeit als auch die Wartbarkeit des Codes in den Vordergrund stellt.
+    Im Folgenden werden daher zentrale Aspekte der Implementierung erläutert: Neben der \emph{Systemarchitektur und dem Klassendesign} werden der \emph{Programmablauf und die Datenverarbeitung} beschrieben, ergänzt um Verfahren zum \emph{Performance-Monitoring und Debugging}.
+    Darüber hinaus werden \emph{Deployment und Nutzungsszenarien} vorgestellt sowie Möglichkeiten der \emph{Erweiterbarkeit und zukünftigen Entwicklungen} aufgezeigt.
 
     \subsection{Systemarchitektur und Klassendesign}
 
-        Das Herzstück der Anwendung bildet die \texttt{PortfolioAIAssistant}-Klasse, welche von einer \texttt{AIAssistant}-Basisklasse erbt, die bereits die wesentlichen Methoden für die Interaktion zu \acs{KI}-Modellen mitbringt.
-        Diese Vererbungsstruktur ermöglicht eine flexible Integration verschiedener \acs{KI}-Provider und Modelle, wie in Abbildung \ref{fig:uml_diagram} dargestellt.
+      Das Herzstück der Anwendung bildet die \texttt{PortfolioAIAssistant}-Klasse, die als zentrale Schnittstelle alle Interaktionen mit den angebundenen \acs{LLM}-Providern und den Finanzdatenquellen koordiniert.
+      Sie ist eigenständig implementiert und vereint damit die Funktionen der Modellinitialisierung, der orchestrierten Prompt-Erstellung sowie der Integration externer Datenquellen wie \texttt{yfinance} oder \texttt{Finnhub}.
+      Eine besondere Rolle spielt die modulare Anbindung unterschiedlicher Sprachmodell-Provider (OpenAI, Anthropic, Google, Ollama), die durch eine einheitliche Abstraktionsschicht nahtlos austauschbar sind.
+      Die in Abbildung~\ref{fig:uml_diagram} dargestellte Übersicht verdeutlicht diese Struktur, indem sie die zentralen Klassen, ihre Attribute und Methoden sowie die Beziehungen zwischen Datenhaltung, Bewertungsobjekten und der steuernden \texttt{PortfolioAIAssistant}-Klasse zeigt.
 
-        % To-Do: Diagramm nochmal anpassen
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=1\textwidth]{assets/pictures/uml_PortfolioAIAssistant.png}
-            \caption{UML-Klassendiagramm des Portfolio AI Assistant Systems}
-            \small{(Quelle: eigene Darstellung)}
-            \label{fig:uml_diagram}
-        \end{figure}
+      % To-Do: Diagramm nochmal anpassen
+      \begin{figure}[H]
+          \centering
+          \includegraphics[width=0.6\textwidth]{assets/pictures/uml_PortfolioAIAssistant.png}
+          \caption{UML-Klassendiagramm des Portfolio AI Assistant Systems}
+          \small{(Quelle: eigene Darstellung)}
+          \label{fig:uml_diagram}
+      \end{figure}
 
-        Die Klasse implementiert eine klare Trennung zwischen Datenakquisition, -verarbeitung und -bewertung.
-        Dabei werden sowohl quantitative Marktdaten über die \texttt{yfinance}-API als auch qualitative Analysen durch Large Language Models (\acs{LLM}s) integriert.
-        Die Datenstrukturen sind als eigenständige Entitäten modelliert, wobei \texttt{Portfolio}, \texttt{Asset} und \texttt{EvaluationResults} eine hierarchische Komposition bilden.
+      Das Klassendesign folgt einem klaren Trennungsprinzip:
+      Die Datenhaltung und -manipulation erfolgt in den eigenständigen Entitäten \texttt{Portfolio} und \texttt{Asset}, während die Bewertungsschritte in den Pydantic-basierten Strukturen \texttt{SecurityAssessment} und \texttt{PortfolioSummary} modelliert sind.
+      Dadurch wird eine strikte Abgrenzung zwischen persistenter Datenhaltung und temporären Bewertungsobjekten erreicht.
+      Die \texttt{Portfolio}-Klasse verwaltet eine Menge von \texttt{Asset}-Instanzen und stellt Funktionen zum Hinzufügen, Bearbeiten, Serialisieren und Laden von Wertpapierdaten bereit.
+      Die \texttt{Asset}-Klasse wiederum kapselt alle transaktionsbezogenen Informationen (z. B. Käufe, Verkäufe, Kostenbasis) und berechnet abgeleitete Kennzahlen wie Haltedauer oder Rendite.
+      Das Ergebnis der automatisierten Bewertungen wird nicht in die Rohdaten integriert, sondern separat in den Evaluationsfeldern gespeichert.
 
-        Ein besonderes Augenmerk liegt auf der robusten Fehlerbehandlung: Jede kritische Operation ist mit entsprechenden Exception-Handling-Mechanismen ausgestattet, welche bei Fehlern standardisierte Fallback-Werte zurückgeben.
-        Dies gewährleistet die Stabilität des Systems auch bei temporären API-Ausfällen oder unvollständigen Datenquellen.
+      Die Architektur legt besonderen Wert auf Nachvollziehbarkeit und Robustheit.
+      Alle vom System erzeugten Prompts werden persistiert, um spätere Analysen und Audits der Entscheidungsfindung zu ermöglichen.
+      Darüber hinaus sind kritische Verarbeitungsschritte mit umfangreichen Exception-Handling-Mechanismen versehen, sodass bei fehlerhaften API-Antworten oder unvollständigen Daten kontrollierte Fallback-Werte geliefert werden.
+      Dies stellt sicher, dass das System auch bei externen Störungen stabil weiterarbeitet und konsistente Ergebnisse bereitstellt.
 
     \subsection{Programmablauf und Datenverarbeitung}
 
-        Der Verarbeitungsprozess folgt einem strukturierten Workflow, welcher in Abbildung \ref{fig:flowchart} visualisiert ist.
-        Der Ablauf beginnt mit der Initialisierung des Systems und der Konfiguration des gewünschten \acs{KI}-Providers.
+      Der Verarbeitungsprozess folgt einem klar strukturierten Workflow, welcher in Abbildung~\ref{fig:flowchart} visualisiert ist.
+      Der Ablauf beginnt mit der Initialisierung des \texttt{PortfolioAIAssistant} und der Konfiguration des gewünschten \acs{KI}-Providers sowie der Anbindung einer Finanzdatenquelle (\texttt{yfinance} oder \texttt{Finnhub}).
+      Optional können mehrere Modelle in einem Ensemble kombiniert und ihre Antworten zusammengeführt werden.
 
-        % To-Do: Diagramm nochmal anpassen. Z. B.: kleinere Unstimmigkeiten bei Legende
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=1\textwidth]{assets/pictures/flowchart_evaluate_portfolio.png}
-            \caption{Ablaufdiagramm des Portfolio-Evaluierungsprozesses}
-            \small{(Quelle: eigene Darstellung)}
-            \label{fig:flowchart}
-        \end{figure}
+      \begin{figure}[H]
+          \centering
+          \includegraphics[width=1\textwidth]{assets/pictures/flowchart_evaluate_portfolio.png}
+          \caption{Ablaufdiagramm des Portfolio-Evaluierungsprozesses}
+          \small{(Quelle: eigene Darstellung)}
+          \label{fig:flowchart}
+      \end{figure}
 
-        Für jedes Asset im Portfolio werden zunächst quantitative Daten über die \texttt{get\_quantitative\_data()}-Methode erfasst.
-        Diese umfassen fundamentale Kennzahlen wie Kurs-Gewinn-Verhältnis, Marktkapitalisierung und Handelsvolumen.
-        Parallel dazu werden über \texttt{get\_qualitative\_data()} textbasierte Analysen durch das \acs{LLM} generiert, welche Geschäftsmodell, aktuelle Ereignisse sowie Risiken und Chancen bewerten.
+      Im Anschluss werden die Assets des Portfolios iterativ verarbeitet.
+      Für jedes Wertpapier ruft das System zunächst \texttt{get\_quantitative\_data()} auf, um numerische Indikatoren wie aktuellen Kurs, Kurs-Gewinn-Verhältnis oder Marktkapitalisierung zu extrahieren.
+      Ergänzend dazu generiert \texttt{get\_qualitative\_data()} ein Textprofil, das sowohl aus einem LLM-basierten Kurzbrief als auch aus provider-spezifischen Kontextinformationen (z.\,B. Unternehmensprofil, branchenspezifische Nachrichten) besteht.
+      Treten in dieser Phase Fehler auf, werden kontrollierte Fallback-Werte eingetragen, sodass der Prozess robust weiterläuft.
 
-        Die Synthese beider Datenquellen erfolgt in der \texttt{assess\_security()}-Methode, welche einen strukturierten Prompt an das \acs{LLM} sendet und eine \acs{JSON}-formatierte Bewertung zurückerhält.
-        Diese beinhaltet prozentuale Empfehlungen für Kauf-, Verkaufs- und Halteentscheidungen sowie eine Dringlichkeitsbewertung.
-        Ein integrierter Validierungsmechanismus stellt sicher, dass die Summe aller Prozentangaben exakt 100\% beträgt.
+      Die Synthese dieser Eingaben erfolgt in der Methode \texttt{assess\_security()}, welche die gesammelten Daten in einen strukturierten Prompt integriert und an das \acs{LLM} übergibt.
+      Das Modell erzeugt eine \acs{JSON}-Antwort, die Wahrscheinlichkeiten für Kauf-, Verkaufs- und Halteempfehlungen sowie eine Dringlichkeitsbewertung enthält.
+      Ein integrierter Validierungsmechanismus stellt sicher, dass die Summe aller Prozentwerte konsistent bleibt.
+      Neben den numerischen Ergebnissen wird auch die Begründung (\texttt{rationale}) persistiert, ebenso wie der exakte Prompt, um Nachvollziehbarkeit und Auditierbarkeit der Entscheidungen sicherzustellen.
 
-        Nach der individuellen Asset-Bewertung folgt eine portfolioweite Analyse durch \texttt{evaluate\_portfolio\_summary()}, welche übergeordnete Markteinschätzungen, Chancen und Risiken identifiziert.
-        Diese Methode berücksichtigt die Interdependenzen zwischen den einzelnen Positionen und liefert eine ganzheitliche Portfolioperspektive.
+      Nach Abschluss der Asset-Analysen erstellt das System mittels \texttt{evaluate\_portfolio\_summary()} eine portfolioweite Zusammenfassung.
+      Diese berücksichtigt die konsolidierten Bewertungen aller Einzelpositionen und hebt übergeordnete Marktchancen, Risiken sowie Handlungsempfehlungen hervor.
+      Dadurch wird eine ganzheitliche Perspektive auf das Portfolio ermöglicht, die über die isolierte Betrachtung einzelner Wertpapiere hinausgeht und Interdependenzen sichtbar macht.
+
 
     \subsection{Performance-Monitoring und Debugging}
 
-        Das System implementiert umfassende Zeitmessungen für alle kritischen Operationen, von API-Aufrufen bis hin zu \acs{LLM}-Inferenzen.
-        Diese Metriken werden sowohl für Performance-Optimierungen als auch für die Identifikation von Bottlenecks genutzt.
-        Zusätzlich sind Logging-Mechanismen vorgesehen, welche in zukünftigen Versionen erweiterte Debugging-Funktionalitäten ermöglichen sollen.
+      Das System verfügt über ein integriertes Performance-Monitoring, das für alle zentralen Verarbeitungsschritte – von API-Abfragen bis hin zu \acs{LLM}-Inferenzen – Laufzeiten erfasst.
+      Diese Zeitmessungen ermöglichen die gezielte Identifikation von Performance-Bottlenecks und liefern eine Grundlage für spätere Optimierungen hinsichtlich Antwortgeschwindigkeit und Ressourcenauslastung.
+      Fehlerhafte oder ausbleibende Antworten externer Schnittstellen werden durch exception handling abgefangen und mit Fallback-Werten ersetzt, sodass die Stabilität des Gesamtsystems auch unter unsicheren Rahmenbedingungen gewährleistet bleibt.
 
-        Die modulare Struktur des Codes erlaubt es, Zwischenergebnisse und \acs{LLM}-Prompts zu persistieren, was sowohl für die Nachvollziehbarkeit der Entscheidungen als auch für die kontinuierliche Verbesserung der Prompt-Engineering-Strategien von Bedeutung ist.
+      Darüber hinaus ist ein einfacher Logging-Mechanismus integriert, der sukzessive zu einem erweiterten Debugging-Framework ausgebaut werden kann.
+      Besonders hervorzuheben ist die Persistenz sämtlicher \acs{LLM}-Prompts und Zwischenergebnisse: Sie unterstützt nicht nur die Nachvollziehbarkeit und Auditierbarkeit der generierten Empfehlungen, sondern liefert auch eine wertvolle Datenbasis für die iterative Verbesserung von Prompt-Engineering-Strategien.
+
 
     \subsection{Deployment und Nutzungsszenarien}
 
-        Die Anwendung ist für zwei primäre Einsatzszenarien konzipiert, welche unterschiedliche Anwenderfälle adressieren:
+      Die Anwendung ist auf zwei zentrale Einsatzszenarien ausgelegt, die unterschiedliche Zielgruppen und Arbeitsweisen adressieren:
 
-        \textbf{Web-basierte interaktive Nutzung:} Über eine Flask-Webapplikation wird das System als benutzerfreundliche Webanwendung bereitgestellt.
-        Diese Implementierung ermöglicht es Nutzern, Portfolios hochzuladen, Analyseparameter zu konfigurieren und Ergebnisse in Echtzeit zu visualisieren. Die Flask-Integration abstrahiert die technische Komplexität und bietet eine intuitive Benutzeroberfläche für Portfoliomanager und Investoren.
+      \textbf{Webbasierte interaktive Nutzung:}
+      Über eine Flask-Applikation wird das System als leicht zugängliche Webanwendung bereitgestellt.
+      Nutzer können Portfolios hochladen, Analyseparameter konfigurieren und Ergebnisse in Echtzeit visualisieren.
+      Die Integration in Flask abstrahiert die technische Komplexität und ermöglicht eine intuitive Bedienung, wodurch sich das System insbesondere für Portfoliomanager und Investoren eignet, die ohne tiefere Programmierkenntnisse von den Funktionen profitieren möchten.
 
-        \textbf{Analytische Forschungsumgebung:} Für tiefergehende Analysen und Forschungszwecke kann das System direkt in Jupyter Lab-Umgebungen eingebunden werden.
-        Diese Variante richtet sich an Datenanalysten und Forscher, welche erweiterte Parametrisierungen vornehmen, experimentelle Evaluierungen durchführen oder das System in komplexere Analysepipelines integrieren möchten.
+      \textbf{Analytische Forschungsumgebung:}
+      Für datengetriebene Forschung und explorative Analysen lässt sich das System direkt in Jupyter-Lab-Umgebungen einbinden.
+      Dadurch erhalten die Nutzer die Möglichkeit, erweiterte Parametrisierungen vorzunehmen, experimentelle Evaluierungen durchzuführen und das System flexibel in bestehende Analyse-Pipelines zu integrieren.
+      Dieser Modus unterstützt die iterative Entwicklung neuer Methoden und erleichtert die Erweiterung um zusätzliche Modell- oder Datenquellen.
 
-        Die Flexibilität der Architektur ermöglicht es, beide Deployment-Modi mit derselben Codebasis zu betreiben, wobei lediglich die Eingabe- und Ausgabeschnittstellen entsprechend angepasst werden.
-        Dies reduziert den Wartungsaufwand erheblich und gewährleistet Konsistenz zwischen den verschiedenen Nutzungsszenarien.
+      Die zugrunde liegende modulare Architektur stellt sicher, dass beide Deployment-Varianten auf einer identischen Codebasis beruhen.
+      Lediglich die Ein- und Ausgabeschnittstellen unterscheiden sich, was den Wartungsaufwand reduziert und zugleich die Konsistenz der Ergebnisse in unterschiedlichen Nutzungskontexten gewährleistet.
+
 
     \subsection{Erweiterbarkeit und zukünftige Entwicklungen}
 
-        Die objektorientierte Struktur des Systems bietet zahlreiche Ansatzpunkte für zukünftige Erweiterungen.
-        Die Implementierung zusätzlicher Datenquellen kann durch Erweiterung der entsprechenden Methoden erfolgen, während neue \acs{KI}-Provider durch das bestehende Vererbungsschema nahtlos integriert werden können.
+      Die modulare und objektorientierte Architektur des Systems eröffnet vielfältige Möglichkeiten zur Erweiterung.
+      Neue Datenquellen lassen sich durch die Implementierung zusätzlicher Zugriffs- und Verarbeitungsschichten einbinden, während weitere \acs{KI}-Provider über die bestehende Abstraktionslogik in der \texttt{PortfolioAIAssistant}-Klasse unkompliziert integriert werden können.
+      Dadurch bleibt das System auch bei der Weiterentwicklung der Modelllandschaft und externer APIs langfristig anpassungsfähig.
 
-        Besonders hervorzuheben ist die vorbereitete Integration von News-Scraping-Funktionalitäten, welche die qualitative Datengrundlage erheblich erweitern wird.
-        Die bereits implementierte Schnittstelle ermöglicht eine einfache Aktivierung dieser Funktionalität, sobald entsprechende Datenquellen verfügbar sind.
+      Ein besonderer Fokus zukünftiger Arbeiten liegt auf der Anreicherung der qualitativen Analysen durch News- und Dokumenten-Scraping.
+      Die hierfür vorgesehenen Schnittstellen sind bereits im Code angelegt, sodass diese Funktionalität bei Verfügbarkeit geeigneter Datenquellen ohne größere Umstrukturierungen aktiviert werden kann.
+      Darüber hinaus eröffnet die Integration von \acs{RAG}-Ansätzen zusätzliche Perspektiven, um Portfoliokontexte mit externen Wissensbeständen zu verknüpfen und die Analysequalität weiter zu steigern.
 
-        Die Kombination aus strukturiertem Design, robusten Fehlerbehandlungsmechanismen und flexiblen Deployment-Optionen macht das Portfolio AI Assistant System zu einer vielseitigen Lösung für automatisierte Portfolioanalysen in verschiedenen Anwendungskontexten.
+      Insgesamt bilden das strukturierte Design, die robusten Fehlerbehandlungsmechanismen sowie die flexiblen Deployment-Optionen eine belastbare Grundlage, um das System kontinuierlich auszubauen und in unterschiedlichen Anwendungskontexten – von Forschung über Investment-Management bis hin zu produktiven Webservices – einzusetzen.
+
+    \todo[inline]{To-Do: Chat noch irgendwo genauer beschreiben. Fraglich ob er unter Hauptprogrammlogik gehört? }
+
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%
+  % Bis hierhin überarbeitet
+  \todo[inline]{Überarbeitet bis hier }
+  %%%%%%%%%%%%%%%%%%%%%%%%%%
 
   \section{Frontend}
 

@@ -1,0 +1,133 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam linetype ortho
+skinparam classFontSize 11
+
+title Gesamtsystem UML-Diagramm - Portfolio AI Assistant
+
+' =====================
+' Datenklassen
+' =====================
+class Asset {
+  - ticker: str
+  - name: str
+  - trades: List[Dict]
+  - evaluation_results: Dict
+  --
+  + add_trade(qty, price, date_str)
+  + total_quantity(): float
+  + average_buy_in(): float
+  + holding_days(): Optional[int]
+  + current_yield(current_price: float): Optional[float]
+  + set_evaluation_results(results: Dict)
+  + to_dict(): Dict
+}
+
+class Portfolio {
+  - portfolio_name: str
+  - investor_goals: str
+  - assets: Dict[str, Asset]
+  - portfolio_evaluation_results: Dict
+  --
+  + add_asset(ticker, name): Asset
+  + add_trade(ticker, qty, price, date_str)
+  + remove_asset(ticker): bool
+  + tickers(): List[str]
+  + to_dict(): Dict
+  + save_to_file(path: str)
+  + load_from_file(path: str): Portfolio
+}
+
+class SecurityAssessment {
+  + urgency_to_act: int
+  + buy: int
+  + sell: int
+  + hold: int
+  + potential_upside: int
+  + potential_downside: int
+  + rationale: str
+  --
+  + validate_sum()
+}
+
+class PortfolioSummary {
+  + market_summary: str
+  + current_opportunities: str
+  + current_risks: str
+  + other: str
+  + explanation_evaluation: str
+}
+
+' =====================
+' Haupt-Assistent
+' =====================
+class PortfolioAIAssistant {
+  - provider: str
+  - model: str
+  - finance_provider: str
+  - temperature: float
+  - chat: Any
+  --
+  + new_portfolio(name, goals): Portfolio
+  + generate_response(prompt: str): str
+  + get_quantitative_data(identifier: str): Dict
+  + get_qualitative_data(identifier: str): (str, str)
+  + assess_security(security_data, portfolio_ctx): Dict
+  + evaluate_portfolio_summary(portfolio_dict: Dict): Dict
+  + evaluate_portfolio(portfolio, specific_assets=None): Dict
+}
+
+' =====================
+' Chatmodul
+' =====================
+class PortfolioChat {
+  - assistant: PortfolioAIAssistant
+  - portfolio: Portfolio
+  - use_rag: bool
+  - _histories: Dict[str, BaseChatMessageHistory]
+  - _vectorstore
+  --
+  + ask(session_id: str, msg: str): str
+  + clear(session_id: str)
+  + get_history(session_id: str): List[Dict]
+  --
+  - _get_history_for_session(session_id)
+  - _init_embeddings(provider,...)
+  - _build_vectorstore()
+}
+
+note top of PortfolioChat
+  Hilfsfunktion:
+  build_chat_context_from_portfolio(portfolio, ...)
+  → erzeugt JSON-Kontext für Prompts
+end note
+
+' =====================
+' Externe Komponenten
+' =====================
+interface BaseChatMessageHistory
+class InMemoryChatMessageHistory
+class FAISS
+class OllamaEmbeddings
+class OpenAIEmbeddings
+class GoogleGenerativeAIEmbeddings
+
+' =====================
+' Beziehungen
+' =====================
+Portfolio "1" o-- "*" Asset
+PortfolioAIAssistant "1" ..> "1" Portfolio
+PortfolioAIAssistant "1" ..> SecurityAssessment
+PortfolioAIAssistant "1" ..> PortfolioSummary
+
+PortfolioChat --> PortfolioAIAssistant : nutzt
+PortfolioChat --> Portfolio : referenziert
+PortfolioChat --> BaseChatMessageHistory : verwaltet
+PortfolioChat --> InMemoryChatMessageHistory : Default
+PortfolioChat ..> FAISS : optional (RAG)
+PortfolioChat ..> OllamaEmbeddings : optional
+PortfolioChat ..> OpenAIEmbeddings : optional
+PortfolioChat ..> GoogleGenerativeAIEmbeddings : optional
+
+@enduml

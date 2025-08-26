@@ -1,0 +1,36 @@
+digraph PortfolioChatFlow {
+    rankdir=TB;
+    node [shape=box, style=filled, fontname="Arial"];
+
+    start [label="ask(session_id, user_message)", fillcolor=lightblue];
+
+    build_ctx [label="build_chat_context_from_portfolio()\n(JSON mit abgeleiteten Werten)", fillcolor=wheat];
+
+    check_rag [label="use_rag & vectorstore available?", fillcolor=lightcyan, shape=diamond];
+
+    retrieval [label="FAISS Retrieval\n(k relevante Dokumente)\n→ Text-Snippets", fillcolor=gold];
+    retrieval_fail [label="RAG Retrieval failed\n→ Snippets leer", fillcolor=mistyrose, shape=ellipse];
+
+    no_rag [label="RAG deaktiviert\n→ Snippets leer", fillcolor=lightgray];
+
+    build_prompt [label="Erstelle Prompt:\n• Portfolio-Kontext\n• Snippets\n• Verlauf (History)", fillcolor=lightgreen];
+
+    invoke_chain [label="LLM-Aufruf über LCEL-Kette\n(RunnableWithMessageHistory)", fillcolor=lightsalmon];
+
+    return_ans [label="Antwort zurückgeben", fillcolor=lightblue];
+
+    // Flows
+    start -> build_ctx;
+    build_ctx -> check_rag;
+    check_rag -> retrieval [label="Yes"];
+    check_rag -> no_rag [label="No"];
+
+    retrieval -> build_prompt;
+    retrieval -> retrieval_fail [style=dashed, color=red];
+    retrieval_fail -> build_prompt;
+
+    no_rag -> build_prompt;
+
+    build_prompt -> invoke_chain;
+    invoke_chain -> return_ans;
+}
