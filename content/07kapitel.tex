@@ -1,12 +1,12 @@
 \chapter{Fazit und Ausblick}
 \label{chap:fazit}
 
-Die vorliegende Masterarbeit adressiert das Spannungsfeld zwischen leistungsfähiger, datengetriebener Portfoliooptimierung und der in der Praxis geforderten Transparenz von Entscheidungsbegründungen.
-Dieses Abschlusskapitel bündelt die zentralen Ergebnisse, ordnet sie entlang der eingangs formulierten Forschungsfragen ein und leitet daraus sowohl die wissenschaftlichen Beiträge als auch Implikationen für Praxis und Forschung ab.
-Zugleich werden Limitationen reflektiert und Perspektiven für weiterführende Arbeiten aufgezeigt, die aus der methodischen Anlage und den empirischen Erkenntnissen hervorgehen.
+  Die vorliegende Masterarbeit adressiert das Spannungsfeld zwischen leistungsfähiger, datengetriebener Portfoliooptimierung und der in der Praxis geforderten Transparenz von Entscheidungsbegründungen.
+  Dieses Abschlusskapitel bündelt die zentralen Ergebnisse, ordnet sie entlang der eingangs formulierten Forschungsfragen ein und leitet daraus sowohl die wissenschaftlichen Beiträge als auch Implikationen für Praxis und Forschung ab.
+  Zugleich werden Limitationen reflektiert und Perspektiven für weiterführende Arbeiten aufgezeigt, die aus der methodischen Anlage und den empirischen Erkenntnissen hervorgehen.
 
-Im Sinne der in der Arbeit verfolgten Design-Science-Logik versteht sich das entwickelte Artefakt nicht als Selbstzweck, sondern als forschungsgeleitete Lösung für ein reales Problem in einem regulierten Domänenkontext.
-Die nachfolgenden Abschnitte fassen die Arbeitsergebnisse zusammen (Abschnitt~\ref{sec:zusammenfassung}), systematisieren die Beiträge zum Fachgebiet und skizzieren konkrete Weiterentwicklungen des Systems sowie Forschungsbedarfe.
+  Im Sinne der in der Arbeit verfolgten Design-Science-Research(\acs{DSR})-Vorgehen versteht sich das entwickelte Artefakt nicht als Selbstzweck, sondern als forschungsgeleitete Lösung für ein reales Problem in einem regulierten Domänenkontext.
+  Die nachfolgenden Abschnitte fassen die Arbeitsergebnisse zusammen (Abschnitt~\ref{sec:zusammenfassung}), systematisieren die Beiträge zum Fachgebiet und skizzieren konkrete Weiterentwicklungen des Systems sowie Forschungsbedarfe.
 
   \section{Zusammenfassung der Forschungsarbeit}
   \label{sec:zusammenfassung}
@@ -19,14 +19,14 @@ Die nachfolgenden Abschnitte fassen die Arbeitsergebnisse zusammen (Abschnitt~\r
     Das Vorgehen umfasste Problemidentifikation, Entwurf und Realisierung eines modularen Prototyps sowie eine mehrstufige Evaluationsplanung und -durchführung.
     Dieses Raster ermöglichte, Anforderungen aus dem Anwendungsumfeld systematisch in Gestaltung und Prüfung des Artefakts zu übersetzen.
 
-    Das Artefakt wurde als modularer, in Python implementierter Prototyp realisiert: Ein Flask-Backend orchestriert Datenzugriffe und \acs{LLM}-Aufrufe; ein \acs{LLM}-Modul (lokal via Ollama, optional via \acs{API} zu größeren Modellen) erzeugt strukturierte Ausgaben inklusive Begründungen; \texttt{yfinance} liefert Kurs- und Metadaten; ein leichtgewichtiges Web-Frontend (HTML/Bootstrap/JS) präsentiert Empfehlungen und Begründungen.
+    Das Artefakt wurde als modularer, in Python implementierter Prototyp realisiert: Ein Flask-Backend orchestriert Datenzugriffe und \acs{LLM}-Aufrufe, ein \acs{LLM}-Modul (lokal via Ollama, optional via \acs{API} zu größeren Modellen) erzeugt strukturierte Ausgaben inklusive Begründungen, \texttt{yfinance} oder wahlweise Finnhub liefern Kurs- und Metadaten, ein leichtgewichtiges Web-Frontend (HTML/Bootstrap/JS) präsentiert Empfehlungen und Begründungen.
     Zur Modellorchestrierung und strukturierten Ausgabe wurde LangChain integriert.
     Die klare Schnittstellenbildung (\acs{JSON}/\acs{HTTP}) erlaubt die Substitution einzelner Komponenten und unterstützt die Weiterentwicklung.
 
-    Kern der Funktionslogik ist ein Prompt-Engineering, das eine konsistente Extraktion strukturierter Empfehlungssignale (buy/hold/sell in Prozent) mit einer nachvollziehbaren, natürlichsprachlichen Begründung koppelt und diese auf Portfolioebene aggregiert.
+    Kern der Funktionslogik ist ein Prompt-Engineering, das eine konsistente Extraktion strukturierter Empfehlungssignale (buy/hold/sell in Prozent und einiger anderer Werte) mit einer nachvollziehbaren, natürlichsprachlichen Begründung koppelt und diese auf Portfolioebene aggregiert.
     Dafür wurden spezielle Prompts für Einzelwert- und Portfoliosicht entworfen und in die Backend-Logik eingebettet.
 
-    Die Evaluation wurde zweistufig angelegt: Zunächst wurden geeignete Verfahren und Metriken definiert (Konsistenz- und Prompt-Response-Analysen, Vergleich mit Analystenmeinungen, finanzielle Performancemessung inklusive Sharpe Ratio und Drawdown, statistische Tests, Erklärbarkeits- und Nutzerakzeptanzkriterien).
+    Die Evaluation wurde zweistufig angelegt: Zunächst wurden geeignete Verfahren und Metriken definiert (Konsistenz- und Prompt-Response-Analysen, Vergleich mit Analystenmeinungen, Erklärbarkeits- und Nutzerakzeptanzkriterien).
     Anschließend erfolgte die Umsetzung in einer Jupyter-Lab-Umgebung, um Testszenarien reproduzierbar auszuführen und Ergebnisse transparent zu dokumentieren.
     Die Anlage adressiert damit sowohl die Qualität der Empfehlungen als auch die Nachvollziehbarkeit der Entscheidungsbegründungen.
 
@@ -42,9 +42,9 @@ Die nachfolgenden Abschnitte fassen die Arbeitsergebnisse zusammen (Abschnitt~\r
     Diese Sektion ordnet die Ergebnisse entlang zentraler Validitätsbedrohungen ein und verdichtet domänenspezifische Grenzen des entwickelten Artefakts.
     Ziel ist eine transparente Einordnung der Aussagekraft sowie die Ableitung von Konsequenzen für Interpretation und Weiterarbeit.
 
-    Das gewählte Design-Science-Research-Vorgehen unterstützt die artefaktzentrierte Erkenntnisgewinnung, birgt jedoch das Risiko enger Rückkopplungen zwischen Designentscheidungen und Evaluation.
+    Das gewählte \acs{DSR}-Vorgehen unterstützt die artefaktzentrierte Erkenntnisgewinnung, birgt jedoch das Risiko enger Rückkopplungen zwischen Designentscheidungen und Evaluation.
     Die Backtests wurden aus Gründen der Rechenökonomie auf repräsentative Zeitfenster und gröbere Rebalancing-Intervalle begrenzt, wodurch stichprobenbedingte Effekte und Zeitreihenabhängigkeiten die Resultate beeinflussen können.
-    Die verwendeten Signifikanztests und Bootstrap-Ansätze reduzieren diese Risiken, ersetzen aber keine systematische Trennung von Entwicklungs- und Testperioden mit größerem Stichprobenumfang.
+    Die verwendeten Tests reduzieren diese Risiken, ersetzen aber keine systematische Trennung von Entwicklungs- und Testperioden mit größerem Stichprobenumfang.
 
     Die Nutzung einer primären Kursdatenquelle erleichtert die Implementierung, macht die Ergebnisse jedoch empfindlich gegenüber Datenqualität, Verfügbarkeit und Nicht-Stationarität.
     Mögliche Survivorship-Bias-Effekte und die Auswahl spezifischer Benchmarks begrenzen die Übertragbarkeit, sodass eine breitere Datenbasis einschließlich Fundamentaldaten und Ereignisinformationen angezeigt ist.
@@ -73,20 +73,18 @@ Die nachfolgenden Abschnitte fassen die Arbeitsergebnisse zusammen (Abschnitt~\r
 
     Die Arbeit leistet Beiträge in drei komplementären Dimensionen: (i) konzeptionell–methodisch durch die Übertragung und Operationalisierung eines Design-Science-Research(\acs{DSR})-Vorgehens auf ein \acs{KI}-gestütztes Finanzartefakt, (ii) technisch durch die Entwicklung eines modularen Prototyps mit klaren Schnittstellen für erklärbare, portfolioweite Entscheidungshilfen, und (iii) evaluativ durch ein Mess- und Evaluationsraster, das finanzielle Performancekennzahlen mit Erklärbarkeits- und Nutzungsmetriken verbindet.
 
-
-    Erstens konkretisiert die Arbeit die formulierte Zielsetzung eines Assistenzsystems, das prozentuale Einzelwert-Empfehlungen („Kaufen/Halten/Verkaufen“) systematisch mit natürlichsprachlichen, datenbasierten Begründungen verknüpft und zu einer risikoadaptiven Portfoliosicht aggregiert.
+    Erstens konkretisiert die Arbeit die formulierte Zielsetzung eines Assistenzsystems, das prozentuale Einzelwert-Empfehlungen (\enquote{Kaufen/Halten/Verkaufen}) systematisch mit natürlichsprachlichen, datenbasierten Begründungen verknüpft und zu einer risikoadaptiven Portfoliosicht aggregiert.
     Damit verschiebt sie den Fokus von reiner Prognoseoptimierung hin zu Transparenz und Nachvollziehbarkeit als Primärziel der Entscheidungsunterstützung.
     Zweitens überführt die Arbeit etablierte \acs{DSR}-Guidelines (Relevanz-, Rigor- und Design-Zyklus) in einen konkret praktikablen Entwicklungsprozess für regulierte Finanzkontexte; sie zeigt, wie Problemidentifikation, Artefaktkonstruktion und Evaluation iterativ verzahnt werden können, um domänenspezifische Anforderungen früh und wiederholt in das Design zurückzuspielen.
     Drittens positioniert sie das Artefakt explizit als Antwort auf Forschungslücken der \acs{XAI}- und Robo-Advisor-Literatur (Erklärungsdefizit, fehlende portfolioübergreifende Integration, Transparenzanforderungen), und schafft so eine konzeptionelle Brücke zwischen methodischer Erklärbarkeit und portfoliotheoretischer Konsistenz.
 
     Die Arbeit stellt ein modular aufgebautes System bereit, das (a) ein Python/Flask-Backend mit klaren \acs{HTTP}/\acs{JSON}-Schnittstellen, (b) eine austauschbare \acs{LLM}-Schicht (lokal via Ollama, optional über \acs{API}), (c) ein Finanzdaten-Backend (\texttt{yfinance}) und (d) ein leichtgewichtiges Web-Frontend (HTML/Bootstrap/JS) integriert.
     Diese Entkopplung ermöglicht die Substitution einzelner Komponenten (\acs{LLM}-Provider, Frontend) ohne Eingriff in die Kernlogik und adressiert so Wartbarkeit und Weiterentwicklung in dynamischen Technologiestacks.
-    Durch explizites Prompt- und Output-Design (strukturierte \acs{JSON}-Extraktion) sowie die Nutzung von Orchestrierungswerkzeugen (z.\,B. LangChain) werden Begründungen und Empfehlungssignale konsistent erfasst und für eine Aggregation auf Portfolioebene verfügbar gemacht.
+    Durch explizites Prompt- und Output-Design (strukturierte \acs{JSON}-Extraktion) sowie die Nutzung von Orchestrierungswerkzeugen (z. B. LangChain) werden Begründungen und Empfehlungssignale konsistent erfasst und für eine Aggregation auf Portfolioebene verfügbar gemacht.
     Die dokumentierte Projektstruktur (inkl. Trennung von Analyse-, Test- und Web-Schichten) stärkt Reproduzierbarkeit und kollaborative Weiterentwicklung und liefert ein übertragbares Referenzmuster für ähnliche \acs{XAI}-Artefakte in Finanzanwendungen.
 
-    Konzeptionell und operativ verbindet die Arbeit finanzökonomische Kennzahlen (u.\,a. Sharpe-Ratio, Volatilität, maximaler Drawdown, VaR/ES) mit \acs{XAI}-spezifischen Qualitätsdimensionen (Erklärbarkeits- und Nutzungsmetriken, Prompt-Response-Konsistenz) und statistischer Inferenz (z.\,B. gepaarte Tests, Bootstrap), um Wirkung und Zuverlässigkeit des Artefakts ganzheitlich zu beurteilen.
-    Die Arbeit schlägt dafür ein ressourcensensitives Backtesting-Design mit repräsentativen Fenstern und gröberen Rebalancing-Intervallen vor und implementiert die Durchführung in einer Jupyter-Umgebung, was Realismus, Reproduzierbarkeit und Aufwand in ein praktikables Verhältnis setzt.
-    Zudem werden Daten- und Prompt-Anforderungen (z.\,B. Prompt-History-Logging, Benchmark-Daten) sowie methodische Limitationen (probabilistische \acs{LLM}-Antworten, Stichprobengrößen, Survivorship Bias) systematisch erfasst und als Gestaltungs- und Berichtspflichten für zukünftige Studien formuliert.
+    Konzeptionell und operativ verbindet die Arbeit finanzökonomische Kennzahlen mit \acs{XAI}-spezifischen Qualitätsdimensionen (Erklärbarkeits- und Nutzungsmetriken, Prompt-Response-Konsistenz), um Wirkung und Zuverlässigkeit des Artefakts ganzheitlich zu beurteilen.
+    Zudem werden Daten- und Prompt-Anforderungen (z.\,B. Prompt-History-Logging, Benchmark-Daten) sowie methodische Limitationen (probabilistische \acs{LLM}-Antworten, Stichprobengrößen, Survivorship Bias) identifiziert und als Gestaltungs- und Berichtspflichten für zukünftige Studien formuliert.
 
     Für die Praxis zeigt die Arbeit, wie durch erklärungsorientiertes Design Vertrauen und Akzeptanz von \acs{KI}-Entscheidungsunterstützung im Wertpapierkontext gestärkt werden können und wie portfolioübergreifende Konsistenz trotz modellseitiger Black-Box-Eigenschaften hergestellt werden kann.
     Dies adressiert explizite Transparenzforderungen und eröffnet Anschlussmöglichkeiten für regulatorische und verbraucherschutzorientierte Anwendungen.
@@ -100,8 +98,8 @@ Die nachfolgenden Abschnitte fassen die Arbeitsergebnisse zusammen (Abschnitt~\r
     Ziel ist es, die Leistungsfähigkeit des Artefakts systematisch zu steigern, seine Erklärungen belastbarer zu machen und die Praxistauglichkeit unter realistischen Rahmenbedingungen zu belegen.
     Die nachfolgenden Punkte skizzieren einen priorisierten Fahrplan.
 
-    Die in der Arbeit angelegte Evaluationslandschaft (Backtesting mit Rendite-/Risikokennzahlen, Signifikanztests, Nutzerbewertungen) sollte granular erweitert und stärker standardisiert werden.
-    Konkret empfiehlt sich die Ausweitung der Backtests auf mehrere Marktphasen, ergänzt um robuste Inferenz (u.\,a. gepaarte Tests, Bootstrap) und eine explizite Trennung von Entwicklungs- und Testperioden, um Overfitting-Risiken zu begrenzen.
+    Die in der Arbeit angelegte Evaluationslandschaft sollte granular erweitert und stärker standardisiert werden.
+    Konkret empfiehlt sich eine Ausweitung auf Backtests für mehrere Marktphasen, ergänzt um robuste Inferenz (u.\,a. gepaarte Tests, Bootstrap) und eine explizite Trennung von Entwicklungs- und Testperioden, um Overfitting-Risiken zu begrenzen.
     Parallel dazu sind kontrollierte Nutzerstudien (inklusive A/B-Tests zu Erklärungsformaten) durchzuführen, um Wirkung, Verständlichkeit und Vertrauen systematisch zu messen und nicht nur entwicklerseitig zu bewerten.
     Die im Forschungsstand benannte Lücke einer konsistenten \acs{XAI}-Evaluationspraxis unterstreicht den Bedarf an klaren Berichts- und Vergleichsprotokollen.
 
@@ -110,19 +108,20 @@ Die nachfolgenden Abschnitte fassen die Arbeitsergebnisse zusammen (Abschnitt~\r
     Die Arbeit benennt hier explizit fehlende Parallelisierung und wahrnehmbare Antwortverzögerungen lokaler Modelle als aktuelle Limitierungen.
     Die bestehende Modularität (klar getrennte \acs{HTTP}/\acs{JSON}-Schnittstellen, austauschbare \acs{LLM}-Schicht) erleichtert solche Eingriffe und erlaubt auch den pragmatischen Wechsel zwischen lokalen und Cloud-basierten Modellen je nach Kosten-, Datenschutz- und Performanceanforderung.
 
-    Zur Verbesserung der Aussagekraft der Empfehlungen sollten zusätzliche Datenquellen (z.\,B. Fundamentaldaten, Analystenratings, Ereignisdaten) schrittweise ergänzt und mit den über \texttt{yfinance} bezogenen Kursreihen verknüpft werden; zugleich sind die Folgekosten kommerzieller Anbieter und \acs{API}-Nutzung zu berücksichtigen.
+    Zur Verbesserung der Aussagekraft der Empfehlungen sollten zusätzliche Datenquellen (z.\,B. Fundamentaldaten, Analystenratings, Ereignisdaten) schrittweise ergänzt und mit den über \texttt{yfinance} bzw Finnhub bezogenen Kursreihen verknüpft werden.
+    Zugleich sind die Folgekosten kommerzieller Anbieter und \acs{API}-Nutzung zu berücksichtigen.
     Methodisch bietet die vorhandene LangChain-Orchestrierung Anknüpfungspunkte für weiterführende Agentenlogiken (z.\,B. toolgestützte Recherche, strukturierte Output-Parser) und die schrittweise Anreicherung der Erklärungen.
 
-    Die Erklärungsqualität sollte entlang objektiver Metriken (Treue, Stabilität) und subjektiver Kriterien (Verständlichkeit, Nützlichkeit) weiter geprüft und optimiert werden; die Literatur beschreibt hier weiterhin einen Bedarf an standardisierten Verfahren, den diese Arbeit aufgreifen kann.
+    Die Erklärungsqualität sollte entlang objektiver Metriken (Treue, Stabilität) und subjektiver Kriterien (Verständlichkeit, Nützlichkeit) weiter geprüft und optimiert werden.
     Praktisch empfiehlt sich zudem ein Variantenvergleich von Begründungsstilen (kurz vs.\ detailliert, evidenz- vs.\ risikoorientiert) sowie die Erprobung interaktiver UI-Elemente im bestehenden Web-Frontend.
 
-    Mit Blick auf reale Einsatzszenarien sind Datenschutz (\acs{DSGVO}), Nachvollziehbarkeit und Auditierbarkeit fortlaufend sicherzustellen.
+    Mit Blick auf reale Einsatzszenarien sind Datenschutz, Nachvollziehbarkeit und Auditierbarkeit fortlaufend sicherzustellen.
     Dazu gehören u.\,a. konsistentes Prompt-/Antwort-Logging, Versionierung der Modelle und Daten sowie klare Nutzungsleitlinien; zugleich sind regulatorische Anforderungen und Nutzerakzeptanz als Daueraufgaben adressiert.
 
     Die bereits demonstrierte Web-Oberfläche kann iterativ zu einer pilotfähigen Anwendung ausgebaut werden (z.\,B. reaktivere Frontend-Frameworks, erweiterte Visualisierungen), wobei die modulare Backend-Struktur die risikoarme Weiterentwicklung begünstigt.
     Ein gestufter Praxistransfer—zunächst im geschützten Testbetrieb mit ausgewählten Portfolios, anschließend mit breiterer Nutzerbasis—ermöglicht es, technische, organisatorische und ökonomische Anforderungen früh zu validieren.
 
-    Zusammenfassend zeigt der Ausblick, dass die vorliegende Lösung  über eine belastbare Basis verfügt, auf der sowohl wissenschaftlich stringente Evaluationen als auch praxisnahe Skalierungsschritte aufsetzen können.
+    Zusammenfassend zeigt der Ausblick, dass die vorliegende Lösung über eine belastbare Basis verfügt, auf der sowohl wissenschaftlich stringente Evaluationen als auch praxisnahe Skalierungsschritte aufsetzen können.
     Die Kombination aus modularer Architektur, erweiterbarer Datenlage und systematischer Evaluation bildet den Kern der nächsten Iterationen.
 
 
@@ -136,13 +135,16 @@ Die nachfolgenden Abschnitte fassen die Arbeitsergebnisse zusammen (Abschnitt~\r
     Methodische Grenzen -- etwa die probabilistische Natur großer Sprachmodelle, dateninduzierte Verzerrungen und stichprobenbedingte Unsicherheiten -- begrenzen die Übertragbarkeit und sind bei Interpretation und Weiterverwendung zu berücksichtigen.
 
     Die dargestellten Inhalte sind als Forschungsbeitrag zu verstehen und stellen keine Anlageempfehlung dar.
-    Nachvollziehbarkeit und Replizierbarkeit wurden durch eine klare Schnittstellen- und Protokolldefinition, dokumentierte Experimente sowie eine transparente Auswertung adressiert; dennoch bleibt weitergehende, unabhängige Validierung in realen Anwendungsszenarien wünschenswert.
+    Nachvollziehbarkeit und Replizierbarkeit wurden durch eine klare Schnittstellen- und Protokolldefinition, dokumentierte Experimente sowie eine transparente Auswertung adressiert.
+    Dennoch bleibt weitergehende, unabhängige Validierung in realen Anwendungsszenarien wünschenswert.
 
     Aus der Arbeit nehme ich mit, dass robuste Daten- und Evaluationsprozesse für die Glaubwürdigkeit erklärbarer \acs{KI} entscheidender sind als frühe Modelloptimierungen.
-    Besonders prägend war die Einsicht, dass Klarheit der Schnittstellen und diszipliniertes Prompt-Design die Konsistenz der Ergebnisse stärker beeinflussen als erwartet.
+    Außerdem zeigte sich, dass Klarheit der Schnittstellen und diszipliniertes Prompt-Design die Konsistenz der Ergebnisse stärker beeinflussen als erwartet.
     Für die Praxis hat sich gezeigt, dass Erklärungen erst über Nutzungsfeedback wirksam werden und daher integraler Teil iterativer Entwicklungszyklen sein sollten.
+    Allerdings ist dies im Rahmen der Arbeit und unter den gegeben Voraussetzungen nur schwer in einem gut zu dokumentierbarem Rahmen realisibar gewesen.
 
-    Abschließend lässt sich festhalten: Die Arbeit leistet einen substanziellen Beitrag zur Überbrückung der Lücke zwischen erklärbarer \acs{KI} und portfolioweiter Entscheidungsunterstützung und schafft eine belastbare Grundlage für vertiefte Evaluation und anwendungsnahe Skalierung.
+    Abschließend lässt sich festhalten:
+    Die Arbeit leistet einen substanziellen Beitrag zur Überbrückung der Lücke zwischen erklärbarer \acs{KI} und portfolioweiter Entscheidungsunterstützung und schafft eine belastbare Grundlage für vertiefte Evaluation und anwendungsnahe Skalierung.
 
 
 

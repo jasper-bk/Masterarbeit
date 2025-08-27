@@ -15,16 +15,14 @@
   \section{Methodenkritik}
 
     Die in dieser Arbeit eingesetzten Methoden zeichnen sich durch eine klare Struktur und Nachvollziehbarkeit aus.
-    Besonders die Nutzwertanalyse hat sich als wirkungsvolles Werkzeug erwiesen, um komplexe Entscheidungsprozesse systematisch zu gestalten.
-    Durch die gezielte Gewichtung der Kriterien konnten projektrelevante Prioritäten wie Kosten, Datenschutz und Anpassungsfähigkeit in den Vordergrund gestellt werden.
+    Besonders die Nutzwertanalyse hat sich als wirkungsvolles Werkzeug erwiesen, um komplexe Entscheidungsprozesse systematisch zu gestalten und Informationen über die jeweiligen Technologien strukturiert zu sammeln.
+    Durch die gezielte Gewichtung der Kriterien sind projektrelevante Prioritäten wie Kosten, Datenschutz und Anpassungsfähigkeit in den Vordergrund gestellt worden.
     Die Verwendung mehrerer Kriterienkataloge für unterschiedliche Themenbereiche erhöhte zudem die inhaltliche Passgenauigkeit und trug zu einer differenzierten Betrachtung bei.
     Auch der ergänzende Einsatz von Proof-of-Concept-Tests steigerte die technische Validität der Ergebnisse.
 
     Trotz dieser Stärken sind auch einige Einschränkungen zu berücksichtigen.
     Die Gewichtungen der Kriterien basierten auf projektinternen Überlegungen und wurden nicht durch eine breite Stakeholder-Befragung abgesichert, was die Objektivität potenziell einschränkt.
-    Zudem war die Recherche der Anbieter und Technologien überwiegend desk-basiert, wodurch eine gewisse Abhängigkeit von den jeweils verfügbaren und möglicherweise selektiv ausgewählten Informationsquellen entstand.
     Langzeittests oder Feldstudien zur Belastbarkeit und Stabilität der Lösungen wurden nicht durchgeführt, sodass die Ergebnisse vor allem kurzfristige Eindrücke widerspiegeln.
-    Die Lizenz- und Compliance-Bewertungen stützten sich auf öffentlich zugängliche Informationen, wodurch versteckte vertragliche Einschränkungen unberücksichtigt bleiben konnten.
 
     Ein weiterer methodischer Aspekt betrifft die Vergleichbarkeit der Ergebnisse.
     Die Entscheidung, für unterschiedliche Themenbereiche jeweils eigene Kriterienkataloge zu erstellen, hat zwar die Relevanz der Bewertung in den einzelnen Bereichen erhöht, jedoch die direkte Vergleichbarkeit zwischen diesen Bereichen erschwert.
@@ -35,11 +33,11 @@
   \section{Nutzbarkeit und Anwendungsfälle}
 
     Das entwickelte Assistenzsystem zeigt in seiner aktuellen Form eine hohe Nutzbarkeit für unterschiedliche Zielgruppen im Finanzbereich.
-    Besonders hervorzuheben ist die flexible Architektur, welche sowohl eine webbasierte Nutzung über Frameworks wie Flask oder Django als auch eine Desktop-Variante mittels Tkinter ermöglicht.
+    Besonders hervorzuheben ist die flexible Architektur, welche sowohl eine webbasierte Nutzung über Frameworks wie Flask als auch eine Desktop-Variante mittels Tkinter ermöglicht.
     Diese Vielseitigkeit erlaubt es, das System an verschiedene Nutzungsszenarien und technische Umgebungen anzupassen, ohne den Kern der Funktionalität verändern zu müssen.
 
     Ein zentraler Bestandteil der Nutzbarkeit liegt in der Kombination von quantitativen sowie qualitative Finanzdaten und generativen \acs{KI}-Komponenten.
-    Die Anbindung von Datenquellen wie \textit{*yfinance*}, \textit{*Alpha Vantage*} oder \textit{*Finnhub*} ermöglicht die automatisierte Beschaffung von Kursverläufen, Fundamentaldaten und weiteren relevanten Finanzinformationen.
+    Die Anbindung von Datenquellen wie \textit{*yfinance*} oder \textit{*Finnhub*} ermöglicht die automatisierte Beschaffung von Kursverläufen, Fundamentaldaten und weiteren relevanten Finanzinformationen.
     Darauf aufbauend kann die \acs{KI} beispielsweise Marktberichte generieren, komplexe Sachverhalte in einfacher Sprache erklären oder Handlungsempfehlungen formulieren.
 
     % To-Do: Auch Erklärbarkeit mehr hervorheben
@@ -51,23 +49,23 @@
     Die Modellauswahl zwischen lokalen und Cloud-basierten Ansätzen beeinflusst die Anwendungsfälle maßgeblich.
     Lokale Modelle bieten volle Kontrolle, hohe Datenschutzstandards durch die Vermeidung der Übertragung sensibler Daten ins Internet und Unabhängigkeit von Anbieter-\acs{API}s.
     Diese Eigenschaften machen sie besonders für Finanzinstitutionen attraktiv, die strengen Compliance-Vorgaben unterliegen.
-    Jedoch sind lokale Modelle in einfachen Setups bedeutend langsamer und ressourcenintensiver bzw. weniger Effizienz, was ihre Einsatzmöglichkeiten bei zeitkritischen Analysen einschränken kann.
+    Jedoch sind lokale Modelle in einfachen Setups bedeutend langsamer und ressourcenintensiver bzw. weniger effenzient, was ihre Einsatzmöglichkeiten bei zeitkritischen Analysen einschränken kann.
     Cloud-Modelle wie OpenAI oder Claude hingegen sind leistungsfähiger, verfügen über größere Trainingsdatenmengen und liefern schnelle Antworten.
     Sie ermöglichen komplexere Analysen und eine bessere Sprachqualität bei der Generierung von Berichten, erfordern jedoch eine stabile Internetverbindung und bringen Abhängigkeiten sowie potenzielle Datenschutzrisiken mit sich.
 
     Die Geschwindigkeit der Datenverarbeitung hängt sowohl von der Modellart als auch von der verfügbaren Infrastruktur ab.
-    Lokale Modelle können bei entsprechender Hardware, insbesondere mit GPU-Beschleunigung, durchaus eingeschränkt konkurrenzfähige Leistung bieten.
+    Lokale Modelle können bei entsprechender Hardware, insbesondere mit \acs{GPU}-Beschleunigung, durchaus eingeschränkt konkurrenzfähige Leistung bieten.
     Allerdings benötigen sie initial längere Ladezeiten für das Modell und haben Limitierungen bei der Verarbeitung großer Kontextlängen, was bei umfangreichen Portfolioanalysen problematisch werden kann.
     Cloud-Modelle liefern Ergebnisse oft innerhalb von Sekundenbruchteilen und können große Datenmengen effizient verarbeiten.
-    Jedoch können \acs{API}-Rate-Limits bei kostenlosen Zugängen oder Netzwerkprobleme zu unvorhersehbaren Verzögerungen führen, was die Zuverlässigkeit in produktiven Umgebungen beeinträchtigen kann.
+    Jedoch können \acs{API}-Rate-Limits bei den untserschiedlichen Zugangsarten oder Netzwerkprobleme zu unvorhersehbaren Verzögerungen führen, was die Zuverlässigkeit in produktiven Umgebungen beeinträchtigen kann.
 
     Die potenziellen Anwendungsfälle sind vielfältig.
     Privatanleger können das System nutzen, um Anlageentscheidungen durch datenbasierte Analysen zu unterstützen.
-    Professionelle Analysten profitieren von der automatisierten Aufbereitung großer Datenmengen und der Möglichkeit, Textauswertungen direkt in Berichtsform zu erhalten.
+    Professionelle Analysten würden in einem vergleichbaren System fortgeschrittener Variante von der automatisierten Aufbereitung großer Datenmengen und der Möglichkeit, Textauswertungen direkt in Berichtsform zu erhalten profitieren.
     Weitere Einsatzmöglichkeiten umfassen die Erstellung von Portfolioanalysen, die Identifikation von Markttrends sowie die Erklärung einzelner Finanzkennzahlen.
 
     Die Nutzbarkeit ist jedoch abhängig von externen Faktoren.
-    Hierzu zählen insbesondere die Verfügbarkeit und Stabilität der angebundenen \acs{API}s, mögliche Request-Limits bei den verschiedenen Lizenzmodellen sowie die Kosten bei der Skalierung auf größere Datenmengen oder komplexere Analyseaufgaben.
+    Hierzu zählen insbesondere die Verfügbarkeit und Stabilität der angebundenen \acs{API}s sowie die Kosten bei der Skalierung auf größere Datenmengen oder komplexere Analyseaufgaben.
     Auch Datenschutz- und Compliance-Anforderungen können die Einsatzmöglichkeiten beeinflussen, wobei die Wahl zwischen lokalen und Cloud-Modellen hier eine zentrale Rolle spielt.
 
     Insgesamt zeigt sich, dass das Assistenzsystem in einem breiten Spektrum von Anwendungsfällen einsetzbar ist, solange die externen Rahmenbedingungen sowie die spezifischen Anforderungen an Transparenz, Datenschutz und Geschwindigkeit berücksichtigt werden.
@@ -79,8 +77,8 @@
     Diese umfassen sowohl technische als auch organisatorische Aspekte.
 
     Technische Bedingungen bilden das Fundament für den Betrieb des Systems.
-    Eine stabile Internetverbindung ist für \acs{API}-Anfragen an externe Datenanbieter und \acs{KI}-Services unerlässlich.
-    Zusätzlich erfordert das System die ordnungsgemäße Konfiguration der \acs{API}-Schlüssel für die genutzten Datenanbieter wie Alpha Vantage, Finnhub oder andere Finanzdienstleister.
+    Eine stabile Internetverbindung ist für \acs{API}-Anfragen an externe Datenanbieter, wie etwa für die Finaanzdaten oder die optionalen Cloud-\acs{KI}-Services unerlässlich.
+    Zusätzlich erfordert das System die ordnungsgemäße Konfiguration der \acs{API}-Schlüssel für die genutzten Datenanbieter wie z. B. Finnhub oder OpenAI.
 
     Lizenz- und Kostenbedingungen haben direkten Einfluss auf die Nutzungsintensität und -breite des Systems.
     Viele der verwendeten \acs{API}s weisen in ihren kostenlosen Versionen Limitierungen auf, etwa eine maximale Anzahl von Requests pro Minute oder pro Tag.
@@ -88,16 +86,15 @@
     Diese Kostenstruktur muss bei der Planung von Anwendungsszenarien berücksichtigt werden.
 
     Datenschutz- und Compliance-Bedingungen gewinnen besonders bei der Anbindung externer \acs{KI}-Services wie OpenAI, Claude oder Gemini an Bedeutung.
-    Es muss geprüft werden, ob die Datenverarbeitung \acs{DSGVO}-konform erfolgt und ob sensible Finanzinformationen in die Cloud übertragen werden dürfen.
+    Es muss geprüft werden, ob die Datenverarbeitung den an den Anwendungsfalll entsprechenden Umständen konform erfolgt und ob sensible Finanzinformationen in die Cloud übertragen werden dürfen.
     Finanzinstitutionen unterliegen oft strengen Regulierungen, die die Nutzung cloud-basierter Services einschränken oder zusätzliche Sicherheitsmaßnahmen erfordern können.
 
     Transparenz- und Erklärbarkeitsanforderungen stellen besondere Bedingungen an das System.
     Die verwendeten generativen \acs{KI}-Modelle müssen in der Lage sein, ihre Entscheidungsfindung nachvollziehbar zu dokumentieren, insbesondere bei Anlageempfehlungen oder Risikobeurteilungen.
-    Dies erfordert nicht nur entsprechende Prompt-Engineering-Techniken, sondern auch die Auswahl von Modellen, die ausreichende Erklärungsfähigkeiten besitzen.
-    Bei kritischen Finanzentscheidungen müssen die zugrundeliegenden Datenquellen, Berechnungsmethoden und Annahmen für den Nutzer transparent darstellbar sein.
+    Dies erfordert nicht nur entsprechende Prompt-Engineering-Techniken sowie geeignete Modellen, sondern auch abseits der rein technischen Sicht einen richtigen Umgang mit den Ergebnissen.
+    Bei kritischen Finanzentscheidungen müssen die zugrundeliegenden Datenquellen, Berechnungsmethoden und Annahmen für den Nutzer transparent dargestellt und Folgemaßnahmen wohlüberlegt sein.
 
     Geschwindigkeitsanforderungen variieren je nach Anwendungsfall und beeinflussen die Systemarchitektur maßgeblich.
-    Für zeitkritische Analysen wie Intraday-Trading müssen Antwortzeiten im Sekundenbereich liegen, was schnelle \acs{API}s und effiziente Datenverarbeitung voraussetzt.
     Bei umfassenden Portfolioanalysen können längere Verarbeitungszeiten akzeptabel sein, jedoch sollten auch hier Benutzererwartungen bezüglich der Responsivität erfüllt werden.
     Die Wahl zwischen lokalen und cloud-basierten \acs{KI}-Modellen hat hier direkten Einfluss auf die erreichbare Performance.
 
@@ -105,7 +102,8 @@
     Änderungen in der \acs{API}-Struktur, Preismodellen oder Verfügbarkeit der Services können die Nutzbarkeit unmittelbar beeinflussen.
     Dies erfordert eine kontinuierliche Überwachung der verwendeten Dienste und gegebenenfalls die Implementierung von Fallback-Lösungen oder alternativen Datenquellen.
 
-    Entwicklungs- und Deployment-Bedingungen hängen von der gewählten Systemarchitektur ab. Für die webbasierte Variante muss ein Webserver bereitstehen, der entweder lokal oder in einer gehosteten Umgebung betrieben werden kann.
+    Entwicklungs- und Deployment-Bedingungen hängen von der gewählten Systemarchitektur ab.
+    Für die webbasierte Variante muss ein Webserver bereitstehen, der entweder lokal oder in einer gehosteten Umgebung betrieben werden kann.
     Die Desktop-Variante erfordert die Kompatibilität der \acs{GUI}-Bibliothek mit der Zielplattform sowie ausreichende lokale Systemressourcen.
 
     Skalierungsbedinungen werden durch Datenmenge und Analysekomplexität bestimmt.
@@ -120,6 +118,7 @@
     Ein zentrales Alleinstellungsmerkmal ist die \textbf{Transparenz der Entscheidungsfindung}.
     Im Gegensatz zu klassischen Blackbox-Modellen liefert das System zu jeder Handlungsempfehlung nicht nur den empfohlenen Prozentsatz für Kauf, Verkauf oder Halten, sondern auch eine nachvollziehbare, natürlichsprachliche Begründung.
     Diese Begründung basiert sowohl auf \textbf{quantitativen Daten} wie Kursverläufen, Fundamentalkennzahlen oder Korrelationen als auch auf \textbf{qualitativen Informationen} wie Nachrichtenartikeln, Marktstimmungen oder Social-Media-Trends.
+    Zudem kann mit dem System gechattet werden und damit mögliche Fragen einfach direkt geklärt werden.
 
     Ein weiterer Vorteil liegt in der \textbf{Integration heterogener Datenquellen}.
     Die Kombination aus strukturierten und unstrukturierten Informationen erlaubt eine ganzheitliche Bewertung von Wertpapieren, die sowohl fundamentale als auch kontextabhängige Marktfaktoren berücksichtigt.
@@ -147,7 +146,8 @@
     \acs{API}-Zugriffe auf leistungsfähige \acs{KI}-Modelle und kommerzielle Finanzdatenquellen können schnell zu signifikanten Betriebskosten führen, die je nach Anwendungsszenario optimiert werden müssen.
 
     Nicht zuletzt ist die \textbf{Einhaltung regulatorischer Anforderungen} wie der \acs{DSGVO} oder branchenspezifischer Finanzmarktregulierungen eine fortlaufende Aufgabe, die technische wie organisatorische Maßnahmen erfordert.
-    Auch die \textbf{Akzeptanz bei den Endnutzern} darf nicht unterschätzt werden: Selbst bei hoher Transparenz und Erklärbarkeit kann es anfängliche Vorbehalte geben, insbesondere bei Anlegern mit begrenzter Erfahrung im Umgang mit \acs{KI}-gestützten Systemen.
+    Auch die \textbf{Akzeptanz bei den Endnutzern} darf nicht unterschätzt werden:
+    Selbst bei hoher Transparenz und Erklärbarkeit kann es anfängliche Vorbehalte geben, insbesondere bei Anlegern mit begrenzter Erfahrung im Umgang mit \acs{KI}-gestützten Systemen.
 
     Insgesamt bietet das Assistenzsystem erhebliche Mehrwerte durch Transparenz, Datenvielfalt und Erklärbarkeit, muss jedoch technische, regulatorische und nutzerbezogene Herausforderungen fortlaufend adressieren, um sein volles Potenzial zu entfalten.
 
@@ -158,7 +158,7 @@
     Dabei ist es entscheidend, nicht nur zukünftige Evaluationsstrategien zu skizzieren, sondern auch die in dieser Arbeit bereits durchgeführte Evaluation kritisch einzuordnen und daraus Verbesserungsmöglichkeiten abzuleiten.
 
     Die bestehende Evaluation in dieser Arbeit umfasste sowohl quantitative als auch qualitative Verfahren.
-    Quantitativ wurden unter anderem die Konsistenz der generierten Handlungsempfehlungen bei identischen Prompts untersucht, die Ergebnisse verschiedener Modelle (z.\,B. lokale und Cloud-basierte \acs{LLM}s) miteinander verglichen sowie einfache Portfolio-Performance-Metriken herangezogen.
+    Quantitativ wurden unter anderem die Konsistenz der generierten Handlungsempfehlungen bei identischen Prompts untersucht, die Ergebnisse verschiedener Modelle (z. B. lokale und Cloud-basierte \acs{LLM}s) miteinander verglichen sowie einfache Portfolio-Performance-Metriken herangezogen.
     Qualitativ erfolgte eine Bewertung der Erklärungen im Hinblick auf Verständlichkeit und Transparenz.
     Diese Vorgehensweise ermöglichte bereits wertvolle Einblicke, etwa dass Cloud-Modelle wie GPT-4 eine höhere Konsistenz aufweisen, während lokal ausgeführte Modelle Vorteile bei Datenschutz und Kosten bieten.
     Allerdings zeigte sich, dass die Evaluationsbasis – bedingt durch begrenzte Datenzeiträume und eine relativ kleine Zahl an Testfällen – noch nicht ausreicht, um eine abschließende Aussage zur Robustheit in allen Marktsituationen zu treffen.
@@ -177,7 +177,8 @@
     Ein weiterer wichtiger Aspekt ist der \textbf{Vergleich mit externen Benchmarks}.
     Hierbei können die Empfehlungen des Systems den Einschätzungen von Finanzanalysten, relevanten Marktindizes oder etablierten Robo-Advisors gegenübergestellt werden.
     Dies liefert nicht nur eine relative Einordnung der Systemleistung, sondern ermöglicht auch das Erkennen systematischer Abweichungen.
-    Die bisherige Evaluation beschränkte sich auf ausgewählte Fälle; in einer erweiterten Untersuchung könnte dies deutlich systematischer und mit größerer Datenbasis erfolgen.
+    Die bisherige Evaluation beschränkte sich auf ausgewählte Fälle.
+    In einer erweiterten Untersuchung könnte dies deutlich systematischer und mit größerer Datenbasis erfolgen.
 
     Zur Beurteilung der Stabilität empfiehlt sich eine \textbf{Langzeitbeobachtung}.
     Dabei wird untersucht, wie konsistent und zuverlässig die Handlungsempfehlungen über längere Zeiträume hinweg sind und wie das System auf außergewöhnliche Marktereignisse wie Krisen, geopolitische Spannungen oder plötzliche Volatilitätssprünge reagiert.
@@ -193,7 +194,8 @@
 
     Besondere Aufmerksamkeit verdient die \textbf{Evaluation der Erklärbarkeit}.
     Hierbei wird ermittelt, ob die generierten Begründungen für die Nutzer verständlich sind, ob sie deren Entscheidungen beeinflussen und ob sie regulatorischen Anforderungen – etwa im Hinblick auf Transparenzpflichten – genügen.
-    In der bisherigen Evaluation wurde dieser Punkt vorrangig aus Entwicklerperspektive betrachtet; eine Ausweitung auf reale Nutzergruppen ist daher ein logischer nächster Schritt.
+    In der bisherigen Evaluation wurde dieser Punkt vorrangig aus Entwicklerperspektive betrachtet.
+    Eine Ausweitung auf reale Nutzergruppen ist daher ein logischer nächster Schritt.
 
     Schließlich sollte die \textbf{Robustheit gegenüber Daten- und Modellabweichungen} getestet werden.
     Dies beinhaltet Szenarien, in denen Daten unvollständig, verrauscht oder in leicht abgewandelter Form vorliegen, um zu prüfen, wie sensibel das System auf solche Änderungen reagiert und ob es dennoch konsistente und nachvollziehbare Empfehlungen liefert.

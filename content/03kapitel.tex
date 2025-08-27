@@ -70,7 +70,6 @@
     Konkret werden Technologien für die folgenden drei Kernbereiche beleuchtet: die Programmlogik (Programmiersprache und Frameworks), die Anbindung der künstlichen Intelligenz und die Integration von Finanzdaten.
     Dabei wird nicht nur der jeweils technisch beste Ansatz identifiziert, sondern auch diskutiert, wo Kompromisse erforderlich sind, um eine optimale Balance zwischen Innovationskraft, Komplexität und langfristiger Praxistauglichkeit zu erzielen.
 
-    \todo[inline]{To-Do: Klären ob subsubsection Okay sind, oder ob man das besser auslässt oder zumindest aus dem Inhaltsverzeichnis sowie Nummerierung streicht}
 
   \subsection{Auswahl der Programmiersprache}
 
@@ -139,6 +138,8 @@
     Dieses transparente und nachvollziehbare Bewertungsschema bildet die Grundlage für die anschließende Entscheidungsmatrix und stellt sicher, dass die Auswahl der Anbieter objektiv und fundiert erfolgt.
 
     \subsubsection{Ollama}
+
+      \todo[inline]{To-Do: Klären ob subsubsection Okay sind? Also die Tiefel der Kapitel.}
 
       Ollama ist eine Open-Source-Software, die es ermöglicht, Large Language Models lokal auszuführen.
       Sie zeichnet sich durch einen besonderen Fokus auf Datenschutz und lokale Rechenleistung aus, was insbesondere für sensible Anwendungsfälle im Finanzbereich interessant ist.
@@ -295,23 +296,10 @@
       Bei strengen Compliance-Anforderungen überzeugt ein on-premises Pfad über Ollama; bei Cloud-Betrieb entscheiden regionale Bereitstellung, vertragliche Zusicherungen (z.\,B. keine Trainingsnutzung) sowie Zero-/Low-Data-Retention-Optionen der Anbieter.
 
       Statt einer finalen Anbieterfestlegung wird ein flexibler, anbieterunabhängiger Ansatz gewählt.
-      Kern ist ein Plugin-System, das Modelle als eigenständige Pakete mit einer einheitlichen Schnittstelle kapselt, ein dynamisches Routing, das Anfragen anhand messbarer SLA-Kriterien wie Latenz, Kosten und Qualitätsmetriken verteilt, sowie ein Ensemble-Ansatz, der mehrere Modellausgaben zu einem gewichteten Konsens aggregiert, um Robustheit und Antwortqualität zu erhöhen \autocite{linardatos2021}.
-      Das folgende Snippet skizziert die Umsetzung des Ensemble-Routings im Backend.
+      Kern ist ein Plugin-System, das Modelle als eigenständige Pakete mit einer einheitlichen Schnittstelle kapselt, ein dynamisches Routing, das Anfragen anhand messbarer SLA-Kriterien wie Latenz, Kosten und Qualitätsmetriken verteilt, sowie ein optionaler Ensemble-Ansatz, der mehrere Modellausgaben zu einem gewichteten Konsens aggregiert, um Robustheit und Antwortqualität zu erhöhen.
 
-      \begin{lstlisting}[language=Python,caption={Modell-Routing im Backend}]
-      def get_ensemble_prediction(query):
-          models = ["deepseek-r1", "mixtral", "llama3"]
-          predictions = Parallel(n_jobs=3)(
-              delayed(model_api.predict)(query, model)
-              for model in models
-          )
-          return weighted_consensus(predictions)
-      \end{lstlisting}
-
-    \todo[inline]{To-Do: Noch zu prüfen, ob das wirklich bis in den Schluss übernommen wird. Ggf. wieder rausnehmen und nur skiziieren, dass das auch möglich sei}
-
-    Um die Entscheidung dauerhaft tragfähig zu halten, würden die Gewichtungen in einem produktiven Einsatz regelmäßig anhand operativer KPI (u.\,a.\ Kosten pro Aufgabe, First-Token-Latenz, Qualitätsbewertungen, Incident-Rate) überprüft und die Routing-Regeln über einen kontinuierlichen A/B-Evaluationspfad pro Use-Case angepasst.
-    So bleibt die Lösung widerstandsfähig gegenüber Preis- und Modellupdates, ohne einen Vendor-Lock-in zu erzeugen.
+      Um die Entscheidung dauerhaft tragfähig zu halten, würden die Gewichtungen in einem produktiven Einsatz regelmäßig anhand operativer KPI (u.\,a.\ Kosten pro Aufgabe, First-Token-Latenz, Qualitätsbewertungen, Incident-Rate) überprüft und die Routing-Regeln über einen kontinuierlichen A/B-Evaluationspfad pro Use-Case angepasst.
+      So bleibt die Lösung widerstandsfähig gegenüber Preis- und Modellupdates, ohne einen Vendor-Lock-in zu erzeugen.
 
   \subsection{Auswahl zur Anbindung Finanzdaten}
 

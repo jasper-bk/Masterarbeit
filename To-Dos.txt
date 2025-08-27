@@ -56,6 +56,9 @@ To-Dos im Projekt selbst:
 
 - Logging einbauen
 
+- Mit Ticker und Währung umgehen
+- Kennzahlen berechnen
+
 Kommentare ausblenden
 
 

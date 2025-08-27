@@ -34,8 +34,6 @@
     Damit ist das Logik-Modul auch unabhängig einsetzbar und kann in einem beliebigen Pythonskript importiert und genutzt werden.
     Dies wird im späteren Abschnitt \ref{sec:jupyter-lab} auch gemacht um die Evaluation durchzuführen.
 
-    \todo[inline, color=red]{To-Do: Code finalisieren und dann alles in diesem Kapitel nochmal überarbeiten. Bevor ich es zum X-ten mal tun muss}
-
     \subsection{Projektstruktur}
 
       Das KI-gestützte Portfolioassistenzsystemprojekt folgt einer modularen und klar strukturierten Architektur, welche sowohl die Entwicklung als auch die Wartung des Systems erleichtert.
@@ -58,6 +56,8 @@
             .4 index.html.
             .2 .env.
             .2 .gitignore.
+            .2 .Containerfile.
+            .2 compose.yml.
             .2 main.py.
             .2 portfolio\_ai.py.
             .2 portfolio\_chat.py.
@@ -68,10 +68,11 @@
         \small{(Quelle: eigene Darstellung)}
         \label{fig:project_structure}
       \end{figure}
-      \todo[inline]{To-Do: Zum Schluss nochmal aktualisieren.}
+      \todo[inline]{To-Do: Zum Schluss nochmal aktualisieren, um es aktuell zu halten}
 
       Das Hauptverzeichnis enthält die zentralen Python-Module, welche die Kernfunktionalitäten des Systems implementieren.
       Hierzu gehören die Portfolio-AI-Klasse, die Portfolio-AI-Chat-Klasse sowie die Server-Komponenten für die Webschnittstelle.
+      Außerdem liegen im Hauptverzeichnis auch das Containerfile (häufig auch Dockefile genannt) und das compose.yml, um die gesamte Anwendung auch als Container ohne größere Einrichtungsschritte starten zu können.
       Der \texttt{evaluation}-Ordner beherbergt Jupyter-Notebooks für analytische Auswertungen und Systemtests.
       Die Webkomponenten sind im \texttt{webpage}-Verzeichnis organisiert, welches sowohl die Frontend-Logik als auch die Benutzeroberfläche umfasst.
       Diese klare Trennung zwischen Backend-Logik und Frontend-Präsentation ermöglicht eine unabhängige Entwicklung und Wartung beider Systemteile.
@@ -157,8 +158,6 @@
 
     \subsection{LangChain}
 
-      % To-Do für diesen ganzen Abschnitt: gute Quellen suchen
-
       \texttt{LangChain} wird als zentrales Framework zur Modellorchestrierung innerhalb des Assistenzsystems eingesetzt.
       Es handelt sich dabei um eine Open-Source-Bibliothek, die speziell für die Entwicklung von Anwendungen auf Basis großer Sprachmodelle (\acs{LLM}s) konzipiert wurde und agiert als Bindeglied zwischen den verschiedenen \acs{LLM}-Providern.
       Das Besondere an LangChain ist nicht nur seine Fähigkeit mit verschiedenen Providern und Modellen zu arbeiten sondern auch  verschiedene Komponenten eines \acs{LLM}-Workflows—wie Prompts, Datenquellen, Werkzeuge, Speicher oder Agenten—modular zu verketten und dabei logisch zu koordinieren.
@@ -213,6 +212,7 @@
 
           % To-Do: Später noch mehr Technologien einführen: Podman, Podman-Compose, ...
       \end{itemize}
+      \todo[inline]{Opt. To-Do: Ggf. auch auf Techonlogien wie Podman für Containeriserung eingehen? }
 
       Durch den gezielten Einsatz dieser Technologien wird die Funktionalität des Assistenzsystems sinnvoll ergänzt, die Entwicklung beschleunigt und die Benutzerfreundlichkeit auf einem hohen Niveau sichergestellt.
 
@@ -464,15 +464,11 @@
 
       Insgesamt bilden das strukturierte Design, die robusten Fehlerbehandlungsmechanismen sowie die flexiblen Deployment-Optionen eine belastbare Grundlage, um das System kontinuierlich auszubauen und in unterschiedlichen Anwendungskontexten – von Forschung über Investment-Management bis hin zu produktiven Webservices – einzusetzen.
 
-    \todo[inline]{To-Do: Chat noch irgendwo genauer beschreiben. Fraglich ob er unter Hauptprogrammlogik gehört? }
+    \todo[inline]{To-Do: Chat noch irgendwo genauer beschreiben? Fraglich ob er unter Hauptprogrammlogik gehört? }
 
-
-  %%%%%%%%%%%%%%%%%%%%%%%%%%
-  % Bis hierhin überarbeitet
-  \todo[inline]{Überarbeitet bis hier }
-  %%%%%%%%%%%%%%%%%%%%%%%%%%
 
   \section{Frontend}
+  \label{sec:frontend}
 
     Das \textit{Frontend} ist die sicht- und bedienbare Schnittstelle zwischen \acs{KI}-Modell, Optimierungslogik und Nutzer.
     Es ist nicht reine \enquote{Kosmetik}, sondern die Ebene, auf der numerische Ergebnisse, Nebenbedingungen und Trade-offs in klare, prüfbare und priorisierte Handlungsinformationen übersetzt werden.
@@ -480,8 +476,8 @@
 
     Für die in dieser Arbeit angestrebte \textit{Erklärbarkeit} übernimmt das Frontend eine doppelte Rolle:
     Es zeigt nicht nur \enquote{Was} empfohlen wird (z.,B. Kaufen/Verkaufen/Halten), sondern macht auch \enquote{Warum} und \enquote{Wie dringlich} sichtbar.
-    Dies geschieht über eine bewusst gestaltete Informationshierarchie (Übersicht -> Detail > Begründung), konsistente visuelle Kodierungen (z.,B. Farbskalen und Unsicherheitsindikatoren) sowie natürlichsprachliche Erläuterungen, die Annahmen, Sensitivitäten und Zielkonflikte transparent machen.
-    Eine Black-Box-Wahrnehmung wird vermieden und eine gute Visualisierung schaffft \emph{Vertrauen} in die Systemausgaben.
+    Dies geschieht über eine bewusst gestaltete Informationshierarchie (Übersicht -> Detail > Begründung), konsistente visuelle Kodierungen (z. B. Farbskalen und Unsicherheitsindikatoren) sowie natürlichsprachliche Erläuterungen, die Annahmen, Sensitivitäten und Zielkonflikte transparent machen.
+    Eine Black-Box-Wahrnehmung wird vermieden und eine gute Visualisierung schaffft Vertrauen in die Systemausgaben.
 
     Im Folgenden wird zunächst der konzeptionelle Entwurf der Benutzeroberfläche vorgestellt, der diese Prinzipien in Informationsarchitektur und Visualisierungsmuster überführt.
     Anschließend wird die konkrete Implementierung beschrieben, mit der die Konzepte zu einer praxistauglichen, webbasierten Anwendung für die Portfolioanalyse und Handlungsunterstützung ausgearbeitet wurden.
@@ -503,9 +499,8 @@
       Der Entwurf enthält Elemente wie eine \enquote{Urgency for Action}-Skala zur Priorisierung von Aktien, textuelle Risikobewertungen sowie natürlichsprachliche Zusammenfassungen.
       Besonders hervorzuheben ist die explizite Visualisierung der Unsicherheit und Bewertungsempfehlung (Kaufen/Verkaufen/Halten) in Form von Farben und Kreisdiagrammen.
 
-      Diese Darstellungsweise basiert auf etablierten Gestaltungsprinzipien aus der HCI-Forschung, wonach kognitive Last minimiert werden kann, wenn Informationen multimodal, d.h. sowohl visuell als auch sprachlich, vermittelt werden. %To-Do: Quelle hinzufügen
-
-      Neben dem Entwurf der Übersichtssicht gibt es noch die Sicht für das einzelne Wertpapier (siehe Abbildung~\ref{fig:frontend_draft_aktie}).
+      Neben der Portfoliosicht wurde auch eine Detailansicht für einzelne Wertpapiere konzipiert (siehe Abbildung~\ref{fig:frontend_draft_aktie}).
+      Sie ergänzt die Übersicht durch eine fokussierte Darstellung der individuellen Position und verknüpft quantitative Kennzahlen mit qualitativen Bewertungen.
 
       \begin{figure}[H]
           \centering
@@ -515,60 +510,83 @@
           \label{fig:frontend_draft_aktie}
       \end{figure}
 
+      Die Detailansicht verdeutlicht, wie persönliche Informationen zur Position (z.\,B. Stückzahl, aktueller Wert, Rendite) mit modellbasierten Einschätzungen kombiniert werden.
+      Neben quantitativen Metriken wie potenziellem Upside/Downside wird die Handlungsempfehlung des Systems sowohl visuell – etwa durch Ampelfarben und Diagramme – als auch in natürlichsprachlicher Form präsentiert.
+      Durch diese multimodale Aufbereitung soll nicht nur die Transparenz erhöht, sondern auch die Akzeptanz der Nutzer gegenüber den automatisierten Empfehlungen gefördert werden.
+
     \subsection{Implementierung und aktuelle Ausgestaltung}
 
-      Auf Basis des oben dargestellten Drafts erfolgte eine iterative Umsetzung in HTML, CSS und JavaScript.
-      Die fertige Anwendung (siehe Abbildung~\ref{fig:frontend_live}) übernimmt viele der Grundideen des Entwurfs, wurde jedoch hinsichtlich Usability und technischer Umsetzbarkeit weiter verfeinert.
-      Die Tabs erlauben eine navigation durch verschiedene Aktienansichten.
+      Auf Grundlage des zuvor skizzierten Drafts erfolgte eine iterative Umsetzung der Webanwendung in \texttt{HTML}, \texttt{CSS}/Bootstrap und \texttt{JavaScript}/jQuery.
+      Die finale Anwendung (siehe Abbildung~\ref{fig:frontend_live}) greift viele der im Entwurf konzipierten Elemente auf, wurde jedoch in Hinblick auf Usability, Interaktivität und technische Robustheit weiter verfeinert.
+      So erlaubt die tab-basierte Navigation den Wechsel zwischen verschiedenen Einzelwertansichten, während die Übersichtssicht aggregierte Informationen zum Gesamtportfolio präsentiert.
 
       \begin{figure}[H]
           \centering
-          \includegraphics[width=0.9\textwidth]{assets/pictures/screenshot_frontend_vor_evaluierung.png}
+          \includegraphics[width=0.9\textwidth]{assets/pictures/screenshot_frontend_nach_evaluierung.png}
           \caption{Live-System: Interaktive Web-Oberfläche zur Portfolioanalyse und Handlungsunterstützung}
           \small{(Quelle: eigener Screenshot)}
           \label{fig:frontend_live}
       \end{figure}
 
-    \begin{lstlisting}[language=Python, gobble=4, caption=API-Endpunkt zur Portfoliobewertung]
-    @app.route('/api/evaluate-full-portfolio')
-    def evaluate_full_portfolio():
-        global portfolio #should be replaced later with better practice
+      Wie in Abbildung~\ref{fig:frontend_live} erkennbar, besteht die Oberfläche aus mehreren Kernelementen:
+      Auf der linken Seite visualisiert die Komponente \enquote{Urgency for action} die vom System priorisierten Titel, ergänzt durch Balkenanzeigen und prozentuale Gewichtungen.
+      Die mittlere Spalte bietet eine konsolidierte Portfoliobewertung in Form von Marktübersicht, Chancen- und Risikoabschätzung sowie ergänzenden Faktoren.
+      Rechts wird eine kompakte Visualisierung des Handlungsbedarfs (\enquote{Urgency}) inklusive Kreisdiagramm eingebunden, welche an den ursprünglichen GUI-Entwurf anknüpft.
+      Am unteren Bildschirmrand ist zudem ein Chat-Modul integriert, das eine interaktive Abfrage von Detailinformationen erlaubt und so eine dialogische Erschließung der Systemergebnisse ermöglicht.
 
+      Die technische Anbindung an die Backend-Logik erfolgt über klar definierte \acs{API}-Endpunkte (siehe Listing~\ref{lst:flask_api}).
+      Das Python-Backend mit Flask stellt Methoden zur Verfügung, um entweder das gesamte Portfolio (\texttt{/api/evaluate-full-portfolio}) oder gezielt einzelne Wertpapiere (\texttt{/api/evaluate-single-asset/<id>}) zu analysieren.
+      Dabei wird die zentrale Methode \texttt{evaluate\_portfolio()} des \texttt{PortfolioAIAssistant} aufgerufen, deren Ergebnisse in strukturierter Form an das Frontend zurückgegeben werden.
+
+      \begin{lstlisting}[language=Python, gobble=6, caption=API-Endpunkt zur Portfoliobewertung, label=lst:flask_api]
+      @app.route('/api/evaluate-full-portfolio')
+      def evaluate_full_portfolio():
+          try:
+              assistant.evaluate_portfolio(pf)
+              response = {"response" : "Portfolio has been sucessfully evaluated."}
+          except Exception as e:
+              return jsonify({"error": str(e)}), 500
+
+          return jsonify(response)
+
+      @app.route('/api/evaluate-single-asset/<path:identifier>')
+      def evaluate_single_asset(identifier):
         try:
-            portfolio = assistant.evaluate_portfolio(portfolio)
-            response = {"response" : "Portfolio has been sucessfully evaluated."}
-        except Exception as e:
-            return jsonify({"error": str(e)}), 500
-
-        return jsonify(response)
-
-    @app.route('/api/evaluate-single-asset/<path:identifier>')
-    def evaluate_single_asset(identifier):
-        global portfolio #should be replaced later with better practice
-
-        try:
-            portfolio = assistant.evaluate_portfolio(portfolio, specific_assets=[identifier])
+            assistant.evaluate_portfolio(pf, specific_assets=[identifier])
             response = {"response" : f"{identifier} has been sucessfully evaluated."}
 
         except Exception as e:
             return jsonify({"error": str(e)}), 500
 
         return jsonify(response)
-    \end{lstlisting}
+      \end{lstlisting}
 
-    \begin{lstlisting}[language=JavaScript, gobble=4, caption=Asynchrone API-Kommunikation im Frontend]
-    const response = await fetch('/api/portfolio');
-    const data = await response.json();
-    \end{lstlisting}
+      Die Kommunikation zwischen Frontend und Backend erfolgt asynchron über \texttt{fetch}-Requests (Listing~\ref{lst:js_api}).
+      So können Nutzerbewertungen in Echtzeit ausgelöst werden, ohne die Oberfläche vollständig neu zu laden.
+      Dieses Prinzip ermöglicht eine reaktive Benutzererfahrung, die insbesondere bei wiederholten Analysen oder Szenarienvergleichen eine hohe Interaktivität sicherstellt.
 
-      Die Anwendung zeigt aggregierte Portfolioinformationen und erlaubt auf Einzelwertebene eine genaue Analyse mit erklärender Textausgabe, die durch das \acs{LLM} generiert wird.
-      Dies ist besonders im Kontext der \textit{Erklärbarkeit} (\textit{Explainability}) entscheidend.
-      Studien (To-Do: Studien benennen) zeigen, dass Nutzer algorithmischer Systeme nur dann fundierte Entscheidungen treffen oder Empfehlungen hinterfragen können, wenn die zugrundeliegenden Argumentationen transparent und zugänglich aufbereitet sind. %To-Do: Quelle hinzufügen
+      \begin{lstlisting}[language=JavaScript, gobble=6, caption=Asynchrone API-Kommunikation im Frontend, label=lst:js_api]
+      static async doFullPortfolioEvaluation() {
+        try {
+          const response = await fetch('/api/evaluate-full-portfolio');
+          const data = await response.json();
+
+        } catch (error) {
+          console.error('Error evaluating portfolio', error);
+        }
+      }
+      \end{lstlisting}
+
+      Die Anwendung verbindet somit drei zentrale Ebenen:
+      (1) die benutzerfreundliche grafische Oberfläche mit interaktiven Komponenten,
+      (2) ein robustes Backend zur Portfolio- und Einzelwertanalyse sowie
+      (3) eine nahtlose API-Integration für Echtzeitkommunikation.
+      Neben den numerischen und grafischen Ausgaben ist die natürlichsprachliche Erklärung der Ergebnisse hervorzuheben, die durch das \acs{LLM} ebenfalls generiert wird.
 
     \subsection{Wissenschaftliche Relevanz der \acs{GUI} im Kontext von Entscheidungsassistenz}
 
       Die Transparenz in Assistenzsystemen beschränkt sich nicht nur auf die algorithmische Modellierung, sondern betrifft maßgeblich auch die Präsentationsebene.
-      Laut \autocite{gunning2017explainable} ist eine erklärbare Benutzeroberfläche ein zentraler Bestandteil von XAI-Systemen (Explainable Artificial Intelligence), da sie den Brückenschlag zwischen Modelloutput und menschlichem Entscheidungsverhalten ermöglicht.
+      Laut \autocite{gunning2017explainable} ist eine erklärbare Benutzeroberfläche ein zentraler Bestandteil von \acs{XAI}-Systemen, da sie den Brückenschlag zwischen Modelloutput und menschlichem Entscheidungsverhalten ermöglicht.
       Der Mehrwert einer fundierten \acs{GUI} liegt also nicht nur in der Ästhetik oder Bedienbarkeit, sondern in ihrer Fähigkeit, Vertrauen, Kontrolle und Nachvollziehbarkeit zu fördern.
 
       Zudem zeigen empirische Studien zur Mensch-Maschine-Interaktion (z.B. \autocite{hoffman2018metrics}), dass die Qualität der Visualisierung einen direkten Einfluss auf das Nutzervertrauen und die Akzeptanz von \acs{KI}-basierten Empfehlungen hat.
@@ -584,29 +602,20 @@
     Der besondere Vorteil liegt dabei in der engen Verzahnung von experimenteller Programmierung, Dokumentation und unmittelbarem Feedback, was die explorative Arbeit mit datengetriebenen Systemen erheblich vereinfacht \autocite{kluyver2016jupyter}.
 
     Im Rahmen dieses Projekts wird Jupyter-Lab genutzt, um direkt mit dem in Python implementierten \texttt{PortfolioAIAssistant} zu interagieren.
-    Der Import der Systemklasse erfolgt direkt über die Paketstruktur mittels:
-
-    \begin{lstlisting}[language=Python, caption=Import des PortfolioAIAssistant]
-    from portfolio_ai import PortfolioAIAssistant
-    \end{lstlisting}
+    Der Import der Systemklasse erfolgt direkt über die Paketstruktur mittels: \lstinline[columns=fixed]{from portfolio_ai import PortfolioAIAssistant}
 
     Dies ermöglicht es, verschiedene Anwendungsfälle, Parameterkonfigurationen und Auswertungen ohne Umweg über ein separates Frontend durchzuführen.
     Im Gegensatz zu einer webbasierten Benutzeroberfläche, die in der Regel eine fest definierte Interaktionslogik aufweist und daher nur begrenzte Flexibilität für hypothetische Tests bietet, erlaubt die Jupyter-Lab-Umgebung eine vollständige Kontrolle über die zugrunde liegende Systemlogik.
-    Auch gegenüber klassischen Kommandozeileninterfaces oder isolierten Python-Skripten bietet Jupyter-Lab entscheidende Vorteile: Die interaktive Umgebung erlaubt es, Zwischenergebnisse direkt zu inspizieren, Visualisierungen inline zu betrachten und Analyseschritte in unmittelbarer Nähe zum Code zu dokumentieren.
+    Auch gegenüber klassischen Kommandozeileninterfaces oder isolierten Python-Skripten bietet Jupyter-Lab entscheidende Vorteile:
+    Die interaktive Umgebung erlaubt es, Zwischenergebnisse direkt zu inspizieren, Visualisierungen inline zu betrachten und Analyseschritte in unmittelbarer Nähe zum Code zu dokumentieren.
     Damit eignet sich das Notebook-Format ideal für Forschungsvorhaben, in denen Nachvollziehbarkeit, Reproduzierbarkeit und Interaktivität im Vordergrund stehen \autocite{rule2018exploration}.
 
     Das entwickelte Notebook ist in mehrere logisch aufeinander aufbauende Abschnitte unterteilt.
     Es beginnt mit einer Setup-Phase, in der alle relevanten Bibliotheken und Konfigurationsparameter geladen werden.
-    Anschließend erfolgt der Import und die Vorverarbeitung der benötigten Daten, darunter historische Kursverläufe, Depotinformationen und benutzerspezifische Präferenzen.
     In einem weiteren Schritt wird die Klasse \texttt{PortfolioAIAssistant} instanziiert und mit den geladenen Daten konfiguriert.
-    Darauf aufbauend lassen sich verschiedene Szenarien zur Portfolioanalyse, Risikobewertung, Handlungsempfehlung und Rebalancing testen.
-    Die Ergebnisse werden durch interaktive Visualisierungen, wie Zeitreihenanalysen, Balkendiagramme oder Heatmaps ergänzt, die mit \texttt{matplotlib} oder \texttt{seaborn} erzeugt werden.
+    Darauf aufbauend lassen sich verschiedene Szenarien zur Konsistenz, Portfolioanalyse, Risikobewertung oder Handlungsempfehlungen testen.
+    Die Ergebnisse werden durch interaktive Visualisierungen, wie Balkendiagramme, Kreisdiagramme oder Heatmaps ergänzt, die mit \texttt{matplotlib} oder \texttt{seaborn} erzeugt werden.
     Auch erklärbare \acs{KI}-Komponenten wie \textit{Integrated Gradients} oder \textit{Chain-of-Thought-Prompts} lassen sich innerhalb dieser Struktur transparent darstellen und analysieren.
-
-    Die Verwendung von Jupyter-Lab ist jedoch nicht frei von Herausforderungen.
-    Eine der zentralen Hürden besteht in der potentiell eingeschränkten Performance bei der Verarbeitung großer Datenmengen oder der Ausführung komplexer Modelle.
-    Insbesondere beim parallelen Arbeiten mit mehreren Zellen kann es zu Speicherengpässen kommen, weshalb systematische Ressourcenplanung notwendig ist.
-    Auch die Versionierung und Nachvollziehbarkeit von Experimenten gestaltet sich schwieriger als bei klassischen Softwareprojekten, da Notebooks nicht zeilenweise ausgeführt werden und der Zustand des Kernels entscheidend für die Ergebnisse ist.
 
     Das methodische Vorgehen in der Arbeit sieht eine iterative Nutzung des Notebooks vor.
     In einem ersten Schritt werden konkrete Testszenarien definiert, die beispielsweise aus Nutzeranfragen zur Bewertung einzelner Wertpapiere oder zur Optimierung ganzer Portfolios bestehen.
@@ -615,29 +624,105 @@
     Erkenntnisse und Abweichungen werden direkt im Notebook kommentiert und zur iterativen Weiterentwicklung des Systems dokumentiert.
     Dieser Ansatz kombiniert methodische Strenge mit technischer Flexibilität und erlaubt eine vollständig nachvollziehbare Evaluation des Assistenten.
 
-    Jupyter-Lab fungiert somit nicht nur als Werkzeug zur Exploration, sondern auch als strukturierender Rahmen für die gesamte Evaluationslogik.
-    Durch seine Offenheit, Erweiterbarkeit und Visualisierungsfähigkeit stellt es eine effektive Lösung für die Evaluation der Lösung dar.
+    Die Auswertungen und Erkenntnisse, die mithilfe von Jupyter-Lab gewonnen werden sind im Anschluss folgenden Kapitel \ref{chap:evaluation} zu finden.
 
+    \todo[inline]{Opt. To-Do: Notebooks in Anhang packen und drauf verweisen? }
+
+  \section{Einrichtung der Umgebung}
+
+    Dieser Abschnitt dient als praxisorientierte Anleitung, um den aktuellen Stand der Software lokal einzurichten, auszuführen und zu testen.
+    Ziel ist es, einen klaren \enquote{Getting-Started}-Pfad zu geben, damit die Anwendung unmittelbar genutzt, die im Text beschriebenen Abläufe nachvollzogen und eigene Experimente reproduziert werden können.
+    Im Fokus stehen die tatsächlich verwendeten Komponenten (Backend, Modellserver, Web-UI) sowie die minimal nötigen Konfigurationsschritte.
+
+    Zur Einordnung von Laufzeiten und Ergebnissen wird außerdem die zum Zeitpunkt der Durchführung vorhandene Hardware-/Softwareumgebung dokumentiert.
+    Sie dient damit als Referenzrahmen für die Bewertung der Performance und Reproduzierbarkeit -- ohne Anspruch, eine ideale oder empfohlene Zielkonfiguration darzustellen.
+
+
+    \subsection{Voraussetzungen}
+
+      Die nachfolgenden Komponenten sind für die erfolgreichen Einrichtung erforderlich:
+
+      \begin{itemize}
+        \item \textbf{Versionsverwaltung:} \texttt{git} zum Beziehen und Verwalten des Quellcodes.
+        \item \textbf{Container-Engine:} Podman oder Docker (bzw. eine kompatible Engine) zur Bereitstellung der isolierten Containerumgebungen.
+        \item \textbf{Rechenressourcen:} Entweder eine ausreichend leistungsstarke lokale Hardware (CPU/GPU, RAM) für die Ausführung großer Sprachmodelle oder alternativ ein API-Schlüssel eines LLM-Providers (z.\,B. OpenAI, Anthropic), falls auf Cloud-Modelle zurückgegriffen wird.
+      \end{itemize}
+
+    \subsection{Einrichtungsablauf}
+
+      Der grundlegende Ablauf zur Einrichtung gestaltet sich wie folgt:
+
+      \begin{enumerate}
+        \item \textbf{Projekt beziehen:} Das Repository wird mittels \\
+        \texttt{git clone https://jasper.bremenkamp.de/git/portfolio-ai-assistant.git} heruntergeladen.
+        \item \textbf{Konfiguration vornehmen:} Falls erforderlich, werden Konfigurationsparameter in einer \texttt{.env}-Datei angepasst (z.\,B. API-Keys, Ports, Pfade zu Daten).
+        \item \textbf{Container bauen:} Der Quellecode wird samt Abhängigkeiten in einem betriebsfähigen Containerimage zusammengeführt.
+        Dies geschieht über
+        \begin{itemize}
+          \item \texttt{docker-compose build} bei Verwendung von Docker oder
+          \item \texttt{podman-compose build} bei Verwendung von Podman.
+        \end{itemize}
+        \item \textbf{Container starten:} Mit \texttt{docker-compose up} bzw. \texttt{podman-compose up} werden die Services gestartet.
+        Hierbei wird sowohl das Backend als auch der Ollama-Dienst (für lokale \acs{LLM}) hochgefahren.
+        \item \textbf{Zugriff:} Nach erfolgreichem Start ist die Anwendung über Port \texttt{8080} erreichbar.
+        Das Web-Interface stellt die Interaktionsmöglichkeiten mit den Modellen sowie der Analyse- und Visualisierungslogik bereit.
+      \end{enumerate}
+
+    \subsection{Genutzte Test- und Entwicklungsumgebung}
+
+    Die nachstehenden Angaben beschreiben die tatsächlich verwendete Arbeitsumgebung, auf der die Entwicklung und das Testen durchgeführt wurden.
+    Die Hardware wurde nicht gezielt ausgewählt oder optimiert, sondern entspricht dem privat verfügbaren Rechner.
+    Die Dokumentation dient damit als Referenzrahmen, um beobachtete Laufzeiten und Ergebnisse einzuordnen und eigene Replikationen besser abschätzen zu können.
+
+    \begin{itemize}
+      \item \textbf{Betriebssystem:} Arch Linux (Kernel 6.15.9-zen1-1-zen).
+      \item \textbf{Arbeitsspeicher:} 48GB DDR4-3200.
+      \item \textbf{Prozessor:} Intel Core i7-8700K (3{,}7–4{,}7\,GHz)
+      \item \textbf{Grafikkarte:} AMD Radeon RX 6700 XT mit 12 GB GDDR6.
+      \item \textbf{Überwiegend genutztes LLM:} Qwen3:30B über Ollama (v0.11.4) mit GPU-Beschleunigung
+    \end{itemize}
+
+    Diese Spezifikation erlaubt es, die gemessene Performance gegenüber der eigenen Umgebung realistisch zu gewichten und den Setup für Tests bzw. Nachvollzug zielgerichtet anzupassen (z. B. kleinere/quantisierte Modelle bei geringerem VRAM, oder Cloud-\acs{LLM}s, falls lokal keine GPU verfügbar ist).
 
   \section{Technische Limitationen und Herausforderungen}
 
-    Trotz modularer Architektur und performanter Tools bestehen derzeit folgende technische Limitationen:
+    Trotz modularer Architektur und dem Einsatz performanter Tools ergeben sich im praktischen Betrieb einige technische Limitationen und Herausforderungen, die sowohl die Systemeffizienz als auch die Nutzererfahrung beeinflussen.
+    Im Folgenden werden die zentralen Aspekte detaillierter ausgeführt:
 
     \begin{itemize}
-        \item \textbf{Latenzzeiten bei \acs{LLM}-Antworten:} Der Einsatz lokaler Modelle (Ollama) kann zu spürbaren Antwortverzögerungen führen, da die lokale Hardware weniger performant ist. Online Modelle wie von OpenAI bieten hier eine schnellere Alternative, bringen jedoch andere Einschränkungen hinsichtlich Datenschutz und Kosten mit sich.
+        \item \textbf{Latenzzeiten bei \acs{LLM}-Antworten:}
+        Der Einsatz lokaler Modelle über Ollama ermöglicht zwar eine erhöhte Datensouveränität und Unabhängigkeit von externen Anbietern, führt jedoch zu spürbaren Antwortverzögerungen.
+        Dies ist insbesondere dann der Fall, wenn vergleichsweise große Modelle wie \textit{Qwen3:30b} auf normaler Consumer-Hardware ausgeführt werden.
+        Während Online-Dienste wie OpenAI- oder Anthropic-Modelle durch hochoptimierte Rechenzentren schnellere Antwortzeiten gewährleisten, entstehen hier andere Einschränkungen:
+        Die kontinuierliche Nutzung führt zu wiederkehrenden Kosten, und die Auslagerung sensibler Daten birgt Risiken im Hinblick auf Datenschutz und regulatorische Vorgaben.
+        Das Systemdesign muss also einen Kompromiss zwischen Performanz, Kosten und rechtlichen Anforderungen finden.
+        Durch die Flexibilität bei der Auswahl von den Providern und deren Modellen wurde die Entscheidung in die Hände der Nuter übertragen.
 
-        \item \textbf{Skalierung der Frontend-Interaktivität:} Mit wachsender Datenmenge steigt die Komplexität in der \acs{GUI}-Verwaltung.
+        \item \textbf{Skalierung der Frontend-Interaktivität:}
+        Mit wachsender Datenmenge steigt die Komplexität der grafischen Benutzeroberfläche (\acs{GUI}).
+        Während eine überschaubare Anzahl an Interaktionen problemlos darstellbar ist, führt die zunehmende Vielfalt an Analyseergebnissen, Diagrammen und Interaktionsmöglichkeiten zu einem steigenden Verwaltungsaufwand im Frontend.
 
-        \item \textbf{Fehlende Parallelisierung:} Aktuell sind \acs{LLM}-Anfragen sequentiell implementiert. Zur Beschleunigung könnten multiprocessing- oder queue-basierte Architekturen genutzt werden.
+        \item \textbf{Fehlende Parallelisierung:}
+        Derzeit werden \acs{LLM}-Anfragen sequentiell verarbeitet.
+        Bei gleichzeitigen Anfragen mehrerer Nutzer oder bei komplexen Analyseketten kann dies zu erheblichen Verzögerungen führen.
+        Eine mögliche Lösung wäre der Einsatz von multiprocessing- oder queue-basierten Architekturen, die es erlauben, mehrere Anfragen parallel oder asynchron zu bearbeiten.
 
-        \item \textbf{Erklärbarkeit:} Die Generierung der Begründungen basiert auf der natürlichen Sprache des \acs{LLM}s, was trotz Parsingmaßnahmen keine formale Verifikation erlaubt.
+        \item \textbf{Erklärbarkeit:}
+        Die Generierung von Begründungen erfolgt durch die natürliche Sprache der \acs{LLM}s.
+        Obwohl diese Antworten oft plausibel und nachvollziehbar wirken, bleibt ihre inhaltliche Korrektheit nicht formell überprüfbar.
+        Selbst mit Parsing- und Validierungsmaßnahmen können fehlerhafte, widersprüchliche oder irreführende Begründungen nicht vollständig ausgeschlossen werden.
+        Dies limitiert die Möglichkeit, die Resultate wissenschaftlich eindeutig zu verifizieren oder regulatorische Anforderungen an Transparenz zu erfüllen.
+        Mehr Details dazu folgen in Kapitel \ref{chap:evaluation}.
     \end{itemize}
 
-  \section{Zusammenfassung}
+    Zusammenfassend zeigen diese Herausforderungen, dass die technische Weiterentwicklung nicht nur in der Optimierung einzelner Komponenten besteht, sondern auch ein ausgewogenes Zusammenspiel zwischen Rechenressourcen, Architekturentscheidungen und Nutzeranforderungen erfordert.
 
-    Die Systemarchitektur des entwickelten Assistenzsystems ist bewusst modular und erweiterbar gestaltet.
-    Der iterative Entwicklungsprozess ermöglichte eine schrittweise Einführung komplexerer Komponenten, ohne dabei die Wartbarkeit zu verlieren.
-    Zukünftige Erweiterungen, wie die Integration fortgeschrittener Modelllogiken mit \texttt{LangChain} oder die Ablösung des Frontends durch reaktive Frameworks, können auf Basis dieser Architektur leicht implementiert werden.
+
+  % \section{Zusammenfassung}
+
+  %   Die Systemarchitektur des entwickelten Assistenzsystems ist bewusst modular und erweiterbar gestaltet.
+  %   Der iterative Entwicklungsprozess ermöglichte eine schrittweise Einführung komplexerer Komponenten, ohne dabei die Wartbarkeit zu verlieren.
+  %   Zukünftige Erweiterungen, wie die Integration fortgeschrittener Modelllogiken mit \texttt{LangChain} oder die Ablösung des Frontends durch reaktive Frameworks, können auf Basis dieser Architektur leicht implementiert werden.
 
 
 \begin{comment}

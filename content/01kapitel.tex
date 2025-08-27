@@ -94,7 +94,7 @@ Abschließend skizziert es ein mehrstufiges Evaluationskonzept mit Backtests und
 
 % Bzgl. Systemarchitektur und Implementierung
 
-Das Kapitel \textbf{\nameref{chap:implementierung}} beschreibt die modulare Client-Server-Architektur des Assistenzsystems, die klar getrennte Zuständigkeiten und austauschbare Komponenten vorsieht: ein Flask-Backend mit \acs{REST}/\acs{HTTP}-Schnittstellen und JSON-Strukturen orchestriert \acs{LLM}-Aufrufe (lokal via Ollama bzw. Online-Modelle) und den Datenzugriff über \texttt{yfinance}, während ein leichtgewichtiges \acs{HTML}/Bootstrap/\acs{JS}-Frontend per asynchronen \acs{API}-Calls die Ergebnisse präsentiert.
+Das Kapitel \textbf{\nameref{chap:implementierung}} beschreibt die modulare Client-Server-Architektur des Assistenzsystems, die klar getrennte Zuständigkeiten und austauschbare Komponenten vorsieht: ein Flask-Backend mit \acs{HTTP}-Schnittstellen und JSON-Strukturen orchestriert \acs{LLM}-Aufrufe (lokal via Ollama bzw. Online-Modelle) und den Datenzugriff über \texttt{yfinance}, während ein leichtgewichtiges \acs{HTML}/Bootstrap/\acs{JS}-Frontend per asynchronen \acs{API}-Calls die Ergebnisse präsentiert.
 Es erläutert Projektstruktur, Hauptkomponenten und deren Zusammenspiel und zeichnet die iterative Entwicklung vom frühen Konsolen-Backend bis zur entkoppelten Web-App anhand konkreter Meilensteine und Commits nach.
 Für die Modellorchestrierung und die konsistente, maschinenlesbare Ausgabe werden LangChain sowie gezielt gestaltete Prompts mit \acs{JSON}-Extraktion eingesetzt.
 Zudem dokumentiert das Kapitel die eingesetzten Frameworks/Tools und den reproduzierbaren Arbeitsmodus in Jupyter-Lab für explorative Tests, Auswertungen und transparente Ergebnisdarstellung.
