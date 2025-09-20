@@ -34,8 +34,8 @@
 
   \subsection{Klassische Portfolio-Optimierung}
 
-    Die moderne Portfoliotheorie (\acs{MPT}), begründet von \textcite{markowitz1952}, ist ein grundlegendes Konzept der Finanzwissenschaft, das Anlegern hilft, ein optimales Verhältnis zwischen Risiko und Rendite zu erreichen.
-    Das zentrale Prinzip der \acs{MPT} ist die Diversifikation, also die Streuung von Investitionen über verschiedene Werpapiere und Anlageklassen (z. B. Aktien, Anleihen, Rohstoffe), um das Gesamtrisiko des Portfolios zu reduzieren.
+    Die moderne Portfoliotheorie (\acs{MPT}), begründet von \textcite{markowitz1952}, ist ein grundlegendes Konzept der Finanzwirtschaft, das Anlegern hilft, ein optimales Verhältnis zwischen Risiko und Rendite zu erreichen.
+    Das zentrale Prinzip der \acs{MPT} ist die Diversifikation, also die Streuung von Investitionen über verschiedene Wertpapiere und Anlageklassen (z. B. Aktien, Anleihen, Rohstoffe), um das Gesamtrisiko des Portfolios zu reduzieren.
     Die Idee dahinter ist, dass sich die Risiken einzelner Anlagen gegenseitig ausgleichen können, wenn sie nicht perfekt korreliert sind.
 
     Der mathematische Kern der \acs{MPT} ist die \textit{Mean-Variance-Optimierung}.
@@ -62,8 +62,6 @@
     Das Konzept hinter \acs{MPT} basiert auf der Annahme, dass Renditen normalverteilt sind, also symmetrisch um einen Mittelwert schwanken.
     Allerdings wurde diese Annahme in der Praxis oft kritisiert, da reale Finanzmärkte häufig \enquote{fette Verteilungsenden} (fat tails) und Schiefe aufweisen, was zu extremen Risiken führt, die die \acs{MPT} nicht vollständig abbilden kann \autocite{favre2002}.
 
-    \todo[inline]{Optionales To-Do: Unterstützende Grafik oder Beispiele einbauen}
-
     % To-Do: Grafik hier zu noch bauen
     % Bisherige Beispiele gefielen nicht oder waren nicht anschaulich genug
 
@@ -76,8 +74,20 @@
     In Finanzmärkten ist die Verteilung der Renditen jedoch oft schief: Entweder gibt es eine höhere Wahrscheinlichkeit für starke negative Abweichungen (linksschief) oder für starke positive Abweichungen (rechtsschief).
     Beispielsweise neigen Aktienmärkte dazu, linksschief zu sein, da extreme Verluste (z. B. während einer Finanzkrise) häufiger auftreten als extreme Gewinne \autocite{favre2002}.
 
+    Ein Blick auf langfristige Anlageinstrumente wie Indexfonds, die die Marktrendite abbilden, verdeutlichen diese Effekte: 
+    Auch hier lassen sich in den Renditereihen deutliche Ausschläge nach oben und unten beobachten. 
+    Besonders anschaulich zeigt dies das Renditedreieck des MSCI World, das nicht nur die langfristige Aufwärtsentwicklung widerspiegelt, sondern auch die Häufigkeit von Verlustphasen und starken Schwankungen verdeutlicht.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1.1\textwidth]{assets/pictures/msci_renditedreieck.png}
+        \caption{Renditedreieck des MSCI World Aktienindex}
+        \small{(Quelle: Deutsches Aktieninstitut (zum Teil bearbeitet) (\url{https://www.dai.de/fileadmin/user_upload/221231_MSCI_World-Rendite-Dreick_Web.pdf}))}
+        \label{fig:systemarchitektur}
+    \end{figure}
+
     Diese Asymmetrie wird von der \acs{MPT} nicht berücksichtigt, obwohl sie erhebliche Auswirkungen auf das Risikomanagement hat.
-    Beide Phänomene – fat tails und Schiefe – führen dazu, dass die \acs{MPT} die tatsächlichen Risiken von Portfolios unterschätzt.
+    Beide Phänomene – fat tails und Schiefe – führen dazu, dass die \acs{MPT} die tatsächlichen Risiken aber auch Chancen von Portfolios unterschätzt.
     Dies kann insbesondere in Krisensituationen problematisch sein, wenn extreme Ereignisse eintreten, die das Modell nicht vorhersieht \autocite{favre2002}.
 
     Dennoch hat die \acs{MPT} die Grundlage für zahlreiche Anwendungen in der Finanzwelt geschaffen und bleibt ein zentraler Bezugspunkt für die Portfoliooptimierung.
@@ -210,7 +220,7 @@
     Ein Nachteil ist jedoch, dass man eine geeignete neutrale Eingabe definieren muss – was bei Sprache nicht immer einfach ist.
 
     Zudem ist die Anwendung von Integrated Gradients auf große Sprachmodelle komplex, da die hohe Dimensionalität, Kontextabhängigkeit und nicht-linearen Beziehungen der Modelle die Attribution von Vorhersagen erschweren.
-    Des weiteren können die Wahl des Basispunkts und der hohe Rechenaufwand zu variablen und schwer interpretierbaren Ergebnissen führen. \autocite{sundararajan2017, vaswani2017}.
+    Des Weiteren können die Wahl des Basispunkts und der hohe Rechenaufwand zu variablen und schwer interpretierbaren Ergebnissen führen. \autocite{sundararajan2017, vaswani2017}.
 
     Attention Visualization \autocite{abnar2020} ist eine Methode, die speziell für Transformer-Modelle entwickelt wurde.
     Es ist ein weiteres beliebtes Werkzeug, um zu verstehen, wie Transformer-Modelle wie \acs{GPT} oder \acs{BERT} arbeiten.
@@ -303,7 +313,7 @@
     \todo[inline]{Alles über diesem Kommentar ist gut überarbeitet und nahezu rund. Rest des Kapitels bedarf u. U. noch mehr Liebe (roter Faden)}
 
 
-\section{Erklärbare KI in der Finanzdomäne} %%%%%%%%%%%%%% <- bis hierhin überarbeitet
+\section{Erklärbare KI in der Finanzdomäne}
 
   Moderne Portfoliomodelle basieren auf zunehmend komplexen \acs{KI}- und \acs{ML}-Ansätzen, deren Entscheidungswege für menschliche Anwender häufig undurchsichtig sind.
   In der stark regulierten Finanzbranche führt dies zu einem Spannungsfeld: Einerseits versprechen fortgeschrittene Modelle bessere Prognosen (z.\,B. für Kreditbewertungen oder Marktbewegungen), andererseits verlangen Aufsichtsbehörden und Nutzer nach hoher Nachvollziehbarkeit.
@@ -331,6 +341,7 @@
     \acs{XAI} wird daher als Schlüsselfaktor gesehen, um die rechtlichen und ethischen Anforderungen im Finanzwesen einzuhalten und zugleich den Anwendern ein besseres Verständnis der Modelle zu vermitteln \autocite{Weber2024}.
 
     Generative KI und \acs{LLM} bieten hier die Chance Vertrauen zu schaffen und tranparentere Prozesse zu schaffen.
+    Durch ihren Einsatz können komplexe Entscheidungslogiken in verständliche Erklärungen übersetzt werden, wodurch regulatorische Anforderungen erfüllt und zugleich die Akzeptanz bei Anlegern gestärkt wird.
 
   \subsection{Symbolische Ansätze zur Erhöhung der Transparenz}
 
@@ -338,7 +349,7 @@
     Solche weißen Boxen sind von Natur aus gut interpretierbar.
     Neuere Ansätze im Bereich \enquote{neuro-symbolischer KI} versuchen, die Stärken neuronaler Netze mit symbolischer Repräsentation zu verbinden:
     Während das neuronale Netz Daten generalisiert, übernimmt das symbolische System die explizite Wissensrepräsentation.
-    \autocite{Yeo2025} heben hervor, dass symbolisches Schließen genau das erlaubt, was Nutzer wünschen – nämlich \emph{menschlich verständliche Erklärungen} des Entscheidungsprozesses, wodurch die Transparenz signifikant steigt.
+    \autocite{Yeo2025} heben hervor, dass symbolisches Schließen genau das erlaubt, was Nutzer wünschen – nämlich menschlich verständliche Erklärungen des Entscheidungsprozesses, wodurch die Transparenz signifikant steigt.
     Ein Vorteil ist, dass einmal definiertes Fachwissen dauerhaft in einer Wissensbasis gespeichert werden kann, was das \enquote{Wissen vergessen} der Netze verhindert und klare Audit-Trails schafft \autocite{Yeo2025}.
 
     Allerdings ist die Entwicklung domänenspezifischer symbolischer Modelle aufwändig.
@@ -347,7 +358,9 @@
     So können beispielsweise Entscheidungsbäume oder if-then-Regelsätze zur anfänglichen Strukturierung genutzt und anschließend durch \acs{ML}-Module ergänzt werden.
     Insgesamt zeigen solche symbolischen und hybriden Verfahren ein hohes Potenzial, die Erklärbarkeit zu erhöhen, indem sie Klarheit in die Modelllogik bringen \autocite{Yeo2025}.
 
-    Im Rahmen des Projekts lassen sich die genannten Verfahren nicht mit vertretbaren Aufwand implementieren, allerdings ist vorstellbar, dass generative KI beim Aufbau der Regelsätze und Struktur maßgeblich unterstützen kann.
+    Im Rahmen des Projekts lassen sich die genannten Verfahren nicht mit vertretbaren Aufwand implementieren.
+    Allerdings ist vorstellbar, dass generative KI beim Aufbau der Regelsätze und Struktur maßgeblich unterstützen kann.
+    Damit sind symbolische Ansätze ein interessantes Zukunftsthema, das sich in späteren Arbeiten vertiefen ließe.
 
 \section{Menschzentrierte Erklärbarkeit und Interaktion}
 
@@ -370,6 +383,7 @@
   Insgesamt legt die Human-Centered-Forschung nahe, dass \acs{XAI}-Systeme nicht nur korrekte, sondern vor allem menschlich verständliche Erklärungen erzeugen müssen \autocite{Liao2022, Rong2022}.
 
   Diese hier gesammelten Erkenntnisse werden in Teilen im späteren Abschnitt \ref{sec:frontend} adressiert und angewandt.
+  Dort geht es darum, wie Erklärungen visuell und interaktiv gestaltet werden können, damit Nutzer sie intuitiv verstehen und anwenden können.
 
 \section{Evaluation und Trade-offs}
 
@@ -388,6 +402,7 @@
   Die Literatur fordert daher, \acs{XAI} systematischer zu evaluieren und Benchmarks zu etablieren \autocite{Kadir2023, Rong2022}.
 
   Auch hier werden die gesammelten Erkenntnisse in weiten Teilen im späteren Kapitel \ref{chap:evaluation} näher anyalysiert und zumindest teilweise angewandt.
+  Besonders die Frage nach praktikablen Benchmarks und nutzerorientierten Evaluationskriterien wird dort nochmals aufgegriffen.
 
 \section{Brücke zu den Forschungsfragen}
 
@@ -421,16 +436,18 @@
     Während Methoden wie \textit{Integrated Gradients} \autocite{sundararajan2017} und \textit{Attention Visualization} \autocite{abnar2020} Fortschritte bei der Interpretation von Modellentscheidungen bieten, sind ihre Erklärungen oft technisch und für Endnutzer schwer verständlich.
 
     Chain-of-Thought-Erklärungen (\acs{CoT}) \autocite{wei2022} bieten zwar natürlichsprachige Begründungen, sind jedoch auf die Fähigkeiten des zugrunde liegenden KI-Modells beschränkt und können inkonsistente oder unvollständige Erklärungen liefern.
-    Es besteht daher ein Bedarf an intuitiveren und nutzerfreundlicheren Erklärungsmethoden, die sowohl für Fachleute als auch für Laien verständlich sind.
+    Dies wirft die Frage auf, wie solche Erklärungen validiert und mit zusätzlichen Mechanismen abgesichert werden können, um ihre Zuverlässigkeit für Anwender zu erhöhen.
 
+    Es besteht daher ein Bedarf an intuitiveren und nutzerfreundlicheren Erklärungsmethoden, die sowohl für Fachleute als auch für Laien verständlich sind.
     Welche Erklärbarkeitsmethoden dafür in Frage kommen wird im Kapitel \ref{chap:evaluation} später untersucht.
 
   \subsection{Integration qualitativer und quantitativer Faktoren}
 
-    Ein weiteres Problem ist die Integration qualitativer Faktoren, wie \acs{ESG}-Kriterien (Environmental, Social, Governance) oder Marktstimmung, in quantitative Optimierungsmodelle.
+    Ein weiteres Problem ist die Integration qualitativer Faktoren – wie Marktstimmung, Unternehmensreputation, geopolitische Ereignisse, \acs{ESG}-Kriterien (Environmental, Social, Governance) oder regulatorische Veränderungen – in quantitative Optimierungsmodelle.
     Während klassische Portfoliooptimierungsansätze wie die moderne Portfolio-Theorie (\acs{MPT}) \autocite{markowitz1952} primär auf quantitativen Daten basieren, spielen qualitative Faktoren eine zunehmend wichtige Rolle in der Anlageentscheidung.
 
     Die Herausforderung besteht darin, diese Faktoren in eine einheitliche Bewertungsmethode zu integrieren, die sowohl präzise als auch erklärbar ist.
+    Zudem ist es schwierig, die verschiedenen Faktoren angemessen zu gewichten, zu priorisieren und in einen konsistenten Entscheidungsrahmen einzuordnen.
 
   \subsection{Regulatorische und ethische Anforderungen}
 
@@ -440,16 +457,23 @@
     Zudem gibt es ethische Bedenken hinsichtlich der Fairness und Diskriminierungsfreiheit von \acs{KI}-Modellen, insbesondere wenn personenbezogene Daten in die Entscheidungsfindung einfließen \autocite{bendavid2021explainable}.
     Die Entwicklung von \acs{KI}-Systemen, die sowohl regulatorische als auch ethische Anforderungen erfüllen, bleibt ein offenes Forschungsfeld.
 
-    \todo[inline]{To-Do: Beschreiben, dass die Details für dieses Thema Out-of-Scrope der Arbeit sind und die Richtlinien nicht im Detail betrachtet werden}
-    Das Thema wird im Rahmen der Bearbeitung im Hinterkopf behalten und mögliche Wirkungen werden formuliert, aber eine Analyse im Detail bleibt mangels Kapazitäten und Priorität innerhalb der Arbeit aus.
+    
+    Eine detaillierte Analyse regulatorischer Rahmenbedingungen und Richtlinien würde den Umfang dieser Arbeit jedoch übersteigen.
+    Daher werden diese Aspekte nicht im Detail behandelt, sondern lediglich in ihren möglichen Implikationen reflektiert.  
+    Damit bleibt der Fokus auf den zentralen Forschungsfragen dieser Arbeit, ohne die Relevanz regulatorischer und ethischer Dimensionen aus dem Blick zu verlieren.
 
   \subsection{Datenqualität und -verfügbarkeit}
 
-    Die Qualität und Verfügbarkeit von Daten sind entscheidend für die Leistungsfähigkeit von \acs{KI}-Modellen.
-    Finanzdaten sind oft verrauscht, unvollständig oder unterliegen zeitlichen Verzögerungen, was die Genauigkeit von Prognosen und Empfehlungen beeinträchtigt \autocite{demiguel2009}.
+    Die Qualität und Verfügbarkeit von Daten sind entscheidend für die Leistungsfähigkeit von \acs{KI}-Modellen.  
+    Finanzdaten weisen jedoch unterschiedliche Einschränkungen auf: Marktpreise und Renditen unterliegen kurzfristigen Schwankungen (z.\,B. durch Liquidität oder stimmungsgetriebene Dynamiken), während Fundamentaldaten zwar stabiler sind, aber durch Bilanzierungsspielräume, Korrekturen oder Schätzunsicherheiten beeinflusst werden können.  
+    Zudem enthalten viele alternative Datenquellen – etwa Nachrichten und Social Media – einen hohen Anteil irrelevanter oder verzerrter Informationen, was die Isolierung des eigentlichen Signals erschwert \autocite{sec2021gamestop,Weber2024}.
 
-    Zudem sind viele relevante Datenquellen, wie Nachrichten oder Social Media, unstrukturiert und erfordern aufwendige Vorverarbeitung.
-    Die Entwicklung robuster Methoden zur Datenintegration und -bereinigung ist daher eine zentrale Herausforderung.
+    Neben der technischen Bereinigung stellt sich daher die Frage, wie heterogene Datenquellen gewichtet, priorisiert und kontextgerecht eingeordnet werden.  
+    Kleinste Schätzfehler in Mittelwerten und Kovarianzen können zu instabilen, stark schwankenden Portfoliogewichten führen, was die Bedeutung robuster Schätz- und Regularisierungsverfahren unterstreicht \autocite{demiguel2009}.  
+    Die Entwicklung robuster Methoden zur Datenintegration umfasst folglich nicht nur die Aufbereitung, sondern auch transparente Kriterien zur Relevanzbewertung und eine konsistente Verknüpfung mit dem jeweiligen Marktkontext \autocite{Weber2024}.
+
+    In dieser Arbeit werden diese Herausforderungen nicht umfassend gelöst, sodass die Resultate den inhärenten Grenzen des eingesetzten \acs{LLM} unterliegen.
+    Umso wichtiger ist es, die Ergebnisse mit kritischem Blick zu betrachten und ihre Aussagekraft sorgfältig einzuordnen.
 
   \subsection{Skalierbarkeit und Recheneffizienz}
 
@@ -460,8 +484,9 @@
     Die Entwicklung skalierbarer und kosteneffizienter Lösungen bleibt daher ein wichtiges Forschungsziel.
 
     Im Rahmen der Arbeit wird sich deshalb auf kleinen Portfolios mit unterschiedlichen Wertpapieren konzentriert, um nicht zu früh an die wirtschaftlichen Grenzen zu stoßen.
+    Die Resultate sind daher primär als Machbarkeitsnachweis zu interpretieren und nicht als unmittelbar produktionsreifes System.
 
-\section{Cross-industrielle Vergleiche}
+\section{Cross-industrielle Vergleiche} %Kann immernoch einiges an Feinschliff vertragen
 
   \todo[inline]{To-Do: Diese ganze Section wirkt noch chaotisch. Möglicherweise Okay oder noch von Grund auf erneuern}
 
@@ -483,7 +508,6 @@
 
   Zudem können Unterschiede in der Datenqualität und -verfügbarkeit die Übertragbarkeit von \acs{LLM}s einschränken.
   Finanzdaten sind oft verrauscht und unstrukturiert, während medizinische Daten strengen Datenschutzbestimmungen unterliegen \autocite{demiguel2009}.
-
   Ein tiefergehender Vergleich mit anderen datenintensiven Branchen zeigt, dass der Einsatz von \acs{LLM}s in der Finanzbranche ähnliche strukturelle Herausforderungen aufweist wie in der Medizin oder dem Rechtswesen, jedoch auch einige branchenspezifische Besonderheiten birgt.
 
   In der Medizin wurde etwa mit Modellen wie \textit{BioGPT} oder \textit{Med-PaLM} demonstriert, dass \acs{LLM}s in der Lage sind, komplexe, fachspezifische Inhalte mit hoher Präzision zu verarbeiten und erklärbar darzustellen \autocite{singhal2022large,luo2022biogpt}.
@@ -521,10 +545,9 @@
   Die identifizierten Forschungslücken lassen sich wie folgt zusammenfassen:
 
   \begin{itemize}
-  \item \textbf{Erklärungsdefizit}: Bestehende Systeme liefern oft keine nachvollziehbaren Begründungen für ihre Empfehlungen, was das Vertrauen der Nutzer und die regulatorische Compliance beeinträchtigt \autocite{bendavid2021explainable}.
-  \item \textbf{Integration qualitativer und quantitativer Faktoren}: Es fehlen robuste Methoden, um qualitative Faktoren wie \acs{ESG}-Kriterien oder Marktstimmung in quantitative Optimierungsmodelle zu integrieren \autocite{ban2018}.
-  \item \textbf{Nutzerzentrierte Transparenz}: Die Erklärungen von \acs{KI}-Systemen sind oft zu technisch und nicht auf die Bedürfnisse von Endnutzern zugeschnitten \autocite{linardatos2021}.
-  \item \textbf{Skalierbarkeit und Recheneffizienz}: Die Anwendung von komplexen \acs{KI}-Modellen in Echtzeit erfordert erhebliche Rechenressourcen, was die praktische Umsetzung erschwert \autocite{demiguel2009}.
+  \item \textbf{Erklärungsdefizit}: Bestehende Systeme liefern oft keine nachvollziehbaren Begründungen für ihre Empfehlungen, was das Vertrauen der Nutzer und die regulatorische Compliance beeinträchtigt.
+  \item \textbf{Integration qualitativer und quantitativer Faktoren}: Es fehlen robuste Methoden, um qualitative Faktoren wie \acs{ESG}-Kriterien oder Marktstimmung in quantitative Optimierungsmodelle zu integrieren.
+  \item \textbf{Nutzerzentrierte Transparenz}: Die Erklärungen von \acs{KI}-Systemen sind oft zu technisch und nicht auf die Bedürfnisse von Endnutzern zugeschnitten.
   \end{itemize}
 
   Diese Forschungslücken bilden die Grundlage für die Entwicklung des in dieser Arbeit vorgestellten \acs{KI}-basierten Assistenzsystems.
