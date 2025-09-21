@@ -210,15 +210,17 @@
           Zusätzlich sorgen clientseitige DOM-Manipulationen für reaktive Benutzeroberflächen, beispielsweise das Anzeigen von Diagrammen, das Hervorheben relevanter Datenpunkte und die Umsetzung von Filtern und Sortierfunktionen.
           Die Kombination mit der beliebten Bibliotheken \texttt{jQuery} erleichert die Entwicklung zusätzlich.
 
-          % To-Do: Später noch mehr Technologien einführen: Podman, Podman-Compose, ...
+          \item \texttt{Podman und Podman-Compose} – Für die Containerisierung der Uumgebung -- für erleichterte Reproduzierbarkeit -- wird Podman in Kombination mit Podman-Compose eingesetzt.  
+          Podman ermöglicht die Ausführung und Verwaltung von Containern ohne zusätzlichen Daemon und ist dabei weitgehend kompatibel zu Docker, sodass bestehende Workflows und Konfigurationsdateien übernommen werden können.  
+          Podman-Compose erlaubt darüber hinaus die einfache Definition und Verwaltung mehrerer zusammengehöriger Container, etwa für Datenbank, Backend und unterstützende Dienste, in einer einzigen Konfigurationsdatei.  
+          Der Einsatz dieser Werkzeuge bietet eine hohe Portabilität, da die Containerumgebungen reproduzierbar auf unterschiedlichen Systemen bereitgestellt werden können.  
+          Unter Linux wird Podman nativ genutzt, während unter Windows bei Bedarf weiterhin Docker als Alternative eingesetzt werden kann, um volle Plattformunterstützung sicherzustellen \autocite{podman_docs_2025}.  
+
       \end{itemize}
-      \todo[inline]{Opt. To-Do: Ggf. auch auf Techonlogien wie Podman für Containeriserung eingehen? }
 
       Durch den gezielten Einsatz dieser Technologien wird die Funktionalität des Assistenzsystems sinnvoll ergänzt, die Entwicklung beschleunigt und die Benutzerfreundlichkeit auf einem hohen Niveau sichergestellt.
 
-  %\section{Abruf von Finanzdaten}
-
-      \todo[inline]{Opt. To-Do: Ggf. section zu "Abruf von Finanzdaten" wieder einfügen }
+  %\section{Abruf von Finanzdaten} %ggf wieder einbauen
 
   \section{Prompt-Engineering und Aufbau der Prompts}
 
