@@ -19,11 +19,19 @@
 
     \subsection{Mögliche Ziele und Kennzahlen}
 
-      Im Zentrum der Evaluation stehen die folgenden Zielgrößen:
+      Im Rahmen der Evaluation werden zunächst verschiedene potenzielle Zielgrößen und Kennzahlen gesammelt, die eine möglichst umfassende Bewertung des Systems erlauben könnten.
+      Dabei ist zu beachten, dass nicht alle dieser Verfahren tatsächlich praktisch umgesetzt werden können.
+      Je nach Verfügbarkeit von Zeit, Kapazität und Ressourcen werden einige Punkte nur konzeptionell beschrieben bzw. in Teilen umgesetzt.
+      Gleichzeitig wird dann im Verlauf des Evaluationsverfahren begründet, warum eine praktische Umsetzung nicht bzw. nur eingeschränkt erfolgt.
+
+      Im Zentrum der Evaluation stehen daher die folgenden Zielgrößen:
       \begin{itemize}
         \item \textbf{Allgemeine Prompt-Response-Auswertung:} Konsistenzprüfung der generierten Empfehlungen (buy, hold, sell) sowie Analyse der Unterschiede zwischen Modellen.
         \item \textbf{Konsens-Auswertung:} Überprüfung, ob die beobachteten Performanceunterschiede gegenüber Analystenempfehlungen nicht zufällig oder komplett abwegig sind.
-        \item \dots
+        \item \textbf{Transparenz und Erklärbarkeit:} Bewertung, inwieweit die Handlungsempfehlungen für Nutzerinnen und Nutzer verständlich und plausibel nachvollziehbar sind.
+        \item \textbf{Akzeptanz und Vertrauen:} Untersuchung, ob die bereitgestellten Empfehlungen das Vertrauen der Nutzer fördern und zur tatsächlichen Nutzung beitragen.
+        \item \textbf{Benchmark-Vergleich mit Backtesting:} Gegenüberstellung der hypothetischen Portfolioperformance (bei konsequenter Umsetzung der Empfehlungen) mit etablierten Marktindizes wie dem MSCI World oder dem S\&P~500.
+        Dieser Vergleich ist weniger als primäre Evaluationsmetrik zu verstehen, sondern vielmehr als Ausblick, um die Systemleistung in Relation zu bekannten Referenzen einzuordnen.
       \end{itemize}
 
     \subsection{Allgemeine Prompt-Response-Auswertung}
@@ -31,7 +39,7 @@
       Ein wichtiger Bestandteil der Evaluation des entwickelten \acs{KI}-basierten Assistenzsystems ist die Analyse der generierten Antworten auf gleiche Parameter.
       Hierbei wird insbesondere die Konsistenz der Systemantworten untersucht, da LLM-Antworten nicht deterministisch sind.
       Dies wird häufig auch als \enquote{Fidelity} oder \enquote{Faithfulness} bezeichnet, welches die Erklärungstreue darstellt.
-      Dabei wird überprüft, ob das System bei gleichen oder sehr ähnlichen Prompts in Bezug auf die Handlungsempfehlungen – u. a. \textit{buy}, \textit{hold} und \textit{sell} – stabile und nachvollziehbare Einschätzungen liefert oder ob sich bei wiederholter Abfrage größere Unterschiede ergeben.
+      Dabei wird überprüft, ob das System bei gleichen oder sehr ähnlichen Prompts in Bezug auf die Handlungsempfehlungen –- u. a. \textit{buy}, \textit{hold} und \textit{sell} –- stabile und nachvollziehbare Einschätzungen liefert oder ob sich bei wiederholter Abfrage größere Unterschiede ergeben.
       Diese Konsistenzprüfung ist wesentlich, um sicherzustellen, dass das System nicht durch Zufall oder unstetige interne Gewichtungen widersprüchliche Empfehlungen ausspricht.
 
       Ein weiterer wichtiger Aspekt dieser Auswertung ist der Vergleich von Antworten verschiedener Modelle.
@@ -47,65 +55,75 @@
       % To-Do: Noch genauer auf das Vorgehen selbst eingehen: Wie umsetzen
 
 
-    \subsection{Vergleich mit Analystenempfehlungen}
+    \subsection{Konsens-Auswertung}
 
       Das Assistenzsystem wird mit etablierten Analystenempfehlungen verglichen, um die grundsätzliche Qualität und Konsistenz der generierten Handlungsempfehlungen zu überprüfen.
       Dabei werden die Empfehlungen für einzelne Wertpapiere, die das System auf Basis eines neutralen, nicht voreingenommenen Prompts liefert, mit Konsens-Analystenratings verglichen.
       Ziel ist es zu untersuchen, ob das System zumindest in seiner grundlegenden Einschätzung – beispielsweise ob ein Wertpapier potenziell attraktiv oder riskant ist – ähnliche Tendenzen wie Analysten aufweist.
       Dies kann ein Indikator für die Plausibilität der generierten Handlungsempfehlungen sein.
 
-      Es wird jedoch betont, dass Analystenmeinungen selbst nicht immer „wahr“ oder objektiv sind, da sie auf subjektiven Einschätzungen, marktspezifischen Einflüssen oder individuellen Strategien basieren können.
-      Ein Konsens zwischen Analysten und Assistenzsystem deutet also nicht zwingend auf eine objektiv richtige Bewertung hin, sondern kann vielmehr die Fähigkeit des Systems zeigen, marktkonforme Einschätzungen zu generieren.
-      Ein signifikanter Unterschied zu den Analystenmeinungen könnte wiederum ein Hinweis darauf sein, dass das System andere, möglicherweise innovative Perspektiven einnimmt, oder dass die zugrunde liegenden Modelle oder Daten angepasst werden müssen.
+      Es wird jedoch betont, dass Analystenmeinungen selbst nicht per se als objektiver Goldstandard gelten können. Studien zeigen, dass Analysten in ihren Empfehlungen häufig zu sog. Herding neigen, d. h. sie orientieren sich stark am Konsens, anstatt stark von diesem abzuweichen \autocite{jegadeesh2007herd, michel2015analyst}.
+      Darüber hinaus reagieren  Analysten nicht immer sofort auf neue Informationen, sondern weisen eine gewisse Trägheit auf \autocite{zhang2008analystresponsiveness}.
+      Auch Interessenkonflikte gelten als potenzieller Einflussfaktor, da Analysten oft in Strukturen operieren, in denen Research- und Investmentbanking-Aktivitäten wirtschaftlich verbunden sind \autocite{iosco_report}.
+      Diese Aspekte legen nahe, dass ein Abgleich mit Analystenratings zwar sinnvoll ist, aber nicht mit einer objektiv richtigen Bewertung gleichgesetzt werden darf.
 
       Es wird auch berücksichtigt, dass spätere Nutzerpräferenzen, wie Risikoneigung oder Investmenthorizont, das Bewertungsergebnis beeinflussen werden.
       Diese werden jedoch in dieser Evaluierung noch ausgeklammert, um einen neutralen Vergleich mit den Analystenbewertungen zu ermöglichen.
 
-      % To-Do: Noch genauer auf das Vorgehen selbst eingehen: Wie umsetzen
 
-      \todo[inline, color=red]{To-Do: Ab hier nochmal alles grundsätzlich überdenken, was geht und was nicht. Ggf. Grenzen aufzeigen und zeigen was defintiv geht}
-
-
-    \subsection{Evaluation der Erklärbarkeit}
+    \subsection{Transparenz und Erklärbarkeit}
     \label{sec:xai-eval}
 
-      Da das Assistenzsystem nicht nur auf Performance und Kennzahlen abzielt, sondern insbesondere auf eine transparente Entscheidungsbegründung, ist die Bewertung der erzeugten Erklärungen ein zentrales Element dieser Arbeit.
-      Dabei wird zwischen automatisierten Verfahren und subjektiver Einschätzung durch Nutzer unterschieden.
+      Da das Assistenzsystem nicht nur auf Performance und Kennzahlen abzielt, sondern insbesondere auf eine transparente Entscheidungsbegründung, sind die erzeugten Erklärungen ein zentrales Element dieser Arbeit.
+      Da erklärbare \acs{KI} stets auch auf das subjektive Verständnis der Nutzer zielt, ist eine empirische Bewertung durch menschliche Rückmeldung der best gangbare Weg.
 
-      \subsubsection{Automatisierte Metriken}
+      Die Teilnehmenden erhalten eine Reihe von \acs{KI}-Empfehlungen mitsamt den zugehörigen Begründungstexten und werden gebeten, diese anhand folgender Kriterien zu bewerten:
+      \begin{itemize}
+        \item Verständlichkeit
+        \item Nützlichkeit für die Entscheidung
+        \item Vertrauensförderlichkeit
+        \item Wahrgenommene Kausalität der Begründung
+      \end{itemize}
 
-        Automatisierte Metriken erlauben eine objektive, wiederholbare Analyse großer Mengen generierter Erklärungen.
-        Die folgenden Aspekte stehen im Fokus:
+      Der Erfolg einer solchen Nutzerstudie hängt maßgeblich von der Rekrutierung geeigneter Testpersonen und der sorgfältigen Gestaltung des Bewertungsschemas ab.
+      Zudem ist zu beachten, dass subjektive Bewertungen durch Vorerfahrung, Erwartungshaltungen und Testkontext beeinflusst werden können.
+      Dennoch liefern sie entscheidende Einblicke in die praktische Erklärbarkeit jenseits theoretischer Kriterien.
 
-        \begin{itemize}
-          \item \textbf{Comprehensibility:}
-          Zur Bewertung der Verständlichkeit auf syntaktisch-semantischer Ebene kommen klassische Lesbarkeitsmaße zum Einsatz, z.\,B. der \textit{Flesch–Kincaid Grade Level} oder der \textit{Gunning Fog Index}.
-          Diese Metriken lassen sich direkt auf den Text der Erklärungen anwenden.
-          Sie geben Hinweise darauf, ob die Erklärungen in einer Sprache formuliert sind, die dem intendierten Nutzerkreis (z.\,B. Privatanleger) entspricht.
+      Um eine aussagekräftige Evaluation der Transparenz und Erklärbarkeit durchzuführen, wäre ein strukturiertes Studiendesign erforderlich:
+      Die Teilnehmenden müssten repräsentativ für die Zielgruppe ausgewählt, die Testbedingungen kontrolliert gestaltet und die Antworten statistisch ausgewertet werden.
+      Darüber hinaus müssten geeignete Methoden zur Qualitätssicherung entwickelt werden, etwa die Wiederholung von Bewertungen, der Abgleich zwischen Teilnehmergruppen oder die Einbeziehung von Kontrollfragen.
+      Diese Vorbedingungen machen die Durchführung komplex und ressourcenintensiv.
 
-          \item \textbf{Redundanz und Konsistenz:}
-          Ergänzend können NLP-Metriken wie \textit{BLEU}, \textit{ROUGE} oder semantische Ähnlichkeitsanalysen verwendet werden, um die Konsistenz ähnlicher Empfehlungen in vergleichbaren Kontexten zu überprüfen.
-        \end{itemize}
+      Aufgrund der Vielzahl an Vorbedingungen, der methodischen Komplexität, der begrenzten Zahl verfügbarer Teilnehmer und vor allem der noch verfügbaren Kapazität der Arbeit fällt eine umfassende empirische Studie in diesem Projekt jedoch außerhalb des Scopes.
+      Stattdessen wird hier nur skizziert, wie eine solche Untersuchung aussehen könnte, und es wird eine subjektive Einschätzung der Autorin bzw. des Autors gegeben.
+      Erste Eindrücke deuten darauf hin, dass die generierten Erklärungen grundsätzlich verständlich und plausibel wirken, jedoch in ihrer Tiefe teilweise variieren und nicht immer ausreichend konkrete Begründungen für komplexe Anlageentscheidungen liefern.
+      Damit besteht Potenzial zur Verbesserung, insbesondere in Bezug auf Konsistenz und Detailgrad der erzeugten Begründungstexte.
 
-        Automatisierte Metriken sind insbesondere für Regressionstests geeignet, etwa bei Änderungen am Prompt-Design oder zur vergleichenden Evaluation verschiedener Modellvarianten.
 
-      \subsubsection{Benutzerstudien}
+    \subsection{Akzeptanz und Vertrauen}
 
-        Da erklärbare \acs{KI} stets auch auf das subjektive Verständnis der Nutzer zielt, ist eine empirische Bewertung durch menschliche Rückmeldung ein ebenfalls gangbarer Weg.
+      Neben Transparenz und Erklärbarkeit stellt die Akzeptanz durch die Nutzerinnen und Nutzer eine wesentliche Dimension für die Beurteilung der Praxistauglichkeit des Assistenzsystems dar.
+      Vertrauen in die Empfehlungen entscheidet darüber, ob diese tatsächlich in die Entscheidungsprozesse integriert werden oder ob sie lediglich als unverbindliche Orientierung dienen.
+      Eine Evaluation könnte in Form von Befragungen oder Interviews erfolgen, bei denen Teilnehmende einschätzen, inwieweit sie die Empfehlungen als glaubwürdig, hilfreich und verlässlich empfinden.
+      Ergänzend wären Experimente denkbar, in denen untersucht wird, ob sich die Bereitschaft zur Umsetzung einer Empfehlung ändert, wenn diese durch zusätzliche Begründungen flankiert wird.
 
-        Die Teilnehmenden erhalten eine Reihe von \acs{KI}-Empfehlungen mitsamt den zugehörigen Begründungstexten und werden gebeten, diese anhand folgender Kriterien zu bewerten:
-        \begin{itemize}
-          \item Verständlichkeit
-          \item Nützlichkeit für die Entscheidung
-          \item Vertrauensförderlichkeit
-          \item Wahrgenommene Kausalität der Begründung
-        \end{itemize}
+      Auch hier gilt jedoch, dass eine systematische Untersuchung hohe Anforderungen an das Studiendesign, die Rekrutierung einer geeigneten Nutzergruppe und die Interpretation subjektiver Antworten stellt.
+      Angesichts der notwendigen Ressourcen und der begrenzten Zahl an potenziellen Teilnehmenden ist eine belastbare empirische Erhebung in diesem Projekt nicht umsetzbar.
+      Stattdessen wird skizziert, wie eine solche Studie aussehen könnte, und es wird eine erste persönliche Einschätzung gegeben.
+      Subjektiv erscheint es plausibel, dass das System bei technisch interessierten Nutzern eher Akzeptanz findet, während skeptischere oder weniger finanzmarkterfahrene Nutzer zurückhaltender reagieren dürften.
+      Vertrauen hängt zudem stark von der wahrgenommenen Konsistenz der Empfehlungen ab.
 
-        Während die automatisierten Metriken vergleichsweise unkompliziert zu Nutzstudien umsetzbar sind, hängt der Erfolg der Nutzerstudie maßgeblich von der Rekrutierung geeigneter Testpersonen und der sorgfältigen Gestaltung des Bewertungsschemas ab.
-        Zudem ist zu beachten, dass subjektive Bewertungen durch Vorerfahrung, Erwartungshaltungen und Testkontext beeinflusst werden können.
-        Dennoch liefern sie entscheidende Einblicke in die praktische Erklärbarkeit jenseits theoretischer Kriterien.
+    \subsection{Benchmark-Vergleich mit Backtesting}
 
-        \todo[inline, color=red]{To-Do: Evtl tatsächlich noch machen? Oder besser etwas anderes anstelle dessen nehmen}
+      Eine weitere Möglichkeit, die Leistungsfähigkeit des Systems einzuordnen, bestünde in einem Benchmark-Vergleich mit etablierten Marktindizes wie dem MSCI World oder dem S\&P~500.
+      Dazu würde man die vom Assistenzsystem erzeugten Empfehlungen hypothetisch in Handelsentscheidungen übersetzen und mittels Backtesting prüfen, wie sich ein daraus konstruiertes Portfolio im Vergleich zu den Referenzindizes entwickelt hätte.
+      Auf diese Weise ließe sich die relative Wertentwicklung abschätzen und in Relation zu bekannten Marktbenchmarks setzen.
+
+      Methodisch erfordert dieses Vorgehen eine konsequente Umsetzung aller Empfehlungen über einen längeren Zeitraum sowie die Berücksichtigung von Transaktionskosten, Risikofaktoren und Rebalancing-Strategien.
+      Da dies weder dem eigentlichen Zweck des Systems entspricht noch im Rahmen dieses Projekts mit vertretbarem Aufwand realisierbar ist, bleibt ein solches Backtesting out of scope.
+      Dennoch ist es sinnvoll, den prinzipiellen Ablauf zu skizzieren, um die Einordnung zu erleichtern.
+      Subjektiv lässt sich festhalten, dass die Qualität der Empfehlungen zwar stellenweise mit gängigen Einschätzungen korrespondiert, die Performance bei stringenter Umsetzung aber stark vom Marktumfeld abhängen würde.
+      Insofern bietet dieser Ansatz eher einen explorativen Ausblick als eine robuste Metrik zur Bewertung des Systems.
 
   \section{Durchführung der Evaluation}
 

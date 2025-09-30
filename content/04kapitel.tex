@@ -211,11 +211,11 @@
           Zusätzlich sorgen clientseitige DOM-Manipulationen für reaktive Benutzeroberflächen, beispielsweise das Anzeigen von Diagrammen, das Hervorheben relevanter Datenpunkte und die Umsetzung von Filtern und Sortierfunktionen.
           Die Kombination mit der beliebten Bibliotheken \texttt{jQuery} erleichert die Entwicklung zusätzlich.
 
-          \item \texttt{Podman und Podman-Compose} – Für die Containerisierung der Uumgebung -- für erleichterte Reproduzierbarkeit -- wird Podman in Kombination mit Podman-Compose eingesetzt.  
-          Podman ermöglicht die Ausführung und Verwaltung von Containern ohne zusätzlichen Daemon und ist dabei weitgehend kompatibel zu Docker, sodass bestehende Workflows und Konfigurationsdateien übernommen werden können.  
-          Podman-Compose erlaubt darüber hinaus die einfache Definition und Verwaltung mehrerer zusammengehöriger Container, etwa für Datenbank, Backend und unterstützende Dienste, in einer einzigen Konfigurationsdatei.  
-          Der Einsatz dieser Werkzeuge bietet eine hohe Portabilität, da die Containerumgebungen reproduzierbar auf unterschiedlichen Systemen bereitgestellt werden können.  
-          Unter Linux wird Podman nativ genutzt, während unter Windows bei Bedarf weiterhin Docker als Alternative eingesetzt werden kann, um volle Plattformunterstützung sicherzustellen \autocite{podman_docs_2025}.  
+          \item \texttt{Podman und Podman-Compose} – Für die Containerisierung der Uumgebung -- für erleichterte Reproduzierbarkeit -- wird Podman in Kombination mit Podman-Compose eingesetzt.
+          Podman ermöglicht die Ausführung und Verwaltung von Containern ohne zusätzlichen Daemon und ist dabei weitgehend kompatibel zu Docker, sodass bestehende Workflows und Konfigurationsdateien übernommen werden können.
+          Podman-Compose erlaubt darüber hinaus die einfache Definition und Verwaltung mehrerer zusammengehöriger Container, etwa für Datenbank, Backend und unterstützende Dienste, in einer einzigen Konfigurationsdatei.
+          Der Einsatz dieser Werkzeuge bietet eine hohe Portabilität, da die Containerumgebungen reproduzierbar auf unterschiedlichen Systemen bereitgestellt werden können.
+          Unter Linux wird Podman nativ genutzt, während unter Windows bei Bedarf weiterhin Docker als Alternative eingesetzt werden kann, um volle Plattformunterstützung sicherzustellen \autocite{podman_docs_2025}.
 
       \end{itemize}
 
@@ -495,13 +495,11 @@
       Neue Datenquellen lassen sich durch die Implementierung zusätzlicher Zugriffs- und Verarbeitungsschichten einbinden, während weitere \acs{KI}-Provider über die bestehende Abstraktionslogik in der \texttt{PortfolioAIAssistant}-Klasse unkompliziert integriert werden können.
       Dadurch bleibt das System auch bei der Weiterentwicklung der Modelllandschaft und externer APIs langfristig anpassungsfähig.
 
-      Ein besonderer Fokus zukünftiger Arbeiten liegt auf der Anreicherung der qualitativen Analysen durch News- und Dokumenten-Scraping.
-      Die hierfür vorgesehenen Schnittstellen sind bereits im Code angelegt, sodass diese Funktionalität bei Verfügbarkeit geeigneter Datenquellen ohne größere Umstrukturierungen aktiviert werden kann.
+      Ein besonderer Fokus zukünftiger Arbeiten liegt auf einer noch besseren Anreicherung der qualitativen Analysen durch News- und Dokumenten-Scraping.
+      Die hierfür vorgesehenen Schnittstellen sind bereits im Code angelegt, sodass diese Funktionalität bei Verfügbarkeit geeigneter Datenquellen ohne größere Umstrukturierungen erweitert werden kann.
       Darüber hinaus eröffnet die Integration von \acs{RAG}-Ansätzen zusätzliche Perspektiven, um Portfoliokontexte mit externen Wissensbeständen zu verknüpfen und die Analysequalität weiter zu steigern.
 
-      Insgesamt bilden das strukturierte Design, die robusten Fehlerbehandlungsmechanismen sowie die flexiblen Deployment-Optionen eine belastbare Grundlage, um das System kontinuierlich auszubauen und in unterschiedlichen Anwendungskontexten – von Forschung über Investment-Management bis hin zu produktiven Webservices – einzusetzen.
-
-    \todo[inline]{To-Do: Chat noch irgendwo genauer beschreiben? Fraglich ob er unter Hauptprogrammlogik gehört? }
+      Insgesamt bilden das strukturierte Design, die robusten Fehlerbehandlungsmechanismen sowie die flexiblen Deployment-Optionen eine belastbare Grundlage, um das System kontinuierlich auszubauen und in unterschiedlichen Anwendungskontexten –- von Forschung über Investment-Management bis hin zu produktiven Webservices -– einzusetzen.
 
 
   \section{Frontend}
@@ -524,6 +522,8 @@
       Die Gestaltung des Frontends spielt eine zentrale Rolle in der Entwicklung von Assistenzsystemen, insbesondere dann, wenn es darum geht, komplexe algorithmische Empfehlungen für menschliche Nutzer nachvollziehbar und vertrauenswürdig zu präsentieren.
       Bereits zu Beginn der Entwicklung wurde ein grafischer Entwurf erstellt (siehe Abbildung~\ref{fig:frontend_draft}), um die Anforderungen an eine transparente, strukturierte und intuitiv verständliche Benutzeroberfläche zu klären.
       Ziel ist es, sowohl aggregierte als auch detailreiche Informationen zum Portfolio übersichtlich darzustellen und gleichzeitig eine klare Begründung der Empfehlungen des Systems zu liefern.
+      Die auf der Übersicht dargestellte Aggregation wird aus den Einzelwertpapieren berechnet.
+      Die in der Übersicht dargestellte Dringlichkeit (Urgency) sowie Kaufen/Verkaufen/Halten sind die Durchschnittswerte von sämtlichen Papieren im Depot.
 
       \begin{figure}[H]
           \centering
@@ -537,7 +537,8 @@
       Besonders hervorzuheben ist die explizite Visualisierung der Unsicherheit und Bewertungsempfehlung (Kaufen/Verkaufen/Halten) in Form von Farben und Kreisdiagrammen.
 
       Neben der Portfoliosicht wurde auch eine Detailansicht für einzelne Wertpapiere konzipiert (siehe Abbildung~\ref{fig:frontend_draft_aktie}).
-      Sie ergänzt die Übersicht durch eine fokussierte Darstellung der individuellen Position und verknüpft quantitative Kennzahlen mit qualitativen Bewertungen.
+      Die Detailansicht erlaubt eine fokussierte Darstellung der individuellen Position und verknüpft quantitative Kennzahlen mit qualitativen Bewertungen.
+      Die gezeigten persönlichen Informationen beziehen sich auf die individuelle Situation zum jeweiligen Wertpapier -- etwa Anzahl der gehaltenen Stücke, Kaufpreis(e) und die aktuelle Rendite.
 
       \begin{figure}[H]
           \centering
@@ -638,7 +639,7 @@
     Sie erlaubt es, Quellcode, Visualisierungen, Textkommentare und Ausgaben in einem einzigen interaktiven Dokument zu kombinieren.
     Der besondere Vorteil liegt dabei in der engen Verzahnung von experimenteller Programmierung, Dokumentation und unmittelbarem Feedback, was die explorative Arbeit mit datengetriebenen Systemen erheblich vereinfacht \autocite{kluyver2016jupyter}.
 
-    Im Rahmen dieses Projekts wird Jupyter-Lab genutzt, um direkt mit dem in Python implementierten \texttt{PortfolioAIAssistant} zu interagieren.
+    Im Rahmen dieses Projekts wird Jupyter-Lab genutzt, um direkt mit dem in Python implementierten\\ \texttt{PortfolioAIAssistant} zu interagieren.
     Der Import der Systemklasse erfolgt direkt über die Paketstruktur mittels: \lstinline[columns=fixed]{from portfolio_ai import PortfolioAIAssistant}
 
     Dies ermöglicht es, verschiedene Anwendungsfälle, Parameterkonfigurationen und Auswertungen ohne Umweg über ein separates Frontend durchzuführen.
@@ -662,8 +663,9 @@
     Dieser Ansatz kombiniert methodische Strenge mit technischer Flexibilität und erlaubt eine vollständig nachvollziehbare Evaluation des Assistenten.
 
     Die Auswertungen und Erkenntnisse, die mithilfe von Jupyter-Lab gewonnen werden sind im Anschluss folgenden Kapitel \ref{chap:evaluation} zu finden.
+    Die Juypter-Lab Notebooks selbst können im Anhang \ref{sec:anhang} betrachtet werden.
 
-    \todo[inline]{Opt. To-Do: Notebooks in Anhang packen und drauf verweisen? }
+    \todo[inline]{To-Do: Notebooks in Anhang packen und die Referenz genau anpassen}
 
   \section{Einrichtung der Umgebung}
 
