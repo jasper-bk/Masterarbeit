@@ -175,6 +175,7 @@
       Die Entscheidung zugunsten von LangChain fiel letztlich aufgrund seiner hohen Community-Aktivität, umfassenden Dokumentation und der bereits verfügbaren Werkzeuge für strukturierte Ausgabeformate sowie XAI-nahe Anwendungen.
 
     \subsection{Pydantic zur Validierung von LLM-Ausgaben}
+      \label{sec:pydantic}
 
       Ein wesentlicher Bestandteil der Systemintegration stellt die zuverlässige Validierung und Strukturierung der durch \acs{LLM}s generierten Daten dar.
       Da \acs{LLM}s trotz gezielter Promptgestaltung häufig unstrukturierte oder fehlerhafte Antworten liefern können, wird im vorliegenden System \textit{Pydantic} eingesetzt.
@@ -242,7 +243,7 @@
     \subsection{Asset-Bewertungsprompt}
     \label{sec:prompt-asset}
 
-      Der Prompt im \texttt{assess\_security}–Modul hat das Ziel, für eine einzelne Wertpapierposition eine quantitative Dringlichkeitseinschätzung sowie eine Verteilung der Kauf-/Verkaufs-/Halt-Empfehlung zu erzeugen.
+      Der nachfolgende Prompt hat das Ziel, für eine einzelne Wertpapierposition eine quantitative Dringlichkeitseinschätzung, eine Verteilung der Kauf-/Verkaufs-/Halt-Empfehlung sowie eine Begründung zu erzeugen.
       Der strukturierte Aufbau des Prompts ist in Code-Ausschnitt \ref{lst:asset-prompt} zu betrachten.
 
       \begin{lstlisting}[language=Python, gobble=6, caption={Asset-Bewertungsprompt}, label=lst:asset-prompt]
@@ -266,6 +267,28 @@
           ]
       )
       \end{lstlisting}
+
+      Die Prompt-Ausgabe erfolgt als \acs{JSON} und das zu befolgende Schema wird dem Prompt übergeben.
+      Das Schema wird mithilfe von \hyperlink{sec:pydantic}{pydantic} definiert und stellt sicher, dass die Antwort des Modells den vorgegebenen Struktur- und Typanforderungen entspricht.
+      Die Schema-Definition ist im nachfolgenden Code-Ausschnitt \ref{lst:asset-schema} dargestellt.
+
+      \begin{lstlisting}[language=Python, gobble=6, caption={Asset-Output-Schema}, label=lst:asset-schema]
+      class SecurityAssessment(BaseModel):
+        urgency_to_act: int = Field(..., ge=0, le=100)
+        buy: int = Field(..., ge=0, le=100)
+        sell: int = Field(..., ge=0, le=100)
+        hold: int = Field(..., ge=0, le=100)
+        potential_upside: int = Field(0, ge=0, le=100)
+        potential_downside: int = Field(0, ge=0, le=100)
+        rationale: str
+
+        def validate_sum(self) -> None:
+            total = int(self.buy) + int(self.sell) + int(self.hold)
+            if abs(total - 100) > 1:
+                raise ValueError(f"buy+sell+hold must sum to 100 (+/-1), got {total}.")
+      \end{lstlisting}
+
+      Das JSON-Schema wird dann mit der Zeile \lstinline[language=Python]$ PydanticOutputParser(pydantic_object=SecurityAssessment).get_format_instructions()$ aus der in Code-Ausschnitt \ref{lst:asset-schema} gezeigten Klasse erzeugt und im Prompt \ref{lst:asset-prompt} übergeben.
 
       Der Prompt ist so gestaltet, dass er mehrere wichtige Prinzipien des Prompt-Engineerings berücksichtigt, um eine präzise, kontextbewusste und maschinenlesbare Antwort zu generieren:
 
@@ -301,7 +324,7 @@
       \subsection{Portfolio-Zusammenfassungsprompt}
         \label{sec:prompt-portfolio}
 
-        Im Modul \texttt{evaluate\_portfolio\_summary} wird ein zusammenfassender Prompt verwendet, der auf der Gesamtheit der einzelnen Asset-Bewertungen aufsetzt und eine umfassende, narrative Gesamtübersicht über das Portfolio generiert.
+        Neben dem Einzelbewertungen wird auch ein zusammenfassender Prompt verwendet, der auf der Gesamtheit der einzelnen Asset-Bewertungen aufsetzt und eine umfassende, natürlichsprachliche Gesamtübersicht über das Portfolio generiert.
         Ziel ist es, die vielfältigen Einzelbewertungen in einen verständlichen und handlungsorientierten Gesamtbericht zu überführen.
         Der Prompt ist im nachfolgenden Code-Ausschnitt \ref{lst:summary-prompt} dargestellt.
 
@@ -318,9 +341,21 @@
         )
         \end{lstlisting}
 
+        Wie beim Asset-Bewertungsprompt wird auch hier die Ausgabe als \acs{JSON} gefordert und das zu befolgende Schema wird dem Prompt übergeben.
+        Das Schema wird ebenfalls mithilfe von \hyperlink{sec:pydantic}{pydantic} definiert und stellt sicher, dass die Antwort des Modells den vorgegebenen Struktur- und Typanforderungen entspricht.
+        Die Schema-Definition ist im nachfolgenden Code-Ausschnitt \ref{lst:portfolio-schema} dargestellt und wird über die Methode \texttt{get\_format\_instructions} aus der Klasse \texttt{PydanticOutputParser}.
+
+        \begin{lstlisting}[language=Python, gobble=8, caption={Portfolio-Output-Schema}, label=lst:portfolio-schema]
+        class PortfolioSummary(BaseModel):
+          market_summary: str
+          current_opportunities: str
+          current_risks: str
+          other: str
+          explanation_evaluation: str
+        \end{lstlisting}
 
         Die Analyse basiert nicht mehr auf Rohdaten, sondern auf bereits vorvalidierten Einzelbewertungen.
-        Indem die quantitativen Dringlichkeitseinschätzungen, die Kauf-/Verkaufs-/Halte-Wahrscheinlichkeiten sowie die qualitativen Begründungen in einem standardisierten JSON-Format aggregiert übergeben werden, wird das Sprachmodell von der erneuten Dateninterpretation entlastet.
+        Indem die quantitativen Dringlichkeitseinschätzungen, die Kauf-/Verkaufs-/Halte-Wahrscheinlichkeiten sowie die qualitativen Begründungen in einem standardisierten \acs{JSON}-Format aggregiert übergeben werden, wird das Sprachmodell von der erneuten Dateninterpretation entlastet.
         Stattdessen kann es seine Kapazitäten auf die Synthese der konsolidierten Informationen und deren Einordnung in den Gesamtportfoliokontext konzentrieren.
         Dieses Vorgehen steigert nicht nur die Effizienz, sondern verbessert zugleich die Konsistenz und Genauigkeit der resultierenden Gesamtanalyse, da mögliche Inkonsistenzen bereits vor der Zusammenfassung erkannt und korrigiert werden können \autocite{promtingguide}.
 
