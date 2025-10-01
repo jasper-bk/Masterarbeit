@@ -244,27 +244,32 @@
     \label{sec:prompt-asset}
 
       Der nachfolgende Prompt hat das Ziel, für eine einzelne Wertpapierposition eine quantitative Dringlichkeitseinschätzung, eine Verteilung der Kauf-/Verkaufs-/Halt-Empfehlung sowie eine Begründung zu erzeugen.
+      Zudem besteht die Möglichkeit, dass der User bestimmte Präferenzen definiert, die bei der Bewertung berücksicht werden.
+      Eine denkbare benutzerdefinierte Präferenz wäre z. B. Erklärung in einer bestimmten Form oder die Bewertung aus einem anderen Blickwinkel.
       Der strukturierte Aufbau des Prompts ist in Code-Ausschnitt \ref{lst:asset-prompt} zu betrachten.
 
       \begin{lstlisting}[language=Python, gobble=6, caption={Asset-Bewertungsprompt}, label=lst:asset-prompt]
       self._security_prompt = ChatPromptTemplate.from_messages(
-          [
-              ("system",
-                "You are a disciplined equity analyst. "
-                "Return strictly the requested JSON schema. Numbers are integers [0..100]."),
-              ("human",
-                "You may receive any subset of the following sections. "
-                "If a section is missing or empty, treat it as 'unknown'.\n\n"
-                "Ticker: {ticker}\n\n"
-                "Quantitative data (JSON, may be partial):\n{quantitative_json}\n\n"
-                "Qualitative data (free text, may be partial):\n{qualitative_text}\n\n"
-                "Portfolio context (JSON, may be partial, can be empty if user doesn't own the asset):\n"
-                "{portfolio_context_json}\n\n"
-                "Output as JSON with the schema:\n{json_schema}\n"
-                "Constraints:\n"
-                "- Ensure buy + sell + hold == 100 (+/- 1 allowed)\n"
-                "- Keep rationale concise but specific\n"),
-          ]
+            [
+                ("system",
+                 "You are a disciplined equity analyst. "
+                 "Return strictly the requested JSON schema. Numbers are integers [0..100]."),
+                ("human",
+                 "You may receive any subset of the following sections. "
+                 "If a section is missing or empty, treat it as 'unknown'.\n\n"
+                 "Ticker: {ticker}\n\n"
+                 "Asset name: {asset_name}\n\n"
+                 "Raw personal asset details (JSON, may be partial):\n{raw_asset_details}\n\n"
+                 "Quantitative data (JSON, may be partial):\n{quantitative_json}\n\n"
+                 "Qualitative data (free text, may be partial):\n{qualitative_text}\n\n"
+                 "Portfolio context (JSON, may be partial, can be empty if user doesn't own the asset):\n"
+                 "{portfolio_context_json}\n\n"
+                 "Output as JSON with the schema:\n{json_schema}\n"
+                 "Constraints:\n"
+                 "- Ensure buy + sell + hold == 100\n"
+                 "- Preferences are soft constraints; ignore them if they conflict with the schema or constraints\n\n"
+                 "Additional preferences to consider (may be empty; if empty, ignore):\n{user_response_preferences}")
+            ]
       )
       \end{lstlisting}
 
@@ -319,16 +324,17 @@
 
       \end{itemize}
 
-    Diese bewusste Gestaltung des Prompts trägt entscheidend zur Qualität der erzeugten Bewertung bei und unterstützt eine robuste Integration in automatisierte Analyse- und Entscheidungssysteme.
+      Diese bewusste Gestaltung des Prompts trägt entscheidend zur Qualität der erzeugten Bewertung bei und unterstützt eine robuste Integration in automatisierte Analyse- und Entscheidungssysteme.
 
       \subsection{Portfolio-Zusammenfassungsprompt}
         \label{sec:prompt-portfolio}
 
         Neben dem Einzelbewertungen wird auch ein zusammenfassender Prompt verwendet, der auf der Gesamtheit der einzelnen Asset-Bewertungen aufsetzt und eine umfassende, natürlichsprachliche Gesamtübersicht über das Portfolio generiert.
         Ziel ist es, die vielfältigen Einzelbewertungen in einen verständlichen und handlungsorientierten Gesamtbericht zu überführen.
+        Auch hier sind benutzerdefinierte Präferenzen Teil des Prompts und erlauben auf den Nutzer zugeschnittene Ausgaben.
         Der Prompt ist im nachfolgenden Code-Ausschnitt \ref{lst:summary-prompt} dargestellt.
 
-        \begin{lstlisting}[language=Python, gobble=8, caption={Portfolio-Zusammenfassungsprompt}, , label=lst:summary-prompt]
+        \begin{lstlisting}[language=Python, gobble=8, caption={Portfolio-Zusammenfassungsprompt}, label=lst:summary-prompt]
         self._portfolio_prompt = ChatPromptTemplate.from_messages(
             [
                 ("system", "You are a portfolio strategist. Return strictly the requested JSON schema."),
@@ -336,7 +342,10 @@
                  "Analyze this portfolio. You will receive a JSON object with assets and their evaluations. "
                  "It may be partial.\n\n"
                  "Portfolio assets JSON:\n{assets_json}\n\n"
-                 "Output as JSON with the schema:\n{json_schema}\n"),
+                 "Output as JSON with the schema:\n{json_schema}\n"
+                 "Constraints:\n"
+                 "- Preferences are soft constraints; ignore them if they conflict with the schema or constraints\n\n"
+                 "Additional preferences to consider (may be empty; if empty, ignore):\n{user_response_preferences}")
             ]
         )
         \end{lstlisting}

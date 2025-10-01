@@ -55,7 +55,8 @@
       % To-Do: Noch genauer auf das Vorgehen selbst eingehen: Wie umsetzen
 
 
-    \subsection{Konsens-Auswertung}
+    \subsection{Konsens-Auswertung mit Analysten}
+      \label{sec:analyst-konsens}
 
       Das Assistenzsystem wird mit etablierten Analystenempfehlungen verglichen, um die grundsätzliche Qualität und Konsistenz der generierten Handlungsempfehlungen zu überprüfen.
       Dabei werden die Empfehlungen für einzelne Wertpapiere, die das System auf Basis eines neutralen, nicht voreingenommenen Prompts liefert, mit Konsens-Analystenratings verglichen.
@@ -95,10 +96,13 @@
       Diese Vorbedingungen machen die Durchführung komplex und ressourcenintensiv.
 
       Aufgrund der Vielzahl an Vorbedingungen, der methodischen Komplexität, der begrenzten Zahl verfügbarer Teilnehmer und vor allem der noch verfügbaren Kapazität der Arbeit fällt eine umfassende empirische Studie in diesem Projekt jedoch außerhalb des Scopes.
-      Stattdessen wird hier nur skizziert, wie eine solche Untersuchung aussehen könnte, und es wird eine subjektive Einschätzung der Autorin bzw. des Autors gegeben.
-      Erste Eindrücke deuten darauf hin, dass die generierten Erklärungen grundsätzlich verständlich und plausibel wirken, jedoch in ihrer Tiefe teilweise variieren und nicht immer ausreichend konkrete Begründungen für komplexe Anlageentscheidungen liefern.
-      Damit besteht Potenzial zur Verbesserung, insbesondere in Bezug auf Konsistenz und Detailgrad der erzeugten Begründungstexte.
+      Stattdessen wird nur skizziert, wie eine solche Untersuchung aussehen könnte, und es wird eine subjektive Einschätzung der Autorin bzw. des Autors gegeben.
+      Verschiedene Eindrücke deuten darauf hin, dass die generierten Erklärungen grundsätzlich verständlich und plausibel wirken, jedoch in ihrer Tiefe teilweise variieren und nicht immer ausreichend konkrete Begründungen für komplexe Anlageentscheidungen liefern.
+      Damit besteht grundsätzlich Potenzial zur Verbesserung, insbesondere in Bezug auf Konsistenz und Detailgrad der erzeugten Begründungstexte.
+      Die Ausgabe selbst hängt aber auch maßgeblich von dem Modell ab, sodass verschiedene Modelle wiederum abweichende Ergebnisse erzielen können.
+      Zudem lässt die aktuelle Entwicklung bei neuen Modellen hoffen, dass auch die Erklärungen mit besseren Modellen noch besser werden, ohne dass Änderungen im Code erforderlich sind.
 
+      \todo[inline, color=red]{To-Do: Evtl auch noch Bezug auf das think nehmen?}
 
     \subsection{Akzeptanz und Vertrauen}
 
@@ -109,9 +113,11 @@
 
       Auch hier gilt jedoch, dass eine systematische Untersuchung hohe Anforderungen an das Studiendesign, die Rekrutierung einer geeigneten Nutzergruppe und die Interpretation subjektiver Antworten stellt.
       Angesichts der notwendigen Ressourcen und der begrenzten Zahl an potenziellen Teilnehmenden ist eine belastbare empirische Erhebung in diesem Projekt nicht umsetzbar.
-      Stattdessen wird skizziert, wie eine solche Studie aussehen könnte, und es wird eine erste persönliche Einschätzung gegeben.
+      Stattdessen handelt es sich bei diesem Abschnitt nur um eine Skizzierung, wie eine solche Studie aussehen könnte, und es wird eine erste persönliche Einschätzung gegeben.
       Subjektiv erscheint es plausibel, dass das System bei technisch interessierten Nutzern eher Akzeptanz findet, während skeptischere oder weniger finanzmarkterfahrene Nutzer zurückhaltender reagieren dürften.
       Vertrauen hängt zudem stark von der wahrgenommenen Konsistenz der Empfehlungen ab.
+
+      \todo[inline, color=red]{To-Do: Evtl noch eine Studie benennen in Bezug auf andere KI Tools wie es da aussieht?}
 
     \subsection{Benchmark-Vergleich mit Backtesting}
 
@@ -132,7 +138,7 @@
     Die Durchführung der Evaluation erfolgt innerhalb einer interaktiven Jupyter-Lab-Umgebung, die es ermöglicht, direkt auf die in Python implementierten Klassen des Assistenzsystems zuzugreifen und gezielte Tests sowie Analysen durchzuführen.
     Dabei werden die zuvor beschriebenen Evaluationsverfahren aus der Sektion \textbf{\nameref{sec:auswahl_evaluation}} systematisch umgesetzt, um die Leistungsfähigkeit, Konsistenz und Transparenz des Assistenzsystems umfassend zu überprüfen.
 
-    Für die hier dargestellte Auswertung wurde die Evaluation mit dem lokalen Modell \emph{Qwen3 14B} über \emph{Ollama} durchgeführt.
+    Für die hier dargestellte Auswertung wurde die Evaluation mit dem lokalen Modell \emph{Qwen3 30b} über \emph{Ollama} durchgeführt.
     Die Wahl fiel auf Qwen3 von Alibaba mit 30 Milliarden (30b) Parametern, da viele der aktuellen \acs{LLM}-Benchmarks die höchste Leistungsfähigkeit und Wettbewerbsfähigkeit gegenüber anderen Open-Source-Modellen zeigen und dieses bereits in der vergleichsweise kleinen Variante sehr gut abschneidet \autocite{artificialanalysis2025}. % To-Do: Mehr als ein Benchmark zitieren
     Zum Vergleich wurde zusätzlich eine identische Ausführung mit anderen Modellen (wie u. a. OpenAIs GPT-o4) durchgeführt, deren Ergebnisse im Anhang zu finden sind.
 
@@ -150,13 +156,21 @@
 
       Der Versuchsaufbau wiederholt die Portfoliobewertung in einer kompakten Schleife von zehn Läufen, um Stabilität und Schwankungsbreite der Ergebnisse systematisch zu erfassen.
       In jedem Durchlauf wird das Portfolio vom KI-Assistenzsystem bewertet und das vollständige Ergebnis abgelegt.
-      Die Wahl von zehn Iterationen bietet einen pragmatischen Kompromiss zwischen statistischer Aussagekraft und Rechenzeit: Sie ist hinreichend groß, um Ausreißer zu identifizieren und Mittelwerte sowie Abweichungsmaße stabil zu schätzen, ohne den Ablauf unnötig zu belasten.
-      Das zugrunde liegende Portfolio umfasst vier Wertpapiere aus unterschiedlichen Branchen und Ländern; diese Heterogenität erhöht die Generalisierbarkeit der Beobachtungen, da Muster nicht auf ein einzelnes Asset oder Marktsegment beschränkt bleiben.
-      Im Anschluss werden die Ergebnisse  aggregiert (u.\,a. Mittelwerte, mittlere absolute Abweichungen, maximale Abweichungen sowie ein MAPE-basiertes Near-Miss-Maß), wodurch ein robustes Bild aus zentraler Tendenz und Streuung entsteht. Die konsolidierten Resultate werden in der Abbildung \ref{fig:prompt_response_auswertung} dargestellt.
+      Die Wahl von zehn Iterationen bietet einen pragmatischen Kompromiss zwischen statistischer Aussagekraft und Rechenzeit:
+      Sie ist hinreichend groß, um Ausreißer zu identifizieren und Mittelwerte sowie Abweichungsmaße stabil zu schätzen, ohne den Ablauf unnötig zu belasten.
+      Das zugrunde liegende Portfolio umfasst vier Wertpapiere aus unterschiedlichen Branchen und Ländern.
+      Diese Heterogenität erhöht die Generalisierbarkeit der Beobachtungen, da Muster nicht auf ein einzelnes Asset oder Marktsegment beschränkt bleiben.
+
+      Um Verzerrungen durch zufällige Modellvariationen auszuschließen, wurde die \emph{Temperatur} der Generierung auf $0$ gesetzt.
+      Die Temperatur steuert den Grad an Zufälligkeit in den Antworten, wobei $0$ eine vollständig deterministische Ausgabe erzwingt.
+      Dadurch sind beobachtete Abweichungen eindeutig auf die Portfoliostruktur und den Bewertungsprozess zurückzuführen.
+
+      Im Anschluss werden die Ergebnisse  aggregiert (u.\,a. Mittelwerte, mittlere absolute Abweichungen, maximale Abweichungen sowie ein MAPE-basiertes Near-Miss-Maß), wodurch ein robustes Bild aus zentraler Tendenz und Streuung entsteht.
+      Die konsolidierten Resultate werden in der Abbildung \ref{fig:prompt_response_auswertung} dargestellt.
 
       \begin{figure}[H]
           \centering
-          \includegraphics[width=1.1\textwidth]{assets/pictures/evaluation/llm_konsistenz_qwen3_30b.png}
+          \includegraphics[width=1.1\textwidth]{assets/pictures/evaluation/llm_konsistenz_qwen3_tmp_0_30b.png}
           \caption{Vergleich der numerischen Ausgaben zwischen den selben Prompts bei 10 Iterationen für verschiedene Wertpapiere mit lokalem LLM-Modell Qwen3 (30b)}
           \small{(Quelle: eigene Darstellung)}
           \label{fig:prompt_response_auswertung}
@@ -166,8 +180,10 @@
 
       Die Visualisierung zeigt je Metrik einen horizontalen Balken pro Asset.
       Der durchgezogene Teil entspricht der exakten Übereinstimmung \(C\) (Anteil der Läufe, die genau den Mehrheitswert erreichen).
-      Die gestrichelte Verlängerung bildet nahe Treffer ab und beruht auf der mittleren prozentualen Abweichung (MAPE) der Nichttreffer relativ zum Mehrheitswert: Kleine MAPE bedeutet hohe Nähe und führt zu einer längeren gestrichelten Verlängerung, große MAPE zu einer kurzen oder keiner Verlängerung.
-      Formal wird aus der MAPE ein Gewicht \(w = 1 - \min(1,\text{MAPE}/100)\) abgeleitet und die effektive Übereinstimmung als \(A = C + (100 - C)\,w\) (auf 100\,\% begrenzt) dargestellt; für \(M \approx 0\) wird SMAPE als robuster Fallback genutzt.
+      Die gestrichelte Verlängerung bildet nahe Treffer ab und beruht auf der mittleren prozentualen Abweichung (MAPE) der Nichttreffer relativ zum Mehrheitswert:
+      Kleine MAPE bedeutet hohe Nähe und führt zu einer längeren gestrichelten Verlängerung, große MAPE zu einer kurzen oder keiner Verlängerung.
+      Formal wird aus der MAPE ein Gewicht \(w = 1 - \min(1,\text{MAPE}/100)\) abgeleitet und die effektive Übereinstimmung als \(A = C + (100 - C)\,w\) (auf 100\,\% begrenzt) dargestellt.
+      Für \(M \approx 0\) wird SMAPE als robuster Fallback genutzt.
 
       Zu besseren Einordnung ein Beispiel der Berechnung:
       Angenommen vier Bewertungsdurchläufe ergeben folgende Werte für eine Metrik: 50, 50, 50, 40. \\
@@ -190,7 +206,7 @@
       Im vorangegangen Abschnitt \ref{sec:konsistenz_doing} haben wir die Konsistenz bzw. Übereinstimmung zwischen gleichen Eingaben untersucht, um festzustellen wie verlässlich das Modell mit seiner Aussage ist.
       In diesem Abschnitt wird die Qualität der generierten Handlungsempfehlungen durch einen Vergleich mit etablierten Analystenratings bewertet.
       Ziel ist es zu überprüfen, ob die Empfehlungen des \acs{KI}-Assistenzsystems zumindest in ihrer grundsätzlichen Tendenz mit den Einschätzungen von Finanzanalysten übereinstimmen.
-      Dabei ist zu betonen, dass Analystenmeinungen selbst nicht immer objektiv oder \enquote{wahr} sind, da sie auf subjektiven Einschätzungen und individuellen Strategien basieren können.
+      Dabei ist -- wie bereits in Abschnitt \ref{sec:analyst-konsens} erwähnt -- zu betonen, dass Analystenmeinungen selbst nicht immer objektiv oder \enquote{wahr} sind, da sie auf subjektiven Einschätzungen und individuellen Strategien basieren können.
       Ein Konsens zwischen Analysten und dem Assistenzsystem kann daher eher als Indikator für die Plausibilität der generierten Handlungsempfehlungen gewertet werden.
       Ein signifikanter Unterschied zu den Analystenmeinungen könnte wiederum darauf hinweisen, dass das System andere, möglicherweise innovative Perspektiven einnimmt, oder dass die zugrunde liegenden Modelle oder Daten angepasst werden müssen.
       Es wird auch berücksichtigt, dass spätere Nutzerpräferenzen, wie Risikoneigung oder Investmenthorizont, das Bewertungsergebnis beeinflussen werden.
