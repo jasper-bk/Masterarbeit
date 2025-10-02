@@ -5,7 +5,8 @@
   Ziel ist es, die getroffenen methodischen Entscheidungen, die erarbeiteten Ergebnisse sowie deren Relevanz für Forschung und Praxis zu beleuchten.
   Dabei wird nicht nur auf die Stärken und Potenziale des entwickelten Ansatzes eingegangen, sondern auch auf mögliche Schwächen, Grenzen und offene Fragestellungen.
 
-  Die Diskussion verfolgt dabei mehrere Zielrichtungen: Zum einen wird analysiert, inwieweit die angewandten Methoden geeignet waren, die formulierten Forschungsfragen zu beantworten.
+  Die Diskussion verfolgt dabei mehrere Zielrichtungen:
+  Zum einen wird analysiert, inwieweit die angewandten Methoden geeignet waren, die formulierten Forschungsfragen zu beantworten.
   Zum anderen wird die praktische Nutzbarkeit der erarbeiteten Lösung in realen Anwendungsszenarien bewertet, wobei technische, organisatorische und rechtliche Aspekte gleichermaßen berücksichtigt werden.
   Darüber hinaus erfolgt eine differenzierte Betrachtung der Rahmenbedingungen, unter denen die Umsetzung erfolgte, um die Übertragbarkeit der Ergebnisse einschätzen zu können.
 
@@ -32,8 +33,25 @@
 
   \section{Nutzbarkeit und Anwendungsfälle}
 
-    Das entwickelte Assistenzsystem zeigt in seiner aktuellen Form eine hohe Nutzbarkeit für unterschiedliche Zielgruppen im Finanzbereich.
-    Besonders hervorzuheben ist die flexible Architektur, welche sowohl eine webbasierte Nutzung über Frameworks wie Flask als auch eine Desktop-Variante mittels Tkinter ermöglicht.
+    Das entwickelte Assistenzsystem zeigt in seiner aktuellen Form viel Potenzial hoher Nutzbarkeit für unterschiedliche Zielgruppen im Finanzbereich.
+    Besonders sinnvoll erweist sich der Prototyp aktuell für Privatanlegern mit mittlerem Zeithorizont sowie für Beratung und Research, wo der Prototyp eine unabhängige Zweitmeinung zur Plausibilisierung einer bereits vorliegenden Einschätzung, erklärende Portfolio-Check-ups und vorstrukturierte Berichtsentwürfe liefert.
+
+    Wenig bis gar nicht geeignet ist er für Daytrading und andere latenzkritische Einsatzfelder oder als produktiver Robo-Advisor mit harten SLA-, Compliance- und Modellrisiko-Vorgaben.
+    Die Ausgaben sind redaktionell zu prüfen und stellen keine Anlageberatung dar.
+
+    Gleichzeitig handelt es sich um einen forschungsorientierten Prototypen ohne Produktreife.
+    Reale Einsätze erfordern belastbare Daten- und Latenztests, Monitoring/Versionierung sowie Datenschutz- und Compliance-Prüfungen.
+    Bis dahin eignet sich das System primär zur Konzeptvalidierung und Methodenauswahl.
+
+    Vor diesem Hintergrund wurde die technische Gestaltung bewusst modular gehalten.
+    Die Architektur bildet die Brücke zwischen den skizzierten Nutzungsszenarien und den genannten Einschränkungen, indem sie unterschiedliche Integrationswege erlaubt und schrittweise Reifegrade unterstützt.
+    So lässt sich die Lösung in verschiedenen Oberflächen erproben und evaluieren, ohne den Kern zu verändern.
+
+    Besonders hervorzuheben ist die flexible Architektur.
+    So lässt sich das Assistenzsystem über verschiedene Frontends bedienen.
+    So wie das vorhandene webbasierte Frontend im Browser.
+    Aber auch andere Anbindungen sind möglich.
+    Zum Beispiel eine Desktop-Variante mittels Tkinter oder eine anderweitge Integration in ein Skript.
     Diese Vielseitigkeit erlaubt es, das System an verschiedene Nutzungsszenarien und technische Umgebungen anzupassen, ohne den Kern der Funktionalität verändern zu müssen.
 
     Ein zentraler Bestandteil der Nutzbarkeit liegt in der Kombination von quantitativen sowie qualitative Finanzdaten und generativen \acs{KI}-Komponenten.
@@ -43,7 +61,8 @@
     % To-Do: Auch Erklärbarkeit mehr hervorheben
     Transparenz in der Datenverarbeitung ist ein entscheidender Faktor für die Nutzbarkeit.
     Anwender müssen nachvollziehen können, welche Daten wann und wie verarbeitet werden, insbesondere wenn externe Dienste eingebunden sind.
-    Bei lokalen Modellen wie Ollama ist die Verarbeitung vollständig auf der eigenen Infrastruktur nachvollziehbar, während Cloud-Modelle häufig nur eingeschränkte Einblicke in ihre internen Prozesse bieten.
+    Bei lokalen Modellen mit Ollama findet die Verarbeitung vollständig auf der eigenen Infrastruktur statt.
+    Cloud-Modelle bieten allerdings kaum bis gar keine Kontrolle darüber und erlauben auch nur eingeschränkte Einblicke in ihre internen Prozesse.
     Dies hat direkte Auswirkungen auf die Akzeptanz des Systems, da Finanzinstitutionen und professionelle Anwender oft hohe Transparenzanforderungen haben.
 
     Die Modellauswahl zwischen lokalen und Cloud-basierten Ansätzen beeinflusst die Anwendungsfälle maßgeblich.
@@ -115,38 +134,38 @@
   \section{Vorteile und Herausforderungen}
 
     Das entwickelte Assistenzsystem zur quantitativen Portfoliooptimierung bietet eine Reihe klarer Vorteile, die es von bestehenden Lösungen im Finanzbereich abheben.
-    Ein zentrales Alleinstellungsmerkmal ist die \textbf{Transparenz der Entscheidungsfindung}.
+    Ein zentrales Alleinstellungsmerkmal ist die \emph{Transparenz der Entscheidungsfindung}.
     Im Gegensatz zu klassischen Blackbox-Modellen liefert das System zu jeder Handlungsempfehlung nicht nur den empfohlenen Prozentsatz für Kauf, Verkauf oder Halten, sondern auch eine nachvollziehbare, natürlichsprachliche Begründung.
-    Diese Begründung basiert sowohl auf \textbf{quantitativen Daten} wie Kursverläufen, Fundamentalkennzahlen oder Korrelationen als auch auf \textbf{qualitativen Informationen} wie Nachrichtenartikeln, Marktstimmungen oder Social-Media-Trends.
+    Diese Begründung basiert sowohl auf \emph{quantitativen Daten} wie Kursverläufen, Fundamentalkennzahlen oder Korrelationen als auch auf \emph{qualitativen Informationen} wie Nachrichtenartikeln, Marktstimmungen oder Social-Media-Trends.
     Zudem kann mit dem System gechattet werden und damit mögliche Fragen einfach direkt geklärt werden.
 
-    Ein weiterer Vorteil liegt in der \textbf{Integration heterogener Datenquellen}.
+    Ein weiterer Vorteil liegt in der \emph{Integration heterogener Datenquellen}.
     Die Kombination aus strukturierten und unstrukturierten Informationen erlaubt eine ganzheitliche Bewertung von Wertpapieren, die sowohl fundamentale als auch kontextabhängige Marktfaktoren berücksichtigt.
     Dies erhöht die Relevanz der Handlungsempfehlungen und bietet Anlegern ein umfassenderes Bild der aktuellen Lage.
-    Die \textbf{modulare Architektur} des Systems ermöglicht es, einzelne Komponenten wie Datenquellen oder \acs{KI}-Modelle auszutauschen, ohne das Gesamtsystem neu entwickeln zu müssen, was die langfristige Wartung und Anpassbarkeit erleichtert.
+    Die \emph{modulare Architektur} des Systems ermöglicht es, einzelne Komponenten wie Datenquellen oder \acs{KI}-Modelle auszutauschen, ohne das Gesamtsystem neu entwickeln zu müssen, was die langfristige Wartung und Anpassbarkeit erleichtert.
 
-    %Hervorzuheben ist zudem die gezielte Nutzung von \textbf{Explainable-AI-Methoden} (XAI) wie Feature-Attribution, Integrated Gradients oder Chain-of-Thought-Erklärungen.
+    %Hervorzuheben ist zudem die gezielte Nutzung von \emph{Explainable-AI-Methoden} (XAI) wie Feature-Attribution, Integrated Gradients oder Chain-of-Thought-Erklärungen.
     %Diese Verfahren machen auch komplexe Modellentscheidungen für den Anwender verständlich, was insbesondere bei qualitativ hochwertigen, aber erklärungsbedürftigen \acs{LLM}-gestützten Bewertungen von Vorteil ist.
 
     Trotz dieser Stärken bestehen wesentliche Herausforderungen.
-    Eine davon ist die \textbf{Qualität, Konsistenz und Aktualität der Daten}.
+    Eine davon ist die \emph{Qualität, Konsistenz und Aktualität der Daten}.
     Quantitative Daten können fehlerhaft, verspätet oder unvollständig sein, während qualitative Daten – wie Nachrichten – in großer Menge und unterschiedlicher Relevanz vorliegen.
-    Gerade bei qualitativen Informationen ist nicht nur der Inhalt, sondern auch die \textbf{Reihenfolge und Gewichtung} entscheidend, da irrelevante oder veraltete Meldungen die Entscheidungsfindung verzerren können.
+    Gerade bei qualitativen Informationen ist nicht nur der Inhalt, sondern auch die \emph{Reihenfolge und Gewichtung} entscheidend, da irrelevante oder veraltete Meldungen die Entscheidungsfindung verzerren können.
     Hier stellt sich die Herausforderung, die tatsächliche Wichtigkeit einer Nachricht zu ermitteln und diese in den richtigen Kontext zu setzen.
 
-    Hinzu kommt das Problem der \textbf{Modellkonsistenz}.
+    Hinzu kommt das Problem der \emph{Modellkonsistenz}.
     Insbesondere große Sprachmodelle können bei identischen Prompts unterschiedliche Antworten liefern, was die Stabilität der Handlungsempfehlungen beeinträchtigen kann.
     Dieses Verhalten erfordert entweder robuste Prompt-Strategien oder ergänzende Plausibilitätsprüfungen.
 
-    Ein weiteres Spannungsfeld betrifft die \textbf{Performance und Latenz}.
+    Ein weiteres Spannungsfeld betrifft die \emph{Performance und Latenz}.
     Während lokale Modelle in Bezug auf Datenschutz im Vorteil sind, arbeiten sie häufig langsamer und benötigen mehr Rechenressourcen.
     Cloud-Modelle hingegen bieten in der Regel eine höhere Verarbeitungsgeschwindigkeit, bringen jedoch potenzielle Datenschutzrisiken sowie eine Abhängigkeit vom Provider mit sich.
 
-    Die \textbf{Kostenstruktur} stellt ebenfalls einen nicht zu vernachlässigenden Faktor dar.
+    Die \emph{Kostenstruktur} stellt ebenfalls einen nicht zu vernachlässigenden Faktor dar.
     \acs{API}-Zugriffe auf leistungsfähige \acs{KI}-Modelle und kommerzielle Finanzdatenquellen können schnell zu signifikanten Betriebskosten führen, die je nach Anwendungsszenario optimiert werden müssen.
 
-    Nicht zuletzt ist die \textbf{Einhaltung regulatorischer Anforderungen} wie der \acs{DSGVO} oder branchenspezifischer Finanzmarktregulierungen eine fortlaufende Aufgabe, die technische wie organisatorische Maßnahmen erfordert.
-    Auch die \textbf{Akzeptanz bei den Endnutzern} darf nicht unterschätzt werden:
+    Nicht zuletzt ist die \emph{Einhaltung regulatorischer Anforderungen} wie der \acs{DSGVO} oder branchenspezifischer Finanzmarktregulierungen eine fortlaufende Aufgabe, die technische wie organisatorische Maßnahmen erfordert.
+    Auch die \emph{Akzeptanz bei den Endnutzern} darf nicht unterschätzt werden:
     Selbst bei hoher Transparenz und Erklärbarkeit kann es anfängliche Vorbehalte geben, insbesondere bei Anlegern mit begrenzter Erfahrung im Umgang mit \acs{KI}-gestützten Systemen.
 
     Insgesamt bietet das Assistenzsystem erhebliche Mehrwerte durch Transparenz, Datenvielfalt und Erklärbarkeit, muss jedoch technische, regulatorische und nutzerbezogene Herausforderungen fortlaufend adressieren, um sein volles Potenzial zu entfalten.
@@ -164,40 +183,40 @@
     Allerdings zeigte sich, dass die Evaluationsbasis – bedingt durch begrenzte Datenzeiträume und eine relativ kleine Zahl an Testfällen – noch nicht ausreicht, um eine abschließende Aussage zur Robustheit in allen Marktsituationen zu treffen.
     Zudem wurden die Erklärungen bisher nur intern bewertet, ohne breiteres Feedback potenzieller Endnutzer einzubeziehen.
 
-    Ein wichtiger Ansatz für die Weiterentwicklung ist daher die \textbf{fortlaufende Evaluation nach Produktivsetzung}.
+    Ein wichtiger Ansatz für die Weiterentwicklung ist daher die \emph{fortlaufende Evaluation nach Produktivsetzung}.
     Während der Entwicklungsphase gewonnene Ergebnisse spiegeln nur einen begrenzten Zeitraum und spezifische Marktsituationen wider.
     Im realen Betrieb hingegen ändern sich Marktbedingungen, verfügbare Datenquellen und potenziell auch das Modellverhalten.
     Eine kontinuierliche Überwachung ermöglicht es, Leistungsabfälle frühzeitig zu erkennen und Korrekturmaßnahmen einzuleiten.
 
-    Darüber hinaus sollte künftig stärker zwischen \textbf{quantitativer} und \textbf{qualitativer Bewertung} differenziert werden.
+    Darüber hinaus sollte künftig stärker zwischen \emph{quantitativer} und \emph{qualitativer Bewertung} differenziert werden.
     Quantitative Kriterien können beispielsweise die Trefferquote der Empfehlungen, die risikoadjustierte Rendite oder die Konsistenzwerte bei identischen Prompts umfassen.
     Qualitative Bewertungen können durch Nutzerbefragungen, Expertenfeedback oder die Analyse der Verständlichkeit und Nachvollziehbarkeit der generierten Erklärungen erfolgen.
     Besonders im Bereich der qualitativen Datenverarbeitung sollte geprüft werden, ob die Reihenfolge, Auswahl und Gewichtung von Nachrichten sachgerecht und für den Nutzer nachvollziehbar ist.
 
-    Ein weiterer wichtiger Aspekt ist der \textbf{Vergleich mit externen Benchmarks}.
+    Ein weiterer wichtiger Aspekt ist der \emph{Vergleich mit externen Benchmarks}.
     Hierbei können die Empfehlungen des Systems den Einschätzungen von Finanzanalysten, relevanten Marktindizes oder etablierten Robo-Advisors gegenübergestellt werden.
     Dies liefert nicht nur eine relative Einordnung der Systemleistung, sondern ermöglicht auch das Erkennen systematischer Abweichungen.
     Die bisherige Evaluation beschränkte sich auf ausgewählte Fälle.
     In einer erweiterten Untersuchung könnte dies deutlich systematischer und mit größerer Datenbasis erfolgen.
 
-    Zur Beurteilung der Stabilität empfiehlt sich eine \textbf{Langzeitbeobachtung}.
+    Zur Beurteilung der Stabilität empfiehlt sich eine \emph{Langzeitbeobachtung}.
     Dabei wird untersucht, wie konsistent und zuverlässig die Handlungsempfehlungen über längere Zeiträume hinweg sind und wie das System auf außergewöhnliche Marktereignisse wie Krisen, geopolitische Spannungen oder plötzliche Volatilitätssprünge reagiert.
     In der bisherigen Arbeit konnte dies nur in Form von kurzen Backtesting-Perioden simuliert werden.
 
-    Für die Erfassung des direkten Einflusses auf das Nutzerverhalten bieten sich \textbf{A/B-Tests} an.
+    Für die Erfassung des direkten Einflusses auf das Nutzerverhalten bieten sich \emph{A/B-Tests} an.
     Dabei werden unterschiedliche Nutzergruppen entweder mit oder ohne Unterstützung des Assistenzsystems – oder mit verschiedenen Varianten der Erklärungsausgabe – verglichen.
     Auf diese Weise lässt sich messen, inwieweit das System die Entscheidungsfindung, das Vertrauen und letztlich die Performance der Nutzer beeinflusst.
 
-    Auch \textbf{Simulation und Backtesting} stellen zentrale Werkzeuge dar.
+    Auch \emph{Simulation und Backtesting} stellen zentrale Werkzeuge dar.
     Durch die Nutzung historischer Marktdaten können hypothetische Szenarien rekonstruiert und die Robustheit der Empfehlungen in unterschiedlichen Marktphasen überprüft werden.
     Dies wurde in der Arbeit bereits in Grundzügen umgesetzt, könnte aber deutlich granularer erfolgen, beispielsweise durch Simulation spezifischer Marktereignisse.
 
-    Besondere Aufmerksamkeit verdient die \textbf{Evaluation der Erklärbarkeit}.
+    Besondere Aufmerksamkeit verdient die \emph{Evaluation der Erklärbarkeit}.
     Hierbei wird ermittelt, ob die generierten Begründungen für die Nutzer verständlich sind, ob sie deren Entscheidungen beeinflussen und ob sie regulatorischen Anforderungen – etwa im Hinblick auf Transparenzpflichten – genügen.
     In der bisherigen Evaluation wurde dieser Punkt vorrangig aus Entwicklerperspektive betrachtet.
     Eine Ausweitung auf reale Nutzergruppen ist daher ein logischer nächster Schritt.
 
-    Schließlich sollte die \textbf{Robustheit gegenüber Daten- und Modellabweichungen} getestet werden.
+    Schließlich sollte die \emph{Robustheit gegenüber Daten- und Modellabweichungen} getestet werden.
     Dies beinhaltet Szenarien, in denen Daten unvollständig, verrauscht oder in leicht abgewandelter Form vorliegen, um zu prüfen, wie sensibel das System auf solche Änderungen reagiert und ob es dennoch konsistente und nachvollziehbare Empfehlungen liefert.
     In der bestehenden Arbeit wurden derartige Tests nicht systematisch durchgeführt, was eine klare Gelegenheit zur Erweiterung darstellt.
 

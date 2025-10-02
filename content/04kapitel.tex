@@ -693,7 +693,7 @@
       \begin{itemize}
         \item \textbf{Versionsverwaltung:} \texttt{git} zum Beziehen und Verwalten des Quellcodes.
         \item \textbf{Container-Engine:} Podman oder Docker (bzw. eine kompatible Engine) zur Bereitstellung der isolierten Containerumgebungen.
-        \item \textbf{Rechenressourcen:} Entweder eine ausreichend leistungsstarke lokale Hardware (CPU/GPU, RAM) für die Ausführung großer Sprachmodelle oder alternativ ein API-Schlüssel eines LLM-Providers (z.\,B. OpenAI, Anthropic), falls auf Cloud-Modelle zurückgegriffen wird.
+        \item \textbf{Rechenressourcen:} Entweder eine ausreichend leistungsstarke lokale Hardware (CPU/\acs{GPU}, RAM) für die Ausführung großer Sprachmodelle oder alternativ ein API-Schlüssel eines LLM-Providers (z.\,B. OpenAI, Anthropic), falls auf Cloud-Modelle zurückgegriffen wird.
       \end{itemize}
 
     \subsection{Einrichtungsablauf}
@@ -727,10 +727,10 @@
       \item \textbf{Arbeitsspeicher:} 48GB DDR4-3200.
       \item \textbf{Prozessor:} Intel Core i7-8700K (3{,}7–4{,}7\,GHz)
       \item \textbf{Grafikkarte:} AMD Radeon RX 6700 XT mit 12 GB GDDR6.
-      \item \textbf{Überwiegend genutztes LLM:} Qwen3:30B über Ollama (v0.11.4) mit GPU-Beschleunigung
+      \item \textbf{Überwiegend genutztes LLM:} Qwen3:30B über Ollama (v0.11.4) mit \acs{GPU}-Beschleunigung
     \end{itemize}
 
-    Diese Spezifikation erlaubt es, die gemessene Performance gegenüber der eigenen Umgebung realistisch zu gewichten und den Setup für Tests bzw. Nachvollzug zielgerichtet anzupassen (z. B. kleinere/quantisierte Modelle bei geringerem VRAM, oder Cloud-\acs{LLM}s, falls lokal keine GPU verfügbar ist).
+    Diese Spezifikation erlaubt es, die gemessene Performance gegenüber der eigenen Umgebung realistisch zu gewichten und den Setup für Tests bzw. Nachvollzug zielgerichtet anzupassen (z. B. kleinere/quantisierte Modelle bei geringerem VRAM, oder Cloud-\acs{LLM}s, falls lokal keine \acs{GPU} verfügbar ist).
 
   \section{Technische Limitationen und Herausforderungen}
 
