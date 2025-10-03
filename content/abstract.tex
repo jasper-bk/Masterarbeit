@@ -2,24 +2,38 @@
 
 \pagestyle{empty}
 
-\renewcommand{\abstractname}{Abstract} % Zusammenfassung in Abstract umbenennen
+\renewcommand{\abstractname}{Kurzfassung}
 
 \begin{abstract}
 
-    Die Arbeit entwickelt ein KI-basiertes Assistenzsystem zur quantitativen Portfoliooptimierung, das prozentuale Handlungsempfehlungen für Einzelwerte mit transparenten, natürlichsprachlichen Begründungen verknüpft und zu einer risikoadaptiven Portfoliosicht einschließlich Rebalancing-Implikationen aggregiert sowie zudem einen interaktiven Chat zum Stellen von Fragen bietet.
+    Die Arbeit entwickelt ein KI-basiertes Assistenzsystem für die Portfolioanalyse, das prozentuale Handlungsempfehlungen zu Einzelwerten mit nachvollziehbaren, natürlichsprachlichen Begründungen verknüpft und zu einer risikoadaptiven Portfoliosicht mit Rebalancing-Hinweisen aggregiert.
+    Zusätzlich steht ein interaktiver Chat für Rückfragen bereit.
+    Ausgangspunkt ist die Beobachtung unzureichender Transparenz bestehender (teil-)automatisierter Systeme.
+    Methodisch folgt die Studie einem Design-Science-Research-Ansatz und realisiert einen modularen Prototypen mit klaren Schnittstellen: Python/Flask als Backend, eine austauschbare LLM-Schicht (lokal via Ollama, optional per API zu externen Anbietern), Finanzdaten über yfinance/Finnhub, Orchestrierung mit LangChain sowie ein leichtgewichtiges Web-Frontend (Bootstrap/jQuery).
+    Die Evaluation konzentriert sich auf Konsistenztests der LLM-Ausgaben und einen Abgleich mit Analystenkonsens.
+    Backtesting-Verfahren werden konzeptionell eingeordnet, jedoch mangels Kapazität der Arbeit nicht durchgeführt.
+    Die Ergebnisse deuten darauf hin, dass die Kopplung strukturierter Signale mit Begründungen technisch tragfähig ist, die Portfoliosicht eine verständliche, unabhängige Zweitbewertung bereits vorliegender Einschätzungen zur Plausibilisierung unterstützt und die modulare Architektur Austauschbarkeit und Reproduzierbarkeit fördert.
+    Der Prototyp adressiert Nachvollziehbarkeit und Replizierbarkeit durch klare Schnittstellen und transparente Auswertung, wobei eine größer strukturierte und unabhängige Validierung in realen Anwendungsszenarien wünschenswert bleibt.
+    Insgesamt etabliert die Arbeit ein konsistentes Vorgehensmodell und macht die prototypische Realisierbarkeit erklärungsorientierter Entscheidungsassistenz plausibel, wodurch eine belastbare Ausgangsbasis für weiterführende Evaluationen, funktionsseitige Erweiterungen und spätere Pilotierungen geschaffen wird.
 
-    Methodisch folgt die Arbeit einem Design-Science-Research-Ansatz und realisiert einen modularen Prototypen mit klaren Schnittstellen:
-    Python/Flask als Backend, eine austauschbare LLM-Schicht (lokal via Ollama, optional per API zu externen Anbietern), Finnhub und \texttt{yfinance} als zentrale Kurs- und Finanzdatenquelle, LangChain zur Orchestrierung sowie ein leichtgewichtiges Web-Frontend (Bootstrap/jQuery).
-    Die klare Projektstruktur und Entkopplung der Komponenten unterstützen Erweiterbarkeit, Austauschbarkeit und Reproduzierbarkeit.
+    \textbf{Schlüsselwörter}: Generative KI, Wertpapierhandel, Prompt-Engineering, Transparenz, Entscheidungsbegründung
 
-    Die systematische Prüfung und Einordnung verschiedener Evaluationsverfahren steht im Vordergrund, um eine fundierte Auswahl für die Leistungsbewertung des KI-basierten Assistenzsystems zu treffen.
-    Dabei werden quantitative Metriken zur Portfolioperformance und Robustheit mit qualitativen Verfahren zur Transparenz und Akzeptanz der Handlungsempfehlungen kombiniert.
-    Ziel ist ein Vorgehen, das Zielkonflikte zwischen quantitativen und qualitativen Kriterien berücksichtigt.
-
-    Wesentliche Einschränkungen ergeben sich aus den gewählten Datenquellen, der Modell- und Promptkonfiguration sowie den abgebildeten Marktphasen.
-    Methodische Grenzen, wie die probabilistische Natur großer Sprachmodelle und dateninduzierte Verzerrungen, begrenzen die Übertragbarkeit der Ergebnisse.
-    Der Prototyp adressiert Nachvollziehbarkeit und Replizierbarkeit durch klare Schnittstellen und transparente Auswertung, wobei unabhängige Validierung in realen Anwendungsszenarien wünschenswert bleibt.
-    Das Projekt etabliert dennoch ein konsistentes Vorgehensmodell und demonstriert erfolgreich die prototypische Realisierbarkeit von erklärungsorientierter Entscheidungsassistenz, was eine belastbare Grundlage für vertiefte Evaluation und anwendungsnahe Skalierung schafft.
 \end{abstract}
 
 
+\renewcommand{\abstractname}{Abstract} % Zusammenfassung in Abstract umbenennen
+
+\begin{abstract}
+    The thesis develops an AI-based assistant for portfolio analysis that links percentage-based action recommendations on individual securities with transparent, natural-language explanations and aggregates them into a risk-adaptive portfolio view with rebalancing guidance.
+    An interactive chat is also available for follow-up questions.
+    It is motivated by the lack of transparency in existing (semi-)automated systems.
+    Methodologically, the study follows a design science research approach and implements a modular prototype with clear interfaces: a Python/Flask backend, an interchangeable LLM layer (local via Ollama, optionally via external APIs), financial data via yfinance/Finnhub, orchestration with LangChain, and a lightweight web front end (Bootstrap/jQuery).
+    The evaluation focuses on consistency tests of LLM outputs and a comparison with analyst consensus.
+    Backtesting procedures are positioned conceptually but, due to scope constraints, are not conducted.
+    Findings indicate that coupling structured signals with explanations is technically viable, the portfolio view supports an understandable, independent second assessment to cross-check existing judgments, and the modular architecture promotes interchangeability and reproducibility.
+    The prototype addresses traceability and reproducibility through clear interfaces and transparent analysis, while larger-scale, independent validation in real-world scenarios remains desirable.
+    Overall, the work establishes a consistent methodological approach and makes the prototypical feasibility of explanation-oriented decision support plausible, providing a solid basis for further evaluations, functional extensions, and subsequent pilot deployments.
+
+    \textbf{Keywords}: generative AI, securities trading, prompt engineering, transparency, decision rationale
+
+\end{abstract}

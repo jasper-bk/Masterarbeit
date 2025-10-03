@@ -62,9 +62,6 @@
     Das Konzept hinter \acs{MPT} basiert auf der Annahme, dass Renditen normalverteilt sind, also symmetrisch um einen Mittelwert schwanken.
     Allerdings wurde diese Annahme in der Praxis oft kritisiert, da reale Finanzmärkte häufig \enquote{fette Verteilungsenden} (fat tails) und Schiefe aufweisen, was zu extremen Risiken führt, die die \acs{MPT} nicht vollständig abbilden kann \autocite{favre2002}.
 
-    % To-Do: Grafik hier zu noch bauen
-    % Bisherige Beispiele gefielen nicht oder waren nicht anschaulich genug
-
     Fat Tails (fette Verteilungsenden) beschreiben das Phänomen, dass extreme Ereignisse – wie starke Kursverluste oder -gewinne – in realen Finanzmärkten viel häufiger auftreten, als es die Normalverteilung vorhersagen würde.
     Während die Normalverteilung annimmt, dass die meisten Renditen nahe dem Durchschnitt liegen und extreme Abweichungen sehr selten sind, zeigen Finanzdaten oft eine höhere Wahrscheinlichkeit für solche Ausreißer.
     Dies bedeutet, dass Risiken wie Marktcrashs oder plötzliche Boomphasen in der Realität häufiger vorkommen, als es die \acs{MPT} modelliert \autocite{favre2002}.
@@ -74,8 +71,8 @@
     In Finanzmärkten ist die Verteilung der Renditen jedoch oft schief: Entweder gibt es eine höhere Wahrscheinlichkeit für starke negative Abweichungen (linksschief) oder für starke positive Abweichungen (rechtsschief).
     Beispielsweise neigen Aktienmärkte dazu, linksschief zu sein, da extreme Verluste (z. B. während einer Finanzkrise) häufiger auftreten als extreme Gewinne \autocite{favre2002}.
 
-    Ein Blick auf langfristige Anlageinstrumente wie Indexfonds, die die Marktrendite abbilden, verdeutlichen diese Effekte: 
-    Auch hier lassen sich in den Renditereihen deutliche Ausschläge nach oben und unten beobachten. 
+    Ein Blick auf langfristige Anlageinstrumente wie Indexfonds, die die Marktrendite abbilden, verdeutlichen diese Effekte:
+    Auch hier lassen sich in den Renditereihen deutliche Ausschläge nach oben und unten beobachten.
     Besonders anschaulich zeigt dies das Renditedreieck des MSCI World, das nicht nur die langfristige Aufwärtsentwicklung widerspiegelt, sondern auch die Häufigkeit von Verlustphasen und starken Schwankungen verdeutlicht.
 
     \begin{figure}[H]
@@ -127,7 +124,7 @@
     Besonders relevant für die eigene Arbeit ist, dass viele dieser Systeme bereits Komponenten wie Nutzerinteraktion, Erklärbarkeit und automatische Entscheidungsfindung enthalten.
     Diese Punkte sind auch zentrale Bausteine des hier vorgestellten Assistenzsystems.
     Was jedoch oft fehlt, ist eine durchgängige Transparenz über die Entscheidungsschritte hinweg oder eine flexible Anpassbarkeit der Modelllogik an veränderte regulatorische oder individuelle Anforderungen.
-    \todo[inline]{To-Do: Definitiv stärker in praktischer Arbeit adressieren}
+    \todo[inline]{To-Do: Sollt evtl noch stärker in praktischer Arbeit adressiert werden}
 
     Ein weiterer Ansatzpunkt, von dem gelernt werden kann, sind Modelle zur datengetriebenen Informationsgewinnung.
     So zeigen \autocite{vamvourellis2023}, dass mit Hilfe von \acs{LLM}s Unternehmensdaten aus Finanzberichten so aufbereitet werden können, dass daraus semantisch fundierte Embeddings entstehen, mit denen sich Firmen mit ähnlichem Risiko-Rendite-Profil clustern lassen.
@@ -457,19 +454,19 @@
     Zudem gibt es ethische Bedenken hinsichtlich der Fairness und Diskriminierungsfreiheit von \acs{KI}-Modellen, insbesondere wenn personenbezogene Daten in die Entscheidungsfindung einfließen \autocite{bendavid2021explainable}.
     Die Entwicklung von \acs{KI}-Systemen, die sowohl regulatorische als auch ethische Anforderungen erfüllen, bleibt ein offenes Forschungsfeld.
 
-    
+
     Eine detaillierte Analyse regulatorischer Rahmenbedingungen und Richtlinien würde den Umfang dieser Arbeit jedoch übersteigen.
-    Daher werden diese Aspekte nicht im Detail behandelt, sondern lediglich in ihren möglichen Implikationen reflektiert.  
+    Daher werden diese Aspekte nicht im Detail behandelt, sondern lediglich in ihren möglichen Implikationen reflektiert.
     Damit bleibt der Fokus auf den zentralen Forschungsfragen dieser Arbeit, ohne die Relevanz regulatorischer und ethischer Dimensionen aus dem Blick zu verlieren.
 
   \subsection{Datenqualität und -verfügbarkeit}
 
-    Die Qualität und Verfügbarkeit von Daten sind entscheidend für die Leistungsfähigkeit von \acs{KI}-Modellen.  
-    Finanzdaten weisen jedoch unterschiedliche Einschränkungen auf: Marktpreise und Renditen unterliegen kurzfristigen Schwankungen (z.\,B. durch Liquidität oder stimmungsgetriebene Dynamiken), während Fundamentaldaten zwar stabiler sind, aber durch Bilanzierungsspielräume, Korrekturen oder Schätzunsicherheiten beeinflusst werden können.  
+    Die Qualität und Verfügbarkeit von Daten sind entscheidend für die Leistungsfähigkeit von \acs{KI}-Modellen.
+    Finanzdaten weisen jedoch unterschiedliche Einschränkungen auf: Marktpreise und Renditen unterliegen kurzfristigen Schwankungen (z.\,B. durch Liquidität oder stimmungsgetriebene Dynamiken), während Fundamentaldaten zwar stabiler sind, aber durch Bilanzierungsspielräume, Korrekturen oder Schätzunsicherheiten beeinflusst werden können.
     Zudem enthalten viele alternative Datenquellen – etwa Nachrichten und Social Media – einen hohen Anteil irrelevanter oder verzerrter Informationen, was die Isolierung des eigentlichen Signals erschwert \autocite{sec2021gamestop,Weber2024}.
 
-    Neben der technischen Bereinigung stellt sich daher die Frage, wie heterogene Datenquellen gewichtet, priorisiert und kontextgerecht eingeordnet werden.  
-    Kleinste Schätzfehler in Mittelwerten und Kovarianzen können zu instabilen, stark schwankenden Portfoliogewichten führen, was die Bedeutung robuster Schätz- und Regularisierungsverfahren unterstreicht \autocite{demiguel2009}.  
+    Neben der technischen Bereinigung stellt sich daher die Frage, wie heterogene Datenquellen gewichtet, priorisiert und kontextgerecht eingeordnet werden.
+    Kleinste Schätzfehler in Mittelwerten und Kovarianzen können zu instabilen, stark schwankenden Portfoliogewichten führen, was die Bedeutung robuster Schätz- und Regularisierungsverfahren unterstreicht \autocite{demiguel2009}.
     Die Entwicklung robuster Methoden zur Datenintegration umfasst folglich nicht nur die Aufbereitung, sondern auch transparente Kriterien zur Relevanzbewertung und eine konsistente Verknüpfung mit dem jeweiligen Marktkontext \autocite{Weber2024}.
 
     In dieser Arbeit werden diese Herausforderungen nicht umfassend gelöst, sodass die Resultate den inhärenten Grenzen des eingesetzten \acs{LLM} unterliegen.

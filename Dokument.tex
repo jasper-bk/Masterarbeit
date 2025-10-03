@@ -73,12 +73,32 @@ toc=bibliography,	% Literaturverzeichnis im Inhaltsverzeichnis darstellen
 \usepackage[utf8]{inputenc}
 \usepackage{scrhack}
 \usepackage{amsmath}
-\usepackage{txfonts} % Use a Times-new-roman open-source clone
+%\usepackage{txfonts} % Use a Times-new-roman open-source clone
+%\usepackage{helvet} % Wie Arial
+\usepackage{tgheros} % Wie Arial
 \usepackage{comment}
 \usepackage{fontawesome}
 \usepackage{dirtree}
 \usepackage{spreadtab}
 \usepackage{booktabs}
+\usepackage{anyfontsize}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+% die nächsten zwei Zeilen benötigen lualatex oder xelatex, aber dafür ist es original Arial
+%\usepackage{fontspec}
+%\setmainfont{Arial}
+
+\setkomafont{chapter}{\fontsize{12}{18}\selectfont}
+\setkomafont{section}{\fontsize{12}{15}\selectfont}
+\setkomafont{subsection}{\fontsize{12}{14}\selectfont}
+\setkomafont{subsubsection}{\fontsize{12}{14}\selectfont}
+\setkomafont{caption}{\fontsize{10}{11}\selectfont}
+
+\RedeclareSectionCommand[
+  beforeskip=-3ex plus -1ex minus -.2ex, % Abstand vor der Überschrift
+  afterskip=2ex plus .2ex                 % Abstand nach der Überschrift
+]{chapter}
 
 \renewcaptionname{ngerman}\figurename{Abb.}
 \renewcaptionname{ngerman}\tablename{Tab.}
@@ -92,12 +112,7 @@ toc=bibliography,	% Literaturverzeichnis im Inhaltsverzeichnis darstellen
 
 %\includecomment{comment} % Kommentare ein und Ausblenden
 
-    %%%%%%% Neues Design %%%%%%%%%%%
-    \setkomafont{chapter}{\Large}
-    \setkomafont{section}{\large}
-    \setkomafont{subsection}{\large}
-
-    %\renewcommand*\chapterheadstartvskip{\vspace*{-0cm}} %Kapitel nach oben verschieben
+    \renewcommand*\chapterheadstartvskip{\vspace*{-0.1cm}} %Kapitel nach oben verschieben
 
     \addtolength{\footskip}{-0.7cm}% foot larger by 0,7 cm  (Raises the page number)
     \setlength{\parindent}{6pt} % Indent at start of paragraphs  6pt
@@ -294,5 +309,6 @@ toc=bibliography,	% Literaturverzeichnis im Inhaltsverzeichnis darstellen
 
 \appendix
 \input{content/appendix}
+\input{content/erklaerung}
 
 \end{document}

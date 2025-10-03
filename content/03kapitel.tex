@@ -139,8 +139,6 @@
 
     \subsubsection{Ollama}
 
-      \todo[inline]{To-Do: Klären ob subsubsection Okay sind? Also die Tiefel der Kapitel.}
-
       Ollama ist eine Open-Source-Software, die es ermöglicht, Large Language Models lokal auszuführen.
       Sie zeichnet sich durch einen besonderen Fokus auf Datenschutz und lokale Rechenleistung aus, was insbesondere für sensible Anwendungsfälle im Finanzbereich interessant ist.
 
@@ -472,22 +470,22 @@
 
   \subsection{Zusammenfassung der Evaluationsergebnisse}
 
-    Die Technologieauswahl wurde systematisch anhand gewichteter Kriterien und vergleichender Analysen vorgenommen, um eine ausgewogene Balance zwischen Leistungsfähigkeit, Kosten, Datenschutz und Praxistauglichkeit zu erreichen. 
-    Obwohl in den meisten Bereichen keine endgültige Festlegung, sondern flexible Lösungen bevorzugt wurden, konnte in der Programmiersprache eine eindeutige Entscheidung getroffen werden.  
+    Die Technologieauswahl wurde systematisch anhand gewichteter Kriterien und vergleichender Analysen vorgenommen, um eine ausgewogene Balance zwischen Leistungsfähigkeit, Kosten, Datenschutz und Praxistauglichkeit zu erreichen.
+    Obwohl in den meisten Bereichen keine endgültige Festlegung, sondern flexible Lösungen bevorzugt wurden, konnte in der Programmiersprache eine eindeutige Entscheidung getroffen werden.
 
-    Python wurde ohne weiteren Vergleich gewählt, da es als De-facto-Standard in datengetriebener Forschung und Entwicklung gilt und mit seinem umfassenden Ökosystem alle Anforderungen von Datenaggregation über Modellierung bis hin zu \acs{XAI} und Visualisierung abdeckt. 
-    Ein Vergleich mit Alternativen hätte hier keine zusätzlichen Erkenntnisse gebracht, sondern lediglich die klare Überlegenheit von Python bestätigt, was es von den anderen Entscheidungsfeldern unterscheidet, in denen häufig mehrere Optionen sinnvoll nebeneinander bestehen.  
+    Python wurde ohne weiteren Vergleich gewählt, da es als De-facto-Standard in datengetriebener Forschung und Entwicklung gilt und mit seinem umfassenden Ökosystem alle Anforderungen von Datenaggregation über Modellierung bis hin zu \acs{XAI} und Visualisierung abdeckt.
+    Ein Vergleich mit Alternativen hätte hier keine zusätzlichen Erkenntnisse gebracht, sondern lediglich die klare Überlegenheit von Python bestätigt, was es von den anderen Entscheidungsfeldern unterscheidet, in denen häufig mehrere Optionen sinnvoll nebeneinander bestehen.
 
-    Bei der Anbindung der \acs{KI} zeigten OpenAI, Gemini und Claude ihre Stärken insbesondere bei \acs{API}-Reife, Funktionsumfang und Performance, während Ollama vor allem durch Kostenfreiheit, Datenschutz und Anpassbarkeit überzeugt. 
-    Eine starre Festlegung auf einen Anbieter erwies sich nicht als zielführend, weshalb ein pluginbasiertes Multi-Provider-Design mit einheitlicher Schnittstelle und optionalem Ensemble-Ansatz gewählt wurde, um Flexibilität und Zukunftssicherheit sicherzustellen.  
+    Bei der Anbindung der \acs{KI} zeigten OpenAI, Gemini und Claude ihre Stärken insbesondere bei \acs{API}-Reife, Funktionsumfang und Performance, während Ollama vor allem durch Kostenfreiheit, Datenschutz und Anpassbarkeit überzeugt.
+    Eine starre Festlegung auf einen Anbieter erwies sich nicht als zielführend, weshalb ein pluginbasiertes Multi-Provider-Design mit einheitlicher Schnittstelle und optionalem Ensemble-Ansatz gewählt wurde, um Flexibilität und Zukunftssicherheit sicherzustellen.
 
-    Auch in der Finanzdatenintegration bestätigte die Nutzwertanalyse den Wert eines differenzierten Ansatzes. 
-    Finnhub erreichte mit 255 Punkten die höchste Bewertung und wird als Primärquelle eingesetzt, da es quantitative und qualitative Daten mit hoher Stabilität bereitstellt, während yfinance mit 245 Punkten als gänzlich unabhängiger Fallback vorgesehen ist. 
-    Alpha Vantage konnte mit 215 Punkten nicht überzeugen und wird daher nicht berücksichtigt.  
+    Auch in der Finanzdatenintegration bestätigte die Nutzwertanalyse den Wert eines differenzierten Ansatzes.
+    Finnhub erreichte mit 255 Punkten die höchste Bewertung und wird als Primärquelle eingesetzt, da es quantitative und qualitative Daten mit hoher Stabilität bereitstellt, während yfinance mit 245 Punkten als gänzlich unabhängiger Fallback vorgesehen ist.
+    Alpha Vantage konnte mit 215 Punkten nicht überzeugen und wird daher nicht berücksichtigt.
 
-    Die Auswertung zeigt, dass der Wert einer Technologieanalyse nicht allein in der finalen Entscheidung liegt, sondern ebenso in der Erkenntnis, wann Offenheit sinnvoller ist als Festlegung. 
-    Gerade die systematische Bewertung war hier entscheidend, da sie Transparenz über Stärken und Schwächen geschaffen und die bewusste Erkenntnis ermöglicht hat, dass langfristige Tragfähigkeit dort am größten ist, wo Anpassung und Erweiterung möglich bleiben. 
-    Nur in klar dominierten Bereichen wie der Programmiersprache ist deshalb eine eindeutige Festlegung sinnvoll, während in allen anderen Feldern Flexibilität den nachhaltigeren Weg darstellt.  
+    Die Auswertung zeigt, dass der Wert einer Technologieanalyse nicht allein in der finalen Entscheidung liegt, sondern ebenso in der Erkenntnis, wann Offenheit sinnvoller ist als Festlegung.
+    Gerade die systematische Bewertung war hier entscheidend, da sie Transparenz über Stärken und Schwächen geschaffen und die bewusste Erkenntnis ermöglicht hat, dass langfristige Tragfähigkeit dort am größten ist, wo Anpassung und Erweiterung möglich bleiben.
+    Nur in klar dominierten Bereichen wie der Programmiersprache ist deshalb eine eindeutige Festlegung sinnvoll, während in allen anderen Feldern Flexibilität den nachhaltigeren Weg darstellt.
 
 
 
