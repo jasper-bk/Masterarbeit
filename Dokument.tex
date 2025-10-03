@@ -23,12 +23,13 @@ toc=bibliography,	% Literaturverzeichnis im Inhaltsverzeichnis darstellen
 \def \titel {Entwicklung eines KI-basierten Assistenzsystems mit transparenter Entscheidungsbegründung zur quantitativen Portfoliooptimierung im Wertpapierhandel}
 \def \arbeit {Masterarbeit}
 \def \autor {Jasper Bremenkamp}
+\def \autoradresse {Moorlage 14, 48488 Emsbüren}
 \def \abschluss {Master of Science}
 \def \studiengang {Data Science}
 \def \datumAbgabe {\today}
 \def \modul {Masterarbeit}
 \def \matrikelnr {92125193}
-\def \tutor {Christian Müller-Kett}
+\def \tutor {Prof. Dr. rer. nat. Christian Müller-Kett}
 
 \def \seitenrand {2cm}
 
@@ -78,6 +79,10 @@ toc=bibliography,	% Literaturverzeichnis im Inhaltsverzeichnis darstellen
 \usepackage{dirtree}
 \usepackage{spreadtab}
 \usepackage{booktabs}
+
+\renewcaptionname{ngerman}\figurename{Abb.}
+\renewcaptionname{ngerman}\tablename{Tab.}
+
 
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning}
@@ -204,18 +209,18 @@ toc=bibliography,	% Literaturverzeichnis im Inhaltsverzeichnis darstellen
         \vspace*{12mm}	Prüfungsleistung für den\\
         \vspace*{3mm}		{\textbf \abschluss}\\
         \vspace*{12mm}	des Studiengangs \studiengang\\
-    \vspace*{3mm}		an der Internationalen Hochschule\\
+    \vspace*{3mm}		an der IU Internationalen Hochschule\\
         \vspace*{12mm}	von\\
         \vspace*{3mm}		{\large\textbf \autor}\\
-        \vspace*{12mm}	\datumAbgabe
+        \vspace*{3mm}		{Matrikelnummer: \matrikelnr\ \\ \autoradresse}\\
+        %\vspace*{9mm}	\datumAbgabe
     \end{center}
     \vfill
     \begin{spacing}{1.2}
     \begin{tabbing}
         mmmmmmmmmmmmmmmmmmmmmmmmmm             \= \kill
-        \textbf{Kursbezeichnung} \> \modul\\
-        \textbf{Matrikelnummer} \> \matrikelnr\\
-        \textbf{Tutor} \> \tutor\\
+        \textbf{Betreuer} \> \tutor\\
+        \textbf{Abgabedatum} \> \datumAbgabe\\
     \end{tabbing}
     \end{spacing}
 \end{titlepage}
