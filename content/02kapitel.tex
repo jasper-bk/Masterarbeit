@@ -487,26 +487,18 @@
     Im Rahmen der Arbeit wird sich deshalb auf kleine Portfolios mit unterschiedlichen Wertpapieren konzentriert, um nicht zu früh an die wirtschaftlichen Grenzen zu stoßen.
     Die Resultate sind daher primär als Machbarkeitsnachweis zu interpretieren und nicht als unmittelbar produktionsreifes System.
 
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  % bis hierhin selbstständig durchgelesen und nochmal alles korrigiert mit Literatur validiert und anhand der Checkliste durchgegangen
-  % darunter aber dennoch bereits einige Korrekturen über Mamas Feeback vorgenommen
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Cross-industrielle Vergleiche} %Kann immernoch einiges an Feinschliff vertragen
+\section{Cross-industrielle Vergleiche}
 
   \todo[inline]{To-Do: Diese ganze Section wirkt noch chaotisch. Möglicherweise Okay oder noch von Grund auf erneuern}
 
   Die Übertragbarkeit von Methoden der generativen \acs{KI}, insbesondere von \acs{LLM}s, zwischen verschiedenen Branchen ist ein zunehmend relevanter Forschungsbereich.
-  \textcite{hecker2017} diskutieren, wie Techniken aus der Medizin-\acs{KI}, die auf der Analyse von unstrukturierten Textdaten basieren, auf die Finanzbranche übertragen werden können.
+  \textcite{hecker2017} diskutieren u. a., wie Techniken aus der Medizin-\acs{KI}, die auf der Analyse von unstrukturierten Textdaten basieren, auf die Finanzbranche übertragen werden können.
   Beispielsweise können \acs{LLM}s, die in der Medizin zur Extraktion von Informationen aus klinischen Berichten oder Forschungsartikeln eingesetzt werden, auch zur Analyse von Finanzberichten, Nachrichtenartikeln oder Social-Media-Daten adaptiert werden.
   Dies zeigt das Potenzial von \acs{LLM}s, domänenspezifische Textdaten zu verarbeiten und wertvolle Erkenntnisse zu generieren.
 
-  Ähnlich zeigt \textcite{linardatos2021} in ihrer Übersichtsarbeit, dass viele Erklärbarkeitsmethoden für generative \acs{KI}-Modelle domänenübergreifend anwendbar sind.
-  Methoden wie \acs{CoT}-Erklärungen \autocite{wei2022}, die ursprünglich für die Textgenerierung entwickelt wurden, können auch in der Finanzbranche eingesetzt werden, um die Entscheidungsprozesse von KI-Systemen transparenter zu machen.
-  \acs{CoT} ermöglicht es \acs{LLM}s, schrittweise natürlichsprachige Begründungen für ihre Empfehlungen zu generieren, was sowohl in der Medizin als auch in der Finanzbranche von Nutzen ist.
-
   Ein weiteres Beispiel ist die Anwendung von \acs{LLM}s in der Rechtsprechung und deren Übertragung auf die Finanzbranche.
-  \acs{LLM}s, die zur Analyse von juristischen Texten und zur Generierung von Vertragsentwürfen eingesetzt werden, können auch zur Auswertung von regulatorischen Dokumenten oder zur Erstellung von Compliance-Berichten in der Finanzbranche adaptiert werden \autocite{vaswani2017}.
+  \acs{LLM}s, die zur Analyse von juristischen Texten und zur Generierung von Vertragsentwürfen eingesetzt werden, können auch zur Auswertung von regulatorischen Dokumenten oder zur Erstellung von Compliance-Berichten in der Finanzbranche adaptiert werden \autocite{savelka2023explaining}.
   Dies unterstreicht die Flexibilität von \acs{LLM}s, branchenspezifische Textdaten zu verarbeiten und komplexe Aufgaben zu automatisieren.
 
   Trotz dieser vielversprechenden Ansätze gibt es Herausforderungen bei der domänenübergreifenden Übertragung von \acs{LLM}s.
@@ -520,16 +512,12 @@
   Diese Fähigkeiten lassen sich auch auf finanzielle Inhalte übertragen, z.\,B. bei der semantischen Analyse von Ad-hoc-Mitteilungen, Finanzanalysen oder regulatorischen Texten.
   Entscheidend ist hierbei, dass die Modelle nicht nur syntaktisch korrekt, sondern auch inhaltlich verlässlich und nachvollziehbar argumentieren.
 
-  Im Finanzbereich ist mit \textit{BloombergGPT} ein Meilenstein gelungen, der gezielt auf Daten aus der Branche trainiert wurde.
-  Das Modell wurde auf mehr als 700 Milliarden Token aus Wirtschaftsnachrichten, Firmenberichten, Analystenkommentaren und internen Daten trainiert und übertrifft generische Modelle signifikant in Finanzbenchmarks \autocite{wu2023}.
+  Im Finanzbereich ist mit \textit{BloombergGPT} ein Meilenstein gelungen, der gezielt auf Daten aus der Branche trainiert wurde \autocite[S. 1-3]{wu2023}.
+  Das Modell wurde auf mehr als 700 Milliarden Token aus Wirtschaftsnachrichten, Firmenberichten, Analystenkommentaren und internen Daten trainiert und übertrifft generische Modelle signifikant in Finanzbenchmarks.
   Es zeigt, dass branchenspezifisches Pretraining eine zentrale Voraussetzung für hohe Performance und Relevanz in der jeweiligen Domäne ist.
 
-  Zudem existieren mit \textit{FinGPT} Open-Source-Initiativen, die darauf abzielen, domänenspezifische Modellentwicklung demokratischer zu gestalten, indem sie transparente Datenpipelines und Finetuning-Prozesse für den Finanzbereich anbieten \autocite{yang2023fingpt}.
+  Zudem existieren mit \textit{FinGPT} Open-Source-Initiativen, die darauf abzielen, domänenspezifische Modellentwicklung demokratischer zu gestalten, indem sie transparente Datenpipelines und Finetuning-Prozesse für den Finanzbereich anbieten \autocite[S. 1]{yang2023fingpt}.
   Dadurch entsteht ein wachsendes Ökosystem, das den Transfer von LLM-Technologien aus anderen Branchen erleichtert.
-
-  Die Herausforderung besteht jedoch nicht nur im Modell selbst, sondern in der Qualität und Struktur der zugrundeliegenden Daten.
-  Während in der Medizin standardisierte Datenformate (wie ICD-10, HL7) und strukturierte Repositories (z.\,B. MIMIC-III) weit verbreitet sind, dominieren im Finanzwesen semi-strukturierte oder unstrukturierte Formate wie PDFs, HTML-Tables oder Textauszüge aus Earnings Calls \autocite{hassani2024}.
-  Diese Unterschiede erhöhen die Komplexität bei der Datenverarbeitung erheblich und erfordern zusätzliche Vorverarbeitung oder spezialisierte Retrieval-Systeme.
 
   Zusammenfassend lässt sich feststellen, dass der Cross-Industry-Transfer von \acs{LLM}s in den Finanzbereich nicht nur möglich ist, sondern bereits in der Praxis erfolgreich demonstriert wurde.
   Durch die Adaption bewährter Ansätze aus anderen Bereichen können neue Perspektiven und Methoden für die Finanzbranche erschlossen werden.

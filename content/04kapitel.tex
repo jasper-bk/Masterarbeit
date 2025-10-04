@@ -27,12 +27,12 @@
     Der orange Teil der Abbildung~\ref{fig:systemarchitektur} ist das Kernstück.
     Es handelt sich dabei um das gesamte Backend, welches die Brücke zwischen \acs{LLM}-Provider, Finanzdaten und dem Anwender herstellt.
 
-    Neben dem Brückenschlag, bewerkstelligt das Backend auch sämtliche Logik.
+    Neben dem Brückenschlag bewerkstelligt das Backend auch sämtliche Logik.
     Abfragen der Daten, Kennzahlberechnungen, Prompt-Templates, Parsen der Antworten, Fehler-Handling, \acs{API}-Schnittstellen und das Bereistellen des Frontends für den Browser werden im Backend gehandhabt.
-    Dabei sind die Bereistellung der \acs{HTTP}-\acs{API} und des Frontends separat in einem eigenen Modul.
+    Dabei ist die Bereistellung der \acs{HTTP}-\acs{API} und des Frontends separat in einem eigenen Modul.
 
     Damit ist das Logik-Modul auch unabhängig einsetzbar und kann in einem beliebigen Pythonskript importiert und genutzt werden.
-    Dies wird im späteren Abschnitt \ref{sec:jupyter-lab} auch gemacht um die Evaluation durchzuführen.
+    Dies erfolgt auch im späteren Abschnitt \ref{sec:jupyter-lab} auch, um die Evaluation durchzuführen.
 
     \subsection{Projektstruktur}
 
@@ -92,9 +92,9 @@
           Die Entscheidungsbegründungen werden extrahiert, strukturiert und transparent in das Portfolio eingebettet.
 
           \item \textbf{Finanzdaten-Backend:} Für die zeitnahe Beschaffung historischer und aktueller Finanzdaten werden das Python-Modul \texttt{finnhub} und \texttt{yfinance} eingesetzt.
-          Beide dienen als zentrale Datenquelle für Kursinformationen, aber sind jedoch austauschbar und selbstständig.
+          Beide dienen als zentrale Datenquelle für Kursinformationen, sind jedoch austauschbar und selbstständig.
 
-          \item \textbf{Frontend:} Das Frontend basiert auf einfachem \texttt{HTML} mit \texttt{Bootstrap} und \texttt{JavaScript}, welches über das Server-Backend mit Flask bereitgestellt wird und mit dynamischen Elementen zur die Visualisierung und Präsentation der Handlungsempfehlungen zugängerlicher macht.
+          \item \textbf{Frontend:} Das Frontend basiert auf einfachem \texttt{HTML} mit \texttt{Bootstrap} und \texttt{JavaScript}, welches über das Server-Backend mit Flask bereitgestellt wird und mit dynamischen Elementen die Visualisierung und Präsentation der Handlungsempfehlungen zugängerlicher macht.
           Die \acs{GUI} verwendet asynchrone API-Aufrufe zur Aktualisierung der dargestellten Inhalte in Echtzeit.
 
         \item \textbf{LangChain:} Sämtliche \acs{LLM}-Interaktionen erfolgen ausschließlich über \texttt{LangChain}. Direkte API-Aufrufe wurden anfänglich verwendet, wurden aber wegen zunehmender Komplexität vollständig verworfen.
@@ -150,25 +150,25 @@
     Dabei kommen sowohl klassische Webtechnologien als auch spezialisierte Werkzeuge zur Modellintegration und Datenverarbeitung zum Einsatz.
 
     In Kapitel \ref{chap:vorgehen} wurden bereits die Kerntechnologien untersucht und ausgewählt.
-    Fazit der Auswahl ist ein weitestgehend modularerer bzw. flexibler Ansatz.
-    Die \acs{LLM}-Provider werden flexibel austauschbar sein und für die Finanzdaten werden sowohl Finnhub als auch \texttt{yfinance herangezogen}.
+    Fazit der Auswahl ist ein weitestgehend modularer bzw. flexibler Ansatz.
+    Die \acs{LLM}-Provider sind flexibel austauschbar und für die Finanzdaten werden sowohl Finnhub als auch \texttt{yfinance} herangezogen.
 
     Im Folgenden werden weitere zentrale Technologien mit besonderem Einfluss auf Architektur und Funktionsweise näher erläutert.
-    Dabei wird sichtbar wie sich diese Technologien einbringen und die bereits untersuchten Technologien verknüpfen.
+    Dabei wird sichtbar, wie sich diese Technologien einbringen und die bereits untersuchten Technologien verknüpfen.
 
     \subsection{LangChain}
 
       \texttt{LangChain} wird als zentrales Framework zur Modellorchestrierung innerhalb des Assistenzsystems eingesetzt.
-      Es handelt sich dabei um eine Open-Source-Bibliothek, die speziell für die Entwicklung von Anwendungen auf Basis großer Sprachmodelle (\acs{LLM}s) konzipiert wurde und agiert als Bindeglied zwischen den verschiedenen \acs{LLM}-Providern.
-      Das Besondere an LangChain ist nicht nur seine Fähigkeit mit verschiedenen Providern und Modellen zu arbeiten sondern auch  verschiedene Komponenten eines \acs{LLM}-Workflows—wie Prompts, Datenquellen, Werkzeuge, Speicher oder Agenten—modular zu verketten und dabei logisch zu koordinieren.
-      Dies erlaubt eine flexible und wiederverwendbare Strukturierung komplexer Modellinteraktionen. \autocite{chase2023langchain}
+      Es handelt sich dabei um eine Open-Source-Bibliothek, die speziell für die Entwicklung von Anwendungen auf Basis großer Sprachmodelle (\acs{LLM}s) konzipiert wurde und agiert als Bindeglied zwischen den verschiedenen \acs{LLM}-Providern \autocite{chase2023langchain}.
+      Das Besondere an LangChain ist nicht nur seine Fähigkeit, mit verschiedenen Providern und Modellen zu arbeiten, sondern auch verschiedene Komponenten eines \acs{LLM}-Workflows—wie Prompts, Datenquellen, Werkzeuge, Speicher oder Agenten—modular zu verketten und dabei logisch zu koordinieren.
+      Dies erlaubt eine flexible und wiederverwendbare Strukturierung komplexer Modellinteraktionen.
 
       In der vorliegenden Anwendung wird LangChain insbesondere zur Steuerung mehrstufiger Prompt-Logik und zur Integration erklärbarer Entscheidungsbegründungen verwendet.
       Die strukturierte Verarbeitung der Ausgabeformate, etwa in \acs{JSON}, konnte durch den Einsatz spezialisierter Output-Parser von LangChain elegant realisiert werden.
       Ebenso erleichtert das Framework die Nutzung externer Wissensquellen oder Zwischenergebnisse im Dialogverlauf, was insbesondere für erklärungsorientierte Systeme von Vorteil ist.
 
       Die Integration in das bestehende Python-Backend erfolgt reibungslos, da LangChain nativ in Python geschrieben ist und eine Vielzahl von Schnittstellen zu gängigen Modellen wie OpenAI, HuggingFace oder lokal ausgeführten \acs{LLM}s via \texttt{Ollama} unterstützt.
-      Überdies konnte LangChain nahtlos mit bereits vorhandenen Komponenten -- etwa zur Bewertung von Portfolios oder zur Entscheidungslogik -- verbunden werden.
+      Überdies kann LangChain nahtlos mit bereits vorhandenen Komponenten -- etwa zur Bewertung von Portfolios oder zur Entscheidungslogik -- verbunden werden.
 
       Im Vergleich zu Alternativen wie \texttt{Haystack} oder \texttt{LlamaIndex} (ehemals GPT Index) bietet LangChain eine größere Bandbreite an Agentenfunktionen und Werkzeuge zur Ablaufsteuerung.
       Während Haystack vor allem für Suchanwendungen mit Vektordatenbanken optimiert ist und LlamaIndex sich auf das \acs{RAG} fokussiert, ist LangChain universeller einsetzbar. \autocite{heyamit_llamaindex_vs_langchain_vs_haystack_2025}
@@ -201,17 +201,17 @@
           Die modulare Architektur von Flask erleichtert zudem die Integration zusätzlicher Middleware und Authentifizierungsmechanismen, was die Sicherheit und Skalierbarkeit des Systems unterstützt.
 
           \item \texttt{Bootstrap} – Als eines der populärsten CSS-Frameworks wird Bootstrap verwendet, um eine moderne, optisch ansprechende und zugleich responsive Benutzeroberfläche zu gestalten.
-          Bootstrap bietet ein umfangreiches Set an vorgefertigten Komponenten wie Buttons, Navigationsleisten, Formularen und Grid-Systemen, die eine konsistente Darstellung auf unterschiedlichen Endgeräten und Bildschirmgrößen gewährleisten. \autocite{bootstrap_front_end_framework_2025}
+          Bootstrap bietet ein umfangreiches Set an vorgefertigten Komponenten wie Buttons, Navigationsleisten, Formularen und Grid-Systemen, die eine konsistente Darstellung auf unterschiedlichen Endgeräten und Bildschirmgrößen gewährleisten \autocite{bootstrap_front_end_framework_2025}.
           Im Assistenzsystem wird Bootstrap eingesetzt, um die Usability zu verbessern, indem komplexe Layouts mit minimalem Aufwand realisiert werden und die Anwendung gleichzeitig auf Desktop, Tablets und Smartphones gleichermaßen gut nutzbar ist.
           Zudem unterstützt Bootstrap die schnelle Anpassung des Designs durch einfaches Überschreiben von Variablen und Klassen.
 
-          \item \texttt{JavaScript und jQuery} – JavaScript und jQuery fungieren als zentrale Programmiersprache für die Implementierung von Interaktivität im Browser.
+          \item \texttt{JavaScript und jQuery} – JavaScript fungiert als zentrale Programmiersprache für die Implementierung von Interaktivität im Browser.
           Innerhalb des Assistenzsystems wird JavaScript verwendet, um dynamische Inhalte zu laden und die Webseite interaktiv zu machen.
           Dies umfasst beispielsweise das asynchrone Nachladen von Aktienanalysen und Kursdaten mittels asynchroner Requests, wodurch Seitenaktualisierungen ohne komplettes Neuladen ermöglicht werden.
           Zusätzlich sorgen clientseitige DOM-Manipulationen für reaktive Benutzeroberflächen, beispielsweise das Anzeigen von Diagrammen, das Hervorheben relevanter Datenpunkte und die Umsetzung von Filtern und Sortierfunktionen.
-          Die Kombination mit der beliebten Bibliotheken \texttt{jQuery} erleichert die Entwicklung zusätzlich.
+          Die Kombination mit der beliebten Bibliothek \texttt{jQuery} erleichert die Entwicklung zusätzlich.
 
-          \item \texttt{Podman und Podman-Compose} – Für die Containerisierung der Uumgebung -- für erleichterte Reproduzierbarkeit -- wird Podman in Kombination mit Podman-Compose eingesetzt.
+          \item \texttt{Podman und Podman-Compose} – Für die Containerisierung der Umgebung -- für erleichterte Reproduzierbarkeit -- wird Podman in Kombination mit Podman-Compose eingesetzt.
           Podman ermöglicht die Ausführung und Verwaltung von Containern ohne zusätzlichen Daemon und ist dabei weitgehend kompatibel zu Docker, sodass bestehende Workflows und Konfigurationsdateien übernommen werden können.
           Podman-Compose erlaubt darüber hinaus die einfache Definition und Verwaltung mehrerer zusammengehöriger Container, etwa für Datenbank, Backend und unterstützende Dienste, in einer einzigen Konfigurationsdatei.
           Der Einsatz dieser Werkzeuge bietet eine hohe Portabilität, da die Containerumgebungen reproduzierbar auf unterschiedlichen Systemen bereitgestellt werden können.
@@ -243,9 +243,9 @@
     \subsection{Asset-Bewertungsprompt}
     \label{sec:prompt-asset}
 
-      Der nachfolgende Prompt hat das Ziel, für eine einzelne Wertpapierposition eine quantitative Dringlichkeitseinschätzung, eine Verteilung der Kauf-/Verkaufs-/Halt-Empfehlung sowie eine Begründung zu erzeugen.
+      Der Asset-Bewertungsprompt hat das Ziel, für eine einzelne Wertpapierposition eine quantitative Dringlichkeitseinschätzung, eine Verteilung der Kauf-/Verkaufs-/Halt-Empfehlung sowie eine Begründung zu erzeugen.
       Zudem besteht die Möglichkeit, dass der User bestimmte Präferenzen definiert, die bei der Bewertung berücksicht werden.
-      Eine denkbare benutzerdefinierte Präferenz wäre z. B. Erklärung in einer bestimmten Form oder die Bewertung aus einem anderen Blickwinkel.
+      Eine denkbare benutzerdefinierte Präferenz wäre z. B. die Erklärung in einer bestimmten Form oder die Bewertung aus einem anderen Blickwinkel.
       Der strukturierte Aufbau des Prompts ist in Code-Ausschnitt \ref{lst:asset-prompt} zu betrachten.
 
       \begin{lstlisting}[language=Python, gobble=6, caption={Asset-Bewertungsprompt}, label=lst:asset-prompt]
@@ -304,10 +304,11 @@
         Dies hilft dem \acs{LLM}, die unterschiedlichen Datenarten gezielt zu interpretieren, da numerische Kennzahlen andere Analyseverfahren erfordern als textuelle Kommentare.
         Die explizite Benennung der Abschnitte reduziert Unklarheiten und verbessert die Relevanz der generierten Antwort. \autocite{promtingguide}
 
-        \item \textbf{Verwendung von \acs{JSON} als Ausgabemodus:} Die explizite Aufforderung zur Ausgabe in einem JSON-Schema stellt sicher, dass die Antwort maschinenlesbar, validierbar und direkt weiterverarbeitbar ist. JSON-Schema ermöglicht klare Strukturvorgaben und zuverlässige Integration in Tools. \autocite{promtingguide}
+        \item \textbf{Verwendung von \acs{JSON} als Ausgabemodus:} Die explizite Aufforderung zur Ausgabe in einem JSON-Schema stellt sicher, dass die Antwort maschinenlesbar, validierbar und direkt weiterverarbeitbar ist.
+        Das JSON-Schema ermöglicht klare Strukturvorgaben und zuverlässige Integration in Tools. \autocite{promtingguide}
 
         \item \textbf{Explizite Anweisung zur Ausgabe:} Die Aufforderung, eine \acs{JSON}-Antwort mit klar definierten Feldern zu liefern, ist entscheidend für die automatisierte Weiterverarbeitung.
-        Das Modell wird gezielt instruiert, nicht nur Text zu generieren, sondern strukturierte Daten zurückzugeben, die direkt vom Backend interpretiert werden können nach dem das \acs{JSON} über Regex aus der Antwort extrahiert und geprüft wird. \autocite{promtingguide}
+        Das Modell wird gezielt instruiert, nicht nur Text zu generieren, sondern strukturierte Daten zurückzugeben, die direkt vom Backend interpretiert werden können, nachdem das \acs{JSON} über Regex aus der Antwort extrahiert und geprüft wird. \autocite{promtingguide}
 
         \item \textbf{Numerische Wahrscheinlichkeitsverteilungen:} Die Felder \texttt{buy}, \texttt{sell} und \texttt{hold} sind als prozentuale Anteile definiert, die zusammen 100 ergeben müssen.
         Dies gewährleistet eine konsistente und vollständige Allokationsempfehlung, die als gewichteter Entscheidungsoutput interpretiert werden kann.
@@ -329,7 +330,7 @@
       \subsection{Portfolio-Zusammenfassungsprompt}
         \label{sec:prompt-portfolio}
 
-        Neben dem Einzelbewertungen wird auch ein zusammenfassender Prompt verwendet, der auf der Gesamtheit der einzelnen Asset-Bewertungen aufsetzt und eine umfassende, natürlichsprachliche Gesamtübersicht über das Portfolio generiert.
+        Neben den Einzelbewertungen wird auch ein zusammenfassender Prompt verwendet, der auf der Gesamtheit der einzelnen Asset-Bewertungen aufsetzt und eine umfassende, natürlichsprachliche Gesamtübersicht über das Portfolio generiert.
         Ziel ist es, die vielfältigen Einzelbewertungen in einen verständlichen und handlungsorientierten Gesamtbericht zu überführen.
         Auch hier sind benutzerdefinierte Präferenzen Teil des Prompts und erlauben auf den Nutzer zugeschnittene Ausgaben.
         Der Prompt ist im nachfolgenden Code-Ausschnitt \ref{lst:summary-prompt} dargestellt.
