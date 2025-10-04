@@ -124,7 +124,7 @@
     \end{itemize}
 
     Diese ausgewogene und nachvollziehbare Gewichtung bildet die Basis für die folgende Entscheidungsmatrix.
-    In dieser werden alle betrachteten Anbieter anhand des Punktesystems (0–3 Punkte pro Kriterium) bewertet, um eine fundierte Auswahl oder einen geeigneten Kompromiss für die finale Integration zu ermöglichen.
+    In dieser werden alle betrachteten Anbieter anhand des Punktesystems (0{=}unzureichend, 3{=}sehr gut) bewertet, um eine fundierte Auswahl oder einen geeigneten Kompromiss für die finale Integration zu ermöglichen.
 
     \begin{itemize}
         \item \textbf{\acs{API}:} 0 Punkte bei nicht vorhandener oder kaum nutzbarer \acs{API}, 1 Punkt bei schlechter Dokumentation oder schwieriger Integration, 2 Punkte bei gut dokumentierter und stabiler \acs{API} mit kleineren Einschränkungen, 3 Punkte bei sehr gut dokumentierter, einfach zu integrierender und vielseitig nutzbarer \acs{API}.
@@ -144,12 +144,6 @@
 
     Dieses transparente und nachvollziehbare Bewertungsschema bildet die Grundlage für die anschließende Entscheidungsmatrix und stellt sicher, dass die Auswahl der Anbieter objektiv und fundiert erfolgt.
 
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % bis hierhin selbstständig durchgelesen und nochmal alles korrigiert mit Literatur validiert und anhand der Checkliste durchgegangen
-    % darunter aber dennoch bereits einige Korrekturen über Mamas Feeback vorgenommen
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
     \subsubsection{Ollama}
 
       Ollama ist eine Open-Source-Software, die es ermöglicht \acs{LLM} lokal auszuführen.
@@ -157,19 +151,29 @@
 
       Im Folgenden wird Ollama anhand des definierten Bewertungsschemas detailliert bewertet:
       \begin{itemize}
-          \item \textbf{\acs{API} (2 Punkte):} Ollama bietet eine \acs{REST}-basierte \acs{API}, die gut dokumentiert ist und eine einfache Integration in bestehende Systeme ermöglicht. Im Vergleich zu proprietären Lösungen wie OpenAI oder Claude fehlen jedoch einige erweiterte Features, was eine perfekte Bewertung verhindert.
+          \item \textbf{\acs{API} (2 Punkte):} Ollama bietet eine \acs{REST}-basierte \acs{API}, die gut dokumentiert ist und eine einfache Integration in bestehende Systeme ermöglicht \autocite{ollama_github}.
+          Im Vergleich zu proprietären Lösungen wie OpenAI oder Claude fehlen jedoch einige erweiterte Features, was eine perfekte Bewertung verhindert.
 
-          \item \textbf{Performance (2 Punkte):} Die Performance von Ollama hängt stark von der lokalen Hardware ab. Auf leistungsfähiger Hardware können Anfragen zügig bearbeitet werden. Auf schwächeren Systemen sind jedoch Verzögerungen oder Stabilitätsprobleme möglich. Daher erhält Ollama hier eine solide Bewertung, aber keinen Spitzenwert.
+          \item \textbf{Performance (2 Punkte):} Die Performance von Ollama hängt stark von der lokalen Hardware ab.
+          Auf leistungsfähiger Hardware können Anfragen zügig bearbeitet werden.
+          Auf schwächeren Systemen sind jedoch Verzögerungen oder Stabilitätsprobleme möglich.
+          Daher erhält Ollama hier eine solide Bewertung, aber keinen Spitzenwert.
 
-          \item \textbf{Kosten (3 Punkte):} Da Ollama Open Source ist, fallen keine Lizenzgebühren oder Nutzungsentgelte an. Dies macht es zu einer sehr kostengünstigen Lösung, insbesondere für Forschungs- oder Prototyping-Zwecke.
+          \item \textbf{Kosten (3 Punkte):} Da Ollama Open Source ist, fallen keine Lizenzgebühren oder Nutzungsentgelte an \autocite{ollama_github}.
+          Dies macht es zu einer sehr kostengünstigen Lösung, insbesondere für Forschungs- oder Prototyping-Zwecke.
 
-          \item \textbf{Anpassung (3 Punkte):} Ollama lässt sich gut anpassen. Die Möglichkeit, eigene Modelle zu hosten oder bestehende Modelle zu ersetzen, erlaubt eine hohe Flexibilität. Darüber hinaus ist die Software quelloffen, sodass tiefgreifende Anpassungen möglich sind.
+          \item \textbf{Anpassung (3 Punkte):} Ollama lässt sich gut anpassen \autocite{ollama_github}.
+          Die Möglichkeit, eigene Modelle zu hosten oder bestehende Modelle zu ersetzen, erlaubt eine hohe Flexibilität.
+          Darüber hinaus ist die Software quelloffen, sodass tiefgreifende Anpassungen möglich sind.
 
-          \item \textbf{Datenschutz (3 Punkte):} Ein wesentlicher Vorteil von Ollama ist, dass sämtliche Daten lokal verarbeitet werden können. Damit ist eine vollständige Kontrolle über die Daten gewährleistet, was höchsten Datenschutzstandards entspricht.
+          \item \textbf{Datenschutz (3 Punkte):} Ein wesentlicher Vorteil von Ollama ist, dass sämtliche Daten lokal verarbeitet werden können \autocite{ollama_github}.
+          Damit ist eine vollständige Kontrolle über die Daten gewährleistet, was höchsten Datenschutzstandards entspricht.
 
-          \item \textbf{Support (1 Punkt):} Als Open-Source-Projekt ist der Support in erster Linie community-basiert. Es gibt keine offizielle Supportstruktur oder garantierte Reaktionszeiten. Das schränkt den professionellen Einsatz ein.
+          \item \textbf{Support (1 Punkt):} Als Open-Source-Projekt ist der Support in erster Linie community-basiert \autocite{ollama_github}.
+          Es gibt keine offizielle Supportstruktur oder garantierte Reaktionszeiten. Das schränkt den professionellen Einsatz ein.
 
-          \item \textbf{Dokumentation (2 Punkte):} Die Dokumentation von Ollama ist gut, jedoch nicht so umfassend wie bei kommerziellen Anbietern. Sie deckt grundlegende Anwendungsfälle und Installationsanleitungen ab, bietet jedoch keine tiefergehenden Beispiele oder Troubleshooting-Guides.
+          \item \textbf{Dokumentation (2 Punkte):} Die Dokumentation von Ollama ist gut, jedoch nicht so umfassend wie bei kommerziellen Anbietern \autocite{ollama_github}.
+          Sie deckt grundlegende Anwendungsfälle und Installationsanleitungen ab, bietet jedoch keine tiefergehenden Beispiele oder Troubleshooting-Guides.
       \end{itemize}
 
       Zusammenfassend lässt sich sagen, dass Ollama vor allem durch seine Datenschutzvorteile, hohe Anpassbarkeit und die Tatsache, dass keine laufenden Kosten anfallen, überzeugt.
@@ -185,21 +189,29 @@
 
     \subsubsection{OpenAI}
 
-      OpenAI bietet mit seinen aktuellen GPT- und o\,-Serien (z.\,B. GPT\,-5, GPT\,-5 mini/nano, GPT\,-4.1, GPT\,-4o/4o mini sowie die Reasoning-Modelle o3, o3\,-pro und o4\,-mini) einige der leistungsfähigsten generativen \acs{KI}\,-Dienste mit starkem Fokus auf multimodale Eingaben, strukturierte Ausgaben und Agenten-Funktionalität.\autocite{openai-docs}
+      OpenAI bietet mit seinen aktuellen GPT- und o\,-Serien (z.\,B. GPT\,-5, GPT\,-5 mini/nano, GPT\,-4.1, GPT\,-4o/4o mini sowie die Reasoning-Modelle o3, o3\,-pro und o4\,-mini) einige der leistungsfähigsten generativen \acs{KI}\,-Dienste mit starkem Fokus auf multimodale Eingaben, strukturierte Ausgaben und Agenten-Funktionalität \autocite{openai-docs}.
       Im Folgenden wird OpenAI anhand des Bewertungsschemas systematisch bewertet:
 
       \begin{itemize}
-        \item \textbf{\acs{API} (3 Punkte):} Die \emph{Responses \acs{API}} vereint Chat-Completions mit eingebauten Tools (u.\,a. Websuche, File Search, Computer Use), unterstützt Streaming, Function Calling und strikt validierte \emph{Structured Outputs}. Die Assistants \acs{API} wird schrittweise in die Responses \acs{API} überführt.\autocite{openai-docs}
+        \item \textbf{\acs{API} (3 Punkte):} Die \emph{Responses \acs{API}} vereint Chat-Completions mit eingebauten Tools (u.\,a. Websuche, File Search, Computer Use), unterstützt Streaming, Function Calling und strikt validierte \emph{Structured Outputs}.
+        Die Assistants \acs{API} wird schrittweise in die Responses \acs{API} überführt \autocite{openai-docs}.
+        Insgesamt mehr Umfang als benötigt.
         \item \textbf{Performance (3 Punkte):} Für latenzkritische Anwendungen bietet OpenAI eine Realtime \acs{API} (z.\,B. Voice-/Audio-Interaktion) sowie Enterprise-Optionen wie \emph{Priority Processing}, SLAs und Skalierungstarife.\autocite{openai-docs,openai-pricing-2025}
-        \item \textbf{Kosten (1 Punkt):} Die Preise variieren stark je nach Modellklasse; beispielhaft (Stand: 11.\,08.\,2025): GPT\,-4o ca.\ \$5/M Eingabetokens und \$20/M Ausgabetokens; GPT\,-4o mini ca.\ \$0{,}60/\$2{,}40; GPT\,-5 ca.\ \$1{,}25/\$10 pro Mio.\ Tokens (Input/Output). Für bestimmte Tools (z.\,B. Websuche) fallen zusätzlich Call-Gebühren an.\autocite{openai-pricing-2025}
-        \item \textbf{Anpassung (1 Punkt):} Feinabstimmung (\emph{Supervised Fine-Tuning}) ist für mehrere Modelle verfügbar (u.\,a.\ GPT\,-4o/4o mini); \emph{Reinforcement Fine-Tuning} ist derzeit auf o4\,-mini beschränkt. Self-Hosting ist nicht vorgesehen.\autocite{openai-docs}
-        \item \textbf{Datenschutz (1 Punkt):} Für Geschäftsangebote (\acs{API}, ChatGPT Team/Enterprise/Edu) werden Eingaben/Ausgaben standardmäßig \emph{nicht} zum Training verwendet; Opt-in ist möglich. Ergänzend gibt es Datenresidenzoptionen (u.\,a. EU) inkl.\ Zero-Data-Retention für geeignete Endpunkte sowie DPA/SOC2/GDPR-Unterstützung.\autocite{openai-docs}
-        \item \textbf{Support (3 Punkte):} Umfangreiche Dokumentation und Business-Angebote mit SLAs/Support, Priorisierung und Kapazitätsbuchung erleichtern den produktiven Einsatz.\autocite{openai-pricing-2025,openai-docs}
-        \item \textbf{Dokumentation (3 Punkte):} Die Entwicklerdokumentation deckt Modelle, Migrationspfade (Responses \acs{API}), Tools und Best Practices umfassend ab und wird laufend aktualisiert.\autocite{openai-docs}
+        \item \textbf{Kosten (1 Punkt):} Die Preise variieren stark je nach Modellklasse.
+        Beispielhaft (Stand: 11.\,08.\,2025): GPT\,-4o ca.\ \$5/M Eingabetokens und \$20/M Ausgabetokens; GPT\,-4o mini ca.\ \$0{,}60/\$2{,}40; GPT\,-5 ca.\ \$1{,}25/\$10 pro Mio.\ Tokens (Input/Output).
+        Für bestimmte Tools (z.\,B. Websuche) fallen zusätzlich Call-Gebühren an.\autocite{openai-pricing-2025}
+        \item \textbf{Anpassung (1 Punkt):} Feinabstimmung (\emph{Supervised Fine-Tuning}) ist für mehrere Modelle verfügbar (u.\,a.\ GPT\,-4o/4o mini); \emph{Reinforcement Fine-Tuning} ist derzeit auf o4\,-mini beschränkt.
+        Self-Hosting ist nicht vorgesehen \autocite{openai-docs}.
+        \item \textbf{Datenschutz (1 Punkt):} Für Geschäftsangebote (\acs{API}, ChatGPT Team/Enterprise/Edu) werden Eingaben/Ausgaben standardmäßig \emph{nicht} zum Training verwendet \autocite{openai-docs}.
+        Opt-in ist möglich.
+        Ergänzend gibt es Datenresidenzoptionen (u.\,a. EU) inkl.\ Zero-Data-Retention für geeignete Endpunkte sowie DPA/SOC2/GDPR-Unterstützung.
+        \item \textbf{Support (3 Punkte):} Umfangreiche Dokumentation und Business-Angebote mit SLAs/Support, Priorisierung und Kapazitätsbuchung erleichtern den produktiven Einsatz \autocite{openai-pricing-2025,openai-docs}.
+        \item \textbf{Dokumentation (3 Punkte):} Die Entwicklerdokumentation deckt Modelle, Migrationspfade (Responses \acs{API}), Tools und Best Practices umfassend ab und wird laufend aktualisiert \autocite{openai-docs}.
       \end{itemize}
 
       Zusammenfassend bietet OpenAI eine exzellente technische Grundlage (insbesondere durch Responses \acs{API}, strukturierte Ausgaben und Realtime) sowie starke Enterprise\,-Funktionen.
-      Höhere Kosten der Spitzenmodelle und die Cloudverarbeitung bleiben für sensible Finanzanwendungen zu prüfen; Datenresidenz und Standard-\emph{No-Training}-Politik mildern jedoch zentrale Risiken.\autocite{openai-docs}
+      Höhere Kosten der Spitzenmodelle und die Cloudverarbeitung bleiben für sensible Finanzanwendungen zu prüfen.
+      Datenresidenz und Standard-\emph{No-Training}-Politik mildern jedoch zentrale Risiken.
 
       \global\def\VOpenAIAPI               {3}
       \global\def\VOpenAIPerformance       {3}
@@ -211,17 +223,19 @@
 
     \subsubsection{Claude}
 
-      Anthropic bietet mit der aktuellen Claude\,-Familie (u.\,a.\ \emph{Opus~4{.}1}, \emph{Sonnet~4}, weiterhin \emph{Sonnet~3{.}7} und \emph{Haiku~3{.}5}) leistungsstarke Modelle mit 200k Kontext, optionalem \emph{Extended Thinking}, Multimodalität sowie Features wie \emph{Tool/Computer Use}, \emph{Citations}, Prompt Caching und Streaming.\autocite{anthropic-docs-2025}
+      Anthropic bietet mit der aktuellen Claude\,-Familie (u.\,a.\ \emph{Opus~4{.}1}, \emph{Sonnet~4}, weiterhin \emph{Sonnet~3{.}7} und \emph{Haiku~3{.}5}) leistungsstarke Modelle mit 200k Kontext, optionalem \emph{Extended Thinking}, Multimodalität sowie Features wie \emph{Tool/Computer Use}, \emph{Citations}, Prompt Caching und Streaming \autocite{anthropic-docs-2025}.
       Die folgende Bewertung basiert auf dem festgelegten Schema:
 
       \begin{itemize}
-        \item \textbf{\acs{API} (2 Punkte):} Stabile \emph{Messages \acs{API}} mit Streaming, Dateien, Tool Use (u.\,a.\ Websuche, Code, Bash, Computer Use), \emph{Citations} und MCP\,-Anbindung; Ökosystem kleiner als bei OpenAI.\autocite{anthropic-docs-2025}
-        \item \textbf{Performance (3 Punkte):} \emph{Opus~4{.}1} als Top\,-Modell für komplexes Reasoning und Agentenaufgaben; \emph{Sonnet~4} als Preis\,-/Leistungs\-Option; 200k Kontext über die Reihe.\autocite{anthropic-docs-2025}
-        \item \textbf{Kosten (2 Punkte):} Beispielsweise (Stand 11.\,08.\,2025): \emph{Opus~4{.}1} \$15/M Eingabe-Tokens, \$75/M Ausgabe-Tokens; \emph{Sonnet~4} \$3/\$15; Prompt Caching separat bepreist.\autocite{anthropic-pricing-2025}
+        \item \textbf{\acs{API} (2 Punkte):} Stabile \emph{Messages \acs{API}} mit Streaming, Dateien, Tool Use (u.\,a.\ Websuche, Code, Bash, Computer Use), \emph{Citations} und MCP\,-Anbindung \autocite{anthropic-docs-2025}.
+        Ökosystem kleiner als bei OpenAI.
+        \item \textbf{Performance (3 Punkte):} \emph{Opus~4{.}1} als Top\,-Modell für komplexes Reasoning und Agentenaufgaben,
+        \emph{Sonnet~4} als Preis\,-/Leistungs\-Option, 200k Kontext über die Reihe \autocite{anthropic-docs-2025}.
+        \item \textbf{Kosten (2 Punkte):} Beispielsweise (Stand 11.\,08.\,2025): \emph{Opus~4{.}1} \$15/M Eingabe-Tokens, \$75/M Ausgabe-Tokens, \emph{Sonnet~4} \$3/\$15, Prompt Caching separat bepreist \autocite{anthropic-pricing-2025}.
         \item \textbf{Anpassung (1 Punkt):} Self-Hosting nicht vorgesehen; Feinabstimmung nur eingeschränkt/verpartnert, primär Prompting und Tooling.
-        \item \textbf{Datenschutz (2 Punkte):} Cloudbasierte Verarbeitung mit Enterprise-Funktionen (Admin/Compliance); Regionale Verfügbarkeit auch via Partner-Clouds (z.\,B.\ Bedrock/Vertex).\autocite{anthropic-docs-2025}
-        \item \textbf{Support (2 Punkte):} Solider Business-Support und breite Verfügbarkeit über Partner; Community- und Entwicklerressourcen in den Docs.\autocite{anthropic-docs-2025}
-        \item \textbf{Dokumentation (2 Punkte):} Gut strukturierte, laufend gepflegte Docs (Modelle, Features, Pricing, Migrationspfade, Best Practices).\autocite{anthropic-docs-2025}
+        \item \textbf{Datenschutz (2 Punkte):} Cloudbasierte Verarbeitung mit Enterprise-Funktionen (Admin/Compliance, Regionale Verfügbarkeit auch via Partner-Clouds (z.\,B.\ Bedrock/Vertex) \autocite{anthropic-docs-2025}.
+        \item \textbf{Support (2 Punkte):} Solider Business-Support und breite Verfügbarkeit über Partner, Community- und Entwicklerressourcen in den Docs \autocite{anthropic-docs-2025}.
+        \item \textbf{Dokumentation (2 Punkte):} Gut strukturierte, laufend gepflegte Docs (Modelle, Features, Pricing, Migrationspfade, Best Practices) \autocite{anthropic-docs-2025}.
       \end{itemize}
 
       Insgesamt zeigt Claude eine sehr gute Performance und punktet insbesondere bei der Qualität der Antworten sowie im Hinblick auf Sicherheit und Ethik.
@@ -238,17 +252,18 @@
 
     \subsubsection{Gemini}
 
-      Google bietet mit der aktuellen Gemini\,-Familie (v.\,a.\ \emph{Gemini~2{.}5 Pro}, \emph{2{.}5 Flash}, \emph{2{.}5 Flash-Lite} sowie \emph{2{.}0 Flash}, Live\,/Native Audio) leistungsfähige, multimodale Modelle mit langem Kontext (bis \(\sim\)1\,M Tokens), optionalem \emph{Thinking}, strukturierten Ausgaben (JSON), Function Calling, Code Execution, Grounding mit Google Search, Batch Mode und Context Caching.\autocite{google-gemini-docs-2025}
+      Google bietet mit der aktuellen Gemini\,-Familie (v.\,a.\ \emph{Gemini~2{.}5 Pro}, \emph{2{.}5 Flash}, \emph{2{.}5 Flash-Lite} sowie \emph{2{.}0 Flash}, Live\,/Native Audio) leistungsfähige, multimodale Modelle mit langem Kontext (bis \(\sim\)1\,M Tokens), optionalem \emph{Thinking}, strukturierten Ausgaben (JSON), Function Calling, Code Execution, Grounding mit Google Search, Batch Mode und Context Caching \autocite{google-gemini-docs-2025}.
       Die folgende Bewertung basiert auf dem festgelegten Schema:
 
       \begin{itemize}
-        \item \textbf{\acs{API} (3 Punkte):} Ausgereifte \emph{Gemini \acs{API}} (inkl.\ Live \acs{API}) mit Streaming, Dateien, strukturierten Ausgaben, Tooling (Function Calling, Code Execution, Search Grounding) und Sicherheits-/Rate-Limit-Guides; nahtlose Integration in Google-Ökosysteme.\autocite{google-gemini-docs-2025}
-        \item \textbf{Performance (3 Punkte):} \emph{Gemini~2{.}5 Pro} wird als \enquote{most powerful thinking model} geführt und eignet sich für komplexes Reasoning/Coding; \emph{2{.}5 Flash} bietet sehr gutes Preis-Leistungs-Verhältnis; durchgängige Multimodalität und \(\sim\)1\,M Kontext.\autocite{google-gemini-docs-2025}
-        \item \textbf{Kosten (1 Punkt):} Beispielhaft (Stand: 11.\,08.\,2025): \emph{2{.}5 Pro} Input \$1{,}25/M Tokens (bis 200k), danach \$2{,}50/M; Output \$10/\$15; \emph{2{.}5 Flash} Input \$0{,}30 (Text/ Bild/ Video) u.\ \$1{,}00 (Audio), Output \$2{,}50; \emph{2{.}5 Flash-Lite} Input \$0{,}10 (Text/ Bild/ Video) u.\ \$0{,}30 (Audio), Output \$0{,}40. Live-/Grounding-Preise separat.\autocite{google-gemini-pricing-2025}
-        \item \textbf{Anpassung (2 Punkte):} Feinabstimmung/Tuning ist modellabhängig und begrenzt; starke Steuerung über strukturierte Ausgaben, System-/Tool-Prompts und Caching; Self-Hosting nicht vorgesehen.\autocite{google-gemini-docs-2025}
-        \item \textbf{Datenschutz (1 Punkt):} Cloudbasierte Verarbeitung; bezahlter Tier mit abweichender Datenbehandlung ggü.\ Free Tier laut Preisseite (Details abhängig vom Einsatzpfad).\autocite{google-gemini-pricing-2025}
-        \item \textbf{Support (3 Punkte):} Professionelles Umfeld mit umfangreichen Entwicklerressourcen (Docs, Release Notes, Community) und Enterprise-Integrationspfaden.\autocite{google-gemini-docs-2025}
-        \item \textbf{Dokumentation (3 Punkte):} Sehr gute, laufend gepflegte Entwicklerdokumentation (Modelle, Features, Limits, Tools, Safety, Migrations- und Best-Practice-Guides).\autocite{google-gemini-docs-2025}
+        \item \textbf{\acs{API} (3 Punkte):} Ausgereifte \emph{Gemini \acs{API}} (inkl.\ Live \acs{API}) mit Streaming, Dateien, strukturierten Ausgaben, Tooling (Function Calling, Code Execution, Search Grounding) und Sicherheits-/Rate-Limit-Guides \autocite{google-gemini-docs-2025}. Nahtlose Integration in Google-Ökosysteme.
+        Insgesamt auch weit mehr Umfang als benötigt.
+        \item \textbf{Performance (3 Punkte):} \emph{Gemini~2{.}5 Pro} wird als \enquote{most powerful thinking model} geführt und eignet sich für komplexes Reasoning/Coding, \emph{2{.}5 Flash} bietet sehr gutes Preis-Leistungs-Verhältnis, durchgängige Multimodalität und \(\sim\)1\,M Kontext \autocite{google-gemini-docs-2025}.
+        \item \textbf{Kosten (1 Punkt):} Beispielhaft (Stand: 11.\,08.\,2025): \emph{2{.}5 Pro} Input \$1{,}25/M Tokens (bis 200k), danach \$2{,}50/M; Output \$10/\$15; \emph{2{.}5 Flash} Input \$0{,}30 (Text/ Bild/ Video) u.\ \$1{,}00 (Audio), Output \$2{,}50; \emph{2{.}5 Flash-Lite} Input \$0{,}10 (Text/ Bild/ Video) u.\ \$0{,}30 (Audio), Output \$0{,}40. Live-/Grounding-Preise separat \autocite{google-gemini-pricing-2025}.
+        \item \textbf{Anpassung (2 Punkte):} Feinabstimmung/Tuning ist modellabhängig und begrenzt, starke Steuerung über strukturierte Ausgaben, System-/Tool-Prompts und Caching, Self-Hosting nicht vorgesehen \autocite{google-gemini-docs-2025}.
+        \item \textbf{Datenschutz (1 Punkt):} Bezahlter Tier mit abweichender Datenbehandlung ggü.\ Free Tier laut Preisseite (Details abhängig vom Einsatzpfad) \autocite{google-gemini-pricing-2025}.
+        \item \textbf{Support (3 Punkte):} Professionelles Umfeld mit umfangreichen Entwicklerressourcen (Docs, Release Notes, Community) und Enterprise-Integrationspfaden \autocite{google-gemini-docs-2025}.
+        \item \textbf{Dokumentation (3 Punkte):} Sehr gute, laufend gepflegte Entwicklerdokumentation (Modelle, Features, Limits, Tools, Safety, Migrations- und Best-Practice-Guides) \autocite{google-gemini-docs-2025}.
       \end{itemize}
 
 
@@ -302,9 +317,11 @@
           \label{tab:matrix_ki_provider}
       \end{table}
 
-      Aus der Matrix lassen sich typische Trade-offs ableiten: Wenn \acs{API}-Reife und Performance stark gewichtet werden, setzen sich OpenAI und Gemini meist ab; Claude schließt insbesondere bei komplexem Reasoning und sehr langen Kontexten auf.
+      Aus der Matrix lassen sich typische Trade-offs ableiten: Wenn \acs{API}-Reife und Performance stark gewichtet werden, setzen sich OpenAI und Gemini meist ab.
+      Claude schließt insbesondere bei komplexem Reasoning und sehr langen Kontexten auf.
       Priorisieren die Gewichtungen hingegen Kostenkontrolle und Anpassungsfähigkeit, profitiert Ollama durch Self-Hosting, Modellwahl und Datenhoheit, nimmt dafür aber Einschränkungen bei Enterprise-Ökosystem und Komfortfeatures in Kauf.
-      Bei strengen Compliance-Anforderungen überzeugt ein on-premises Pfad über Ollama; bei Cloud-Betrieb entscheiden regionale Bereitstellung, vertragliche Zusicherungen (z.\,B. keine Trainingsnutzung) sowie Zero-/Low-Data-Retention-Optionen der Anbieter.
+      Bei strengen Compliance-Anforderungen überzeugt ein on-premises Pfad über Ollama.
+      Bei Cloud-Betrieb entscheiden regionale Bereitstellung und vertragliche Zusicherungen (z.\,B. keine Trainingsnutzung) der Anbieter.
 
       Statt einer finalen Anbieterfestlegung wird ein flexibler, anbieterunabhängiger Ansatz gewählt.
       Kern ist ein Plugin-System, das Modelle als eigenständige Pakete mit einer einheitlichen Schnittstelle kapselt, ein dynamisches Routing, das Anfragen anhand messbarer SLA-Kriterien wie Latenz, Kosten und Qualitätsmetriken verteilt, sowie ein optionaler Ensemble-Ansatz, der mehrere Modellausgaben zu einem gewichteten Konsens aggregiert, um Robustheit und Antwortqualität zu erhöhen.
@@ -318,15 +335,18 @@
     Diese Daten werden für das \acs{LLM} in ein einheitliches, maschinenlesbares Schema (z.\,B. \acs{JSON}) überführt, das numerische Felder (Zeitstempel, Werte) und qualitative Felder (Kurzfassung, Sentiment, Quelle, Aktualität) kombiniert.
 
     Dafür werden die \acs{API}s \texttt{yfinance}, Alpha Vantage und Finnhub untersucht.
-    Bei der Evaluation werden Faktoren wie Datenabdeckung, Aktualität, \acs{API}-Zugänglichkeit und Kostenstruktur berücksichtigt \autocite{AlphaVantageDocs2025,FinnhubDocs2025,yfinanceDocs}.
+    Bei der Evaluation werden Faktoren wie Datenabdeckung, Aktualität, \acs{API}-Zugänglichkeit und Kostenstruktur berücksichtigt.
     Für die Auswahl eines geeigneten Werkzeugs zur Anbindung von Finanzdaten wurden sieben Bewertungskriterien definiert, die jeweils eine entscheidende Rolle für den erfolgreichen Einsatz im geplanten Assistenzsystem spielen:
 
     \begin{itemize}
-      \item \textbf{Datenverfügbarkeit}: Bewertet Umfang und Vielfalt der bereitgestellten Daten (quantitativ: Kurs-/Fundamental-/Makro-Zeitreihen; qualitativ: Nachrichten, Transkripte, Sentiment). Hohe Priorität, da Datenqualität und -abdeckung die Ableitbarkeit verlässlicher Empfehlungen bestimmen.
+      \item \textbf{Datenverfügbarkeit}: Bewertet Umfang und Vielfalt der bereitgestellten Daten (quantitativ: Kurs-/Fundamental-/Makro-Zeitreihen; qualitativ: Nachrichten, Transkripte, Sentiment).
+      Hohe Priorität, da Datenqualität und -abdeckung die Ableitbarkeit verlässlicher Empfehlungen bestimmen.
 
-      \item \textbf{Stabilität der \acs{API}}: Zuverlässigkeit, Latenz und Verfügbarkeit der Schnittstelle inkl. Robustheit gegenüber Schemaänderungen. Eine stabile Anbindung ist entscheidend, um Unterbrechungen im Betrieb des Assistenzsystems zu vermeiden.
+      \item \textbf{Stabilität der \acs{API}}: Zuverlässigkeit, Latenz und Verfügbarkeit der Schnittstelle inkl. Robustheit gegenüber Schemaänderungen.
+      Eine stabile Anbindung ist entscheidend, um Unterbrechungen im Betrieb des Assistenzsystems zu vermeiden.
 
-      \item \textbf{Benutzerfreundlichkeit}: Bedienbarkeit und Verständlichkeit der Schnittstelle, SDKs/Clients und Response-Konsistenz (z.\,B. klare JSON-Schemas). Eine intuitive \acs{API} erleichtert die Integration und spart Entwicklungsaufwand.
+      \item \textbf{Benutzerfreundlichkeit}: Bedienbarkeit und Verständlichkeit der Schnittstelle, SDKs/Clients und Response-Konsistenz (z.\,B. klare JSON-Schemas).
+      Eine intuitive \acs{API} erleichtert die Integration und spart Entwicklungsaufwand.
 
       \item \textbf{Lizenzierung und rechtliche Aspekte}: Lizenzbedingungen (Open Source vs. proprietär, Nutzungseinschränkungen), Kosten sowie rechtliche Rahmenbedingungen (z.\,B. Datenlizenz, Datenschutz). Wichtig zur Sicherstellung eines rechts- und betriebssicheren Dauerbetriebs.
 
@@ -356,13 +376,34 @@
     Um die Auswahl der geeigneten Datenquelle objektiv und nachvollziehbar zu gestalten, wird ein Punktesystem von 0 bis 3 Punkten verwendet (0{=}unzureichend, 3{=}sehr gut).
 
     \begin{itemize}
-      \item \textbf{Daten:} 0 Punkte, wenn keine oder veraltete Daten vorhanden sind; 1 Punkt bei lückenhaften oder teilweise veralteten Daten; 2 Punkte bei weitgehend aktuellen, aber nicht perfekten Daten; 3 Punkte bei sehr aktuellen, vollständigen und hochwertigen Daten (quantitativ \emph{und} qualitativ).
-      \item \textbf{Stabilität:} 0 Punkte bei häufigen Ausfällen; 1 Punkt bei spürbaren Instabilitäten; 2 Punkte bei meist stabiler Funktion; 3 Punkte bei durchgehend stabiler, zuverlässiger Funktion.
-      \item \textbf{Usability:} 0 Punkte kaum nutzbar; 1 Punkt rudimentär; 2 Punkte gut mit kleineren Schwächen; 3 Punkte sehr intuitiv mit konsistenter \acs{API}.
-      \item \textbf{Lizenz:} 0 Punkte rechtlich problematisch; 1 Punkt restriktiv; 2 Punkte überwiegend klar; 3 Punkte sehr klar/rechtssicher (z.\,B.\ Open-Source oder eindeutig definierte Nutzungsrechte).
-      \item \textbf{Implementierungsaufwand:} 0 Punkte sehr hoch; 1 Punkt hoch; 2 Punkte überschaubar; 3 Punkte sehr einfach/schnell.
-      \item \textbf{Erweiterung:} 0 Punkte keine Erweiterungen; 1 Punkt nur mit erheblichem Aufwand; 2 Punkte gut machbar; 3 Punkte sehr leicht/flexibel (z.\,B.\ zusätzliche qualitative Signale).
-      \item \textbf{Dokumentation:} 0 Punkte kaum vorhanden; 1 Punkt lückenhaft; 2 Punkte gut; 3 Punkte sehr gut/aktuell mit Beispielen und SDKs.
+      \item \textbf{Daten:} 0 Punkte, wenn keine oder veraltete Daten vorhanden sind;
+      1 Punkt bei lückenhaften oder teilweise veralteten Daten;
+      2 Punkte bei weitgehend aktuellen, aber nicht perfekten Daten;
+      3 Punkte bei sehr aktuellen, vollständigen und hochwertigen Daten (quantitativ \emph{und} qualitativ).
+      \item \textbf{Stabilität:} 0 Punkte bei häufigen Ausfällen;
+      1 Punkt bei spürbaren Instabilitäten;
+      2 Punkte bei meist stabiler Funktion;
+      3 Punkte bei durchgehend stabiler, zuverlässiger Funktion.
+      \item \textbf{Usability:} 0 Punkte kaum nutzbar;
+      1 Punkt rudimentär;
+      2 Punkte gut mit kleineren Schwächen;
+      3 Punkte sehr intuitiv mit konsistenter \acs{API}.
+      \item \textbf{Lizenz:} 0 Punkte rechtlich problematisch;
+      1 Punkt restriktiv;
+      2 Punkte überwiegend klar;
+      3 Punkte sehr klar/rechtssicher (z.\,B.\ Open-Source oder eindeutig definierte Nutzungsrechte).
+      \item \textbf{Implementierungsaufwand:} 0 Punkte sehr hoch;
+      1 Punkt hoch;
+      2 Punkte überschaubar;
+      3 Punkte sehr einfach/schnell.
+      \item \textbf{Erweiterung:} 0 Punkte keine Erweiterungen;
+      1 Punkt nur mit erheblichem Aufwand;
+      2 Punkte gut machbar;
+      3 Punkte sehr leicht/flexibel (z.\,B.\ zusätzliche qualitative Signale).
+      \item \textbf{Dokumentation:} 0 Punkte kaum vorhanden;
+      1 Punkt lückenhaft;
+      2 Punkte gut;
+      3 Punkte sehr gut/aktuell mit Beispielen und SDKs.
     \end{itemize}
 
     Abschließend erfolgt eine Bewertung mittels Entscheidungsmatrix, um die bestmögliche Anbindung für die Datenbedürfnisse des Systems zu ermitteln.
@@ -393,8 +434,8 @@
 
     \subsubsection{Alpha Vantage}
 
-      Alpha Vantage bietet eine \acs{REST}-\acs{API} für historische und aktuelle Kursdaten, technische Indikatoren, FX/Krypto, Fundamentals sowie einen Bereich \enquote{Alpha Intelligence} mit \emph{News \& Sentiments}.
-      Es existieren freie Kontingente (tarifabhängige Limits) und Premium-Pläne für höhere Last bzw. Echtzeit/15-Minuten-Daten. \autocite{AlphaVantageDocs2025}
+      Alpha Vantage bietet eine \acs{REST}-\acs{API} für historische und aktuelle Kursdaten, technische Indikatoren, FX/Krypto, Fundamentals sowie einen Bereich \enquote{Alpha Intelligence} mit \emph{News \& Sentiments} \autocite{AlphaVantageDocs2025}.
+      Es existieren freie Kontingente (tarifabhängige Limits) und Premium-Pläne für höhere Last bzw. Echtzeit/15-Minuten-Daten.
 
       Die Bewertung auf Basis der sieben Kriterien:
       \begin{itemize}
@@ -446,8 +487,10 @@
       Die gewichtete Nutzwertanalyse (Tabelle~\ref{tab:matrix_quantfinanz}) ergibt folgende Gesamtpunktzahlen: \textbf{Finnhub 255}, \textbf{yfinance 245}, \textbf{Alpha Vantage 215}.
       Damit ist \textbf{Finnhub} im Mittel die beste Wahl für eine robuste, skalierbare Anbindung, insbesondere wenn neben quantitativen Zeitreihen auch \emph{qualitative} Signale (News/Sentiment, alternative Daten) für \acs{LLM}-Begründungen konsistent benötigt werden.
       \textbf{yfinance} überzeugt durch sehr geringe Hürden (Open-Source, einfache Integration) und eignet sich für explorative Analysen oder prototypische Pipelines, ist jedoch hinsichtlich Stabilität/Langlebigkeit risikobehafteter.
-      \textbf{Alpha Vantage} bietet eine breite Abdeckung inkl.\ News \& Sentiment und ist gut dokumentiert; für hohe Durchsätze/geringe Latenzen sind jedoch typischerweise Premium-Pläne erforderlich.
-      Empfehlung: Für den produktiven Betrieb Finnhub als Primärquelle einsetzen; \texttt{yfinance} als Fallback, da ohne jeglichen API-Schlüssel funktional oder für schnelle Ad-hoc-Abfragen im Research; Alpha Vantage entfällt und wird keine Verwendung finden.
+      \textbf{Alpha Vantage} bietet eine breite Abdeckung inkl.\ News \& Sentiment und ist gut dokumentiert.
+      Für hohe Durchsätze/geringe Latenzen sind jedoch typischerweise Premium-Pläne erforderlich.
+      Empfehlung: Für den produktiven Betrieb Finnhub als Primärquelle einsetzen und \texttt{yfinance} als Fallback, da es ohne jeglichen API-Schlüssel funktional ist.
+      Alpha Vantage entfällt und wird keine Verwendung finden.
 
       \begin{table}[H]
         \centering
