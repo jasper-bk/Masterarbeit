@@ -299,7 +299,7 @@
       Um die Entscheidung dauerhaft tragfähig zu halten, würden die Gewichtungen in einem produktiven Einsatz regelmäßig anhand operativer KPI (u.\,a.\ Kosten pro Aufgabe, First-Token-Latenz, Qualitätsbewertungen, Incident-Rate) überprüft und die Routing-Regeln über einen kontinuierlichen A/B-Evaluationspfad pro Use-Case angepasst.
       So bleibt die Lösung widerstandsfähig gegenüber Preis- und Modellupdates, ohne einen Vendor-Lock-in zu erzeugen.
 
-  \subsection{Auswahl zur Anbindung Finanzdaten}
+  \subsection{Auswahl zur Anbindung der Finanzdaten}
 
     Ein zentraler Bestandteil des Assistenzsystems ist die Anbindung von \emph{quantitativen} \emph{und} \emph{qualitativen} Finanzdaten, um eine belastbare Grundlage für Handlungsempfehlungen und deren Begründung im \acs{LLM} zu schaffen. Neben Kurszeitreihen, Fundamentalkennzahlen und ökonomischen Indikatoren werden hierfür auch textuelle Informationsquellen (z.\,B. Unternehmensnachrichten, Earnings-Call-Transkripte, Social-Sentiment) und daraus abgeleitete Merkmale (z.\,B. Relevanz‐Scores, Stimmungsindizes, Quellenvertrauen) integriert.
     Diese Daten werden für das \acs{LLM} in ein einheitliches, maschinenlesbares Schema (z.\,B. \acs{JSON}) überführt, das numerische Felder (Zeitstempel, Werte) und qualitative Felder (Kurzfassung, Sentiment, Quelle, Aktualität) kombiniert.
