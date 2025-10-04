@@ -15,22 +15,22 @@
     Im Unterschied zur verhaltenswissenschaftlichen Forschung, die auf Erklärungs- oder Prognosetheorien abzielt, steht bei \acs{DSR} die Konstruktion nützlicher IT-Artefakte im Vordergrund, die die Grenzen menschlicher und organisatorischer Fähigkeiten erweitern können \autocite{hevner2004}.
 
     Im Design-Science-Paradigma wird Wissen über einen Problemraum gerade durch das Bauen und Anwenden des Artefakts gewonnen \autocite{hevner2004}.
-    Ein \acs{DSR}-Vorgehen ist somit ein prinzipieller Problemlösungsprozess, in dem \enquote{zweckgerichtete Artefakte} für spezifische Problem-domänen entwickelt werden müssen, um darin einen praktischen Nutzen zu stiften.
+    Ein \acs{DSR}-Vorgehen ist somit ein prinzipieller Problemlösungsprozess, in dem \enquote{zweckgerichtete Artefakte} für spezifische Problem-Domänen entwickelt werden müssen, um darin einen praktischen Nutzen zu stiften.
     Dabei sind Innovation und eine gründliche Evaluation des Artefakts zentrale Anforderungen \autocite{hevner2004}.
 
-    In der nachfolgenden Abbildung Abbildung~\ref{fig:dsr} wird der Ablauf anschaulich zusammenfasst.
+    In der nachfolgenden Abbildung~\ref{fig:dsr} wird der Ablauf anschaulich zusammenfasst.
     \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{assets/pictures/dsr_eigener_entwurf.jpg}
         \caption{Ablauf des Design Science Research (\acs{DSR})-Ansatz}
         \small{
         % (Basierend auf
-        (Quelle: eigene Darstellung, orientiert an: \url{https://commons.wikimedia.org/wiki/File:DSR_methodology.png})
+        (Quelle: Eigene Darstellung auf der Basis von: \url{https://commons.wikimedia.org/wiki/File:DSR_methodology.png})
         }
         \label{fig:dsr}
     \end{figure}
 
-    Dieser Ansatz eignet sich besonders für die vorliegende Arbeit, da hier ein \acs{KI}-gestütztes Assistenzsystems zur quantitativen Portfoliooptimierung entwickelt wird, um identifizierte Forschungslücken im diesem Bereich zu schließen.
+    Dieser Ansatz eignet sich besonders für die vorliegende Arbeit, da hier ein \acs{KI}-gestütztes Assistenzsystem zur quantitativen Portfoliooptimierung entwickelt wird, um identifizierte Forschungslücken in diesem Bereich zu schließen.
     Konkret wird zunächst eine Problemidentifikation durchgeführt, in der bestehende Systeme (Robo-Advisor, \acs{MPT}-Tools) und die aus Kapitel \ref{chap:stand_der_forschung} abgeleiteten Anforderungen analysiert werden.
 
     Anschließend folgt die Design- und Entwicklungsphase (Kapitel \ref{chap:implementierung}), in der ein artefaktspezifischer Prototyp unter iterativem Vorgehen erstellt wird.
@@ -65,7 +65,7 @@
 \section{Technologieauswahl} % nicht mehr als 10 Seiten für Technologieauswahl. Weniger Dimensionen. % Evtl qual. und quant. zusammen legen
 
     Die Entwicklung eines transparenten und dialogfähigen Assistenzsystems für die Portfolio-Optimierung erfordert eine präzise Auswahl geeigneter Technologien in allen relevanten Bereichen.
-    Dieser Abschnitt stellt daher die betrachteten Optionen vor und bewertet sie anhand einer Entscheidungsmatrix, die die für die jeweiligen Kriterien der verschiedenen Bereiche berücksichtigt.
+    Dieser Abschnitt stellt daher die betrachteten Optionen vor und bewertet sie anhand einer Entscheidungsmatrix, die die jeweiligen Kriterien der verschiedenen Bereiche berücksichtigt.
 
     Konkret werden Technologien für die folgenden drei Kernbereiche beleuchtet: die Programmlogik (Programmiersprache und Frameworks), die Anbindung der künstlichen Intelligenz und die Integration von Finanzdaten.
     Dabei wird nicht nur der jeweils technisch beste Ansatz identifiziert, sondern auch diskutiert, wo Kompromisse erforderlich sind, um eine optimale Balance zwischen Innovationskraft, Komplexität und langfristiger Praxistauglichkeit zu erzielen.
@@ -91,7 +91,7 @@
     Die Bewertung der Anbieter erfolgt anhand von sieben sorgfältig gewählten Kriterien: \textit{\acs{API}}, \textit{Performance}, \textit{Kosten}, \textit{Anpassung}, \textit{Datenschutz}, \textit{Support} und \textit{Dokumentation}.
     Diese Kriterien wurden ausgewählt, weil sie einen ganzheitlichen und praxisnahen Vergleich der Lösungen ermöglichen.
 
-    Die Hintergründe für die Auswahl der Kriterien ist nachfolgends ausgestellt:
+    Die Hintergründe für die Auswahl der Kriterien ist nachfolgend aufgestellt:
     \begin{itemize}
       \item \textbf{\acs{API}:} Eine leistungsfähige und gut dokumentierte Programmierschnittstelle ist entscheidend für die Integration in das bestehende System und die Flexibilität künftiger Erweiterungen.
       \item \textbf{Performance:} Hierbei wird die tatsächliche Leistungsfähigkeit der generativen \acs{KI}-Modelle betrachtet, da diese maßgeblich für die Qualität der Analyse- und Beratungsergebnisse verantwortlich ist.
@@ -124,7 +124,7 @@
 
         \item \textbf{Performance:} 0 Punkte bei sehr langsamen oder fehleranfälligen Antworten, 1 Punkt bei langsamer Performance oder gelegentlichen Ausfällen, 2 Punkte bei guter, meist stabiler Performance, 3 Punkte bei sehr schneller und zuverlässiger Performance, auch unter hoher Last.
 
-        \item \textbf{Kosten:} 0 Punkte bei sehr hohen, nicht tragbaren Kosten, 1 Punkt bei hohen Kosten ohne Flexibilität, 2 Punkte bei moderaten Kosten und transparenter Preisgestaltung, 3 Punkte bei sehr günstigen oder kostenlosen Angeboten für kleinere Projekte.
+        \item \textbf{Kosten:} 0 Punkte bei sehr hohen, nicht tragbaren Kosten, 1 Punkt bei hohen Kosten ohne Flexibilität, 2 Punkte bei moderaten Kosten und transparenter Preisgestaltung, 3 Punkte bei sehr günstigen oder kostenlosen Angeboten.
 
         \item \textbf{Anpassung:} 0 Punkte, wenn keine Anpassung möglich ist, 1 Punkt, wenn nur sehr eingeschränkte Anpassungen machbar sind, 2 Punkte bei guter Anpassbarkeit (z.B. Feintuning, Parameter), 3 Punkte bei sehr flexiblen Möglichkeiten zur Anpassung an spezifische Anwendungsfälle.
 
@@ -172,7 +172,7 @@
 
     \subsubsection{OpenAI}
 
-      OpenAI bietet mit seinen aktuellen GPT- und o\,-Serien (z.\,B. GPT\,-5, GPT\,-5 mini/nano, GPT\,-4.1, GPT\,-4o/4o mini sowie die Reasoning-Modelle o3, o3\,-pro und o4\,-mini) einige der leistungsfähigsten generativen \acs{KI}\,-Dienste mit starkem Fokus auf multimodale Eingaben, strukturierten Ausgaben und Agenten-Funktionalität.\autocite{openai-docs}
+      OpenAI bietet mit seinen aktuellen GPT- und o\,-Serien (z.\,B. GPT\,-5, GPT\,-5 mini/nano, GPT\,-4.1, GPT\,-4o/4o mini sowie die Reasoning-Modelle o3, o3\,-pro und o4\,-mini) einige der leistungsfähigsten generativen \acs{KI}\,-Dienste mit starkem Fokus auf multimodale Eingaben, strukturierte Ausgaben und Agenten-Funktionalität.\autocite{openai-docs}
       Im Folgenden wird OpenAI anhand des Bewertungsschemas systematisch bewertet:
 
       \begin{itemize}
