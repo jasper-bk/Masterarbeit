@@ -16,6 +16,8 @@
 
     \item \hyperref[sec:versuchsaufbau_alternativ]{Ergebnisse von Versuchsaufbauten mit unterschiedlichen Modellen und Optionen}
 
+    \item \hyperref[sec:versuchsaufbau_konsens_alternativ]{Ergebnisse für Konsensprüfung zu Analysten mit unterschiedlichen Modellen und Optionen}
+
     \item \hyperref[sec:jupyter-lab-export]{Juypter-Lab PDF Export}
 
     \item \hyperref[sec:full_code]{Code}
@@ -34,6 +36,7 @@
         \centering
         \includegraphics[width=\linewidth]{assets/misc/uml_all.png}
         \caption{Gesamtheitlicheres UML}
+        \small{(Quelle: Eigene Darstellung)}
     \end{figure}
     }
 
@@ -43,10 +46,22 @@
     \tocless{
     \begin{figure}[H]
         \centering
-        \includegraphics[width=\linewidth]{assets/misc/flowchart_chat.png}
+        \includegraphics[width=0.9\linewidth]{assets/misc/flowchart_chat.png}
         \caption{Flowchart für Chat-Funktion}
+        \small{(Quelle: Eigene Darstellung)}
     \end{figure}
     }
+
+    \tocless{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{assets/platzhalter.png}
+        \caption{Flowchart für Einzelbewertung}
+        \small{(Quelle: Eigene Darstellung)}
+    \end{figure}
+    }
+
+    \todo[inline]{To-Do: Sprache in Grafik vereinheitlichen. Entweder hier oder im Kapitel}
 
 \tocless\chapter{Screenshots vom Frontend}
 \label{sec:screenshots_frontend}
@@ -56,20 +71,41 @@
         \centering
         \includegraphics[width=\linewidth]{assets/pictures/screenshot_frontend_vor_evaluierung.png}
         \caption{Frontend in Ausgangssituation vor abgeschlossener Evaluierung mit anderen Wertpapieren}
+        \small{(Quelle: Eigene Darstellung (Screenshot))}
+    \end{figure}
+    }
+
+    \tocless{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{assets/pictures/screenshot_frontend_settings.png}
+        \caption{Einstellungsoptionen im Frontend}
+        \small{(Quelle: Eigene Darstellung (Screenshot))}
+    \end{figure}
+    }
+
+
+    \tocless{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{assets/platzhalter.png}
+        \caption{Frontend in Einzelwertpapiersicht nach abgeschlossener Evaluierung}
+        \small{(Quelle: Eigene Darstellung (Screenshot))}
     \end{figure}
     }
 
     % To-Do: Bild von Settings, noch mehr Chat, Einzelansichten ...
 
 
-\tocless\chapter{Ergebnisse von Versuchsaufbauten mit unterschiedlichen Modellen und Optionen}
-\label{sec:versuchsaufbau_alternativ}
+\tocless\chapter{Ergebnisse für Konsistenzprüfung mit unterschiedlichen Modellen und Optionen}
+\label{sec:versuchsaufbau_konsistenz_alternativ}
 
     \tocless{
     \begin{figure}[H]
         \centering
         \includegraphics[width=\linewidth]{assets/pictures/evaluation/llm_konsistenz_qwen3_tmp_0_30b_2.png}
         \caption{Ergebnisse des Versuchsaufbaus für die Konsistenzprüfung mit Qwen3:30b und 0.2 als Temperatur}
+        \small{(Quelle: Eigene Darstellung)}
     \end{figure}
     }
 
@@ -78,18 +114,67 @@
         \centering
         \includegraphics[width=\linewidth]{assets/pictures/evaluation/llm_konsistenz_qwen3_tmp_0_14b.png}
         \caption{Ergebnisse des Versuchsaufbaus für die Konsistenzprüfung mit Qwen3:14b und 0 als Temperatur}
+        \small{(Quelle: Eigene Darstellung)}
     \end{figure}
     }
 
-    % To-Do: noch mit OpenAI bzw Nexus zeigen ...
+    \tocless{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{assets/platzhalter.png}
+        \caption{Ergebnisse des Versuchsaufbaus für die Konsistenzprüfung mit OpenAI gpt4o und 0.2 als Temperatur}
+        \small{(Quelle: Eigene Darstellung)}
+    \end{figure}
+    }
+
+    \tocless{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{assets/platzhalter.png}
+        \caption{Ergebnisse des Versuchsaufbaus für die Konsistenzprüfung mit OpenAI gpt4o und 0 als Temperatur}
+        \small{(Quelle: Eigene Darstellung)}
+    \end{figure}
+    }
+
+    \todo[inline]{To-Do: Platzhalter ersetzen!}
+
+
+\tocless\chapter{Ergebnisse für Konsensprüfung zu Analysten mit unterschiedlichen Modellen und Optionen}
+\label{sec:versuchsaufbau_konsens_alternativ}
+
+    \tocless{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{assets/pictures/evaluation/llm_konsistenz_qwen3_tmp_0_14b.png}
+        \caption{Ergebnisse des Versuchsaufbaus für die Konsensprüfung mit Analysten über Qwen3:14b und 0 als Temperatur}
+        \small{(Quelle: Eigene Darstellung)}
+    \end{figure}
+    }
+
+    \tocless{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{assets/platzhalter.png}
+        \caption{Ergebnisse des Versuchsaufbaus für die Konsensprüfung mit Analysten über gpt4o und 0 als Temperatur}
+        \small{(Quelle: Eigene Darstellung)}
+    \end{figure}
+    }
+
+    \todo[inline]{To-Do: Platzhalter ersetzen!}
 
 
 \tocless\chapter{Juypter-Lab PDF Export}
 \label{sec:jupyter-lab-export}
 
-
+    \todo[inline]{To-Do: Noch einfügen}
 
 \tocless\chapter{Code}
 \label{sec:full_code}
+
+    Code ist über git herunterladbar von: \url{https://jasper.bremenkamp.de/git/portfolio-ai-assistant.git}
+
+    Bei Störungen oder Fragen E-Mail an: \href{mailto:jasper@bremenkamp.de}{jasper@bremenkamp.de}
+
+    \todo[inline]{To-Do: Nochmal testen!}
 
     % To-Do: Code als lsting einbinden?
