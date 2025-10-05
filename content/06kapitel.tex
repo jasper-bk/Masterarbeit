@@ -1,23 +1,9 @@
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % bis hierhin selbstständig durchgelesen und nochmal alles korrigiert mit Literatur validiert und anhand der Checkliste durchgegangen
-    % darunter aber dennoch bereits einige Korrekturen über Mamas Feeback vorgenommen
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 \chapter{Diskussion}
 \label{chap:diskussion}
 
   In diesem Kapitel werden die im Rahmen der Arbeit gewonnenen Erkenntnisse kritisch reflektiert und in einen größeren fachlichen Zusammenhang eingeordnet.
   Ziel ist es, die getroffenen methodischen Entscheidungen, die erarbeiteten Ergebnisse sowie deren Relevanz für Forschung und Praxis zu beleuchten.
   Dabei wird nicht nur auf die Stärken und Potenziale des entwickelten Ansatzes eingegangen, sondern auch auf mögliche Schwächen, Grenzen und offene Fragestellungen.
-
-  Die Diskussion verfolgt dabei mehrere Zielrichtungen:
-  Zum einen wird analysiert, inwieweit die angewandten Methoden geeignet waren, die formulierten Forschungsfragen zu beantworten.
-  Zum anderen wird die praktische Nutzbarkeit der erarbeiteten Lösung in realen Anwendungsszenarien bewertet, wobei technische, organisatorische und rechtliche Aspekte gleichermaßen berücksichtigt werden.
-  Darüber hinaus erfolgt eine differenzierte Betrachtung der Rahmenbedingungen, unter denen die Umsetzung erfolgte, um die Übertragbarkeit der Ergebnisse einschätzen zu können.
-
-  Schließlich werden die ermittelten Vorteile und Herausforderungen der entwickelten Lösung gegenübergestellt und Möglichkeiten aufgezeigt, wie die Ergebnisse evaluiert und in zukünftigen Arbeiten weiterentwickelt werden können.
-  Die nachfolgenden Abschnitte gliedern sich entsprechend in methodische Reflexion, Nutzbarkeitsanalyse, Kontextbedingungen, Chancen- und Risikoabwägung sowie Betrachtung möglicher Evaluationsstrategien.
 
   \section{Methodenkritik}
 
@@ -29,36 +15,36 @@
 
     Trotz dieser Stärken sind auch einige Einschränkungen zu berücksichtigen.
     Die Gewichtungen der Kriterien basierten auf projektinternen Überlegungen und wurden nicht durch eine breite Stakeholder-Befragung abgesichert, was die Objektivität potenziell einschränkt.
-    Langzeittests oder Feldstudien zur Belastbarkeit und Stabilität der Lösungen wurden nicht durchgeführt, sodass die Ergebnisse vor allem kurzfristige Eindrücke widerspiegeln.
+    Langzeittests oder Feldstudien zur Belastbarkeit und Stabilität der Lösungen wurden nicht durchgeführt, sodass die Ergebnisse vor allem überwiegend kurzfristige Eindrücke widerspiegeln.
 
     Ein weiterer methodischer Aspekt betrifft die Vergleichbarkeit der Ergebnisse.
     Die Entscheidung, für unterschiedliche Themenbereiche jeweils eigene Kriterienkataloge zu erstellen, hat zwar die Relevanz der Bewertung in den einzelnen Bereichen erhöht, jedoch die direkte Vergleichbarkeit zwischen diesen Bereichen erschwert.
     Auch die schrittweise Anpassung der Gewichtungen während des Projektverlaufs verbesserte zwar die Genauigkeit der Analyse, führte jedoch zu einer eingeschränkten Vergleichbarkeit zu früheren Bewertungsständen.
 
-    Insgesamt stellt die gewählte Methodenkombination eine solide Grundlage für fundierte Entscheidungen dar, sollte jedoch im Hinblick auf Generalisierbarkeit, Informationsquellen und mögliche Verzerrungen kritisch betrachtet werden.
+    Insgesamt stellt die gewählte Methodenkombination eine sehr solide Grundlage für fundierte Entscheidungen dar, sollte jedoch im Hinblick auf Generalisierbarkeit, Informationsquellen und mögliche Verzerrungen kritisch betrachtet werden.
+    Angesichts der rasanten technologischen Entwicklung, insbesondere im Bereich der \acs{KI}, ist zudem zu beachten, dass die hier erarbeitete Technologienauswahl schnell an Aktualität verlieren können.
+    Daher ist ein kontinuierlich kritischer und reflektierter Umgang mit den Ergebnissen erforderlich, da auch sorgfältig validierte Verfahren lediglich eine Momentaufnahme darstellen und vor allem als Entscheidungsunterstützung, nicht aber als endgültige Wahrheit zu verstehen sind.
 
   \section{Nutzbarkeit und Anwendungsfälle}
 
     Das entwickelte Assistenzsystem zeigt in seiner aktuellen Form viel Potenzial hoher Nutzbarkeit für unterschiedliche Zielgruppen im Finanzbereich.
-    Besonders sinnvoll erweist sich der Prototyp aktuell für Privatanleger mit mittlerem Zeithorizont sowie für Beratung und Research.
+    Besonders viel Potenzial zeigt sich der Prototyp aktuell für Privatanleger mit mittlerem Zeithorizont, denen das Tool für Beratung und Validierung zur Seite stehen kann.
     Dort liefert der Prototyp eine unabhängige Zweitmeinung zur Plausibilisierung einer bereits vorliegenden Einschätzung, erklärende Portfolio-Check-ups und vorstrukturierte Berichtsentwürfe.
-
     Wenig bis gar nicht geeignet ist er für Daytrading und andere latenzkritische Einsatzfelder oder als produktiver Robo-Advisor mit harten SLA-, Compliance- und Modellrisiko-Vorgaben.
-    Die Ausgaben sind redaktionell zu prüfen und stellen keine Anlageberatung dar.
+    Generell gilt: Alle \acs{KI}-Ausgaben sind kritisch zu prüfen und stellen keine Anlageberatung dar.
 
-    Gleichzeitig handelt es sich um einen forschungsorientierten Prototypen ohne Produktreife.
+    Zudem handelt es sich um einen forschungsorientierten Prototypen ohne Produktreife.
     Reale Einsätze erfordern belastbare Daten- und Latenztests, Monitoring/Versionierung sowie Datenschutz- und Compliance-Prüfungen.
     Bis dahin eignet sich das System primär zur Konzeptvalidierung und Methodenauswahl.
 
-    Vor diesem Hintergrund wurde die technische Gestaltung bewusst modular gehalten.
+    Vor dem Hintergrund der Konzeptvalidierung wurde die technische Gestaltung bewusst modular gehalten.
     Die Architektur bildet die Brücke zwischen den skizzierten Nutzungsszenarien und den genannten Einschränkungen, indem sie unterschiedliche Integrationswege erlaubt und schrittweise Reifegrade unterstützt.
-    So lässt sich die Lösung in verschiedenen Oberflächen erproben und evaluieren, ohne den Kern zu verändern.
 
-    Besonders hervorzuheben ist die flexible Architektur.
+    Besonders hervorzuheben ist die aus der Modularitätsprinzip resultierende, flexible Architektur.
     So lässt sich das Assistenzsystem über verschiedene Frontends bedienen.
     So wie das vorhandene webbasierte Frontend im Browser.
     Aber auch andere Anbindungen sind möglich.
-    Zum Beispiel eine Desktop-Variante mittels Tkinter oder eine anderweitge Integration in ein Skript.
+    Zum Beispiel eine Desktop-Variante mittels Tkinter oder eine anderweitge Integration innerhalb eines Skripts.
     Diese Vielseitigkeit erlaubt es, das System an verschiedene Nutzungsszenarien und technische Umgebungen anzupassen, ohne den Kern der Funktionalität verändern zu müssen.
 
     Ein zentraler Bestandteil der Nutzbarkeit liegt in der Kombination von quantitativen sowie qualitativen Finanzdaten und generativen \acs{KI}-Komponenten.
@@ -66,7 +52,7 @@
     Darauf aufbauend kann die \acs{KI} beispielsweise Marktberichte generieren, komplexe Sachverhalte in einfacher Sprache erklären oder Handlungsempfehlungen formulieren.
 
     % To-Do: Auch Erklärbarkeit mehr hervorheben
-    Transparenz in der Datenverarbeitung ist ein entscheidender Faktor für die Nutzbarkeit.
+    Auch die Transparenz in der Datenverarbeitung ist ein entscheidender Faktor für die Nutzbarkeit.
     Anwender müssen nachvollziehen können, welche Daten wann und wie verarbeitet werden, insbesondere wenn externe Dienste eingebunden sind.
     Bei lokalen Modellen mit Ollama findet die Verarbeitung vollständig auf der eigenen Infrastruktur statt.
     Cloud-Modelle bieten allerdings kaum bis gar keine Kontrolle darüber und erlauben auch nur eingeschränkte Einblicke in ihre internen Prozesse.
@@ -86,16 +72,16 @@
     Jedoch können Netzwerkprobleme oder \acs{API}-Rate-Limits von den unterschiedlichen Zugangsarten zu unvorhersehbaren Verzögerungen führen, was die Zuverlässigkeit in produktiven Umgebungen beeinträchtigen kann.
 
     Die potenziellen Anwendungsfälle sind vielfältig.
-    Privatanleger können das System nutzen, um Anlageentscheidungen durch datenbasierte Analysen zu unterstützen.
-    Professionelle Analysten würden in einem vergleichbaren System einer fortgeschrittenen Variante von der automatisierten Aufbereitung großer Datenmengen und der Möglichkeit, Textauswertungen direkt in Berichtsform zu erhalten, profitieren.
+    Wie bereits anfänglich erläutert, können Privatanleger das System verwenden, um Anlageentscheidungen mittels datenbasierter Analysen abzusichern.
+    Aber auch professionelle Analysten würden in einem vergleichbaren System einer fortgeschrittenen Variante von der automatisierten Aufbereitung großer Datenmengen und der Möglichkeit, Textauswertungen direkt in Berichtsform zu erhalten, profitieren.
     Weitere Einsatzmöglichkeiten umfassen die Erstellung von Portfolioanalysen, die Identifikation von Markttrends sowie die Erklärung einzelner Finanzkennzahlen.
 
-    Die Nutzbarkeit ist jedoch abhängig von externen Faktoren.
+    Die reale Nutzbarkeit ist jedoch auch abhängig von externen Faktoren.
     Hierzu zählen insbesondere die Verfügbarkeit und Stabilität der angebundenen \acs{API}s sowie die Kosten bei der Skalierung auf größere Datenmengen oder komplexere Analyseaufgaben.
     Auch Datenschutz- und Compliance-Anforderungen können die Einsatzmöglichkeiten beeinflussen, wobei die Wahl zwischen lokalen und Cloud-Modellen hier eine zentrale Rolle spielt.
 
     Insgesamt zeigt sich, dass das Assistenzsystem in einem breiten Spektrum von Anwendungsfällen einsetzbar ist, solange die externen Rahmenbedingungen sowie die spezifischen Anforderungen an Transparenz, Datenschutz und Geschwindigkeit berücksichtigt werden.
-    Dies unterstreicht das Potenzial der Kombination aus strukturierten Finanzdaten und generativer künstlicher Intelligenz für praxisnahe, automatisierte Auswertungs- und Entscheidungshilfen, wobei die bewusste Auswahl der \acs{KI}-Infrastruktur entscheidend für den Erfolg in verschiedenen Anwendungsdomänen ist.
+    Dies unterstreicht das Potenzial der Kombination aus strukturierten Finanzdaten und generativer künstlicher Intelligenz für praxisnahe, automatisierte Auswertungs- und Entscheidungshilfen.
 
   \section{Bedingungen}
 
@@ -109,7 +95,7 @@
     Lizenz- und Kostenbedingungen haben direkten Einfluss auf die Nutzungsintensität und -breite des Systems.
     Viele der verwendeten \acs{API}s weisen in ihren kostenlosen Versionen Limitierungen auf, etwa eine maximale Anzahl von Requests pro Minute oder pro Tag.
     Für höhere Abfragevolumen oder erweiterte Datensätze sind kostenpflichtige Abonnements notwendig, was die Betriebskosten erheblich steigern kann.
-    Diese Kostenstruktur muss bei der Planung von Anwendungsszenarien berücksichtigt werden.
+    Diese Kostenstruktur muss bei der Planung von realen Anwendungsszenarien berücksichtigt werden.
 
     Datenschutz- und Compliance-Bedingungen gewinnen besonders bei der Anbindung externer \acs{KI}-Services wie OpenAI, Claude oder Gemini an Bedeutung.
     Es ist zu prüfen, ob die Datenverarbeitung den für den Anwendungsfall geltenden Umständen entspricht und ob sensible Finanzinformationen in die Cloud übertragen werden dürfen.
@@ -137,6 +123,7 @@
     Die Systemarchitektur muss entsprechend dimensioniert werden, um auch bei steigenden Nutzerzahlen oder komplexeren Analyseaufgaben eine akzeptable Performance zu gewährleisten.
 
     Die Berücksichtigung dieser vielschichtigen Bedingungen ist entscheidend für eine erfolgreiche Implementierung und den nachhaltigen Betrieb des Assistenzsystems in unterschiedlichen Anwendungsumgebungen.
+    Letztlich hängt der nachhaltige Erfolg solcher Systeme davon ab, wie gut technische, organisatorische und regulatorische Anforderungen miteinander in Einklang gebracht und an die Dynamik des technologischen Fortschritts angepasst werden.
 
   \section{Vorteile und Herausforderungen}
 
@@ -186,8 +173,8 @@
     Die bestehende Evaluation in dieser Arbeit umfasste sowohl quantitative als auch qualitative Verfahren.
     Quantitativ wurden unter anderem die Konsistenz der generierten Handlungsempfehlungen bei identischen Prompts untersucht, die Ergebnisse verschiedener Modelle (z. B. lokale und Cloud-basierte \acs{LLM}s) miteinander verglichen sowie einfache Portfolio-Performance-Metriken herangezogen.
     Qualitativ erfolgte eine Bewertung der Erklärungen im Hinblick auf Verständlichkeit und Transparenz.
-    Diese Vorgehensweise ermöglichte bereits wertvolle Einblicke, etwa dass Cloud-Modelle wie GPT-4 eine höhere Konsistenz aufweisen, während lokal ausgeführte Modelle Vorteile bei Datenschutz und Kosten bieten.
-    Allerdings zeigte sich, dass die Evaluationsbasis – bedingt durch begrenzte Datenzeiträume und eine relativ kleine Zahl an Testfällen – noch nicht ausreicht, um eine abschließende Aussage zur Robustheit in allen Marktsituationen zu treffen.
+    Diese Vorgehensweise ermöglichte bereits wertvolle Einblicke, etwa dass Cloud-Modelle wie GPT-4 eine höhere Leistungsfähigkeit und Antwortstabilitä aufweisen, während lokal ausgeführte Modelle Vorteile bei Datenschutz und Kosten bieten.
+    Allerdings zeigte sich, dass die Evaluationsbasis -- bedingt durch begrenzte Datenzeiträume und eine relativ kleine Zahl an Testfällen -- noch nicht ausreicht, um eine abschließende Aussage zur Robustheit in allen Marktsituationen zu treffen.
     Zudem wurden die Erklärungen bisher nur intern bewertet, ohne breiteres Feedback potenzieller Endnutzer einzubeziehen.
 
     Ein wichtiger Ansatz für die Weiterentwicklung ist daher die \emph{fortlaufende Evaluation nach Produktivsetzung}.
@@ -211,23 +198,23 @@
     In der bisherigen Arbeit konnte dies nur in Form von kurzen Backtesting-Perioden simuliert werden.
 
     Für die Erfassung des direkten Einflusses auf das Nutzerverhalten bieten sich \emph{A/B-Tests} an.
-    Dabei werden unterschiedliche Nutzergruppen entweder mit oder ohne Unterstützung des Assistenzsystems – oder mit verschiedenen Varianten der Erklärungsausgabe – verglichen.
+    Dabei werden unterschiedliche Nutzergruppen entweder mit oder ohne Unterstützung des Assistenzsystems -- oder mit verschiedenen Varianten der Erklärungsausgabe -- verglichen.
     Auf diese Weise lässt sich messen, inwieweit das System die Entscheidungsfindung, das Vertrauen und letztlich die Performance der Nutzer beeinflusst.
 
     Auch \emph{Simulation und Backtesting} stellen zentrale Werkzeuge dar.
     Durch die Nutzung historischer Marktdaten können hypothetische Szenarien rekonstruiert und die Robustheit der Empfehlungen in unterschiedlichen Marktphasen überprüft werden.
-    Dies wurde in der Arbeit bereits in Grundzügen umgesetzt, könnte aber deutlich granularer erfolgen, beispielsweise durch Simulation spezifischer Marktereignisse.
+    Dies wurde in der Arbeit bereits in Grundzügen skizziert, könnte aber deutlich granularer erfolgen, beispielsweise durch Simulation spezifischer Marktereignisse.
 
     Besondere Aufmerksamkeit verdient die \emph{Evaluation der Erklärbarkeit}.
-    Hierbei wird ermittelt, ob die generierten Begründungen für die Nutzer verständlich sind, ob sie deren Entscheidungen beeinflussen und ob sie regulatorischen Anforderungen – etwa im Hinblick auf Transparenzpflichten – genügen.
+    Hierbei wird ermittelt, ob die generierten Begründungen für die Nutzer verständlich sind, ob sie deren Entscheidungen beeinflussen und ob sie regulatorischen Anforderungen -- etwa im Hinblick auf Transparenzpflichten -- genügen.
     In der bisherigen Evaluation wurde dieser Punkt vorrangig aus Entwicklerperspektive betrachtet.
     Eine Ausweitung auf reale Nutzergruppen ist daher ein logischer nächster Schritt.
 
     Schließlich sollte die \emph{Robustheit gegenüber Daten- und Modellabweichungen} getestet werden.
     Dies beinhaltet Szenarien, in denen Daten unvollständig, verrauscht oder in leicht abgewandelter Form vorliegen, um zu prüfen, wie sensibel das System auf solche Änderungen reagiert und ob es dennoch konsistente und nachvollziehbare Empfehlungen liefert.
-    In der bestehenden Arbeit wurden derartige Tests nicht systematisch durchgeführt, was eine klare Gelegenheit zur Erweiterung darstellt.
+    In der vorliegenden Arbeit wurden Tests mit geringfügig manipulierten Daten und deren Einfluss nicht systematisch durchgeführt, was eine ebenfalls eine Gelegenheit zur tieferen Analyse darstellt.
 
-    Durch die Kombination dieser unterschiedlichen Evaluationsmöglichkeiten – und die kritische Reflexion der bisherigen Evaluationspraxis – lässt sich ein umfassenderes und belastbareres Bild über die Leistungsfähigkeit, Transparenz und Praxistauglichkeit des Systems gewinnen.
+    Durch die Kombination dieser unterschiedlichen Evaluationsmöglichkeiten –- und die kritische Reflexion der bisherigen Evaluationspraxis –- lässt sich ein umfassenderes und belastbareres Bild über die Leistungsfähigkeit, Transparenz und Praxistauglichkeit des Systems gewinnen.
     Dies schafft die Grundlage für eine stetige Weiterentwicklung und Anpassung an veränderte Anforderungen.
 
 
