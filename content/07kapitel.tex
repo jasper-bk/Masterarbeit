@@ -19,11 +19,12 @@
     Das Vorgehen umfasste Problemidentifikation, Entwurf und Realisierung eines modularen Prototyps sowie eine mehrstufige Evaluationsplanung und -durchführung.
     Dieses Raster ermöglichte, Anforderungen aus dem Anwendungsumfeld systematisch in Gestaltung und Prüfung des Artefakts zu übersetzen.
 
-    Das Artefakt wurde als modularer, in Python implementierter Prototyp realisiert: Ein Flask-Backend orchestriert Datenzugriffe und \acs{LLM}-Aufrufe, ein \acs{LLM}-Modul (lokal via Ollama, optional via \acs{API} zu größeren Modellen) erzeugt strukturierte Ausgaben inklusive Begründungen, \texttt{yfinance} oder wahlweise Finnhub liefern Kurs- und Metadaten, ein leichtgewichtiges Web-Frontend (HTML/Bootstrap/JS) präsentiert Empfehlungen und Begründungen.
+    Das Artefakt wurde als modularer, in Python implementierter Prototyp realisiert:
+    Ein Flask-Backend orchestriert Datenzugriffe und \acs{LLM}-Aufrufe, ein \acs{LLM}-Modul (lokal via Ollama, optional via \acs{API} zu größeren Modellen) erzeugt strukturierte Ausgaben inklusive Begründungen, \texttt{yfinance} oder wahlweise Finnhub liefern Kurs- und Metadaten, ein leichtgewichtiges Web-Frontend (HTML/Bootstrap/JS) präsentiert Empfehlungen und Begründungen.
     Zur Modellorchestrierung und strukturierten Ausgabe wurde LangChain integriert.
     Die klare Schnittstellenbildung (\acs{JSON}/\acs{HTTP}) erlaubt die Substitution einzelner Komponenten und unterstützt die Weiterentwicklung.
 
-    Kern der Funktionslogik ist ein Prompt-Engineering, das eine konsistente Extraktion strukturierter Empfehlungssignale (buy/hold/sell in Prozent und einiger anderer Werte) mit einer nachvollziehbaren, natürlichsprachlichen Begründung koppelt und diese auf Portfolioebene aggregiert.
+    Kern der Funktionslogik ist ein Prompt-Engineering, das eine konsistente Extraktion strukturierter Empfehlungssignale (Kaufen/Verkaufen/Halten in Prozent und einiger anderer Werte) mit einer nachvollziehbaren, natürlichsprachlichen Begründung koppelt und diese auf Portfolioebene aggregiert.
     Dafür wurden spezielle Prompts für Einzelwert- und Portfoliosicht entworfen und in die Backend-Logik eingebettet.
 
     Die Evaluation wurde zweistufig angelegt: Zunächst wurden geeignete Verfahren und Metriken definiert (Konsistenz- und Prompt-Response-Analysen, Vergleich mit Analystenmeinungen, Erklärbarkeits- und Nutzerakzeptanzkriterien).
@@ -61,22 +62,23 @@
 
     Für reale Einsatzszenarien sind Transparenz-, Dokumentations- und Compliance-Anforderungen zentral.
     Erforderlich sind konsistentes Prompt- und Antwort-Logging, Modell- und Datenversionierung sowie klare Nutzungsleitlinien, um Nachvollziehbarkeit und Auditierbarkeit sicherzustellen.
-
     Die externe Validität der Ergebnisse ist an die betrachteten Märkte, Zeiträume und Intervalle gebunden.
-    Unterschiedliche Marktregime können Wirkungen verzerren, und die Auswahl weniger, wenn auch repräsentativer Fenster reduziert zwar Rechenkosten, kann aber Varianz verdecken.
 
-    Aus den genannten Limitationen folgen Berichtspflichten zu Fensterdesign, Datenquellen, Prompt-Versionen und Modellständen sowie der Bedarf an stärker standardisierten Evaluationsprotokollen, die Performance-, Signifikanz- und Erklärbarkeitsmetriken integrieren.
+    Aus den genannten Limitationen folgen Berichtspflichten zu Datenquellen, Prompt-Versionen und Modellständen sowie der Bedarf an stärker standardisierten Evaluationsprotokollen, die Performance-, Signifikanz- und Erklärbarkeitsmetriken integrieren.
     Diese Reflexion bildet die Brücke zum Ausblick, in dem Skalierung der Evaluation, Daten- und Funktionsausbau sowie Governance-Mechanismen priorisiert werden.
 
   \section{Beiträge zum Fachgebiet}
   \label{sec:beitraege}
 
-    Die Arbeit leistet Beiträge in drei komplementären Dimensionen: (i) konzeptionell–methodisch durch die Übertragung und Operationalisierung eines Design-Science-Research(\acs{DSR})-Vorgehens auf ein \acs{KI}-gestütztes Finanzartefakt, (ii) technisch durch die Entwicklung eines modularen Prototyps mit klaren Schnittstellen für erklärbare, portfolioweite Entscheidungshilfen, und (iii) evaluativ durch ein Mess- und Evaluationsraster, das finanzielle Performancekennzahlen mit Erklärbarkeits- und Nutzungsmetriken verbindet.
+    Die Arbeit leistet Beiträge in drei komplementären Dimensionen:
+    (i) konzeptionell–methodisch durch die Übertragung und Operationalisierung eines Design-Science-Research(\acs{DSR})-Vorgehens auf ein \acs{KI}-gestütztes Finanzartefakt,
+    (ii) technisch durch die Entwicklung eines modularen Prototyps mit klaren Schnittstellen für erklärbare, portfolioweite Entscheidungshilfen
+    und (iii) evaluativ durch ein Mess- und Evaluationsraster, das finanzielle Performancekennzahlen mit Erklärbarkeits- und Nutzungsmetriken verbindet.
 
     Erstens konkretisiert die Arbeit die formulierte Zielsetzung eines Assistenzsystems, das prozentuale Einzelwert-Empfehlungen (\enquote{Kaufen/Halten/Verkaufen}) systematisch mit natürlichsprachlichen, datenbasierten Begründungen verknüpft und zu einer risikoadaptiven Portfoliosicht aggregiert.
     Damit verschiebt sie den Fokus von reiner Prognoseoptimierung hin zu Transparenz und Nachvollziehbarkeit als Primärziel der Entscheidungsunterstützung.
     Zweitens überführt die Arbeit etablierte \acs{DSR}-Guidelines (Relevanz-, Rigor- und Design-Zyklus) in einen konkret praktikablen Entwicklungsprozess für regulierte Finanzkontexte; sie zeigt, wie Problemidentifikation, Artefaktkonstruktion und Evaluation iterativ verzahnt werden können, um domänenspezifische Anforderungen früh und wiederholt in das Design zurückzuspielen.
-    Drittens positioniert sie das Artefakt explizit als Antwort auf Forschungslücken der \acs{XAI}- und Robo-Advisor-Literatur (Erklärungsdefizit, fehlende portfolioübergreifende Integration, Transparenzanforderungen), und schafft so eine konzeptionelle Brücke zwischen methodischer Erklärbarkeit und portfoliotheoretischer Konsistenz.
+    Drittens positioniert sie das Artefakt explizit als Antwort auf Forschungslücken der \acs{XAI}- und Robo-Advisor-Literatur (Erklärungsdefizit, fehlende portfolioübergreifende Integration, Transparenzanforderungen) und schafft so eine konzeptionelle Brücke zwischen methodischer Erklärbarkeit und portfoliotheoretischer Konsistenz.
 
     Die Arbeit stellt ein modular aufgebautes System bereit, das (a) ein Python/Flask-Backend mit klaren \acs{HTTP}/\acs{JSON}-Schnittstellen, (b) eine austauschbare \acs{LLM}-Schicht (lokal via Ollama, optional über \acs{API}), (c) ein Finanzdaten-Backend (\texttt{yfinance}) und (d) ein leichtgewichtiges Web-Frontend (HTML/Bootstrap/JS) integriert.
     Diese Entkopplung ermöglicht die Substitution einzelner Komponenten (\acs{LLM}-Provider, Frontend) ohne Eingriff in die Kernlogik und adressiert so Wartbarkeit und Weiterentwicklung in dynamischen Technologiestacks.
@@ -104,7 +106,7 @@
     Die im Forschungsstand benannte Lücke einer konsistenten \acs{XAI}-Evaluationspraxis unterstreicht den Bedarf an klaren Berichts- und Vergleichsprotokollen.
 
     Technisch stehen Reduktion der Latenzen und Erhöhung des Durchsatzes im Vordergrund.
-    Dazu zählen die Parallelisierung von \acs{LLM}-Anfragen, Caching-Strategien und asynchrones Processing, um Evaluationsläufe und Interaktionen zu beschleunigen.
+    Dazu zählen die Parallelisierung von \acs{LLM}-Anfragen, Caching-Strategien und asynchrones Processing, um Evaluationsdurchläufe und Interaktionen zu beschleunigen.
     Die Arbeit benennt hier explizit fehlende Parallelisierung und wahrnehmbare Antwortverzögerungen lokaler Modelle als aktuelle Limitierungen.
     Die bestehende Modularität (klar getrennte \acs{HTTP}/\acs{JSON}-Schnittstellen, austauschbare \acs{LLM}-Schicht) erleichtert solche Eingriffe und erlaubt auch den pragmatischen Wechsel zwischen lokalen und Cloud-basierten Modellen je nach Kosten-, Datenschutz- und Performanceanforderung.
 
@@ -141,10 +143,10 @@
     Aus der Arbeit nehme ich mit, dass robuste Daten- und Evaluationsprozesse für die Glaubwürdigkeit erklärbarer \acs{KI} entscheidender sind als frühe Modelloptimierungen.
     Außerdem zeigte sich, dass Klarheit der Schnittstellen und diszipliniertes Prompt-Design die Konsistenz der Ergebnisse stärker beeinflussen als erwartet.
     Für die Praxis hat sich gezeigt, dass Erklärungen erst über Nutzungsfeedback wirksam werden und daher integraler Teil iterativer Entwicklungszyklen sein sollten.
-    Allerdings ist dies im Rahmen der Arbeit und unter den gegeben Voraussetzungen nur schwer in einem gut zu dokumentierbarem Rahmen realisibar gewesen.
+    Allerdings ist dies im Rahmen der Arbeit und unter den gegebenen Voraussetzungen nur schwer in einem gut zu dokumentierbaren Rahmen realisierbar gewesen.
 
     Abschließend lässt sich festhalten:
-    Die Arbeit leistet einen substanziellen Beitrag zur Überbrückung der Lücke zwischen erklärbarer \acs{KI} und portfolioweiter Entscheidungsunterstützung und schafft eine belastbare Grundlage für vertiefte Evaluation und anwendungsnahe Skalierung.
+    Die Arbeit leistet einen substanziellen Beitrag zur Überbrückung der Lücke zwischen erklärbarer \acs{KI} und portfolioweiter Entscheidungsunterstützung und schafft eine belastbare Grundlage für vertiefte Evaluation und anwendungsnahe Integration von \acs{KI} im Wertpapierhandel.
 
     \todo[inline, color=red]{To-Do: Feedback von Mark alles umgesetzt?}
 

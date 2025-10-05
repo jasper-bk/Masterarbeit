@@ -1,7 +1,3 @@
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % bis hierhin selbstständig durchgelesen und nochmal alles korrigiert mit Literatur validiert und anhand der Checkliste durchgegangen
-    % darunter aber dennoch bereits einige Korrekturen über Mamas Feeback vorgenommen
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Evaluation}
 \label{chap:evaluation}
@@ -15,7 +11,7 @@
     Bevor die Leistungsfähigkeit und Nutzbarkeit des entwickelten \acs{KI}-basierten Assistenzsystems umfassend bewertet werden kann, ist es zunächst notwendig, die verschiedenen potenziellen Evaluationsverfahren selbst systematisch zu prüfen und einzuordnen.
     Dabei geht es darum, eine fundierte Auswahl der Methoden zu treffen, die am besten geeignet sind, um sowohl die quantitativen als auch die qualitativen Aspekte des Systems zu erfassen.
 
-    Zunächst wird diskutiert, welche quantitativen Metriken und Verfahren sich eignen, um die Portfolioperformance und die Robustheit der Systemvorschläge zu bewerten.
+    Zunächst wird diskutiert, welche quantitativen Metriken und Verfahren sich eignen, um die Portfoliooptimierung und die Robustheit der Systemvorschläge zu bewerten.
     Darüber hinaus werden qualitative Verfahren betrachtet, die vor allem die Transparenz, Verständlichkeit und Akzeptanz der generierten Handlungsempfehlungen in den Mittelpunkt stellen.
     Diese Verfahren helfen, die Stärken und potenziellen Schwächen der Erklärungen und der Nutzerinteraktion zu identifizieren.
 
@@ -29,9 +25,9 @@
       Je nach Verfügbarkeit von Zeit, Kapazität und Ressourcen werden einige Punkte nur konzeptionell beschrieben bzw. in Teilen umgesetzt.
       Gleichzeitig wird dann im Verlauf des Evaluationsverfahrens begründet, warum eine praktische Umsetzung nicht bzw. nur eingeschränkt erfolgt.
 
-      Im Zentrum der Evaluation stehen daher die folgenden Zielgrößen:
+      Im Zentrum der Evaluation stehen die folgenden Zielgrößen:
       \begin{itemize}
-        \item \textbf{Allgemeine Prompt-Response-Auswertung:} Konsistenzprüfung der generierten Empfehlungen (buy, hold, sell) sowie Analyse der Unterschiede zwischen Modellen.
+        \item \textbf{Allgemeine Prompt-Response-Auswertung:} Konsistenzprüfung der generierten Empfehlungen (Kaufen, Verkaufen, Halten) sowie Analyse der Unterschiede zwischen Modellen.
         \item \textbf{Konsens-Auswertung:} Überprüfung, ob die beobachteten Performanceunterschiede gegenüber Analystenempfehlungen nicht zufällig oder komplett abwegig sind.
         \item \textbf{Transparenz und Erklärbarkeit:} Bewertung, inwieweit die Handlungsempfehlungen für Nutzer verständlich und plausibel nachvollziehbar sind.
         \item \textbf{Akzeptanz und Vertrauen:} Untersuchung, ob die bereitgestellten Empfehlungen das Vertrauen der Nutzer fördern und zur tatsächlichen Nutzung beitragen.
@@ -43,8 +39,8 @@
 
       Ein wichtiger Bestandteil der Evaluation des entwickelten \acs{KI}-basierten Assistenzsystems ist die Analyse der generierten Antworten auf gleiche Parameter.
       Hierbei wird insbesondere die Konsistenz der Systemantworten untersucht, da LLM-Antworten nicht deterministisch sind.
-      Dies wird häufig auch als \enquote{Fidelity} oder \enquote{Faithfulness} bezeichnet, welches die Erklärungstreue darstellt.
-      Dabei wird überprüft, ob das System bei gleichen oder sehr ähnlichen Prompts in Bezug auf die Handlungsempfehlungen –- u. a. \textit{buy}, \textit{hold} und \textit{sell} –- stabile und nachvollziehbare Einschätzungen liefert oder ob sich bei wiederholter Abfrage größere Unterschiede ergeben.
+      Dies wird häufig auch als \enquote{Fidelity} oder \enquote{Faithfulness} bezeichnet, welches die Erklärungstreue darstellt \autocite[vgl.][S. 1]{Kadir2023}.
+      Dabei wird überprüft, ob das System bei gleichen oder sehr ähnlichen Prompts in Bezug auf die Handlungsempfehlungen –- u. a. \textit{Kaufen}, \textit{Verkaufen} und \textit{Halten} –- stabile und nachvollziehbare Einschätzungen liefert oder ob sich bei wiederholter Abfrage größere Unterschiede ergeben.
       Diese Konsistenzprüfung ist wesentlich, um sicherzustellen, dass das System nicht durch Zufall oder unstetige interne Gewichtungen widersprüchliche Empfehlungen ausspricht.
 
       Ein weiterer wichtiger Aspekt dieser Auswertung ist der Vergleich von Antworten verschiedener Modelle.
@@ -68,14 +64,14 @@
       Ziel ist es, zu untersuchen, ob das System zumindest in seiner grundlegenden Einschätzung -- beispielsweise ob ein Wertpapier potenziell attraktiv oder riskant ist -- ähnliche Tendenzen wie Analysten aufweist.
       Dies kann ein Indikator für die Plausibilität der generierten Handlungsempfehlungen sein.
 
-      Es wird jedoch betont, dass Analystenmeinungen selbst nicht per se als objektiver Goldstandard gelten können. Studien zeigen, dass Analysten in ihren Empfehlungen häufig zu sog. Herding neigen, d. h. sie orientieren sich stark am Konsens, anstatt stark von diesem abzuweichen \autocite{jegadeesh2007herd, michel2015analyst}.
+      Es wird jedoch betont, dass Analystenmeinungen selbst nicht per se als objektiver Goldstandard gelten können.
+      Studien zeigen, dass Analysten in ihren Empfehlungen häufig zu sog. Herding neigen, d. h. sie orientieren sich stark am Konsens, anstatt stark von diesem abzuweichen \autocite{jegadeesh2007herd, michel2015analyst}.
       Darüber hinaus reagieren  Analysten nicht immer sofort auf neue Informationen, sondern weisen eine gewisse Trägheit auf \autocite{zhang2008analystresponsiveness}.
-      Auch Interessenkonflikte gelten als potenzieller Einflussfaktor, da Analysten oft in Strukturen operieren, in denen Research- und Investmentbanking-Aktivitäten wirtschaftlich verbunden sind \autocite{iosco_report}.
+      Auch Interessenkonflikte gelten als potenzieller Einflussfaktor, da Analysten oft in Strukturen operieren, in denen Research- und Investmentbanking-Aktivitäten wirtschaftlich verbunden sind \autocite[S. 1-5]{iosco_report}.
       Diese Aspekte legen nahe, dass ein Abgleich mit Analystenratings zwar sinnvoll ist, aber nicht mit einer objektiv richtigen Bewertung gleichgesetzt werden darf.
 
       Es wird auch berücksichtigt, dass spätere Nutzerpräferenzen, wie Risikoneigung oder Investmenthorizont, das Bewertungsergebnis beeinflussen werden.
       Diese werden jedoch in dieser Evaluierung noch ausgeklammert, um einen neutralen Vergleich mit den Analystenbewertungen zu ermöglichen.
-
 
     \subsection{Transparenz und Erklärbarkeit}
     \label{sec:xai-eval}
@@ -83,7 +79,8 @@
       Da das Assistenzsystem nicht nur auf Performance und Kennzahlen abzielt, sondern insbesondere auf eine transparente Entscheidungsbegründung, sind die erzeugten Erklärungen ein zentrales Element dieser Arbeit.
       Da erklärbare \acs{KI} stets auch auf das subjektive Verständnis der Nutzer zielt, ist eine empirische Bewertung durch menschliche Rückmeldung der best gangbare Weg.
 
-      Die Teilnehmenden erhalten eine Reihe von \acs{KI}-Empfehlungen mitsamt den zugehörigen Begründungstexten und werden gebeten, diese anhand folgender Kriterien zu bewerten:
+      Die Teilnehmenden erhalten eine Reihe von \acs{KI}-Empfehlungen mitsamt den zugehörigen \\
+      Begründungstexten und werden gebeten, diese anhand folgender Kriterien zu bewerten:
       \begin{itemize}
         \item Verständlichkeit
         \item Nützlichkeit für die Entscheidung
@@ -102,12 +99,12 @@
 
       Aufgrund der Vielzahl an Vorbedingungen, der methodischen Komplexität, der begrenzten Zahl verfügbarer Teilnehmer und vor allem der noch verfügbaren Kapazität der Arbeit fällt eine umfassende empirische Studie in diesem Projekt jedoch außerhalb des Scopes. %evtl umformulieren
       Stattdessen wird nur skizziert, wie eine solche Untersuchung aussehen könnte, und es wird eine subjektive Einschätzung der Autorin bzw. des Autors gegeben.
+
       Verschiedene Eindrücke deuten darauf hin, dass die generierten Erklärungen grundsätzlich verständlich und plausibel wirken, jedoch in ihrer Tiefe teilweise variieren und nicht immer ausreichend konkrete Begründungen für komplexe Anlageentscheidungen liefern.
       Damit besteht grundsätzlich Potenzial zur Verbesserung, insbesondere in Bezug auf Konsistenz und Detailgrad der erzeugten Begründungstexte.
       Die Ausgabe selbst hängt aber auch maßgeblich von dem Modell ab, sodass verschiedene Modelle wiederum abweichende Ergebnisse erzielen können.
+      Dennoch tragen die bei aktuellen Modellen bereits sichtbaren internen Denkprozesse (oft als \enquote{think}-Abschnitt bezeichnet) schon jetzt dazu bei, dass die Antworten transparenter und nachvollziehbarer sind.
       Zudem lässt die aktuelle Entwicklung bei neuen Modellen hoffen, dass auch die Erklärungen mit besseren Modellen noch besser werden, ohne dass Änderungen im Code erforderlich sind.
-
-      \todo[inline, color=red]{To-Do: Evtl auch noch Bezug auf das think nehmen?}
 
     \subsection{Akzeptanz und Vertrauen}
 
@@ -121,8 +118,7 @@
       Stattdessen handelt es sich bei diesem Abschnitt nur um eine Skizzierung, wie eine solche Studie aussehen könnte, und es wird eine erste persönliche Einschätzung gegeben.
       Subjektiv erscheint es plausibel, dass das System bei technisch interessierten Nutzern eher Akzeptanz findet, während skeptischere oder weniger finanzmarkterfahrene Nutzer zurückhaltender reagieren dürften.
       Vertrauen hängt zudem stark von der wahrgenommenen Konsistenz der Empfehlungen ab.
-
-      \todo[inline, color=red]{To-Do: Evtl noch eine Studie benennen in Bezug auf andere KI Tools wie es da aussieht?}
+      Gleichwohl ist bei der Nutzung von \acs{KI}-basierten Systemen stets eine kritische Haltung geboten, da die Modelle lediglich als unterstützende Assistenz dienen und nicht die eigenständige Entscheidungsverantwortung des Nutzers ersetzen können.
 
     \subsection{Benchmark-Vergleich mit Backtesting}
 
@@ -136,18 +132,24 @@
       Subjektiv lässt sich festhalten, dass die Qualität der Empfehlungen zwar stellenweise mit gängigen Einschätzungen korrespondiert, die Performance bei stringenter Umsetzung aber stark vom Marktumfeld abhängen würde.
       Insofern bietet dieser Ansatz eher einen explorativen Ausblick als eine robuste Metrik zur Bewertung des Systems.
 
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % bis hierhin selbstständig durchgelesen und nochmal alles korrigiert mit Literatur validiert und anhand der Checkliste durchgegangen
+    % darunter aber dennoch bereits einige Korrekturen über Mamas Feeback vorgenommen
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
   \section{Durchführung der Evaluation}
 
     % Evtl. Teile aus Kapitel 4 hier einbringen oder immer wieder auf Ausschnitte darauf verweisen. Definitiv anspruchsvoller Spagat
 
     Die Durchführung der Evaluation erfolgt innerhalb einer interaktiven Jupyter-Lab-Umgebung, die es ermöglicht, direkt auf die in Python implementierten Klassen des Assistenzsystems zuzugreifen und gezielte Tests sowie Analysen durchzuführen.
-    Dabei werden die zuvor beschriebenen Evaluationsverfahren aus der Sektion \textbf{\nameref{sec:auswahl_evaluation}} systematisch umgesetzt, um die Leistungsfähigkeit, Konsistenz und Transparenz des Assistenzsystems umfassend zu überprüfen.
+    Dabei werden die zuvor beschriebenen und durchführbaren Evaluationsverfahren aus der Sektion \textbf{\nameref{sec:auswahl_evaluation}} systematisch umgesetzt, um die Leistungsfähigkeit, Konsistenz und Transparenz des Assistenzsystems umfassend zu überprüfen.
 
     % Ggf. diesen Absatz umschreiben
     Für die hier dargestellte Auswertung wurde die Evaluation mit dem lokalen Modell \emph{Qwen3 30b} über \emph{Ollama} durchgeführt.
     Die Wahl fiel auf Qwen3 von Alibaba mit 30 Milliarden (30b) Parametern, da viele der aktuellen \acs{LLM}-Benchmarks Qwen3 die höchste Leistungsfähigkeit und Wettbewerbsfähigkeit gegenüber anderen Open-Source-Modellen nachweisen \autocite{artificialanalysis2025}.
     Zudem schneidet Qwen3 bereits in der vergleichsweise kleinen Variante sehr gut ab. % To-Do: Mehr als ein Benchmark zitieren
-    Zum Vergleich wurde zusätzlich eine identische Ausführung mit anderen Modellen (wie u. a. OpenAIs GPT-o4) durchgeführt, deren Ergebnisse im Anhang zu finden sind.
+    Zum Vergleich wurde zusätzlich eine identische Ausführung mit anderen Modellen (wie u. a. OpenAIs GPT-o4) durchgeführt, deren Ergebnisse in \hyperref[sec:versuchsaufbau_konsistenz_alternativ]{Anhang D} und \hyperref[sec:versuchsaufbau_konsens_alternativ]{Anhang E} zu finden sind.
 
     Das Vorgehen sieht vor, dass zunächst vorbereitete Testszenarien in Jupyter-Lab ausgeführt werden, um messbare Bewertungskriterien zu erheben.
     Durch diese Herangehensweise wird sichergestellt, dass die Ergebnisse direkt aus dem realen Anwendungskontext gewonnen werden und gleichzeitig eine hohe Transparenz und Nachvollziehbarkeit der Analysen gewährleistet ist.
@@ -161,18 +163,19 @@
       Durch die mehrfachen Wiederholungen mit identischem Wertpapier lässt sich erkennen, ob die Resultate stabil um einen konsistenten Wert schwanken oder ob einzelne Metriken stark variieren.
       Auf diese Weise wird nicht nur ein einmaliges Ergebnis betrachtet, sondern ein belastbares Bild über Mittelwerte und typische Abweichungen gewonnen, das für eine fundierte Bewertung des Portfolios unabdingbar ist.
 
-      Der Versuchsaufbau wiederholt die Portfoliobewertung in einer kompakten Schleife von zehn Läufen, um Stabilität und Schwankungsbreite der Ergebnisse systematisch zu erfassen.
+      Der Versuchsaufbau wiederholt die Portfoliobewertung in einer kompakten Schleife von zehn Durchläufen, um Stabilität und Schwankungsbreite der Ergebnisse systematisch zu erfassen.
       In jedem Durchlauf wird das Portfolio vom KI-Assistenzsystem bewertet und das vollständige Ergebnis abgelegt.
+
       Die Wahl von zehn Iterationen bietet einen pragmatischen Kompromiss zwischen statistischer Aussagekraft und Rechenzeit:
       Sie ist hinreichend groß, um Ausreißer zu identifizieren und Mittelwerte sowie Abweichungsmaße stabil zu schätzen, ohne den Ablauf unnötig zu belasten.
       Das zugrunde liegende Portfolio umfasst vier Wertpapiere aus unterschiedlichen Branchen und Ländern.
       Diese Heterogenität erhöht die Generalisierbarkeit der Beobachtungen, da Muster nicht auf ein einzelnes Asset oder Marktsegment beschränkt bleiben.
 
-      Um Verzerrungen durch zufällige Modellvariationen auszuschließen, wurde die \emph{Temperatur} der Generierung auf $0$ gesetzt.
-      Die Temperatur steuert den Grad an Zufälligkeit in den Antworten, wobei $0$ eine vollständig deterministische Ausgabe erzwingt.
+      Um Verzerrungen durch zufällige Modellvariationen auszuschließen, wurde die \emph{Temperatur} der Generierung auf Null (0) gesetzt.
+      Die Temperatur steuert den Grad an Zufälligkeit in den Antworten, wobei Null (0) eine soweit wie möglich deterministische Ausgabe erzwingt.
       Dadurch sind beobachtete Abweichungen eindeutig auf die Portfoliostruktur und den Bewertungsprozess zurückzuführen.
 
-      Im Anschluss werden die Ergebnisse  aggregiert (u.\,a. Mittelwerte, mittlere absolute Abweichungen, maximale Abweichungen sowie ein MAPE-basiertes Near-Miss-Maß), wodurch ein robustes Bild aus zentraler Tendenz und Streuung entsteht.
+      Im Anschluss werden die Ergebnisse aggregiert (u.\,a. Mittelwerte, mittlere absolute Abweichungen, maximale Abweichungen sowie ein MAPE-basiertes Near-Miss-Maß), wodurch ein robustes Bild aus zentraler Tendenz und Streuung entsteht.
       Die konsolidierten Resultate werden in der Abbildung \ref{fig:prompt_response_auswertung} dargestellt.
 
       \begin{figure}[H]
@@ -183,29 +186,31 @@
           \label{fig:prompt_response_auswertung}
       \end{figure}
 
-      \todo[inline, color=yellow]{To-Do: Zweite oder sogar dritte Grafik mit anderem Modell im Anhang platzieren und hier darauf verweisen}
+      In Abbildung \ref{fig:prompt_response_auswertung} ist zu sehen, dass in fast allen Fällen eine identische Antwort über alle Iterationen zu stande kommt.
+      Ausnahme bilden \enquote{sell} und \enquote{hold} bei MBGAF (Mercedes-Benz Group) und DKILY (Daikin Industries).
+      Dort schwankt die prozentuale Ausgabe ziemlich genau zwischen der Halten oder Verkaufen-Kategorie.
+      Im  \hyperref[sec:versuchsaufbau_konsistenz_alternativ]{Anhang D} finden sich noch weitere Ergebnisse mit anderen Modellen und Temperatureinstellungen.
 
-      \todo[inline, color=red]{To-Do: Grafik genauer analysieren}
+      % Die Visualisierung zeigt je Metrik einen horizontalen Balken pro Asset.
+      % Der durchgezogene Teil entspricht der exakten Übereinstimmung \(C\) (Anteil der Läufe, die genau den Mehrheitswert erreichen).
+      % Die gestrichelte Verlängerung bildet nahe Treffer ab und beruht auf der mittleren prozentualen Abweichung (MAPE) der Nichttreffer relativ zum Mehrheitswert:
+      % Kleine MAPE bedeutet hohe Nähe und führt zu einer längeren gestrichelten Verlängerung, große MAPE zu einer kurzen oder keiner Verlängerung.
+      % Formal wird aus der MAPE ein Gewicht \(w = 1 - \min(1,\text{MAPE}/100)\) abgeleitet und die effektive Übereinstimmung als \(A = C + (100 - C)\,w\) (auf 100\,\% begrenzt) dargestellt.
+      % Für \(M \approx 0\) wird SMAPE als robuster Fallback genutzt.
 
-      Die Visualisierung zeigt je Metrik einen horizontalen Balken pro Asset.
-      Der durchgezogene Teil entspricht der exakten Übereinstimmung \(C\) (Anteil der Läufe, die genau den Mehrheitswert erreichen).
-      Die gestrichelte Verlängerung bildet nahe Treffer ab und beruht auf der mittleren prozentualen Abweichung (MAPE) der Nichttreffer relativ zum Mehrheitswert:
-      Kleine MAPE bedeutet hohe Nähe und führt zu einer längeren gestrichelten Verlängerung, große MAPE zu einer kurzen oder keiner Verlängerung.
-      Formal wird aus der MAPE ein Gewicht \(w = 1 - \min(1,\text{MAPE}/100)\) abgeleitet und die effektive Übereinstimmung als \(A = C + (100 - C)\,w\) (auf 100\,\% begrenzt) dargestellt.
-      Für \(M \approx 0\) wird SMAPE als robuster Fallback genutzt.
+      % Zur besseren Einordnung ein Beispiel der Berechnung:
+      % Angenommen, vier Bewertungsdurchläufe ergeben folgende Werte für eine Metrik: 50, 50, 50, 40. \\
+      % Drei von vier sind exakt 50.
+      % Damit sind 75 \% exakt identisch.
+      % Der eine Ausreißer mit dem Wert 40 liegt mit 10 von 50 weg.
+      % Damit dieser eine Wert eine Abweichung von 20\% bzw. ist mit 80\% \enquote{fast richtig}.
+      % Von den vorherig fehlenden 25\% werden 80\% \enquote{gerettet}.
+      % Also werden 80\% von 25 (=20) auf die 75 addiert.
+      % Was in 95\%iger \enquote{near-miss} Übereinstimmung resultiert.
 
-      Zur besseren Einordnung ein Beispiel der Berechnung:
-      Angenommen, vier Bewertungsdurchläufe ergeben folgende Werte für eine Metrik: 50, 50, 50, 40. \\
-      Drei von vier sind exakt 50.
-      Damit sind 75 \% exakt identisch.
-      Der eine Ausreißer mit dem Wert 40 liegt mit 10 von 50 weg.
-      Damit dieser eine Wert eine Abweichung von 20\% bzw. ist mit 80\% \enquote{fast richtig}.
-      Von den vorherig fehlenden 25\% werden 80\% \enquote{gerettet}.
-      Also werden 80\% von 25 (=20) auf die 75 addiert.
-      Was in 95\%iger \enquote{near-miss} Übereinstimmung resultiert.
-
-      Neben der Übereinstimmung werden auch die mittlere absolute Abweichung (MAD) und die maximale Abweichung (Max D) zur Einordnung der Streuung ausgewiesen, um sich ein besseres Bild machen zu können, wie groß vorhandene Abweichungen denn sind.
-      Die Darstellung ist so gewählt, weil sie sowohl harte Treffer (durchgezogen) als auch nahe Treffer (gestrichelt) in einem einzigen, leicht lesbaren Balken vereint und dabei durch die relative Skalierung mittels (S)MAPE zwischen Metriken und Assets vergleichbar bleibt.
+      Neben der Übereinstimmung werden auch die mittlere absolute Abweichung (MAD) und die maximale Abweichung (Max D) zur Einordnung der Streuung ausgewiesen.
+      Mithilfe dieser Werte kann man sicht mit mehr diversen Ausgaben ein besseres Bild machen, wie groß vorhandene Abweichungen denn sind.
+      %Die Darstellung ist so gewählt, weil sie sowohl harte Treffer (durchgezogen) als auch nahe Treffer (gestrichelt) in einem einzigen, leicht lesbaren Balken vereint und dabei durch die relative Skalierung mittels (S)MAPE zwischen Metriken und Assets vergleichbar bleibt.
 
       Insgesamt lässt sich erkennen, dass -- obwohl die Modellausgaben nicht deterministisch sind -- die Ergebnisse sehr konsistent sind und Abweichungen nur geringfügig vorhanden sind.
       Damit ist das KI-Assistenzsystem in dieser Hinsicht als sicher zu bewerten.
@@ -216,6 +221,7 @@
       Im vorangegangenen Abschnitt \ref{sec:konsistenz_doing} haben wir die Konsistenz bzw. Übereinstimmung zwischen gleichen Eingaben untersucht, um festzustellen, wie verlässlich das Modell mit seiner Aussage ist.
       In diesem Abschnitt wird die Qualität der generierten Handlungsempfehlungen durch einen Vergleich mit etablierten Analystenratings bewertet.
       Ziel ist es, zu überprüfen, ob die Empfehlungen des \acs{KI}-Assistenzsystems zumindest in ihrer grundsätzlichen Tendenz mit den Einschätzungen von Finanzanalysten übereinstimmen.
+
       Dabei ist -- wie bereits in Abschnitt \ref{sec:analyst-konsens} erwähnt -- zu betonen, dass Analystenmeinungen selbst nicht immer objektiv oder \enquote{wahr} sind, da sie auf subjektiven Einschätzungen und individuellen Strategien basieren können.
       Ein Konsens zwischen Analysten und dem Assistenzsystem kann daher eher als Indikator für die Plausibilität der generierten Handlungsempfehlungen gewertet werden.
       Ein signifikanter Unterschied zu den Analystenmeinungen könnte wiederum darauf hinweisen, dass das System andere, möglicherweise innovative Perspektiven einnimmt oder dass die zugrunde liegenden Modelle oder Daten angepasst werden müssen.
@@ -235,34 +241,33 @@
           \label{fig:vergleich_mit_analysten}
       \end{figure}
 
-      Da ein Durschnittswert mit dem Analystenrating verglichen wird, wird hier direkt der MAPE-Wert als Abweichung genutzt und zudem wird der absolute Wert ausgegeben.
+      Da ein Durschnittswert mit dem Analystenrating verglichen wird, wird hier direkt der MAPE-Wert als Abweichung genutzt.
       Nach Abbildung~\ref{fig:vergleich_mit_analysten} wird für jede Entscheidungsdimension (\emph{buy}, \emph{sell}, \emph{hold}) und jedes Wertpapier die Übereinstimmung der vom System erzeugten Wahrscheinlichkeitsverteilung mit dem Analysten-Konsens dargestellt.
       Die Balken zeigen den daraus abgeleiteten \emph{Agreement}-Wert (0–100\,\%), daneben ist der zugehörige Fehler als MAPE angegeben.
-      Die Berechnung erfolgt pro Dimension auf Basis der mittleren absoluten prozentualen Abweichung zwischen LLM-Output und Analystenanteilen, anschließend gemittelt über die Wiederholungen aus Abschnitt~\ref{sec:konsistenz_doing}..
+      Die Berechnung erfolgt pro Dimension auf Basis der mittleren absoluten prozentualen Abweichung (MAPE) zwischen LLM-Output und Analystenanteilen, anschließend gemittelt über die Wiederholungen aus Abschnitt~\ref{sec:konsistenz_doing}..
 
-      \todo[inline, color=red]{To-Do: Nochmal mit überarbeitetem Code durchlaufen lassen}
-
-      Auffällig ist die hohe Übereinstimmung für \emph{ASML} und \emph{MBG.DE} in den Kategorien \emph{buy} und \emph{hold}:
+      Auffällig ist die hohe Übereinstimmung für \emph{ASML} und \emph{MBGAF} in den Kategorien \emph{buy} und \emph{hold}:
       ASML erreicht z.\,B. \(\approx\)91\,\% (\emph{buy}, MAPE 9\,\%) und \(\approx\)97\,\% (\emph{hold}, MAPE 3\,\%),
-      MBG.DE \(\approx\)92\,\% (\emph{buy}, MAPE 8\,\%) und \(\approx\)85\,\% (\emph{hold}, MAPE 15\,\%).
-      Demgegenüber zeigen \emph{GOOG} und \emph{DKI.F} über alle Dimensionen hinweg geringere Übereinstimmungen (typisch \(\approx\)45–52\,\% bei MAPE \(\approx\)48–55\,\%).
-      Die Dimension \emph{sell} ist insgesamt am schwächsten ausgeprägt (z.\,B. ASML \(\approx\)50\,\%), mit einer Ausnahme für MBG.DE (\(\approx\)75\,\%).
-      Das ist plausibel, da \emph{sell}-Ratings bei vielen Titeln selten sind (Klassenungleichgewicht) und bereits kleine absolute Unterschiede die prozentuale Abweichung stark beeinflussen.
+      MBGAF \(\approx\)92\,\% (\emph{buy}, MAPE 8\,\%) und \(\approx\)85\,\% (\emph{hold}, MAPE 15\,\%).
+      Demgegenüber zeigen \emph{GOOG} und \emph{DKILY} über alle Dimensionen hinweg geringere Übereinstimmungen (typisch \(\approx\)45–52\,\% bei MAPE \(\approx\)48–55\,\%).
+      Die Dimension \emph{sell} ist insgesamt am schwächsten ausgeprägt (z.\,B. ASML \(\approx\)50\,\%), mit einer Ausnahme für MBGAF (\(\approx\)75\,\%).
 
-      Die Ergebnisse deuten darauf hin, dass das System dort besonders gut mit dem Konsens harmoniert, wo Analystenbewertungen stabil und gut dokumentiert sind und der vom System verwendete Kontext (quantitativ + qualitativ) ausreichend Evidenz liefert.
-      Abweichungen bei GOOG und DKI.F können aus mehreren Gründen entstehen:
+      Abweichungen bei GOOG und DKILY können aus mehreren Gründen entstehen:
       (i) volatilere oder uneinheitlichere Analystenmeinungen im Erhebungszeitraum,
       (ii) Unterschiede in Zeithorizont/Risikoneigung zwischen Konsensannahme und Prompt,
       (iii) dünnere oder weniger portfoliospezifische Kontextbasis in den genutzten Snippets.
-      Wichtig ist dabei zu beachten, dass Agreement die  Plausibilitätsnähe zum Konsens misst -- nicht \enquote{Wahrheit}.
+      Wichtig ist dabei zu beachten, dass Agreement die Plausibilitätsnähe zum Konsens misst -- nicht \enquote{Wahrheit}.
       Ein niedriger Wert kann ebenso auf modellseitige Informationslücken wie auf legitime, vom Konsens abweichende Perspektiven hinweisen.
 
       Für eine statistisch robustere Aussage sind größere Stichproben, längere Zeitfenster und Signifikanztests (z.\,B. Korrelationen oder Rangmaß-Vergleiche über viele Assets) wünschenswert.
       Diese erfolgen aber im Rahmen der Arbeit aufgrund der Komplexität und nötigen Tiefe nicht.
 
+      Insgesamt zeigt das Verfahren, dass die generelle Richtung der Modellbewertungen mit dem Konsens übereinstimmt und keine grundlegend abweichenden Einschätzungen erzeugt werden.
+      Dadurch erscheint die Plausibilität der Ergebnisse auch im Vergleich zu projektunabhängigen Referenzwerten gegeben.
+
       %TODO: Grafik mit echten Werten ergänzen
 
-      \todo[inline, color=red]{To-Do: Nochmal die Ergebnisse zusammenfassen?}
+      %\todo[inline, color=red]{To-Do: Nochmal die Ergebnisse zusammenfassen?}
 
     % To-Do: noch mindestens eine qualitative Auswertung irgendwie vornehmen
 
