@@ -22,13 +22,13 @@
       Im Rahmen der Evaluation werden zunächst verschiedene potenzielle Zielgrößen und Kennzahlen gesammelt, die eine möglichst umfassende Bewertung des Systems erlauben könnten.
       Dabei ist zu beachten, dass nicht alle dieser Verfahren tatsächlich praktisch umgesetzt werden können.
       Je nach Verfügbarkeit von Zeit, Kapazität und Ressourcen werden einige Punkte nur konzeptionell beschrieben bzw. in Teilen umgesetzt.
-      Gleichzeitig wird dann im Verlauf des Evaluationsverfahren begründet, warum eine praktische Umsetzung nicht bzw. nur eingeschränkt erfolgt.
+      Gleichzeitig wird dann im Verlauf des Evaluationsverfahrens begründet, warum eine praktische Umsetzung nicht bzw. nur eingeschränkt erfolgt.
 
       Im Zentrum der Evaluation stehen daher die folgenden Zielgrößen:
       \begin{itemize}
         \item \textbf{Allgemeine Prompt-Response-Auswertung:} Konsistenzprüfung der generierten Empfehlungen (buy, hold, sell) sowie Analyse der Unterschiede zwischen Modellen.
         \item \textbf{Konsens-Auswertung:} Überprüfung, ob die beobachteten Performanceunterschiede gegenüber Analystenempfehlungen nicht zufällig oder komplett abwegig sind.
-        \item \textbf{Transparenz und Erklärbarkeit:} Bewertung, inwieweit die Handlungsempfehlungen für Nutzerinnen und Nutzer verständlich und plausibel nachvollziehbar sind.
+        \item \textbf{Transparenz und Erklärbarkeit:} Bewertung, inwieweit die Handlungsempfehlungen für Nutzer verständlich und plausibel nachvollziehbar sind.
         \item \textbf{Akzeptanz und Vertrauen:} Untersuchung, ob die bereitgestellten Empfehlungen das Vertrauen der Nutzer fördern und zur tatsächlichen Nutzung beitragen.
         \item \textbf{Benchmark-Vergleich mit Backtesting:} Gegenüberstellung der hypothetischen Portfolioperformance (bei konsequenter Umsetzung der Empfehlungen) mit etablierten Marktindizes wie dem MSCI World oder dem S\&P~500.
         Dieser Vergleich ist weniger als primäre Evaluationsmetrik zu verstehen, sondern vielmehr als Ausblick, um die Systemleistung in Relation zu bekannten Referenzen einzuordnen.
@@ -43,7 +43,7 @@
       Diese Konsistenzprüfung ist wesentlich, um sicherzustellen, dass das System nicht durch Zufall oder unstetige interne Gewichtungen widersprüchliche Empfehlungen ausspricht.
 
       Ein weiterer wichtiger Aspekt dieser Auswertung ist der Vergleich von Antworten verschiedener Modelle.
-      Hierzu werden die Resultate des Assistenzsystems mit denen von Referenzmodellen oder verschiedenen Versionen des eingesetzten \acs{LLM}s verglichen.
+      Hierzu werden die Resultate des Assistenzsystems mit denen von Referenzmodellen oder verschiedenen Versionen der eingesetzten \acs{LLM}s verglichen.
       Ziel ist es, zu analysieren, inwieweit die Modelle übereinstimmen oder voneinander abweichen, und zu verstehen, welche Faktoren zu diesen Abweichungen führen.
       Dabei wird insbesondere darauf geachtet, ob Unterschiede in den Modellen zu abweichenden Risikoeinschätzungen oder unterschiedlichen Priorisierungen von Einflussfaktoren führen.
 
@@ -60,7 +60,7 @@
 
       Das Assistenzsystem wird mit etablierten Analystenempfehlungen verglichen, um die grundsätzliche Qualität und Konsistenz der generierten Handlungsempfehlungen zu überprüfen.
       Dabei werden die Empfehlungen für einzelne Wertpapiere, die das System auf Basis eines neutralen, nicht voreingenommenen Prompts liefert, mit Konsens-Analystenratings verglichen.
-      Ziel ist es zu untersuchen, ob das System zumindest in seiner grundlegenden Einschätzung – beispielsweise ob ein Wertpapier potenziell attraktiv oder riskant ist – ähnliche Tendenzen wie Analysten aufweist.
+      Ziel ist es, zu untersuchen, ob das System zumindest in seiner grundlegenden Einschätzung -- beispielsweise ob ein Wertpapier potenziell attraktiv oder riskant ist -- ähnliche Tendenzen wie Analysten aufweist.
       Dies kann ein Indikator für die Plausibilität der generierten Handlungsempfehlungen sein.
 
       Es wird jedoch betont, dass Analystenmeinungen selbst nicht per se als objektiver Goldstandard gelten können. Studien zeigen, dass Analysten in ihren Empfehlungen häufig zu sog. Herding neigen, d. h. sie orientieren sich stark am Konsens, anstatt stark von diesem abzuweichen \autocite{jegadeesh2007herd, michel2015analyst}.
@@ -95,7 +95,7 @@
       Darüber hinaus müssten geeignete Methoden zur Qualitätssicherung entwickelt werden, etwa die Wiederholung von Bewertungen, der Abgleich zwischen Teilnehmergruppen oder die Einbeziehung von Kontrollfragen.
       Diese Vorbedingungen machen die Durchführung komplex und ressourcenintensiv.
 
-      Aufgrund der Vielzahl an Vorbedingungen, der methodischen Komplexität, der begrenzten Zahl verfügbarer Teilnehmer und vor allem der noch verfügbaren Kapazität der Arbeit fällt eine umfassende empirische Studie in diesem Projekt jedoch außerhalb des Scopes.
+      Aufgrund der Vielzahl an Vorbedingungen, der methodischen Komplexität, der begrenzten Zahl verfügbarer Teilnehmer und vor allem der noch verfügbaren Kapazität der Arbeit fällt eine umfassende empirische Studie in diesem Projekt jedoch außerhalb des Scopes. %evtl umformulieren
       Stattdessen wird nur skizziert, wie eine solche Untersuchung aussehen könnte, und es wird eine subjektive Einschätzung der Autorin bzw. des Autors gegeben.
       Verschiedene Eindrücke deuten darauf hin, dass die generierten Erklärungen grundsätzlich verständlich und plausibel wirken, jedoch in ihrer Tiefe teilweise variieren und nicht immer ausreichend konkrete Begründungen für komplexe Anlageentscheidungen liefern.
       Damit besteht grundsätzlich Potenzial zur Verbesserung, insbesondere in Bezug auf Konsistenz und Detailgrad der erzeugten Begründungstexte.
@@ -106,7 +106,7 @@
 
     \subsection{Akzeptanz und Vertrauen}
 
-      Neben Transparenz und Erklärbarkeit stellt die Akzeptanz durch die Nutzerinnen und Nutzer eine wesentliche Dimension für die Beurteilung der Praxistauglichkeit des Assistenzsystems dar.
+      Neben Transparenz und Erklärbarkeit stellt die Akzeptanz durch die Nutzer eine wesentliche Dimension für die Beurteilung der Praxistauglichkeit des Assistenzsystems dar.
       Vertrauen in die Empfehlungen entscheidet darüber, ob diese tatsächlich in die Entscheidungsprozesse integriert werden oder ob sie lediglich als unverbindliche Orientierung dienen.
       Eine Evaluation könnte in Form von Befragungen oder Interviews erfolgen, bei denen Teilnehmende einschätzen, inwieweit sie die Empfehlungen als glaubwürdig, hilfreich und verlässlich empfinden.
       Ergänzend wären Experimente denkbar, in denen untersucht wird, ob sich die Bereitschaft zur Umsetzung einer Empfehlung ändert, wenn diese durch zusätzliche Begründungen flankiert wird.
@@ -138,8 +138,10 @@
     Die Durchführung der Evaluation erfolgt innerhalb einer interaktiven Jupyter-Lab-Umgebung, die es ermöglicht, direkt auf die in Python implementierten Klassen des Assistenzsystems zuzugreifen und gezielte Tests sowie Analysen durchzuführen.
     Dabei werden die zuvor beschriebenen Evaluationsverfahren aus der Sektion \textbf{\nameref{sec:auswahl_evaluation}} systematisch umgesetzt, um die Leistungsfähigkeit, Konsistenz und Transparenz des Assistenzsystems umfassend zu überprüfen.
 
+    % Ggf. diesen Absatz umschreiben
     Für die hier dargestellte Auswertung wurde die Evaluation mit dem lokalen Modell \emph{Qwen3 30b} über \emph{Ollama} durchgeführt.
-    Die Wahl fiel auf Qwen3 von Alibaba mit 30 Milliarden (30b) Parametern, da viele der aktuellen \acs{LLM}-Benchmarks die höchste Leistungsfähigkeit und Wettbewerbsfähigkeit gegenüber anderen Open-Source-Modellen zeigen und dieses bereits in der vergleichsweise kleinen Variante sehr gut abschneidet \autocite{artificialanalysis2025}. % To-Do: Mehr als ein Benchmark zitieren
+    Die Wahl fiel auf Qwen3 von Alibaba mit 30 Milliarden (30b) Parametern, da viele der aktuellen \acs{LLM}-Benchmarks Qwen3 die höchste Leistungsfähigkeit und Wettbewerbsfähigkeit gegenüber anderen Open-Source-Modellen nachweisen \autocite{artificialanalysis2025}.
+    Zudem schneidet Qwen3 bereits in der vergleichsweise kleinen Variante sehr gut ab. % To-Do: Mehr als ein Benchmark zitieren
     Zum Vergleich wurde zusätzlich eine identische Ausführung mit anderen Modellen (wie u. a. OpenAIs GPT-o4) durchgeführt, deren Ergebnisse im Anhang zu finden sind.
 
     Das Vorgehen sieht vor, dass zunächst vorbereitete Testszenarien in Jupyter-Lab ausgeführt werden, um messbare Bewertungskriterien zu erheben.
@@ -151,7 +153,7 @@
 
       Um die Aussagekraft der Portfoliobewertung zu erhöhen, wurde ein Versuchsaufbau gewählt, der gezielt auf Wiederholungen setzt und damit die Stabilität der Ergebnisse sichtbar macht.
       Ziel des Aufbaus ist es, die Verlässlichkeit und Robustheit der Portfoliobewertung zu prüfen.
-      Durch die mehrfachen Wiederholungen mit identischem Wertpapier, lässt sich erkennen, ob die Resultate stabil um einen konsistenten Wert schwanken oder ob einzelne Metriken stark variieren.
+      Durch die mehrfachen Wiederholungen mit identischem Wertpapier lässt sich erkennen, ob die Resultate stabil um einen konsistenten Wert schwanken oder ob einzelne Metriken stark variieren.
       Auf diese Weise wird nicht nur ein einmaliges Ergebnis betrachtet, sondern ein belastbares Bild über Mittelwerte und typische Abweichungen gewonnen, das für eine fundierte Bewertung des Portfolios unabdingbar ist.
 
       Der Versuchsaufbau wiederholt die Portfoliobewertung in einer kompakten Schleife von zehn Läufen, um Stabilität und Schwankungsbreite der Ergebnisse systematisch zu erfassen.
@@ -187,37 +189,38 @@
       Formal wird aus der MAPE ein Gewicht \(w = 1 - \min(1,\text{MAPE}/100)\) abgeleitet und die effektive Übereinstimmung als \(A = C + (100 - C)\,w\) (auf 100\,\% begrenzt) dargestellt.
       Für \(M \approx 0\) wird SMAPE als robuster Fallback genutzt.
 
-      Zu besseren Einordnung ein Beispiel der Berechnung:
-      Angenommen vier Bewertungsdurchläufe ergeben folgende Werte für eine Metrik: 50, 50, 50, 40. \\
-      Drei von vier sind exakt 50. Damit sind 75 \% exakt identisch.
+      Zur besseren Einordnung ein Beispiel der Berechnung:
+      Angenommen, vier Bewertungsdurchläufe ergeben folgende Werte für eine Metrik: 50, 50, 50, 40. \\
+      Drei von vier sind exakt 50.
+      Damit sind 75 \% exakt identisch.
       Der eine Ausreißer mit dem Wert 40 liegt mit 10 von 50 weg.
       Damit dieser eine Wert eine Abweichung von 20\% bzw. ist mit 80\% \enquote{fast richtig}.
       Von den vorherig fehlenden 25\% werden 80\% \enquote{gerettet}.
       Also werden 80\% von 25 (=20) auf die 75 addiert.
       Was in 95\%iger \enquote{near-miss} Übereinstimmung resultiert.
 
-      Neben der Übereinstimmung werden auch die mittlere absolute Abweichung (MAD) und die maximale Abweichung (Max D) zur Einordnung der Streuung ausgewiesen, um sich ein besseres Bild machen zu können wie groß vorhandene Abweichungen denn sind.
+      Neben der Übereinstimmung werden auch die mittlere absolute Abweichung (MAD) und die maximale Abweichung (Max D) zur Einordnung der Streuung ausgewiesen, um sich ein besseres Bild machen zu können, wie groß vorhandene Abweichungen denn sind.
       Die Darstellung ist so gewählt, weil sie sowohl harte Treffer (durchgezogen) als auch nahe Treffer (gestrichelt) in einem einzigen, leicht lesbaren Balken vereint und dabei durch die relative Skalierung mittels (S)MAPE zwischen Metriken und Assets vergleichbar bleibt.
 
-      Insgesamt lässt sich erkennen, dass obwohl die Modellausgaben nicht deterministisch sind, die Ergebnisse sehr konsistent sind und Abweichungen nur geringfügig vorhanden sind.
-      Damit ist der KI-Assistenzsystem in dieser Hinsicht als sicher zu bewerten.
+      Insgesamt lässt sich erkennen, dass -- obwohl die Modellausgaben nicht deterministisch sind -- die Ergebnisse sehr konsistent sind und Abweichungen nur geringfügig vorhanden sind.
+      Damit ist das KI-Assistenzsystem in dieser Hinsicht als sicher zu bewerten.
       % Evtl auch angeben, dass die Ensemble Respone an dieser Stelle das Risiko weiter senkt.
 
     \subsection{Vergleich mit Analystenempfehlungen}
 
-      Im vorangegangen Abschnitt \ref{sec:konsistenz_doing} haben wir die Konsistenz bzw. Übereinstimmung zwischen gleichen Eingaben untersucht, um festzustellen wie verlässlich das Modell mit seiner Aussage ist.
+      Im vorangegangenen Abschnitt \ref{sec:konsistenz_doing} haben wir die Konsistenz bzw. Übereinstimmung zwischen gleichen Eingaben untersucht, um festzustellen, wie verlässlich das Modell mit seiner Aussage ist.
       In diesem Abschnitt wird die Qualität der generierten Handlungsempfehlungen durch einen Vergleich mit etablierten Analystenratings bewertet.
-      Ziel ist es zu überprüfen, ob die Empfehlungen des \acs{KI}-Assistenzsystems zumindest in ihrer grundsätzlichen Tendenz mit den Einschätzungen von Finanzanalysten übereinstimmen.
+      Ziel ist es, zu überprüfen, ob die Empfehlungen des \acs{KI}-Assistenzsystems zumindest in ihrer grundsätzlichen Tendenz mit den Einschätzungen von Finanzanalysten übereinstimmen.
       Dabei ist -- wie bereits in Abschnitt \ref{sec:analyst-konsens} erwähnt -- zu betonen, dass Analystenmeinungen selbst nicht immer objektiv oder \enquote{wahr} sind, da sie auf subjektiven Einschätzungen und individuellen Strategien basieren können.
       Ein Konsens zwischen Analysten und dem Assistenzsystem kann daher eher als Indikator für die Plausibilität der generierten Handlungsempfehlungen gewertet werden.
-      Ein signifikanter Unterschied zu den Analystenmeinungen könnte wiederum darauf hinweisen, dass das System andere, möglicherweise innovative Perspektiven einnimmt, oder dass die zugrunde liegenden Modelle oder Daten angepasst werden müssen.
-      Es wird auch berücksichtigt, dass spätere Nutzerpräferenzen, wie Risikoneigung oder Investmenthorizont, das Bewertungsergebnis beeinflussen werden.
+      Ein signifikanter Unterschied zu den Analystenmeinungen könnte wiederum darauf hinweisen, dass das System andere, möglicherweise innovative Perspektiven einnimmt oder dass die zugrunde liegenden Modelle oder Daten angepasst werden müssen.
+      Es wird auch berücksichtigt, dass spätere Nutzerpräferenzen -- wie Risikoneigung oder Investmenthorizont -- das Bewertungsergebnis beeinflussen werden.
       Diese werden jedoch in dieser Evaluierung noch ausgeklammert, um einen neutralen Vergleich mit den Analystenbewertungen zu ermöglichen.
 
       Für den Vergleich wird nicht eine Respone oder gleich mehre Responses mit den Analystenratings verglichen, sondern es werden die Durchschnittswerte der Metriken aus Abschnitt \ref{sec:konsistenz_doing} genutzt.
       Diese werden dann den Analystenratings gegenübergestellt.
 
-      Die Abbildung \ref{fig:vergleich_mit_analysten} zeigt die Ergebnisse des Vergleichs zwischen den generierten Handlungsempfehlungen des \acs{KI}-Assistenzsystems und den Konsens-Analystenratings für die vier verschiedenen Wertpapiere von zuvor in ähnlicher Darstellung.
+      Die Abbildung \ref{fig:vergleich_mit_analysten} zeigt die Ergebnisse des Vergleichs zwischen den generierten Handlungsempfehlungen des \acs{KI}-Assistenzsystems und den Konsens-Analystenratings für die vier verschiedenen Wertpapiere von Abbildung \ref{fig:prompt_response_auswertung} in ähnlicher Darstellung.
 
       \begin{figure}[H]
           \centering

@@ -1,9 +1,5 @@
-\addchap{Anhangsverzeichnis}
+\addchap{Anhang}
 \label{sec:anhang}
-
-\renewcommand*{\chapterformat}{%
-  \appendixname~\thechapter:\enskip}
-
 
 {\Large
 \begin{enumerate}[label=Anhang~\Alph*:,leftmargin=5em]
@@ -28,7 +24,8 @@
 \newcommand{\nocontentsline}[3]{}
 \newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
 
-\tocless\chapter{Gesamtheitlicheres UML}
+\section*{Anhang A: Gesamtheitlicheres UML}
+\addcontentsline{toc}{section}{Anhang A: Gesamtheitlicheres UML}
 \label{sec:uml_all}
 
     \tocless{
@@ -40,7 +37,10 @@
     \end{figure}
     }
 
-\tocless\chapter{Flowcharts weiterer Abläufe}
+    \todo[inline]{To-Do: Den Google Teil ersetzen durch Ollama}
+
+\section*{Anhang B: Flowcharts weiterer Abläufe}
+\addcontentsline{toc}{section}{Anhang B: Flowcharts weiterer Abläufe}
 \label{sec:flow_all}
 
     \tocless{
@@ -63,7 +63,8 @@
 
     \todo[inline]{To-Do: Sprache in Grafik vereinheitlichen. Entweder hier oder im Kapitel}
 
-\tocless\chapter{Screenshots vom Frontend}
+\section*{Anhang C: Screenshots vom Frontend}
+\addcontentsline{toc}{section}{Anhang C: Screenshots vom Frontend}
 \label{sec:screenshots_frontend}
 
     \tocless{
@@ -88,8 +89,17 @@
     \tocless{
     \begin{figure}[H]
         \centering
-        \includegraphics[width=\linewidth]{assets/platzhalter.png}
-        \caption{Frontend in Einzelwertpapiersicht nach abgeschlossener Evaluierung}
+        \includegraphics[width=\linewidth]{assets/pictures/screenshot_frontend_einzelnes_wertpapier.png}
+        \caption{Frontend in Einzelwertpapieransicht nach abgeschlossener Evaluierung}
+        \small{(Quelle: Eigene Darstellung (Screenshot))}
+    \end{figure}
+    }
+
+    \tocless{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{assets/pictures/screenshot_frontend_einzelnes_wertpapier_chat.png}
+        \caption{Chat in Einzelwertpapieransicht}
         \small{(Quelle: Eigene Darstellung (Screenshot))}
     \end{figure}
     }
@@ -97,7 +107,8 @@
     % To-Do: Bild von Settings, noch mehr Chat, Einzelansichten ...
 
 
-\tocless\chapter{Ergebnisse für Konsistenzprüfung mit unterschiedlichen Modellen und Optionen}
+\section*{Anhang D: Ergebnisse für Konsistenzprüfung mit unterschiedlichen Modellen und Optionen}
+\addcontentsline{toc}{section}{Anhang D: Ergebnisse für Konsistenzprüfung mit unterschiedlichen Modellen und Optionen}
 \label{sec:versuchsaufbau_konsistenz_alternativ}
 
     \tocless{
@@ -139,7 +150,8 @@
     \todo[inline]{To-Do: Platzhalter ersetzen!}
 
 
-\tocless\chapter{Ergebnisse für Konsensprüfung zu Analysten mit unterschiedlichen Modellen und Optionen}
+\section*{Anhang E: Ergebnisse für Konsensprüfung zu Analysten mit unterschiedlichen Modellen und Optionen}
+\addcontentsline{toc}{section}{Anhang E: Ergebnisse für Konsensprüfung zu Analysten mit unterschiedlichen Modellen und Optionen}
 \label{sec:versuchsaufbau_konsens_alternativ}
 
     \tocless{
@@ -163,12 +175,14 @@
     \todo[inline]{To-Do: Platzhalter ersetzen!}
 
 
-\tocless\chapter{Juypter-Lab PDF Export}
+\section*{Anhang F: Juypter-Lab PDF Export}
+\addcontentsline{toc}{section}{Anhang F: Juypter-Lab PDF Export}
 \label{sec:jupyter-lab-export}
 
     \todo[inline]{To-Do: Noch einfügen}
 
-\tocless\chapter{Code}
+\section*{Anhang G: Code}
+\addcontentsline{toc}{section}{Anhang G: Code}
 \label{sec:full_code}
 
     Code ist über git herunterladbar von: \url{https://jasper.bremenkamp.de/git/portfolio-ai-assistant.git}
