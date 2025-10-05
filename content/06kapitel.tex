@@ -55,7 +55,7 @@
     Zum Beispiel eine Desktop-Variante mittels Tkinter oder eine anderweitge Integration in ein Skript.
     Diese Vielseitigkeit erlaubt es, das System an verschiedene Nutzungsszenarien und technische Umgebungen anzupassen, ohne den Kern der Funktionalität verändern zu müssen.
 
-    Ein zentraler Bestandteil der Nutzbarkeit liegt in der Kombination von quantitativen sowie qualitative Finanzdaten und generativen \acs{KI}-Komponenten.
+    Ein zentraler Bestandteil der Nutzbarkeit liegt in der Kombination von quantitativen sowie qualitativen Finanzdaten und generativen \acs{KI}-Komponenten.
     Die Anbindung von Datenquellen wie \textit{yfinance} oder \textit{Finnhub} ermöglicht die automatisierte Beschaffung von Kursverläufen, Fundamentaldaten und weiteren relevanten Finanzinformationen.
     Darauf aufbauend kann die \acs{KI} beispielsweise Marktberichte generieren, komplexe Sachverhalte in einfacher Sprache erklären oder Handlungsempfehlungen formulieren.
 
@@ -77,11 +77,11 @@
     Lokale Modelle können bei entsprechender Hardware, insbesondere mit \acs{GPU}-Beschleunigung, durchaus eingeschränkt konkurrenzfähige Leistung bieten.
     Allerdings benötigen sie initial längere Ladezeiten für das Modell und haben Limitierungen bei der Verarbeitung großer Kontextlängen, was bei umfangreichen Portfolioanalysen problematisch werden kann.
     Cloud-Modelle liefern Ergebnisse oft innerhalb von Sekundenbruchteilen und können große Datenmengen effizient verarbeiten.
-    Jedoch können \acs{API}-Rate-Limits bei den untserschiedlichen Zugangsarten oder Netzwerkprobleme zu unvorhersehbaren Verzögerungen führen, was die Zuverlässigkeit in produktiven Umgebungen beeinträchtigen kann.
+    Jedoch können Netzwerkprobleme oder \acs{API}-Rate-Limits von den unterschiedlichen Zugangsarten zu unvorhersehbaren Verzögerungen führen, was die Zuverlässigkeit in produktiven Umgebungen beeinträchtigen kann.
 
     Die potenziellen Anwendungsfälle sind vielfältig.
     Privatanleger können das System nutzen, um Anlageentscheidungen durch datenbasierte Analysen zu unterstützen.
-    Professionelle Analysten würden in einem vergleichbaren System fortgeschrittener Variante von der automatisierten Aufbereitung großer Datenmengen und der Möglichkeit, Textauswertungen direkt in Berichtsform zu erhalten profitieren.
+    Professionelle Analysten würden in einem vergleichbaren System einer fortgeschrittenen Variante von der automatisierten Aufbereitung großer Datenmengen und der Möglichkeit, Textauswertungen direkt in Berichtsform zu erhalten, profitieren.
     Weitere Einsatzmöglichkeiten umfassen die Erstellung von Portfolioanalysen, die Identifikation von Markttrends sowie die Erklärung einzelner Finanzkennzahlen.
 
     Die Nutzbarkeit ist jedoch abhängig von externen Faktoren.
@@ -97,7 +97,7 @@
     Diese umfassen sowohl technische als auch organisatorische Aspekte.
 
     Technische Bedingungen bilden das Fundament für den Betrieb des Systems.
-    Eine stabile Internetverbindung ist für \acs{API}-Anfragen an externe Datenanbieter, wie etwa für die Finaanzdaten oder die optionalen Cloud-\acs{KI}-Services unerlässlich.
+    Eine stabile Internetverbindung ist für \acs{API}-Anfragen an externe Datenanbieter -- wie etwa für die Finanzdaten oder die optionalen Cloud-\acs{KI}-Services -- unerlässlich.
     Zusätzlich erfordert das System die ordnungsgemäße Konfiguration der \acs{API}-Schlüssel für die genutzten Datenanbieter wie z. B. Finnhub oder OpenAI.
 
     Lizenz- und Kostenbedingungen haben direkten Einfluss auf die Nutzungsintensität und -breite des Systems.
@@ -106,12 +106,12 @@
     Diese Kostenstruktur muss bei der Planung von Anwendungsszenarien berücksichtigt werden.
 
     Datenschutz- und Compliance-Bedingungen gewinnen besonders bei der Anbindung externer \acs{KI}-Services wie OpenAI, Claude oder Gemini an Bedeutung.
-    Es muss geprüft werden, ob die Datenverarbeitung den an den Anwendungsfalll entsprechenden Umständen konform erfolgt und ob sensible Finanzinformationen in die Cloud übertragen werden dürfen.
+    Es ist zu prüfen, ob die Datenverarbeitung den für den Anwendungsfall geltenden Umständen entspricht und ob sensible Finanzinformationen in die Cloud übertragen werden dürfen.
     Finanzinstitutionen unterliegen oft strengen Regulierungen, die die Nutzung cloud-basierter Services einschränken oder zusätzliche Sicherheitsmaßnahmen erfordern können.
 
     Transparenz- und Erklärbarkeitsanforderungen stellen besondere Bedingungen an das System.
     Die verwendeten generativen \acs{KI}-Modelle müssen in der Lage sein, ihre Entscheidungsfindung nachvollziehbar zu dokumentieren, insbesondere bei Anlageempfehlungen oder Risikobeurteilungen.
-    Dies erfordert nicht nur entsprechende Prompt-Engineering-Techniken sowie geeignete Modellen, sondern auch abseits der rein technischen Sicht einen richtigen Umgang mit den Ergebnissen.
+    Dies erfordert nicht nur entsprechende Prompt-Engineering-Techniken sowie geeignete Modelle, sondern auch abseits der rein technischen Sicht einen richtigen Umgang mit den Ergebnissen.
     Bei kritischen Finanzentscheidungen müssen die zugrundeliegenden Datenquellen, Berechnungsmethoden und Annahmen für den Nutzer transparent dargestellt und Folgemaßnahmen wohlüberlegt sein.
 
     Geschwindigkeitsanforderungen variieren je nach Anwendungsfall und beeinflussen die Systemarchitektur maßgeblich.
@@ -119,14 +119,14 @@
     Die Wahl zwischen lokalen und cloud-basierten \acs{KI}-Modellen hat hier direkten Einfluss auf die erreichbare Performance.
 
     Abhängigkeiten zu Anbieterplattformen schaffen potenzielle Risiken für die Systemstabilität.
-    Änderungen in der \acs{API}-Struktur, Preismodellen oder Verfügbarkeit der Services können die Nutzbarkeit unmittelbar beeinflussen.
+    Änderungen in der \acs{API}-Struktur, in Preismodellen oder in der Verfügbarkeit der Services können die Nutzbarkeit unmittelbar beeinflussen.
     Dies erfordert eine kontinuierliche Überwachung der verwendeten Dienste und gegebenenfalls die Implementierung von Fallback-Lösungen oder alternativen Datenquellen.
 
     Entwicklungs- und Deployment-Bedingungen hängen von der gewählten Systemarchitektur ab.
     Für die webbasierte Variante muss ein Webserver bereitstehen, der entweder lokal oder in einer gehosteten Umgebung betrieben werden kann.
     Die Desktop-Variante erfordert die Kompatibilität der \acs{GUI}-Bibliothek mit der Zielplattform sowie ausreichende lokale Systemressourcen.
 
-    Skalierungsbedinungen werden durch Datenmenge und Analysekomplexität bestimmt.
+    Skalierungsbedingungen werden durch Datenmenge und Analysekomplexität bestimmt.
     Bei größeren Projekten oder institutionellen Anwendungen steigen die Anforderungen an Rechenleistung, Arbeitsspeicher und Netzwerkbandbreite erheblich.
     Die Systemarchitektur muss entsprechend dimensioniert werden, um auch bei steigenden Nutzerzahlen oder komplexeren Analyseaufgaben eine akzeptable Performance zu gewährleisten.
 
@@ -134,11 +134,11 @@
 
   \section{Vorteile und Herausforderungen}
 
-    Das entwickelte Assistenzsystem zur quantitativen Portfoliooptimierung bietet eine Reihe klarer Vorteile, die es von bestehenden Lösungen im Finanzbereich abheben.
+    Das entwickelte Assistenzsystem zur quantitativen Portfoliooptimierung bietet eine Reihe klarer Vorteile, das es von bestehenden Lösungen im Finanzbereich abhebt.
     Ein zentrales Alleinstellungsmerkmal ist die \emph{Transparenz der Entscheidungsfindung}.
     Im Gegensatz zu klassischen Blackbox-Modellen liefert das System zu jeder Handlungsempfehlung nicht nur den empfohlenen Prozentsatz für Kauf, Verkauf oder Halten, sondern auch eine nachvollziehbare, natürlichsprachliche Begründung.
     Diese Begründung basiert sowohl auf \emph{quantitativen Daten} wie Kursverläufen, Fundamentalkennzahlen oder Korrelationen als auch auf \emph{qualitativen Informationen} wie Nachrichtenartikeln, Marktstimmungen oder Social-Media-Trends.
-    Zudem kann mit dem System gechattet werden und damit mögliche Fragen einfach direkt geklärt werden.
+    Zudem kann mit dem System gechattet und damit mögliche Fragen einfach direkt geklärt werden.
 
     Ein weiterer Vorteil liegt in der \emph{Integration heterogener Datenquellen}.
     Die Kombination aus strukturierten und unstrukturierten Informationen erlaubt eine ganzheitliche Bewertung von Wertpapieren, die sowohl fundamentale als auch kontextabhängige Marktfaktoren berücksichtigt.
@@ -150,7 +150,7 @@
 
     Trotz dieser Stärken bestehen wesentliche Herausforderungen.
     Eine davon ist die \emph{Qualität, Konsistenz und Aktualität der Daten}.
-    Quantitative Daten können fehlerhaft, verspätet oder unvollständig sein, während qualitative Daten – wie Nachrichten – in großer Menge und unterschiedlicher Relevanz vorliegen.
+    Quantitative Daten können fehlerhaft, verspätet oder unvollständig sein, während qualitative Daten -- wie Nachrichten -- in großer Menge und unterschiedlicher Relevanz vorliegen.
     Gerade bei qualitativen Informationen ist nicht nur der Inhalt, sondern auch die \emph{Reihenfolge und Gewichtung} entscheidend, da irrelevante oder veraltete Meldungen die Entscheidungsfindung verzerren können.
     Hier stellt sich die Herausforderung, die tatsächliche Wichtigkeit einer Nachricht zu ermitteln und diese in den richtigen Kontext zu setzen.
 

@@ -446,11 +446,6 @@
       Darüber hinaus sind kritische Verarbeitungsschritte mit umfangreichen Exception-Handling-Mechanismen versehen, sodass bei fehlerhaften API-Antworten oder unvollständigen Daten kontrollierte Fallback-Werte geliefert werden.
       Dies stellt sicher, dass das System auch bei externen Störungen weitestgehend stabil weiterarbeitet und konsistente Ergebnisse bereitstellt.
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % bis hierhin selbstständig durchgelesen und nochmal alles korrigiert mit Literatur validiert und anhand der Checkliste durchgegangen
-    % darunter aber dennoch bereits einige Korrekturen über Mamas Feeback vorgenommen
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
     \subsection{Programmablauf und Datenverarbeitung}
 
       Der Verarbeitungsprozess folgt einem klar strukturierten Workflow, welcher in Abbildung~\ref{fig:flowchart} visualisiert ist.
@@ -479,15 +474,17 @@
       Diese berücksichtigt die konsolidierten Bewertungen aller Einzelpositionen und hebt übergeordnete Marktchancen, Risiken sowie Handlungsempfehlungen hervor.
       Dadurch wird eine ganzheitliche Perspektive auf das Portfolio ermöglicht, die über die isolierte Betrachtung einzelner Wertpapiere hinausgeht und Interdependenzen sichtbar macht.
 
+      Weitere Flowcharts zu anderen Abläufen innerhalb der Arbeit finden sich im \nameref{sec:flow_all}.
 
     \subsection{Performance-Monitoring und Debugging}
 
-      Das System verfügt über ein integriertes Performance-Monitoring, das für alle zentralen Verarbeitungsschritte – von API-Abfragen bis hin zu \acs{LLM}-Inferenzen – Laufzeiten erfasst.
+      Das System verfügt über ein integriertes Performance-Monitoring, das für alle zentralen Verarbeitungsschritte -- von API-Abfragen bis hin zu \acs{LLM}-Inferenzen -- Laufzeiten erfasst.
       Diese Zeitmessungen ermöglichen die gezielte Identifikation von Performance-Bottlenecks und liefern eine Grundlage für spätere Optimierungen hinsichtlich Antwortgeschwindigkeit und Ressourcenauslastung.
       Fehlerhafte oder ausbleibende Antworten externer Schnittstellen werden durch exception handling abgefangen und mit Fallback-Werten ersetzt, sodass die Stabilität des Gesamtsystems auch unter unsicheren Rahmenbedingungen gewährleistet bleibt.
 
       Darüber hinaus ist ein einfacher Logging-Mechanismus integriert, der sukzessive zu einem erweiterten Debugging-Framework ausgebaut werden kann.
-      Besonders hervorzuheben ist die Persistenz sämtlicher \acs{LLM}-Prompts und Zwischenergebnisse: Sie unterstützt nicht nur die Nachvollziehbarkeit und Auditierbarkeit der generierten Empfehlungen, sondern liefert auch eine wertvolle Datenbasis für die iterative Verbesserung von Prompt-Engineering-Strategien.
+      Besonders hervorzuheben ist die Persistenz sämtlicher \acs{LLM}-Prompts und Zwischenergebnisse:
+      Sie unterstützt nicht nur die Nachvollziehbarkeit und Auditierbarkeit der generierten Empfehlungen, sondern liefert auch eine wertvolle Datenbasis für die iterative Verbesserung von Prompt-Engineering-Strategien.
 
 
     \subsection{Deployment und Nutzungsszenarien}
@@ -500,7 +497,7 @@
       Die Integration in Flask abstrahiert die technische Komplexität und ermöglicht eine intuitive Bedienung, wodurch sich das System insbesondere für Portfoliomanager und Investoren eignet, die ohne tiefere Programmierkenntnisse von den Funktionen profitieren möchten.
 
       \textbf{Analytische Forschungsumgebung:}
-      Für datengetriebene Forschung und explorative Analysen lässt sich das System direkt in Jupyter-Lab-Umgebungen einbinden.
+      Für datengetriebene Forschung und explorative Analysen lässt sich das System direkt in einem Python-Skript oder einer Jupyter-Lab-Umgebung einbinden.
       Dadurch erhalten die Nutzer die Möglichkeit, erweiterte Parametrisierungen vorzunehmen, experimentelle Evaluierungen durchzuführen und das System flexibel in bestehende Analyse-Pipelines zu integrieren.
       Dieser Modus unterstützt die iterative Entwicklung neuer Methoden und erleichtert die Erweiterung um zusätzliche Modell- oder Datenquellen.
 
@@ -529,8 +526,8 @@
     Gerade im Kontext des Wertpapierhandels entscheidet eine gute Oberfläche darüber, ob Empfehlungen verstanden, kritisch hinterfragt und verantwortungsvoll in bestehende Entscheidungsprozesse integriert werden.
 
     Für die in dieser Arbeit angestrebte \textit{Erklärbarkeit} übernimmt das Frontend eine doppelte Rolle:
-    Es zeigt nicht nur, \enquote{Was} empfohlen wird (z.,B. Kaufen/Verkaufen/Halten), sondern macht auch \enquote{Warum} und \enquote{Wie dringlich} sichtbar.
-    Dies geschieht über eine bewusst gestaltete Informationshierarchie (Übersicht -> Detail -> Begründung), konsistente visuelle Kodierungen (z. B. Farbskalen und Unsicherheitsindikatoren) sowie natürlichsprachliche Erläuterungen, die Annahmen, Sensitivitäten und Zielkonflikte transparent machen.
+    Es zeigt nicht nur, \enquote{Was} empfohlen wird (z. B. Kaufen/Verkaufen/Halten), sondern macht auch \enquote{Warum} und \enquote{Wie dringlich} sichtbar.
+    Dies geschieht über eine bewusst gestaltete Informationshierarchie (Übersicht $\rightarrow$ Detail $\rightarrow$ Begründung), konsistente visuelle Kodierungen (z. B. Farbskalen und Unsicherheitsindikatoren) sowie natürlichsprachliche Erläuterungen, die Annahmen, Sensitivitäten und Zielkonflikte transparent machen.
     Eine Black-Box-Wahrnehmung wird vermieden und eine gute Visualisierung schaffft Vertrauen in die Systemausgaben.
 
     Im Folgenden wird zunächst der konzeptionelle Entwurf der Benutzeroberfläche vorgestellt, der diese Prinzipien in Informationsarchitektur und Visualisierungsmuster überführt.
@@ -540,6 +537,7 @@
 
       Die Gestaltung des Frontends spielt eine zentrale Rolle in der Entwicklung von Assistenzsystemen, insbesondere dann, wenn es darum geht, komplexe algorithmische Empfehlungen für menschliche Nutzer nachvollziehbar und vertrauenswürdig zu präsentieren.
       Bereits zu Beginn der Entwicklung wurde ein grafischer Entwurf erstellt (siehe Abbildung~\ref{fig:frontend_draft}), um die Anforderungen an eine transparente, strukturierte und intuitiv verständliche Benutzeroberfläche zu klären.
+
       Ziel ist es, sowohl aggregierte als auch detailreiche Informationen zum Portfolio übersichtlich darzustellen und gleichzeitig eine klare Begründung der Empfehlungen des Systems zu liefern.
       Die auf der Übersicht dargestellte Aggregation wird aus den Einzelwertpapieren berechnet.
       Die in der Übersicht dargestellte Dringlichkeit (Urgency) sowie Kaufen/Verkaufen/Halten sind die Durchschnittswerte von sämtlichen Papieren im Depot.
@@ -553,7 +551,7 @@
       \end{figure}
 
       Der Entwurf enthält Elemente wie eine \enquote{Urgency for Action}-Skala zur Priorisierung von Aktien, textuelle Risikobewertungen sowie natürlichsprachliche Zusammenfassungen.
-      Besonders hervorzuheben ist die explizite Visualisierung der Unsicherheit und Bewertungsempfehlung (Kaufen/Verkaufen/Halten) in Form von Farben und Kreisdiagrammen.
+      Besonders hervorzuheben ist die explizite Visualisierung der Unsicherheit in Form einer Ampel und der Bewertungsempfehlung (Kaufen/Verkaufen/Halten) in Form eines Kreisdiagrammes.
 
       Neben der Portfolioansicht wurde auch eine Detailansicht für einzelne Wertpapiere konzipiert (siehe Abbildung~\ref{fig:frontend_draft_aktie}).
       Die Detailansicht erlaubt eine fokussierte Darstellung der individuellen Position und verknüpft quantitative Kennzahlen mit qualitativen Bewertungen.
@@ -591,7 +589,10 @@
       Rechts wird eine kompakte Visualisierung des Handlungsbedarfs (\enquote{Urgency}) inklusive Kreisdiagramm eingebunden, welche an den ursprünglichen GUI-Entwurf anknüpft.
       Am unteren Bildschirmrand ist zudem ein Chat-Modul integriert, das eine interaktive Abfrage von Detailinformationen erlaubt und so eine dialogische Erschließung der Systemergebnisse ermöglicht.
 
-      Die technische Anbindung an die Backend-Logik erfolgt über klar definierte \acs{API}-Endpunkte (siehe Listing~\ref{lst:flask_api}).
+      Neben der in Abbildung~\ref{fig:frontend_live} gezeigten Oberfläche gibt es noch weitere Nebenschauplätze, auf die in diesem Abschnitt nicht näher eingegangen wird.
+      Weitere Screenshots zu der Oberfläche finden sich im \nameref{sec:screenshots_frontend}.
+
+      Die technische Anbindung an die Backend-Logik erfolgt über klar definierte \acs{API}-Endpunkte (siehe Code-Ausschnitt~\ref{lst:flask_api}).
       Das Python-Backend mit Flask stellt Methoden zur Verfügung, um entweder das gesamte Portfolio (\texttt{/api/evaluate-full-portfolio}) oder gezielt einzelne Wertpapiere (\texttt{/api/evaluate-single-asset/<id>}) zu analysieren.
       Dabei wird die zentrale Methode \texttt{evaluate\_portfolio()} des \texttt{PortfolioAIAssistant} aufgerufen, deren Ergebnisse in strukturierter Form an das Frontend zurückgegeben werden.
 
@@ -618,7 +619,7 @@
         return jsonify(response)
       \end{lstlisting}
 
-      Die Kommunikation zwischen Frontend und Backend erfolgt asynchron über \texttt{fetch}-Requests (Listing~\ref{lst:js_api}).
+      Die Kommunikation zwischen Frontend und Backend erfolgt asynchron über \texttt{fetch}-Requests (Code-Ausschnitt~\ref{lst:js_api}).
       So können Nutzerbewertungen in Echtzeit ausgelöst werden, ohne die Oberfläche vollständig neu zu laden.
       Dieses Prinzip ermöglicht eine reaktive Benutzererfahrung, die insbesondere bei wiederholten Analysen oder Szenarienvergleichen eine hohe Interaktivität sicherstellt.
 
@@ -643,10 +644,10 @@
     \subsection{Wissenschaftliche Relevanz der \acs{GUI} im Kontext von Entscheidungsassistenz}
 
       Die Transparenz in Assistenzsystemen beschränkt sich nicht nur auf die algorithmische Modellierung, sondern betrifft maßgeblich auch die Präsentationsebene.
-      Laut \autocite{gunning2017explainable} ist eine erklärbare Benutzeroberfläche ein zentraler Bestandteil von \acs{XAI}-Systemen, da sie den Brückenschlag zwischen Modelloutput und menschlichem Entscheidungsverhalten ermöglicht.
+      Laut \textcite[S. 45]{gunning2019explainable} ist eine erklärbare Benutzeroberfläche ein zentraler Bestandteil von \acs{XAI}-Systemen, da sie den Brückenschlag zwischen Modelloutput und menschlichem Entscheidungsverhalten ermöglicht.
       Der Mehrwert einer fundierten \acs{GUI} liegt also nicht nur in der Ästhetik oder Bedienbarkeit, sondern in ihrer Fähigkeit, Vertrauen, Kontrolle und Nachvollziehbarkeit zu fördern.
 
-      Zudem zeigen empirische Studien zur Mensch-Maschine-Interaktion (z.B. \autocite{hoffman2018metrics}), dass die Qualität der Visualisierung einen direkten Einfluss auf das Nutzervertrauen und die Akzeptanz von \acs{KI}-basierten Empfehlungen hat.
+      \textcite[S. 45]{gunning2019explainable} betont, dass erklärbare \ac{KI} nur dann wirksam ist, wenn Modell, Erklärungsschnittstelle und menschliche Nutzung gemeinsam betrachtet werden.
       Eine schlechte oder intransparente Visualisierung kann zu \textit{automation bias} oder kompletter Ablehnung der Empfehlung führen.
 
   \section{Jupyter-Lab Notebook}
@@ -654,37 +655,33 @@
 
     Ein zentrales Element der Systemarchitektur stellt die Evaluation und Testbarkeit des entwickelten \acs{KI}-gestützten Portfolioassistenzsystems dar.
     Um dies effizient und transparent zu realisieren, kommt in dieser Arbeit \textit{Jupyter-Lab} zum Einsatz.
-    Jupyter-Lab ist eine modulare, webbasierte Entwicklungsumgebung, die auf dem bekannten Jupyter-Notebook-Format basiert und dieses erweitert.
+    Jupyter-Lab ist eine modulare, webbasierte Entwicklungsumgebung, die auf dem bekannten Jupyter-Notebook-Format basiert und dieses erweitert \autocite[S. 87 und 88]{kluyver2016jupyter}.
     Sie erlaubt es, Quellcode, Visualisierungen, Textkommentare und Ausgaben in einem einzigen interaktiven Dokument zu kombinieren.
-    Der besondere Vorteil liegt dabei in der engen Verzahnung von experimenteller Programmierung, Dokumentation und unmittelbarem Feedback, was die explorative Arbeit mit datengetriebenen Systemen erheblich vereinfacht \autocite{kluyver2016jupyter}.
+    Der besondere Vorteil liegt dabei in der engen Verzahnung von experimenteller Programmierung, Dokumentation und unmittelbarem Feedback, was die explorative Arbeit mit datengetriebenen Systemen erheblich vereinfacht.
 
     Im Rahmen dieses Projekts wird Jupyter-Lab genutzt, um direkt mit dem in Python implementierten\\ \texttt{PortfolioAIAssistant} zu interagieren.
-    Der Import der Systemklasse erfolgt direkt über die Paketstruktur mittels: \lstinline[columns=fixed]{from portfolio_ai import PortfolioAIAssistant}
+    Der Import der Systemklasse erfolgt direkt über die Paketstruktur mittels: \lstinline[columns=fixed]{from portfolio_ai import PortfolioAIAssistant}.
 
     Dies ermöglicht es, verschiedene Anwendungsfälle, Parameterkonfigurationen und Auswertungen ohne Umweg über ein separates Frontend durchzuführen.
     Im Gegensatz zu einer webbasierten Benutzeroberfläche, die in der Regel eine fest definierte Interaktionslogik aufweist und daher nur begrenzte Flexibilität für hypothetische Tests bietet, erlaubt die Jupyter-Lab-Umgebung eine vollständige Kontrolle über die zugrunde liegende Systemlogik.
     Auch gegenüber klassischen Kommandozeileninterfaces oder isolierten Python-Skripten bietet Jupyter-Lab entscheidende Vorteile:
-    Die interaktive Umgebung erlaubt es, Zwischenergebnisse direkt zu inspizieren, Visualisierungen inline zu betrachten und Analyseschritte in unmittelbarer Nähe zum Code zu dokumentieren.
-    Damit eignet sich das Notebook-Format ideal für Forschungsvorhaben, in denen Nachvollziehbarkeit, Reproduzierbarkeit und Interaktivität im Vordergrund stehen \autocite{rule2018exploration}.
+    Die interaktive Umgebung erlaubt es, Zwischenergebnisse direkt zu inspizieren, Visualisierungen inline zu betrachten und Analyseschritte in unmittelbarer Nähe zum Code zu dokumentieren \autocite[S. 87 und 88]{kluyver2016jupyter}.
+    Damit eignet sich das Notebook-Format ideal für Forschungsvorhaben, in denen Nachvollziehbarkeit, Reproduzierbarkeit und Interaktivität im Vordergrund stehen.
 
-    Das entwickelte Notebook ist in mehrere logisch aufeinander aufbauende Abschnitte unterteilt.
+    Die eingesetzten Notebook sind in mehrere logisch aufeinander aufbauende Abschnitte unterteilt.
     Es beginnt mit einer Setup-Phase, in der alle relevanten Bibliotheken und Konfigurationsparameter geladen werden.
     In einem weiteren Schritt wird die Klasse \texttt{PortfolioAIAssistant} instanziiert und mit den geladenen Daten konfiguriert.
     Darauf aufbauend lassen sich verschiedene Szenarien zur Konsistenz, Portfolioanalyse, Risikobewertung oder Handlungsempfehlungen testen.
     Die Ergebnisse werden durch interaktive Visualisierungen, wie Balkendiagramme, Kreisdiagramme oder Heatmaps ergänzt, die mit \texttt{matplotlib} oder \texttt{seaborn} erzeugt werden.
-    Auch erklärbare \acs{KI}-Komponenten wie \textit{Integrated Gradients} oder \textit{Chain-of-Thought-Prompts} lassen sich innerhalb dieser Struktur transparent darstellen und analysieren.
 
     Das methodische Vorgehen in der Arbeit sieht eine iterative Nutzung des Notebooks vor.
-    In einem ersten Schritt werden konkrete Testszenarien definiert, die beispielsweise aus Nutzeranfragen zur Bewertung einzelner Wertpapiere oder zur Optimierung ganzer Portfolios bestehen.
+    In einem ersten Schritt sind Testszenarien definiert, die beispielsweise aus Nutzeranfragen zur Bewertung einzelner Wertpapiere oder zur Optimierung ganzer Portfolios bestehen.
     Anschließend erfolgt die Durchführung der Szenarien unter Variation definierter Parameter, etwa Risikotoleranz oder Anlagedauer.
     Die generierten Ausgaben des Assistenten werden analysiert und mit Erwartungswerten sowie alternativen Systemvorschlägen verglichen.
-    Erkenntnisse und Abweichungen werden direkt im Notebook kommentiert und zur iterativen Weiterentwicklung des Systems dokumentiert.
     Dieser Ansatz kombiniert methodische Strenge mit technischer Flexibilität und erlaubt eine vollständig nachvollziehbare Evaluation des Assistenten.
 
     Die Auswertungen und Erkenntnisse, die mithilfe von Jupyter-Lab gewonnen werden, sind im anschließenden Kapitel \ref{chap:evaluation} zu finden.
     Die Juypter-Lab Notebooks selbst können im \hyperref{sec:jupyter-lab-export}{Anhang F} betrachtet werden.
-
-    \todo[inline]{To-Do: Notebooks in Anhang packen und die Referenz genau anpassen}
 
   \section{Einrichtung der Umgebung}
 
@@ -702,7 +699,7 @@
 
       \begin{itemize}
         \item \textbf{Versionsverwaltung:} \texttt{git} zum Beziehen und Verwalten des Quellcodes.
-        \item \textbf{Container-Engine:} Podman oder Docker (bzw. eine kompatible Engine) zur Bereitstellung der isolierten Containerumgebungen.
+        \item \textbf{Container-Engine:} Podman oder Docker (bzw. eine kompatible Engine) sowie Podman-Compose bzw. wahlweise Docker-Compose zur Bereitstellung der isolierten Containerumgebungen.
         \item \textbf{Rechenressourcen:} Entweder eine ausreichend leistungsstarke lokale Hardware (CPU/\acs{GPU}, RAM) für die Ausführung großer Sprachmodelle oder alternativ ein API-Schlüssel eines LLM-Providers (z.\,B. OpenAI, Anthropic), falls auf Cloud-Modelle zurückgegriffen wird.
       \end{itemize}
 
@@ -723,24 +720,27 @@
         \item \textbf{Container starten:} Mit \texttt{docker-compose up} bzw. \texttt{podman-compose up} werden die Services gestartet.
         Hierbei wird sowohl das Backend als auch der Ollama-Dienst (für lokale \acs{LLM}) hochgefahren.
         \item \textbf{Zugriff:} Nach erfolgreichem Start ist die Anwendung über Port \texttt{8080} erreichbar.
+        Bei lokaler Ausführung ist dies dann üblicherweise: \url{http://localhost:8080}.
         Das Web-Interface stellt die Interaktionsmöglichkeiten mit den Modellen sowie der Analyse- und Visualisierungslogik bereit.
       \end{enumerate}
 
+      Weitere Informationen zum Projekt-Repository finden sich im \nameref{sec:full_code}.
+
     \subsection{Genutzte Test- und Entwicklungsumgebung}
 
-    Die nachstehenden Angaben beschreiben die tatsächlich verwendete Arbeitsumgebung, auf der die Entwicklung und das Testen durchgeführt wurden.
-    Die Hardware wurde nicht gezielt ausgewählt oder optimiert, sondern entspricht dem privat verfügbaren Rechner.
-    Die Dokumentation dient damit als Referenzrahmen, um beobachtete Laufzeiten und Ergebnisse einzuordnen und eigene Replikationen besser abschätzen zu können.
+      Die nachstehenden Angaben beschreiben die tatsächlich verwendete Arbeitsumgebung, auf der die Entwicklung und das Testen durchgeführt wurden.
+      Die Hardware wurde nicht gezielt ausgewählt oder optimiert, sondern entspricht dem privat verfügbaren Rechner.
+      Die Dokumentation dient damit als Referenzrahmen, um beobachtete Laufzeiten und Ergebnisse einzuordnen und eigene Replikationen besser abschätzen zu können.
 
-    \begin{itemize}
-      \item \textbf{Betriebssystem:} Arch Linux (Kernel 6.15.9-zen1-1-zen).
-      \item \textbf{Arbeitsspeicher:} 48GB DDR4-3200.
-      \item \textbf{Prozessor:} Intel Core i7-8700K (3{,}7–4{,}7\,GHz)
-      \item \textbf{Grafikkarte:} AMD Radeon RX 6700 XT mit 12 GB GDDR6.
-      \item \textbf{Überwiegend genutztes LLM:} Qwen3:30B über Ollama (v0.11.4) mit \acs{GPU}-Beschleunigung
-    \end{itemize}
+      \begin{itemize}
+        \item \textbf{Betriebssystem:} Arch Linux (Kernel 6.15.9-zen1-1-zen).
+        \item \textbf{Arbeitsspeicher:} 48GB DDR4-3200.
+        \item \textbf{Prozessor:} Intel Core i7-8700K (3{,}7–4{,}7\,GHz)
+        \item \textbf{Grafikkarte:} AMD Radeon RX 6700 XT mit 12 GB GDDR6.
+        \item \textbf{Überwiegend genutztes LLM:} Qwen3:30B über Ollama (v0.11.4) mit \acs{GPU}-Beschleunigung
+      \end{itemize}
 
-    Diese Spezifikation erlaubt es, die gemessene Performance gegenüber der eigenen Umgebung realistisch zu gewichten und den Setup für Tests bzw. Nachvollzug zielgerichtet anzupassen (z. B. kleinere/quantisierte Modelle bei geringerem VRAM oder Cloud-\acs{LLM}s, falls lokal keine \acs{GPU} verfügbar ist).
+      Diese Spezifikation erlaubt es, die gemessene Performance gegenüber der eigenen Umgebung realistisch zu gewichten und den Setup für Tests bzw. Nachvollzug zielgerichtet anzupassen (z. B. kleinere/quantisierte Modelle bei geringerem VRAM oder Cloud-\acs{LLM}s, falls lokal keine \acs{GPU} verfügbar ist).
 
   \section{Technische Limitationen und Herausforderungen}
 
