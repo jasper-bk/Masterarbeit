@@ -103,10 +103,6 @@ toc=bibliography,	% Literaturverzeichnis im Inhaltsverzeichnis darstellen
 \renewcaptionname{ngerman}\figurename{Abb.}
 \renewcaptionname{ngerman}\tablename{Tab.}
 
-% Solange noch in Arbeit
-\usepackage{draftwatermark}
-\SetWatermarkText{In Arbeit}
-
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning}
 
@@ -123,9 +119,14 @@ toc=bibliography,	% Literaturverzeichnis im Inhaltsverzeichnis darstellen
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Notizen. Einsatz mit \todo{Notiz} oder \todo[inline]{Notiz}.
-\usepackage[obeyFinal,backgroundcolor=yellow,linecolor=black]{todonotes}
+
+% Solange noch in Arbeit
+%\usepackage{draftwatermark}
+%\SetWatermarkText{In Arbeit}
+
+%\usepackage[obeyFinal,backgroundcolor=yellow,linecolor=black]{todonotes}
 % Alle Notizen ausblenden mit der Option "final" in \documentclass[...] oder durch das auskommentieren folgender Zeile
-% \usepackage[disable]{todonotes}
+\usepackage[disable]{todonotes}
 
 \usepackage[backend=biber, style=apa, pagetracker, ibidtracker=constrict, apamaxprtauth=20 ]{biblatex}
 

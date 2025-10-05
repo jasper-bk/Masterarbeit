@@ -65,7 +65,7 @@
             .2 server.py.
         }
         \caption{Projektstruktur des Portfolio AI Assistant Systems}
-        \small{(Quelle: eigene Darstellung)}
+        \small{(Quelle: Eigene Darstellung)}
         \label{fig:project_structure}
       \end{figure}
       \todo[inline]{To-Do: Zum Schluss nochmal aktualisieren, um es aktuell zu halten}
@@ -78,6 +78,7 @@
       Diese klare Trennung zwischen Backend-Logik und Frontend-Präsentation ermöglicht eine unabhängige Entwicklung und Wartung beider Systemteile.
       Konfigurationsdateien und Projektmetadaten sind auf der obersten Ebene positioniert, um eine zentrale Verwaltung der Systemeinstellungen und Abhängigkeiten zu gewährleisten.
 
+      Das Projektrepository kann über die Informationen aus dem \hyperref[sec:full_code]{Anhang F} bezogen werden.
 
     \subsection{Komponentenübersicht und Schnittstellen}
 
@@ -161,14 +162,14 @@
 
       \texttt{LangChain} wird als zentrales Framework zur Modellorchestrierung innerhalb des Assistenzsystems eingesetzt.
       Es handelt sich dabei um eine Open-Source-Bibliothek, die speziell für die Entwicklung von Anwendungen auf Basis großer Sprachmodelle (\acs{LLM}s) konzipiert wurde und agiert als Bindeglied zwischen den verschiedenen \acs{LLM}-Providern \autocite{langchain_docs}.
-      Das Besondere an LangChain ist nicht nur seine Fähigkeit, mit verschiedenen Providern und Modellen zu arbeiten, sondern auch verschiedene Komponenten eines \acs{LLM}-Workflows—wie Prompts, Datenquellen, Werkzeuge, Speicher oder Agenten—modular zu verketten und dabei logisch zu koordinieren.
+      Das Besondere an LangChain ist nicht nur seine Fähigkeit, mit verschiedenen Providern und Modellen zu arbeiten, sondern auch verschiedene Komponenten eines \acs{LLM}-Workflows -- wie Prompts, Datenquellen, Werkzeuge, Speicher oder Agenten -- modular zu verketten und dabei logisch zu koordinieren.
       Dies erlaubt eine flexible und wiederverwendbare Strukturierung komplexer Modellinteraktionen.
 
       In der vorliegenden Anwendung wird LangChain insbesondere zur Steuerung mehrstufiger Prompt-Logik und zur Integration erklärbarer Entscheidungsbegründungen verwendet.
       Die strukturierte Verarbeitung der Ausgabeformate, etwa in \acs{JSON}, konnte durch den Einsatz spezialisierter Output-Parser von LangChain elegant realisiert werden.
       Ebenso erleichtert das Framework die Nutzung externer Wissensquellen oder Zwischenergebnisse im Dialogverlauf, was insbesondere für erklärungsorientierte Systeme von Vorteil ist.
 
-      Die Integration in das bestehende Python-Backend erfolgt reibungslos, da LangChain nativ in Python geschrieben ist und eine Vielzahl von Schnittstellen zu gängigen Modellen wie OpenAI, HuggingFace oder lokal ausgeführten \acs{LLM}s via \texttt{Ollama} unterstützt \autocite{langchain_docs}.
+      Die Integration in das bestehende Python-Backend erfolgt reibungslos, da LangChain nativ in Python geschrieben ist und eine Vielzahl von Schnittstellen zu gängigen Modellen wie OpenAI, HuggingFace oder lokal ausgeführten \acs{LLM}s via Ollama unterstützt \autocite{langchain_docs}.
       Überdies kann LangChain nahtlos mit bereits vorhandenen Komponenten -- etwa zur Bewertung von Portfolios oder zur Entscheidungslogik -- verbunden werden.
 
       Im Vergleich zu Alternativen wie \texttt{Haystack} oder \texttt{LlamaIndex} (ehemals GPT Index) bietet LangChain eine größere Bandbreite an Agentenfunktionen und Werkzeuge zur Ablaufsteuerung \autocite{langchain_docs}.
@@ -515,7 +516,7 @@
       Die hierfür vorgesehenen Schnittstellen sind bereits im Code angelegt, sodass diese Funktionalität bei Verfügbarkeit geeigneter Datenquellen ohne größere Umstrukturierungen erweitert werden kann.
       Darüber hinaus eröffnet die Integration von \acs{RAG}-Ansätzen zusätzliche Perspektiven, um Portfoliokontexte mit externen Wissensbeständen zu verknüpfen und die Analysequalität weiter zu steigern.
 
-      Insgesamt bilden das strukturierte Design, die robusten Fehlerbehandlungsmechanismen sowie die flexiblen Deployment-Optionen eine belastbare Grundlage, um das System kontinuierlich auszubauen und in unterschiedlichen Anwendungskontexten –- von Forschung über Investment-Management bis hin zu produktiven Webservices -– einzusetzen.
+      Insgesamt bilden das strukturierte Design, die robusten Fehlerbehandlungsmechanismen sowie die flexiblen Deployment-Optionen eine belastbare Grundlage, um das System kontinuierlich auszubauen und in unterschiedlichen Anwendungskontexten -- von Forschung über Investment-Management bis hin zu produktiven Webservices -- einzusetzen.
 
 
   \section{Frontend}
@@ -546,7 +547,7 @@
           \centering
           \includegraphics[width=0.85\textwidth]{assets/pictures/draft_portfolio_overview_frontend.png}
           \caption{Früher \acs{GUI}-Entwurf für die Portfolio-Übersicht zur Visualisierung}
-          \small{(Quelle: eigene Darstellung)}
+          \small{(Quelle: Eigene Darstellung)}
           \label{fig:frontend_draft}
       \end{figure}
 
@@ -561,17 +562,17 @@
           \centering
           \includegraphics[width=0.85\textwidth]{assets/pictures/draft_portfolio_aktie_frontend.png}
           \caption{Früher \acs{GUI}-Entwurf für die Einzelwertpapieransicht zur Visualisierung}
-          \small{(Quelle: eigene Darstellung)}
+          \small{(Quelle: Eigene Darstellung)}
           \label{fig:frontend_draft_aktie}
       \end{figure}
 
       Die Detailansicht verdeutlicht, wie persönliche Informationen zur Position (z.\,B. Stückzahl, aktueller Wert, Rendite) mit modellbasierten Einschätzungen kombiniert werden.
-      Neben quantitativen Metriken wie potenziellem Upside/Downside wird die Handlungsempfehlung des Systems sowohl visuell –- etwa durch Ampelfarben und Diagramme -– als auch in natürlichsprachlicher Form präsentiert.
+      Neben quantitativen Metriken wie potenziellem Upside/Downside wird die Handlungsempfehlung des Systems sowohl visuell -- etwa durch Ampelfarben und Diagramme -- als auch in natürlichsprachlicher Form präsentiert.
       Durch diese multimodale Aufbereitung soll nicht nur die Transparenz erhöht, sondern auch die Akzeptanz der Nutzer gegenüber den automatisierten Empfehlungen gefördert werden.
 
     \subsection{Implementierung und aktuelle Ausgestaltung}
 
-      Auf Grundlage des zuvor skizzierten Drafts erfolgte eine iterative Umsetzung der Webanwendung in \texttt{HTML}, \texttt{CSS}/Bootstrap und \texttt{JavaScript}/jQuery.
+      Auf Grundlage des zuvor skizzierten Drafts erfolgte eine iterative Umsetzung der Webanwendung in HTML, CSS/Bootstrap und JavaScript/jQuery.
       Die finale Anwendung (siehe Abbildung~\ref{fig:frontend_live}) greift viele der im Entwurf konzipierten Elemente auf, wurde jedoch in Hinblick auf Usability, Interaktivität und technische Robustheit weiter verfeinert.
       So erlaubt die tab-basierte Navigation den Wechsel zwischen verschiedenen Einzelwertansichten, während die Übersichtsansicht aggregierte Informationen zum Gesamtportfolio präsentiert.
 
@@ -579,7 +580,7 @@
           \centering
           \includegraphics[width=0.9\textwidth]{assets/pictures/screenshot_frontend_nach_evaluierung.png}
           \caption{Live-System: Interaktive Web-Oberfläche zur Portfolioanalyse und Handlungsunterstützung}
-          \small{(Quelle: eigener Screenshot)}
+          \small{(Quelle: Eigene Darstellung (Screenshot))}
           \label{fig:frontend_live}
       \end{figure}
 
@@ -681,7 +682,7 @@
     Dieser Ansatz kombiniert methodische Strenge mit technischer Flexibilität und erlaubt eine vollständig nachvollziehbare Evaluation des Assistenten.
 
     Die Auswertungen und Erkenntnisse, die mithilfe von Jupyter-Lab gewonnen werden, sind im anschließenden Kapitel \ref{chap:evaluation} zu finden.
-    Die Juypter-Lab Notebooks selbst können im \hyperref[sec:jupyter-lab-export]{Anhang F} betrachtet werden.
+    Die Juypter-Lab Notebooks selbst können mithilfe der Informationen aus dem \hyperref[sec:full_code]{Anhang F} bezogen werden.
 
   \section{Einrichtung der Umgebung}
 
@@ -705,13 +706,13 @@
 
     \subsection{Einrichtungsablauf}
 
-      Der grundlegende Ablauf zur Einrichtung gestaltet sich wie folgt:
+      Der grundlegende Ablauf zur Einrichtung des Projekts bzw. der funktionalen Demo-Anwendung gestaltet sich wie folgt:
 
       \begin{enumerate}
         \item \textbf{Projekt beziehen:} Das Repository wird mittels \\
-        \texttt{git clone https://jasper.bremenkamp.de/git/portfolio-ai-assistant.git} heruntergeladen.
+        \texttt{git clone https://jasper.bremenkamp.de/git/jasper/portfolio-ai-assistant.git} heruntergeladen.
         \item \textbf{Konfiguration vornehmen:} Falls erforderlich, werden Konfigurationsparameter in einer \texttt{.env}-Datei angepasst (z.\,B. API-Keys, Ports, Pfade zu Daten).
-        \item \textbf{Container bauen:} Der Quellecode wird samt Abhängigkeiten in einem betriebsfähigen Containerimage zusammengeführt.
+        \item \textbf{Container bauen:} Der Quellcode wird samt Abhängigkeiten in einem betriebsfähigen Containerimage zusammengeführt.
         Dies geschieht über
         \begin{itemize}
           \item \texttt{docker-compose build} bei Verwendung von Docker oder
@@ -723,6 +724,11 @@
         Bei lokaler Ausführung ist dies dann üblicherweise: \url{http://localhost:8080}.
         Das Web-Interface stellt die Interaktionsmöglichkeiten mit den Modellen sowie der Analyse- und Visualisierungslogik bereit.
       \end{enumerate}
+
+      Standardmäßig verwendet das Projekt \emph{Ollama} als lokale \acs{LLM}-Laufzeitumgebung, sofern keine andere Option spezifiziert wurde.
+      Dabei kommt eine kleinere Variante des Modells \emph{Qwen3} zum Einsatz, um eine effiziente Ausführung auch auf Geräten mit begrenzten Ressourcen zu gewährleisten.
+      Für die Nutzung von \acs{GPU}-Beschleunigung in Verbindung mit Ollama sind -- je nach eingesetzter Container-Engine und Betriebssystem -- zusätzliche Schritte erforderlich.
+      Diese betreffen insbesondere die Bereitstellung der GPU-Treiber und die korrekte Einbindung der Hardware in den Container.
 
       Weitere Informationen zum Projekt-Repository finden sich im \nameref{sec:full_code}.
 

@@ -1,0 +1,118 @@
+digraph SingleStockEvaluation {
+  rankdir=LR;
+  fontname="Helvetica";
+  node [shape=box, fontname="Helvetica", fontsize=10];
+  edge [fontname="Helvetica", fontsize=9];
+
+  // ===== Start / End =====
+  start [shape=ellipse, label="Start: Evaluate single asset (ticker)"];
+  end   [shape=ellipse, label="End: Asset evaluation completed"];
+
+  // ===== Load & raw data =====
+  load_asset [label="Load asset by ticker\nasset = p.assets[ticker]"];
+  raw_asset  [label="Get raw asset data\nasset_dict = asset.to_dict(); asset_name"];
+
+  // ===== Quantitative data =====
+  subgraph cluster_quant {
+    label="Quantitative data";
+    color="#bbbbbb";
+    style="rounded";
+
+    q_entry   [label="get_quantitative_data(ticker)"];
+    q_provider [shape=diamond, label="Finance provider?"];
+    q_finnhub [label="Finnhub:\n- quote()\n- company_basic_financials()\nReturn: price, day range,\nprev close, P/E, market cap"];
+    q_yf      [label="yfinance:\n- Ticker.info / fast_info\nReturn: currentPrice, P/E,\nmarketCap, day range, open, prev close"];
+    q_merge   [label="Quantitative JSON ready"];
+  }
+
+  // ===== Qualitative data & prompt capture =====
+  subgraph cluster_qual {
+    label="Qualitative data & LLM pre-brief";
+    color="#bbbbbb";
+    style="rounded";
+
+    qual_entry   [label="get_qualitative_data(ticker, asset_name)"];
+    prebrief     [label="LLM pre-brief via generate_response(prompt)\n(\"overview, recent events, risks/opportunities\")"];
+    prebrief_ok  [shape=diamond, label="Pre-brief succeeded?"];
+    prebrief_fail [label="Fallback text + default prompt"];
+    provider_ctx [shape=diamond, label="Provider context source?"];
+    qual_finnhub [label="Finnhub:\n- company_profile2()\n- company_news() (last N days)\nBuild PROFILE + RECENT_NEWS"];
+    qual_yf      [label="yfinance:\n- longBusinessSummary, sector, industry\nBuild SUMMARY/SECTOR/INDUSTRY"];
+    qual_merge   [label="Qualitative text ready:\nLLM_BRIEF + PROVIDER_CONTEXT"];
+  }
+
+  // ===== Derived context for LLM =====
+  subgraph cluster_ctx {
+    label="Derived portfolio context (not persisted)";
+    color="#bbbbbb";
+    style="rounded";
+
+    build_ctx [label="Build context for LLM:\n- owns_asset, quantity\n- avg_buy_in, first_purchase_date\n- holding_days\n- current_price, current_yield (if available)"];
+  }
+
+  // ===== Structured assessment =====
+  subgraph cluster_assess {
+    label="Structured security assessment";
+    color="#bbbbbb";
+    style="rounded";
+
+    assemble_input [label="Assemble security_data:\n{ ticker, asset_name, raw_asset_data,\n  quantitative, qualitative }"];
+    render_prompt  [label="Render _security_prompt with JSON schema\n(SecurityAssessment) + preferences"];
+    try_structured [shape=diamond, label="Structured output parse OK?"];
+    validate_sum   [shape=diamond, label="buy + sell + hold ≈ 100 ?"];
+    fallback_regex [label="Fallback:\n- Extract JSON via regex\n- Coerce integers\n- Enforce sum ≈ 100"];
+    fallback_ok    [shape=diamond, label="Fallback succeeded?"];
+    default_result [label="Return default assessment\n(all zeros + error rationale)"];
+    assessment_ok  [label="Assessment JSON ready\n(+ captured prompt messages)"];
+  }
+
+  // ===== Persistence =====
+  persist [label="Persist into asset.set_evaluation_results():\n- urgency, buy, sell, hold\n- potential_upside/downside\n- explanation_evaluation\n- prompts { llm_brief_prompt, assessment_messages }\n- last_evaluated_at (UTC ISO8601)"];
+
+  // ===== Edges: main flow =====
+  start -> load_asset -> raw_asset -> q_entry;
+
+  // Quantitative branch
+  q_entry -> q_provider;
+  q_provider -> q_finnhub [label="Finnhub"];
+  q_provider -> q_yf      [label="yfinance / default"];
+  q_finnhub -> q_merge;
+  q_yf      -> q_merge;
+
+  // Move to qualitative
+  q_merge -> qual_entry;
+
+  // Qualitative + pre-brief
+  qual_entry -> prebrief -> prebrief_ok;
+  prebrief_ok -> provider_ctx [label="yes"];
+  prebrief_ok -> prebrief_fail [label="no"];
+  prebrief_fail -> provider_ctx;
+
+  provider_ctx -> qual_finnhub [label="Finnhub"];
+  provider_ctx -> qual_yf      [label="yfinance / default"];
+  qual_finnhub -> qual_merge;
+  qual_yf      -> qual_merge;
+
+  // Derived context and assemble
+  qual_merge -> build_ctx -> assemble_input -> render_prompt -> try_structured;
+
+  // Structured path
+  try_structured -> validate_sum [label="yes"];
+  try_structured -> fallback_regex [label="no"];
+
+  validate_sum -> assessment_ok [label="yes"];
+  validate_sum -> fallback_regex [label="no"];
+
+  // Fallback path
+  fallback_regex -> fallback_ok;
+  fallback_ok -> assessment_ok [label="yes"];
+  fallback_ok -> default_result [label="no"];
+
+  // Persist and finish
+  assessment_ok -> persist -> end;
+  default_result -> persist;
+
+  // ===== Styling hints =====
+  {rank=same; q_finnhub; q_yf}
+  {rank=same; qual_finnhub; qual_yf}
+}

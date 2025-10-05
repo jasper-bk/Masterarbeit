@@ -14,8 +14,6 @@
 
     \item \hyperref[sec:versuchsaufbau_konsens_alternativ]{Ergebnisse für Konsensprüfung zu Analysten mit unterschiedlichen Modellen und Optionen}
 
-    \item \hyperref[sec:jupyter-lab-export]{Juypter-Lab PDF Export}
-
     \item \hyperref[sec:full_code]{Projektcode}
 \end{enumerate}
 }
@@ -23,6 +21,12 @@
 
 \newcommand{\nocontentsline}[3]{}
 \newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
+
+% Nummerierung von Abbildungen im Anhang deaktivieren
+\renewcommand{\thefigure}{} % Zähler wird ausgeblendet
+\makeatletter
+\renewcommand{\fnum@figure}{\figurename} % Nur "Abbildung" ohne Nummer
+\makeatother
 
 \section*{Anhang A: Gesamtheitlicheres UML}
 \addcontentsline{toc}{section}{Anhang A: Gesamtheitlicheres UML}
@@ -37,8 +41,6 @@
     \end{figure}
     }
 
-    \todo[inline]{To-Do: Den Google Teil ersetzen durch Ollama}
-
 \section*{Anhang B: Flowcharts weiterer Abläufe}
 \addcontentsline{toc}{section}{Anhang B: Flowcharts weiterer Abläufe}
 \label{sec:flow_all}
@@ -46,22 +48,11 @@
     \tocless{
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.9\linewidth]{assets/misc/flowchart_chat.png}
+        \includegraphics[width=0.8\linewidth]{assets/misc/flowchart_chat.png}
         \caption{Flowchart für Chat-Funktion}
         \small{(Quelle: Eigene Darstellung)}
     \end{figure}
     }
-
-    \tocless{
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=\linewidth]{assets/platzhalter.png}
-        \caption{Flowchart für Einzelbewertung}
-        \small{(Quelle: Eigene Darstellung)}
-    \end{figure}
-    }
-
-    \todo[inline]{To-Do: Sprache in Grafik vereinheitlichen. Entweder hier oder im Kapitel}
 
 \section*{Anhang C: Screenshots vom Frontend}
 \addcontentsline{toc}{section}{Anhang C: Screenshots vom Frontend}
@@ -114,17 +105,32 @@
     \tocless{
     \begin{figure}[H]
         \centering
+        \includegraphics[width=\linewidth]{assets/pictures/evaluation/llm_konsistenz_qwen3_tmp_0_14b.png}
+        \caption{Ergebnisse des Versuchsaufbaus für die Konsistenzprüfung mit Qwen3:14b und 0 als Temperatur}
+        \small{(Quelle: Eigene Darstellung)}
+
+        \medskip
+
+        Anmerkung: Qwen3 mit weniger Paramtern ist grundsätzlich konsistenter \\
+        Vermutung: Weniger Parameter $\rightarrow$ weniger Diversität bei Ausgabe (in diesem Fall)
+    \end{figure}
+    }
+
+    \tocless{
+    \begin{figure}[H]
+        \centering
         \includegraphics[width=\linewidth]{assets/pictures/evaluation/llm_konsistenz_qwen3_tmp_0_30b_2.png}
         \caption{Ergebnisse des Versuchsaufbaus für die Konsistenzprüfung mit Qwen3:30b und 0.2 als Temperatur}
         \small{(Quelle: Eigene Darstellung)}
     \end{figure}
     }
 
+
     \tocless{
     \begin{figure}[H]
         \centering
-        \includegraphics[width=\linewidth]{assets/pictures/evaluation/llm_konsistenz_qwen3_tmp_0_14b.png}
-        \caption{Ergebnisse des Versuchsaufbaus für die Konsistenzprüfung mit Qwen3:14b und 0 als Temperatur}
+        \includegraphics[width=\linewidth]{assets/pictures/evaluation/llm_konsistenz_gpt-40_tmp_0.png}
+        \caption{Ergebnisse des Versuchsaufbaus für die Konsistenzprüfung mit OpenAI gpt-4o und 0 als Temperatur}
         \small{(Quelle: Eigene Darstellung)}
     \end{figure}
     }
@@ -132,22 +138,15 @@
     \tocless{
     \begin{figure}[H]
         \centering
-        \includegraphics[width=\linewidth]{assets/platzhalter.png}
-        \caption{Ergebnisse des Versuchsaufbaus für die Konsistenzprüfung mit OpenAI gpt4o und 0.2 als Temperatur}
+        \includegraphics[width=\linewidth]{assets/pictures/evaluation/llm_konsistenz_gpt-40_tmp_1.png}
+        \caption{Ergebnisse des Versuchsaufbaus für die Konsistenzprüfung mit OpenAI gpt-4o und 1 als Temperatur.}
         \small{(Quelle: Eigene Darstellung)}
+
+        \medskip
+
+        Anmerkung: Trotz deutlich höherer Temperatur weiterhin zu 100\% konsistent bei numerischen Aussagen
     \end{figure}
     }
-
-    \tocless{
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=\linewidth]{assets/platzhalter.png}
-        \caption{Ergebnisse des Versuchsaufbaus für die Konsistenzprüfung mit OpenAI gpt4o und 0 als Temperatur}
-        \small{(Quelle: Eigene Darstellung)}
-    \end{figure}
-    }
-
-    \todo[inline]{To-Do: Platzhalter ersetzen!}
 
 
 \section*{Anhang E: Ergebnisse für Konsensprüfung zu Analysten mit unterschiedlichen Modellen und Optionen}
@@ -157,8 +156,8 @@
     \tocless{
     \begin{figure}[H]
         \centering
-        \includegraphics[width=\linewidth]{assets/pictures/evaluation/llm_konsistenz_qwen3_tmp_0_14b.png}
-        \caption{Ergebnisse des Versuchsaufbaus für die Konsensprüfung mit Analysten über Qwen3:14b und 0 als Temperatur}
+        \includegraphics[width=\linewidth]{assets/pictures/evaluation/llm_vergleich_analysten_qwen3:14b.png}
+        \caption{Ergebnisse des Versuchsaufbaus für die Konsensprüfung mit Analysten über Qwen3:14b und 0 als Temperatur (späterer Zeitpunkt als im Text)}
         \small{(Quelle: Eigene Darstellung)}
     \end{figure}
     }
@@ -166,28 +165,21 @@
     \tocless{
     \begin{figure}[H]
         \centering
-        \includegraphics[width=\linewidth]{assets/platzhalter.png}
-        \caption{Ergebnisse des Versuchsaufbaus für die Konsensprüfung mit Analysten über gpt4o und 0 als Temperatur}
+        \includegraphics[width=\linewidth]{assets/pictures/evaluation/llm_vergleich_analysten_gpt-4o.png}
+        \caption{Ergebnisse des Versuchsaufbaus für die Konsensprüfung mit Analysten über gpt-4o und 0 als Temperatur (späterer Zeitpunkt als im Text)}
         \small{(Quelle: Eigene Darstellung)}
     \end{figure}
     }
 
-    \todo[inline]{To-Do: Platzhalter ersetzen!}
+\pagebreak
 
-
-\section*{Anhang F: Juypter-Lab PDF Export}
-\addcontentsline{toc}{section}{Anhang F: Juypter-Lab PDF Export}
-\label{sec:jupyter-lab-export}
-
-    \todo[inline]{To-Do: Noch einfügen}
-
-\section*{Anhang G: Projektcode}
-\addcontentsline{toc}{section}{Anhang G: Projektcode}
+\section*{Anhang F: Projektcode}
+\addcontentsline{toc}{section}{Anhang F: Projektcode}
 \label{sec:full_code}
 
-    Code ist über git herunterladbar von: \url{https://jasper.bremenkamp.de/git/portfolio-ai-assistant.git}
+    Der Projektcode ist über git herunterladbar von: \url{https://jasper.bremenkamp.de/git/jasper/portfolio-ai-assistant.git}
 
-    Bei Störungen oder Fragen E-Mail an: \href{mailto:jasper@bremenkamp.de}{jasper@bremenkamp.de}
+    Bei Problemen oder Fragen E-Mail an: \href{mailto:jasper@bremenkamp.de}{jasper@bremenkamp.de}
 
     \todo[inline]{To-Do: Nochmal testen!}
 
